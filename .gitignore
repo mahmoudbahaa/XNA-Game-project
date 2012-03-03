@@ -8,6 +8,8 @@
 *.so
 *.suo
 *.cachefile
+*.xnb
+*.pdb
 
 # Packages #
 ############

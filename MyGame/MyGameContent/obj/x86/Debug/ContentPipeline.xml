@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Ground.x</Source>
+      <Name>Ground</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Ground.xnb</Output>
+      <Time>2010-11-28T03:53:24+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Ground_0.xml</Key>
+        <Value>2012-03-03T22:55:09.1175707+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>ammo.x</Source>
+      <Name>ammo</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\ammo.xnb</Output>
+      <Time>2012-02-16T22:28:48.3906304+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\ammo_0.xml</Key>
+        <Value>2012-03-03T22:55:10.2156335+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>archer.x</Source>
+      <Name>archer</Name>
+      <Importer>XImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\archer.xnb</Output>
+      <Time>2012-03-03T21:42:05.6658516+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\archer_0.xml</Key>
+        <Value>2012-03-03T22:55:11.5127077+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\lower_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffuseonly.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upper_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffusexparent.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\bow_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\arrow_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>LightingEffect.fx</Source>
+      <Name>LightingEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\LightingEffect.xnb</Output>
+      <Time>2010-11-23T16:59:58+02:00</Time>
+    </Item>
+    <Item>
+      <Source>TerrainEffect.fx</Source>
+      <Name>TerrainEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\TerrainEffect.xnb</Output>
+      <Time>2010-11-24T13:59:26+02:00</Time>
+    </Item>
+    <Item>
+      <Source>diffuseonly.fx</Source>
+      <Name>diffuseonly</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffuseonly.xnb</Output>
+      <Time>2012-03-03T21:43:47.1076537+02:00</Time>
+    </Item>
+    <Item>
+      <Source>diffusexparent.fx</Source>
+      <Name>diffusexparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffusexparent.xnb</Output>
+      <Time>2012-03-03T21:44:03.2165751+02:00</Time>
+    </Item>
+    <Item>
+      <Source>grass.bmp</Source>
+      <Name>grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\grass.xnb</Output>
+      <Time>2010-11-28T03:53:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>terrain.bmp</Source>
+      <Name>terrain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\terrain.xnb</Output>
+      <Time>2012-03-03T22:17:28.2622571+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeastDiffuse.jpg</Source>
+      <Name>Textures\EnemyBeastDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse.xnb</Output>
+      <Time>2012-02-16T23:21:24.9201735+02:00</Time>
+    </Item>
+    <Item>
+      <Source>tree_billboard.png</Source>
+      <Name>tree_billboard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\tree_billboard.xnb</Output>
+      <Time>2012-02-16T19:54:41.3601768+02:00</Time>
+    </Item>
+    <Item>
+      <Source>lower.jpg</Source>
+      <Name>lower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\lower.xnb</Output>
+      <Time>2012-03-03T21:42:52.9935586+02:00</Time>
+    </Item>
+    <Item>
+      <Source>upper.jpg</Source>
+      <Name>upper</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upper.xnb</Output>
+      <Time>2012-03-03T21:43:07.8314072+02:00</Time>
+    </Item>
+    <Item>
+      <Source>bow.tga</Source>
+      <Name>bow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\bow.xnb</Output>
+      <Time>2012-03-03T21:43:30.9267282+02:00</Time>
+    </Item>
+    <Item>
+      <Source>arrow.jpg</Source>
+      <Name>arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\arrow.xnb</Output>
+      <Time>2012-03-03T21:43:30.9337286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dude.fbx</Source>
+      <Name>dude</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\dude.xnb</Output>
+      <Time>2010-11-30T02:27:24+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\dude_0.xml</Key>
+        <Value>2012-03-03T22:55:20.2502074+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Request>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeast.fbx</Source>
+      <Name>Textures\EnemyBeast</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeast.xnb</Output>
+      <Time>2012-03-03T20:04:05.3385161+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Textures\EnemyBeast_0.xml</Key>
+        <Value>2012-03-03T22:55:24.5014506+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeastDie.fbx</Source>
+      <Name>Textures\EnemyBeastDie</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDie.xnb</Output>
+      <Time>2012-03-03T21:49:18.5456109+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Textures\EnemyBeastDie_0.xml</Key>
+        <Value>2012-03-03T22:55:27.5146229+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Ground.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Ground_0.xml</Output>
+      <Time>2010-11-28T03:53:24+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Grass.bmp</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Output>
+      <Time>2010-11-28T03:53:06+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ammo.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\ammo_0.xml</Output>
+      <Time>2012-02-16T22:28:48.3906304+02:00</Time>
+    </Item>
+    <Item>
+      <Source>archer.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\archer_0.xml</Output>
+      <Time>2012-03-03T21:42:05.6658516+02:00</Time>
+    </Item>
+    <Item>
+      <Source>lower.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\lower_0.xnb</Output>
+      <Time>2012-03-03T21:42:52.9935586+02:00</Time>
+    </Item>
+    <Item>
+      <Source>upper.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upper_0.xnb</Output>
+      <Time>2012-03-03T21:43:07.8314072+02:00</Time>
+    </Item>
+    <Item>
+      <Source>head.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Output>
+      <Time>2010-11-30T02:27:02+02:00</Time>
+    </Item>
+    <Item>
+      <Source>bow.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\bow_0.xnb</Output>
+      <Time>2012-03-03T21:43:30.9267282+02:00</Time>
+    </Item>
+    <Item>
+      <Source>arrow.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\arrow_0.xnb</Output>
+      <Time>2012-03-03T21:43:30.9337286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dude.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\dude_0.xml</Output>
+      <Time>2010-11-30T02:27:24+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jacket.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Output>
+      <Time>2010-11-30T02:27:02+02:00</Time>
+    </Item>
+    <Item>
+      <Source>pants.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Output>
+      <Time>2010-11-30T02:27:04+02:00</Time>
+    </Item>
+    <Item>
+      <Source>upBodyC.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Output>
+      <Time>2010-11-30T02:27:04+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeast.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Textures\EnemyBeast_0.xml</Output>
+      <Time>2012-03-03T20:04:05.3385161+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeastDiffuse.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Output>
+      <Time>2012-02-16T23:21:24.9201735+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\EnemyBeastDie.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Textures\EnemyBeastDie_0.xml</Output>
+      <Time>2012-03-03T21:49:18.5456109+02:00</Time>
+    </Item>
+    <Item>
+      <Source>clouds.dds</Source>
+      <Name>clouds</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\clouds.xnb</Output>
+      <Time>2010-10-15T12:59:54+02:00</Time>
+    </Item>
+    <Item>
+      <Source>skysphere_effect.fx</Source>
+      <Name>skysphere_effect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\skysphere_effect.xnb</Output>
+      <Time>2012-03-03T23:06:02.7389557+02:00</Time>
+    </Item>
+    <Item>
+      <Source>skysphere_mesh.FBX</Source>
+      <Name>skysphere_mesh</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\skysphere_mesh.xnb</Output>
+      <Time>2012-03-03T23:06:22.2370709+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\skysphere_mesh_0.xml</Key>
+        <Value>2012-03-03T23:06:26.6663242+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>skysphere_mesh.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\skysphere_mesh_0.xml</Output>
+      <Time>2012-03-03T23:06:22.2370709+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
+        <Value>2012-03-03T22:55:08.2855231+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-08-22T22:53:14.354509+02:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

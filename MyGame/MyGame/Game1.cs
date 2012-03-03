@@ -72,6 +72,7 @@ namespace MyGame
         // Called when the game should update itself
         protected override void Update(GameTime gameTime)
         {
+            
             updatePlayer();
             updateCamera(modelManager.player);
             FireShots(gameTime, modelManager.player.unit.position);

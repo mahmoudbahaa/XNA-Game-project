@@ -26,14 +26,14 @@ namespace MyGame
         }
 
         public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model runModel, Model dieModel , Unit unit)
-            : base(game, runSkinningData, runModel, unit)
+            : base(game, dieSkinningData, runModel, unit)
         {
-            this.runModel = runModel;
+            //this.runModel = runModel;
             this.dieModel = dieModel;
-            this.runSkinningData = runSkinningData;
+            //this.runSkinningData = runSkinningData;
             this.dieSkinningData = dieSkinningData;
             game.register(this, MyEvent.M_DIE);
-            animator.StartClip(animations[(int)MonsterAnimations.Run], false,true);
+            animator.StartClip(animations[(int)MonsterAnimations.Die], false,true);
         }
 
         public override void Draw(GameTime gameTime)
