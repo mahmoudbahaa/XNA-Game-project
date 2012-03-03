@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using MyGame;
 
 namespace control
 {
@@ -13,9 +14,12 @@ namespace control
         private int pointingHand;
         private Thread thread;
 
-        public GestureManager(int pointingHand)
+        Game1 game;
+
+        public GestureManager(Game1 game, int pointingHand)
         {
             this.pointingHand = pointingHand;
+            this.game = game;
             gestures = new List<Gesture>();
             thread = new Thread(Run);
             init();
@@ -42,6 +46,8 @@ namespace control
             foreach (Gesture g in gestures)
             {
                 g.eval();
+                if (g.active)
+                    g.fireEvent();
             }
         }
 

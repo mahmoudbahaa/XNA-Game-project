@@ -177,7 +177,7 @@ namespace MyGame
             }
         }
 
-        private void fireEvent(int ev,params Object[] param)
+        public void fireEvent(int ev,params Object[] param)
         {
             if (hash[ev] == null) return;
             List<IEvent> list = (List<IEvent>)hash[ev];
