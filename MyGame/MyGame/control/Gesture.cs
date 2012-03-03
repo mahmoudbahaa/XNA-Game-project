@@ -89,8 +89,8 @@ namespace control
         {
            // Console.WriteLine(kinect.skeleton.rAnkle.Z + "," + kinect.skeleton.lAnkle.Z);
             active = Kinect.skeleton.rAnkle.Z - Kinect.skeleton.lAnkle.Z < -0.3f;
-            if(active)
-                this.fireEvent(game, "", "x", 394)
+            //if (active)
+            //    this.fireEvent(game, "", "x", 394);
         }
     }
 
