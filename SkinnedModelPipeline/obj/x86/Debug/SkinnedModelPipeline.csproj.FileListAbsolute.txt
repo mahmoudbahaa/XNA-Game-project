@@ -1,0 +1,42 @@
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+D:\Documents\Desktop\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb

@@ -1,0 +1,42 @@
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+E:\sean\Book Shared\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+C:\Users\Sean\Desktop\Book Shared P\Chapters\Chapter 9\Chapter 8 Assets\XNA40\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+D:\Programs\Programming Stuff\game Programming\Books\XNA\Code Bundle\0041_09_revised code\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+D:\Documents\Desktop\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\06 Skinned Model\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb

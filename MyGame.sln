@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGame", "MyGame\MyGame\MyGame.csproj", "{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameContent", "MyGame\MyGameContent\MyGameContent.contentproj", "{9D19B923-BE72-406B-9760-B3CBB8AA5959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModel", "SkinnedModel\SkinnedModel.csproj", "{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelPipeline", "SkinnedModelPipeline\SkinnedModelPipeline.csproj", "{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}.Debug|x86.ActiveCfg = Debug|x86
+		{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}.Debug|x86.Build.0 = Debug|x86
+		{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}.Release|x86.ActiveCfg = Release|x86
+		{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}.Release|x86.Build.0 = Release|x86
+		{9D19B923-BE72-406B-9760-B3CBB8AA5959}.Debug|x86.ActiveCfg = Debug|x86
+		{9D19B923-BE72-406B-9760-B3CBB8AA5959}.Release|x86.ActiveCfg = Release|x86
+		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Debug|x86.ActiveCfg = Debug|x86
+		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Debug|x86.Build.0 = Debug|x86
+		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Release|x86.ActiveCfg = Release|x86
+		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Release|x86.Build.0 = Release|x86
+		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Debug|x86.ActiveCfg = Debug|x86
+		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Debug|x86.Build.0 = Debug|x86
+		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Release|x86.ActiveCfg = Debug|x86
+		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Release|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
