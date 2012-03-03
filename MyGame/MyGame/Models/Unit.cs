@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Helper;
 
 namespace MyGame
 {
@@ -18,7 +19,7 @@ namespace MyGame
         //matix hold the base world 
         public Matrix baseWorld;
 
-        protected List<int> events;
+        protected List<Event> events;
 
         protected Game1 game;
 
@@ -54,14 +55,14 @@ namespace MyGame
 
             this.game = game;
 
-            this.events = new List<int>();
+            this.events = new List<Event>();
         }
 
         public virtual void update(GameTime gameTime) 
         {
         }
 
-        public void addEvent(int ev)
+        public void addEvent(Event ev)
         {
             events.Add(ev);
         }

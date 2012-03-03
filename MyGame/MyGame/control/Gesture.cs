@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Helper;
+using MyGame;
 
 namespace control
 {
@@ -13,6 +14,10 @@ namespace control
         public bool hold;
         public string description { get; protected set; }
         public abstract void eval();
+
+        public virtual Object[] getArgs() {
+            return null;
+        }
     }
 
 
@@ -84,6 +89,8 @@ namespace control
         {
            // Console.WriteLine(kinect.skeleton.rAnkle.Z + "," + kinect.skeleton.lAnkle.Z);
             active = Kinect.skeleton.rAnkle.Z - Kinect.skeleton.lAnkle.Z < -0.3f;
+            if(active)
+                this.fireEvent(game, "", "x", 394)
         }
     }
 
@@ -199,6 +206,11 @@ namespace control
 
             return angle;
 
+        }
+
+        public override Object[] getArgs()
+        {
+            return new Object[]{"theta",theta};
         }
     }
 

@@ -2,7 +2,11 @@
 <XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics" xmlns:Framework="Microsoft.Xna.Framework">
   <Asset Type="Graphics:NodeContent">
     <Identity>
+<<<<<<< HEAD
       <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\Ground.x</SourceFilename>
+=======
+      <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Ground.x</SourceFilename>
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c
       <SourceTool>XImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -30,7 +34,11 @@
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Identity>
+<<<<<<< HEAD
         <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\Ground.x</SourceFilename>
+=======
+        <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Ground.x</SourceFilename>
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>

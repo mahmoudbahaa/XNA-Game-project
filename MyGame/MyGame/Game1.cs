@@ -16,7 +16,7 @@ namespace MyGame
         Terrain terrain;
         MouseState lastMouseState;
         CModelManager modelManager;
-
+        //assal
 
         Hashtable hash;
 
@@ -111,7 +111,7 @@ namespace MyGame
             chaseCamera.Rotate(new Vector3(deltaY * .005f, 0, 0));
             //player.unit.position.Y = terrain.GetHeightAtPosition(player.unit.position.X,
               //  player.unit.position.Z);
-            player.unit.rotation += new Vector3(0, deltaX * .005f, 0); ;
+            player.unit.rotation += new Vector3(0, deltaX * .005f, 0);
             lastMouseState = mouseState;
         }
 
@@ -177,11 +177,15 @@ namespace MyGame
             }
         }
 
-        private void fireEvent(int ev)
+        public void fireEvent(int ev,params Object[] param)
         {
+            if (hash[ev] == null) return;
             List<IEvent> list = (List<IEvent>)hash[ev];
+            Event eve = new Event(ev,param);
             foreach (IEvent ie in list)
-                ie.addEvent(ev);
+            {
+                ie.addEvent(eve);
+            }
         }
 
         public void playerRunFoward()

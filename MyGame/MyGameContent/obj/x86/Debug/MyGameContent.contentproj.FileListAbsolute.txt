@@ -1,3 +1,7 @@
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype\MyGame\MyGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+=======
+D:\GP\XNA-Game-project\MyGame\MyGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c

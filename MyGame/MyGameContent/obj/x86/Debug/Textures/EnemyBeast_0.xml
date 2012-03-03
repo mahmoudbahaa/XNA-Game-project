@@ -3,7 +3,11 @@
   <Asset Type="Graphics:NodeContent">
     <Name>RootNode</Name>
     <Identity>
+<<<<<<< HEAD
       <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+=======
+      <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -10640,7 +10644,11 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Material0</Name>
       <Identity>
+<<<<<<< HEAD
         <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+=======
+        <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

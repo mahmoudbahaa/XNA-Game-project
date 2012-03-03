@@ -40,6 +40,7 @@ C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPip
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+<<<<<<< HEAD
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
@@ -47,3 +48,12 @@ C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
 C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+=======
+D:\GP\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+D:\GP\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+D:\GP\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+D:\GP\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+D:\GP\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GP\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+D:\GP\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+>>>>>>> a93dcb692a110a3d86931c79c7907d0d56e6815c

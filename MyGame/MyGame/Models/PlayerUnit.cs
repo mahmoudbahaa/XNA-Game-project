@@ -28,9 +28,9 @@ namespace MyGame
             float leftRight = 0;
             float forwardBackward = 0;
 
-            foreach (int ev in events)
+            foreach (Event ev in events)
             {
-                switch (ev)
+                switch (ev.eventId)
                 {
                     case  MyEvent.C_LEFT:
                         leftRight -= 10f;
