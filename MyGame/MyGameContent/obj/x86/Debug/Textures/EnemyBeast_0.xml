@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>RootNode</Name>
     <Identity>
-      <SourceFilename>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+      <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -37288,7 +37288,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Material0</Name>
       <Identity>
-        <SourceFilename>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
+        <SourceFilename>D:\GP\XNA-Game-project\MyGame\MyGameContent\Textures\EnemyBeast.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

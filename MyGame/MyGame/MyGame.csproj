@@ -117,6 +117,7 @@
     <Compile Include="control\GestureManager.cs" />
     <Compile Include="control\kinect.cs" />
     <Compile Include="control\skeleton.cs" />
+    <Compile Include="Helper\Event.cs" />
     <Compile Include="Helper\MyEvent.cs" />
     <Compile Include="Helper\util.cs" />
     <Compile Include="GameManager.cs" />

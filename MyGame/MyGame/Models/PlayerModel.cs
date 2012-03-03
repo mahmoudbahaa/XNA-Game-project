@@ -31,9 +31,9 @@ namespace MyGame
         public override void Draw(GameTime gameTime)
         {
             running = false;
-            foreach (int ev in events)
+            foreach (Event ev in events)
             {
-                switch (ev)
+                switch (ev.eventId)
                 {
                     case MyEvent.P_RUN_Forward:
                     case MyEvent.P_RUN_Backward:

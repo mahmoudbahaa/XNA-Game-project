@@ -7,13 +7,13 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Ground.xnb</Output>
-      <Time>2010-11-28T03:53:24+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Ground.xnb</Output>
+      <Time>2012-03-03T19:24:56.2138147+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Ground_0.xml</Key>
-        <Value>2012-02-26T11:11:51.4020176+02:00</Value>
+        <Value>2012-03-03T21:24:35.5837335+02:00</Value>
       </Dependency>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Request>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Request>
     </Item>
     <Item>
       <Source>ammo.x</Source>
@@ -21,11 +21,11 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\ammo.xnb</Output>
-      <Time>2012-02-16T22:28:48.3906304+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\ammo.xnb</Output>
+      <Time>2012-03-03T19:24:56.2938148+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\ammo_0.xml</Key>
-        <Value>2012-02-26T11:11:52.8641013+02:00</Value>
+        <Value>2012-03-03T21:24:36.4885351+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -34,8 +34,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\LightingEffect.xnb</Output>
-      <Time>2010-11-23T16:59:58+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\LightingEffect.xnb</Output>
+      <Time>2012-03-03T19:24:56.2238147+02:00</Time>
     </Item>
     <Item>
       <Source>TerrainEffect.fx</Source>
@@ -43,8 +43,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\TerrainEffect.xnb</Output>
-      <Time>2010-11-24T13:59:26+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\TerrainEffect.xnb</Output>
+      <Time>2012-03-03T19:24:56.2238147+02:00</Time>
     </Item>
     <Item>
       <Source>grass.bmp</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\grass.xnb</Output>
-      <Time>2010-11-28T03:53:06+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\grass.xnb</Output>
+      <Time>2012-03-03T19:24:56.4838151+02:00</Time>
     </Item>
     <Item>
       <Source>terrain.bmp</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\terrain.xnb</Output>
-      <Time>2010-11-24T13:52:44+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\terrain.xnb</Output>
+      <Time>2012-03-03T19:24:56.8138155+02:00</Time>
     </Item>
     <Item>
       <Source>tree_billboard.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\tree_billboard.xnb</Output>
-      <Time>2012-02-16T19:54:41.3601768+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\tree_billboard.xnb</Output>
+      <Time>2012-03-03T19:24:56.8238155+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\EnemyBeastDiffuse.jpg</Source>
@@ -79,8 +79,25 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse.xnb</Output>
-      <Time>2012-02-16T23:21:24.9201735+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse.xnb</Output>
+      <Time>2012-03-03T19:24:56.2738148+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dude.fbx</Source>
+      <Name>dude</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\dude.xnb</Output>
+      <Time>2012-03-03T19:24:56.433815+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\dude_0.xml</Key>
+        <Value>2012-03-03T21:24:40.3261418+02:00</Value>
+      </Dependency>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Request>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Request>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Request>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Request>
     </Item>
     <Item>
       <Source>Textures\EnemyBeast.fbx</Source>
@@ -88,20 +105,20 @@
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeast.xnb</Output>
-      <Time>2012-02-16T23:21:09.2392766+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeast.xnb</Output>
+      <Time>2012-03-03T19:24:56.2738148+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Textures\EnemyBeast_0.xml</Key>
-        <Value>2012-02-26T11:12:04.5447694+02:00</Value>
+        <Value>2012-03-03T21:24:43.9765482+02:00</Value>
       </Dependency>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Request>
+      <Request>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Request>
     </Item>
     <Item>
       <Source>Ground.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Ground_0.xml</Output>
-      <Time>2010-11-28T03:53:24+02:00</Time>
+      <Time>2012-03-03T19:24:56.2138147+02:00</Time>
     </Item>
     <Item>
       <Source>Grass.bmp</Source>
@@ -116,22 +133,22 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Output>
-      <Time>2010-11-28T03:53:06+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.4838151+02:00</Time>
     </Item>
     <Item>
       <Source>ammo.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\ammo_0.xml</Output>
-      <Time>2012-02-16T22:28:48.3906304+02:00</Time>
+      <Time>2012-03-03T19:24:56.2938148+02:00</Time>
     </Item>
     <Item>
       <Source>dude.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\dude_0.xml</Output>
-      <Time>2010-11-30T02:27:24+02:00</Time>
+      <Time>2012-03-03T19:24:56.433815+02:00</Time>
     </Item>
     <Item>
       <Source>head.tga</Source>
@@ -146,8 +163,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Output>
-      <Time>2010-11-30T02:27:02+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.5338151+02:00</Time>
     </Item>
     <Item>
       <Source>jacket.tga</Source>
@@ -162,8 +179,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Output>
-      <Time>2010-11-30T02:27:02+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.6138152+02:00</Time>
     </Item>
     <Item>
       <Source>pants.tga</Source>
@@ -178,8 +195,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Output>
-      <Time>2010-11-30T02:27:04+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.8038155+02:00</Time>
     </Item>
     <Item>
       <Source>upBodyC.tga</Source>
@@ -194,15 +211,15 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Output>
-      <Time>2010-11-30T02:27:04+02:00</Time>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.8738156+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\EnemyBeast.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Textures\EnemyBeast_0.xml</Output>
-      <Time>2012-02-16T23:21:09.2392766+02:00</Time>
+      <Time>2012-03-03T19:24:56.2738148+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\EnemyBeastDiffuse.jpg</Source>
@@ -217,25 +234,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Output>
-      <Time>2012-02-16T23:21:24.9201735+02:00</Time>
-    </Item>
-    <Item>
-      <Source>dude.fbx</Source>
-      <Name>dude</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\dude.xnb</Output>
-      <Time>2010-11-30T02:27:24+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\dude_0.xml</Key>
-        <Value>2012-02-26T11:11:59.0074526+02:00</Value>
-      </Dependency>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb</Request>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb</Request>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb</Request>
-      <Request>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb</Request>
+      <Output>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb</Output>
+      <Time>2012-03-03T19:24:56.2738148+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -243,43 +243,43 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\GP\XNA-Game-project\MyGame\MyGameContent\</RootDirectory>
+      <LoggerRootDirectory>D:\GP\XNA-Game-project\MyGame\MyGame\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\GP\XNA-Game-project\MyGame\MyGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
-        <Value>2012-02-19T23:25:42.9886451+02:00</Value>
+        <Key>D:\GP\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
+        <Value>2012-03-03T21:24:34.9531285+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-08-22T22:53:14.354509+02:00</Value>
+        <Value>2011-08-25T10:41:59.8169198+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

@@ -40,3 +40,9 @@ C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\ob
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb
+D:\GP\XNA-Game-project\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
+D:\GP\XNA-Game-project\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
+D:\GP\XNA-Game-project\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GP\XNA-Game-project\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\GP\XNA-Game-project\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
+D:\GP\XNA-Game-project\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb

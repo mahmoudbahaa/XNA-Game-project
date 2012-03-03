@@ -18,6 +18,18 @@ namespace control
             this.pointingHand = pointingHand;
             gestures = new List<Gesture>();
             thread = new Thread(Run);
+            init();
+        }
+
+        private void init()
+        {
+            gestures.Add(new RightLegForward());
+            gestures.Add(new RightLegBackward());
+            gestures.Add(new LeanLeft());
+            gestures.Add(new LeanRight());
+            gestures.Add(new HandStretchForward((pointingHand + 1) % 2));
+            gestures.Add(new HandPointer(pointingHand));
+            start();
         }
 
         public void start()
@@ -25,26 +37,23 @@ namespace control
             thread.Start();
         }
 
-        public void AddGesture(Gesture g)
-        {
-            gestures.Add(g);
-        }
-
         public void updateState()
         {
             foreach (Gesture g in gestures)
+            {
                 g.eval();
+            }
         }
 
-      public void Run()
-      {
+        public void Run()
+        {
           while (true)
           {
               updateState();
               Thread.Sleep(30);
           }
 
-      }
+        }
 
 
 

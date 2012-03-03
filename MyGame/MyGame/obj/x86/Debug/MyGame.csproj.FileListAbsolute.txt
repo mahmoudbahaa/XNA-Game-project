@@ -718,3 +718,27 @@ C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\o
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\MyGame.exe
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\MyGame.pdb
+D:\GP\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\GP\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\GP\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\MyGame.exe
+D:\GP\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\MyGame.pdb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Ground.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\ammo.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\LightingEffect.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\TerrainEffect.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\grass.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\terrain.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\tree_billboard.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\dude.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeast.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\MyGame.exe
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\MyGame.pdb
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\SkinnedModel.dll
+D:\GP\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\SkinnedModel.pdb

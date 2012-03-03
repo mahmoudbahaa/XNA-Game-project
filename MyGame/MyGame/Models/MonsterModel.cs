@@ -28,9 +28,9 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (int ev in events)
+            foreach (Event ev in events)
             {
-                switch (ev)
+                switch (ev.eventId)
                 {
                     case MyEvent.M_DIE:
                         Die();

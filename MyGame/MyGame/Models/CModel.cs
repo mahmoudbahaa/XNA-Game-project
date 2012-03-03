@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Helper;
+
 
 namespace MyGame
 {
@@ -15,7 +17,7 @@ namespace MyGame
 
         protected Matrix[] modelTransforms;
 
-        protected List<int> events;
+        protected List<Event> events;
 
         public Unit unit;
 
@@ -39,7 +41,7 @@ namespace MyGame
 
             this.game = game;
 
-            events = new List<int>();
+            events = new List<Event>();
         }
 
         protected void updateBaseWorld(Vector3 position, Vector3 rotation, Vector3 scale, Matrix baseWorld)
@@ -103,7 +105,7 @@ namespace MyGame
                 effect.Parameters[paramName].SetValue((Texture2D)val);
         }
 
-        public void addEvent(int ev)
+        public void addEvent(Event ev)
         {
             events.Add(ev);
         }
