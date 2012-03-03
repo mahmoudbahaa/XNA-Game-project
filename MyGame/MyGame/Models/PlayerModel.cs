@@ -25,7 +25,7 @@ namespace MyGame
         {
             game.register(this,MyEvent.P_RUN_Forward, MyEvent.P_RUN_Backward);
             running = false;
-            animator.StartClip(animations[(int)PlayAnimations.Run], true);
+            animator.StartClip(animations[(int)PlayAnimations.Run], true,true);
         }
 
         public override void Draw(GameTime gameTime)

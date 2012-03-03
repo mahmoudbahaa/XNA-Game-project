@@ -38,10 +38,13 @@ namespace MyGame
         }
 
         // Starts playing the entirety of the given clip
-        public void StartClip(string clip, bool loop)
+        public void StartClip(string clip, bool loop,bool dummy=false)
         {
             AnimationClip clipVal = skinningData.AnimationClips[clip];
-            StartClip(clip, TimeSpan.FromSeconds(0), clipVal.Duration, loop);
+            if(dummy)
+                StartClip(clip, TimeSpan.FromSeconds(0), new TimeSpan(), loop);
+            else 
+                StartClip(clip, TimeSpan.FromSeconds(0), clipVal.Duration, loop);
         }
 
         // Plays a specific portion of the given clip, from one frame

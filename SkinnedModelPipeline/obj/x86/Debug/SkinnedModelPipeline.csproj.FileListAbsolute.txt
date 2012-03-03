@@ -40,3 +40,10 @@ C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPip
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+C:\Users\Etcho\XNA-Game-project\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb

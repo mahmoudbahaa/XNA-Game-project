@@ -55,7 +55,7 @@ namespace MyGame
 
             sky = intitializeSky();
 
-            terrain = new Terrain(Game, camera, Game.Content.Load<Texture2D>("terrain"), 10, 0,
+            terrain = new Terrain(Game, camera, Game.Content.Load<Texture2D>("terrain"), 10, 100,
                 Game.Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
 
             base.Initialize();
@@ -84,10 +84,12 @@ namespace MyGame
 
         private MonsterModel intilizeMonster()
         {
-            Model model = Game.Content.Load<Model>(@"Textures\EnemyBeast");
-            SkinningData skinnedData = model.Tag as SkinningData;
+            Model dieModel= Game.Content.Load<Model>(@"Textures\EnemyBeastDie");
+            Model runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
+            SkinningData runSkinnedData = runModel.Tag as SkinningData;
+            SkinningData dieSkinnedData = dieModel.Tag as SkinningData;
             MonsterUnit monsterUnit = new MonsterUnit((Game1)Game, new Vector3(50, 5, 100), Vector3.Zero, new Vector3(.5f));
-            MonsterModel monsterModel = new MonsterModel((Game1)Game, skinnedData, model, monsterUnit);
+            MonsterModel monsterModel = new MonsterModel((Game1)Game,runSkinnedData,dieSkinnedData, runModel,dieModel, monsterUnit);
 
             return monsterModel;
         }
@@ -116,7 +118,7 @@ namespace MyGame
         public void AddBullet(Vector3 position, Vector3 direction)
         {
             bullets.Add(new CModel((Game1)Game, Game.Content.Load<Model>("ammo"),
-                new BulletUnit((Game1)Game,position, Vector3.Zero, 50*Vector3.One, direction)));
+                new BulletUnit((Game1)Game,position, Vector3.Zero, 10*Vector3.One, direction)));
  
         }
 

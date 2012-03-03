@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Frame_World</Name>
     <Identity>
-      <SourceFilename>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\ammo.x</SourceFilename>
+      <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\ammo.x</SourceFilename>
       <SourceTool>XImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 -1 0 0 0 0 1</Transform>
@@ -43,7 +43,7 @@
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGameContent\ammo.x</SourceFilename>
+        <SourceFilename>C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\ammo.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>

@@ -12,18 +12,28 @@ namespace MyGame
     class MonsterModel : AnimatedModel
     {
 
-        readonly String[] animations = new String[] { "Idle" };
+        readonly String[] animations = new String[] { "Die" , "Run"};
+
+        Model runModel;
+        Model dieModel;
+        SkinningData runSkinningData ;
+        SkinningData dieSkinningData ;
 
         public enum MonsterAnimations
         {
-            Die = 0
+            Die = 0,
+            Run = 1
         }
 
-        public MonsterModel(Game1 game,SkinningData skinningData, Model model,Unit unit)
-            : base(game, skinningData, model, unit)
+        public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model runModel, Model dieModel , Unit unit)
+            : base(game, runSkinningData, runModel, unit)
         {
+            this.runModel = runModel;
+            this.dieModel = dieModel;
+            this.runSkinningData = runSkinningData;
+            this.dieSkinningData = dieSkinningData;
             game.register(this, MyEvent.M_DIE);
-            animator.StartClip(animations[(int)MonsterAnimations.Die], true);
+            animator.StartClip(animations[(int)MonsterAnimations.Run], false,true);
         }
 
         public override void Draw(GameTime gameTime)

@@ -718,3 +718,39 @@ C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\o
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\MyGame.exe
 C:\Users\Etcho\Documents\Visual Studio 2010\Projects\prototype 2\MyGame\MyGame\obj\x86\Debug\MyGame.pdb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Ground.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\ammo.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\LightingEffect.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\TerrainEffect.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\grass.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\terrain.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\tree_billboard.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\dude.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Grass_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\head_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\jacket_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\pants_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upBodyC_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\MyGame.exe
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\MyGame.pdb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\MyGame.exe
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\obj\x86\Debug\MyGame.pdb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeast.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDiffuse_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\archer.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\lower.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upper.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\bow.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\arrow.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\lower_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffuseonly.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\upper_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\diffusexparent.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\bow_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\arrow_0.xnb
+C:\Users\Etcho\XNA-Game-project\MyGame\MyGame\bin\x86\Debug\Content\Textures\EnemyBeastDie.xnb

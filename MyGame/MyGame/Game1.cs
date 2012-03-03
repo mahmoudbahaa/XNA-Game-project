@@ -23,7 +23,7 @@ namespace MyGame
        // PlayerModel playerModel;
         
         // Shot variables
-        float shotSpeed = 10;
+        float shotSpeed = 0.5f;
         int shotDelay = 300;
         int shotCountdown = 0;
 
@@ -76,19 +76,19 @@ namespace MyGame
             updateCamera(modelManager.player);
             FireShots(gameTime, modelManager.player.unit.position);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-                if (shotCountdown < 0)
-                {
-                    shotCountdown = shotDelay;
-                    Vector3 dir = camera.Target - camera.Position;
-                    dir.Normalize();
-                    Vector3 pos = modelManager.player.unit.position;
-                    pos.Y = 20;
-                    modelManager.AddBullet(pos, dir);
-                }
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            //{
+            //    shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+            //    if (shotCountdown < 0)
+            //    {
+            //        shotCountdown = shotDelay;
+            //        Vector3 dir = camera.Target - camera.Position;
+            //        dir.Normalize();
+            //        Vector3 pos = modelManager.player.unit.position;
+            //        pos.Y = 20;
+            //        modelManager.AddBullet(pos, dir);
+            //    }
+            //}
             base.Update(gameTime);
         }
 
@@ -132,23 +132,23 @@ namespace MyGame
 
         protected void FireShots(GameTime gameTime,Vector3 position)
         {
+            shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (shotCountdown <= 0)
             {
-                // Did player press space bar or left mouse button?
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
-                    Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                 
-                    Vector3 direction = (camera.Target - camera.Position);
-                    direction.Normalize();
-                    modelManager.AddBullet(position+ new Vector3(0,300,0), direction * shotSpeed);
+                    {
+                        Vector3 direction = (camera.Target - camera.Position);
+                        direction.Normalize();
+                        modelManager.AddBullet(position + new Vector3(0, 40, 0), direction * shotSpeed);
 
-                    // Reset the shot countdown
-                    shotCountdown = shotDelay;
+                        // Reset the shot countdown
+                        shotCountdown = shotDelay;
+                    }
                 }
             }
-            else
-                shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+                
         }
 
 

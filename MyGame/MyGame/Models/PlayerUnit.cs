@@ -33,16 +33,16 @@ namespace MyGame
                 switch (ev)
                 {
                     case  MyEvent.C_LEFT:
-                        leftRight -= 1f;
+                        leftRight -= 10f;
                         break;
                     case MyEvent.C_RIGHT:
-                        leftRight += 1f;
+                        leftRight += 10f;
                         break;
                     case MyEvent.C_FORWARD:
-                        forwardBackward = -1f;
+                        forwardBackward = -10f;
                         break;
                     case MyEvent.C_BACKWARD:
-                        forwardBackward = 1f;
+                        forwardBackward = 10f;
                         break;
                 }
             }
@@ -52,7 +52,7 @@ namespace MyGame
             Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
             position += Vector3.Transform(new Vector3(leftRight, 0, forwardBackward), rot) *
                (float)gameTime.ElapsedGameTime.TotalMilliseconds * PlayerSpeed;
-
+            position = Vector3.Clamp(position, new Vector3(-2350), new Vector3(2350));
         }
     }
 }

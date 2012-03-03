@@ -88,6 +88,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Textures\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\EnemyBeastDiffuse.jpg">
+      <Name>EnemyBeastDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="tree_billboard.png">
       <Name>tree_billboard</Name>
       <Importer>TextureImporter</Importer>
@@ -102,17 +112,59 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\EnemyBeast.fbx">
-      <Name>EnemyBeast</Name>
-      <Importer>FbxImporter</Importer>
+    <Compile Include="archer.x">
+      <Name>archer</Name>
+      <Importer>XImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\EnemyBeastDiffuse.jpg">
-      <Name>EnemyBeastDiffuse</Name>
+    <Compile Include="lower.jpg">
+      <Name>lower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="upper.jpg">
+      <Name>upper</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bow.tga">
+      <Name>bow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="arrow.jpg">
+      <Name>arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="diffuseonly.fx">
+      <Name>diffuseonly</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="diffusexparent.fx">
+      <Name>diffusexparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\EnemyBeastDie.fbx">
+      <Name>EnemyBeastDie</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
