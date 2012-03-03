@@ -16,7 +16,7 @@ namespace MyGame
         Terrain terrain;
         MouseState lastMouseState;
         CModelManager modelManager;
-
+        //assal
 
         Hashtable hash;
 
