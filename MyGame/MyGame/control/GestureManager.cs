@@ -47,7 +47,7 @@ namespace control
             {
                 g.eval();
                 if (g.active)
-                    g.fireEvent();
+                    game.fireEvent(0, g.getArgs());
             }
         }
 
