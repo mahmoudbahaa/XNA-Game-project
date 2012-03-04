@@ -17,7 +17,7 @@ namespace MyGame
         public MonsterUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            MonsterSpeed = 10f;
+            MonsterSpeed = 3f;
             Health = 100;
             direction = Vector3.Transform(Vector3.Backward,
                 Matrix.CreateFromYawPitchRoll(rotation.Y,rotation.X,rotation.Z));

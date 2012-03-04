@@ -18,7 +18,7 @@ namespace MyGame
             : base(game,Position, Rotation, Scale)
         {
             game.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT, MyEvent.C_RIGHT);
-            PlayerSpeed = 1f;
+            PlayerSpeed = .1f;
             Health = 100;
         }
 

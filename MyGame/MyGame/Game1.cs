@@ -143,6 +143,7 @@ namespace MyGame
                 {
                     {
                         Vector3 direction = (camera.Target - camera.Position);
+                        direction.Y += 25;
                         direction.Normalize();
                         modelManager.AddBullet(position + new Vector3(0, 40, 0), direction * shotSpeed);
 

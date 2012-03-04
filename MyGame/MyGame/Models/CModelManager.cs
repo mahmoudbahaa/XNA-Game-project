@@ -18,6 +18,8 @@ namespace MyGame
     /// </summary>
     public class CModelManager : DrawableGameComponent
     {
+        private SpriteBatch spriteBatch;
+        private int score = 0;
         public CModel player;
         private List<CModel> monsters;
         private List<CModel> bullets;
@@ -109,6 +111,7 @@ namespace MyGame
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             base.LoadContent();
         }
         /// <summary>
@@ -170,6 +173,7 @@ namespace MyGame
                             // Collision! Remove the ship and the shot. 
                             //monsters.RemoveAt(j);
                             ((MonsterModel)monsters[j]).Die();
+                            score++;
                             //((Game1)Game).fireEvent(Helper.MyEvent.M_DIE,monsters[j]);
                             bullets.RemoveAt(i);
                             --i;
@@ -182,24 +186,28 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
+            
             sky.Draw(gameTime);
 
             terrain.Draw(gameTime);
 
-            foreach (CModel skModel in monsters)
+            foreach (CModel monster in monsters)
                 //if (camera.BoundingVolumeIsInView(skModel.unit.BoundingSphere))
-                skModel.Draw(gameTime);
+                monster.Draw(gameTime);
 
-            foreach (CModel skModel in bullets)
+            foreach (CModel bullet in bullets)
                 //if (camera.BoundingVolumeIsInView(skModel.unit.BoundingSphere))
-                skModel.Draw(gameTime);
+                bullet.Draw(gameTime);
 
             player.Draw(gameTime);
 
-            
 
 
 
+            spriteBatch.Begin();
+            SpriteFont font = Game.Content.Load<SpriteFont>("SpriteFont1");
+            spriteBatch.DrawString(font, "Score: " + score, new Vector2(5, 5), Color.Red);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 

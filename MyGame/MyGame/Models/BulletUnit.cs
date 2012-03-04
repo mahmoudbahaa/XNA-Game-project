@@ -10,6 +10,7 @@ namespace MyGame
     class BulletUnit : Unit
     {
         Vector3 Direction { get; set; }
+        float bulletSpeed = 3f;
 
         public BulletUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale,Vector3 Direction)
             : base(game,Position, Rotation, Scale)
@@ -20,7 +21,7 @@ namespace MyGame
         public override void update(GameTime gameTime)
         {
             // Move bullet
-            baseWorld *= Matrix.CreateTranslation(Direction);
+            baseWorld *= Matrix.CreateTranslation(Direction* bulletSpeed);
         }
 
 
