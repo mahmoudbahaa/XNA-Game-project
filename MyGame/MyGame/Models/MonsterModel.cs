@@ -14,9 +14,7 @@ namespace MyGame
 
         readonly String[] animations = new String[] { "Die" , "Run"};
 
-        Model runModel;
-        Model dieModel;
-        SkinningData runSkinningData ;
+        //SkinningData runSkinningData ;
         SkinningData dieSkinningData ;
 
         public enum MonsterAnimations
@@ -25,15 +23,14 @@ namespace MyGame
             Run = 1
         }
 
-        public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model runModel, Model dieModel , Unit unit)
-            : base(game, dieSkinningData, runModel, unit)
+        public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model model, Unit unit)
+            : base(game, runSkinningData, model, unit)
         {
-            //this.runModel = runModel;
-            this.dieModel = dieModel;
             //this.runSkinningData = runSkinningData;
             this.dieSkinningData = dieSkinningData;
+            
             game.register(this, MyEvent.M_DIE);
-            animator.StartClip(animations[(int)MonsterAnimations.Die], false,true);
+            animator.StartClip(animations[(int)MonsterAnimations.Run], true);
         }
 
         public override void Draw(GameTime gameTime)
@@ -55,6 +52,7 @@ namespace MyGame
 
         public void Die()
         {
+            animator.skinningData = dieSkinningData;
             animator.StartClip(animations[(int)MonsterAnimations.Die], false);
         }
     }

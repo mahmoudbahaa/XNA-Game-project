@@ -21,7 +21,7 @@ namespace MyGame
 
         float springiness = .15f;
 
-        MouseState lastMouseState;
+        //MouseState lastMouseState;
 
         public float Springiness
         {

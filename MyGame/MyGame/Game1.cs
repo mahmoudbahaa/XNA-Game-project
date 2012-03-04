@@ -13,7 +13,7 @@ namespace MyGame
     {
         GraphicsDeviceManager graphics;
         public Camera camera;
-        Terrain terrain;
+        //Terrain terrain;
         MouseState lastMouseState;
         CModelManager modelManager;
         //assal
@@ -35,7 +35,9 @@ namespace MyGame
             Content.RootDirectory = "Content";
             hash = new Hashtable();
 
-            //fbDeprofiler.DeProfiler.Run();
+            //DONT Remove i need this.--Mahmoud Bahaa
+            if(System.IO.File.Exists("fbDeprofiler.dll"))
+                fbDeprofiler.DeProfiler.Run();
         }
 
         // Called when the game should load its content
@@ -227,11 +229,6 @@ namespace MyGame
         public void controlAttack()
         {
             fireEvent(MyEvent.C_ATTACK);
-        }
-
-        public void monsterDie()
-        {
-            fireEvent(MyEvent.M_DIE);
         }
 
 

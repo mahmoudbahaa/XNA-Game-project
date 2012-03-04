@@ -10,7 +10,7 @@ namespace MyGame
 {
     public class SkinnedAnimationPlayer
     {
-        SkinningData skinningData;
+        public SkinningData skinningData;
 
         // The currently playing clip, if there is one
         public AnimationClip CurrentClip { get; private set; }

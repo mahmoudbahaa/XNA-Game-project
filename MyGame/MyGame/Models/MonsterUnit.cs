@@ -12,17 +12,29 @@ namespace MyGame
         private float MonsterSpeed {get;set;}
         private int Health { get; set; }
 
+        private Vector3 direction;
+
         public MonsterUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            MonsterSpeed = 1.0f;
+            MonsterSpeed = 10f;
             Health = 100;
+            direction = Vector3.Transform(Vector3.Backward,
+                Matrix.CreateFromYawPitchRoll(rotation.Y,rotation.X,rotation.Z));
+
         }
 
         public override void update(GameTime gameTime)
         {
+            position += direction * MonsterSpeed;
+
+            if (position.X < -2350 || position.X > 2350 || position.Z < -2350 || position.Z > 2350)
+            {
+                rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
+                direction = -direction;
+            }
+
             base.update(gameTime);
-            //TODO: AI movement of the monster
         }
     }
 }

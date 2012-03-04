@@ -23,6 +23,14 @@ namespace MyGame
         private List<CModel> bullets;
         private SkyModel sky;
         private Terrain terrain;
+        private Random rnd;
+        private float spawnTime = 300;
+        private float reaminingTimeToNextSpawn = 0;
+
+        Model dieModel;
+        Model runModel;
+        SkinningData runSkinnedData ;
+        SkinningData dieSkinnedData ;
 
         //List<CModel> models = new List<CModel>();
         //List<CModel> enemies = new List<CModel>();
@@ -36,10 +44,6 @@ namespace MyGame
             Initialize();
         }
 
-        public void addEnemy(CModel monster)
-        {
-            monsters.Add(monster);
-        }
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -47,10 +51,17 @@ namespace MyGame
         /// </summary>
         public override void Initialize()
         {
+            rnd = new Random();
+
             monsters = new List<CModel>();
             bullets = new List<CModel>();
 
-            addEnemy(intilizeMonster());
+            dieModel = Game.Content.Load<Model>(@"Textures\EnemyBeastDie");
+            runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
+            runSkinnedData = runModel.Tag as SkinningData;
+            dieSkinnedData = dieModel.Tag as SkinningData;
+
+            addEnemy();
             player = initializePlayer();
 
             sky = intitializeSky();
@@ -82,16 +93,18 @@ namespace MyGame
             return playerModel;
         }
 
-        private MonsterModel intilizeMonster()
+        private void addEnemy()
         {
-            Model dieModel= Game.Content.Load<Model>(@"Textures\EnemyBeastDie");
-            Model runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
-            SkinningData runSkinnedData = runModel.Tag as SkinningData;
-            SkinningData dieSkinnedData = dieModel.Tag as SkinningData;
-            MonsterUnit monsterUnit = new MonsterUnit((Game1)Game, new Vector3(50, 5, 100), Vector3.Zero, new Vector3(.5f));
-            MonsterModel monsterModel = new MonsterModel((Game1)Game,runSkinnedData,dieSkinnedData, runModel,dieModel, monsterUnit);
+            dieModel = Game.Content.Load<Model>(@"Textures\EnemyBeastDie");
+            runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
+            runSkinnedData = runModel.Tag as SkinningData;
+            dieSkinnedData = dieModel.Tag as SkinningData;
+            Vector3 pos = new Vector3((float)(rnd.NextDouble() * 4700 - 2350), 5, (float)(rnd.NextDouble() * 4700 - 2350));
+            Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
+            MonsterUnit monsterUnit = new MonsterUnit((Game1)Game, pos, rot, new Vector3(.5f));
+            MonsterModel monsterModel = new MonsterModel((Game1)Game,runSkinnedData,dieSkinnedData, runModel, monsterUnit);
 
-            return monsterModel;
+            monsters.Add(monsterModel);
         }
 
         protected override void LoadContent()
@@ -104,8 +117,15 @@ namespace MyGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (CModel skModel in monsters)
-                skModel.Update(gameTime);
+            reaminingTimeToNextSpawn -= gameTime.ElapsedGameTime.Milliseconds;
+            if (reaminingTimeToNextSpawn < 0 && monsters.Count < 30 )
+            {
+                reaminingTimeToNextSpawn = spawnTime;
+                addEnemy();
+            }
+
+            foreach (CModel monster in monsters)
+                monster.Update(gameTime);
             player.Update(gameTime);
             UpdateShots(gameTime);
             sky.Update(gameTime);
@@ -149,7 +169,8 @@ namespace MyGame
 
                             // Collision! Remove the ship and the shot. 
                             //monsters.RemoveAt(j);
-                            ((Game1)Game).monsterDie();
+                            ((MonsterModel)monsters[j]).Die();
+                            //((Game1)Game).fireEvent(Helper.MyEvent.M_DIE,monsters[j]);
                             bullets.RemoveAt(i);
                             --i;
                             break;

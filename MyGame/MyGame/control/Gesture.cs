@@ -11,7 +11,7 @@ namespace control
     abstract class Gesture
     {
         public bool active { get; protected set; }
-        public bool hold;
+        //public bool hold;
         public string description { get; protected set; }
         public abstract void eval();
 

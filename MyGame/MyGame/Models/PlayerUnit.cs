@@ -18,7 +18,7 @@ namespace MyGame
             : base(game,Position, Rotation, Scale)
         {
             game.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT, MyEvent.C_RIGHT);
-            PlayerSpeed = .1f;
+            PlayerSpeed = 1f;
             Health = 100;
         }
 
@@ -33,16 +33,16 @@ namespace MyGame
                 switch (ev.eventId)
                 {
                     case  MyEvent.C_LEFT:
-                        leftRight -= 10f;
+                        leftRight -= 1f;
                         break;
                     case MyEvent.C_RIGHT:
-                        leftRight += 10f;
+                        leftRight += 1f;
                         break;
                     case MyEvent.C_FORWARD:
-                        forwardBackward = -10f;
+                        forwardBackward = -1f;
                         break;
                     case MyEvent.C_BACKWARD:
-                        forwardBackward = 10f;
+                        forwardBackward = 1f;
                         break;
                 }
             }

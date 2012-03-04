@@ -50,17 +50,20 @@ namespace MyGame
             {
                 foreach (ModelMeshPart part in mesh.MeshParts)
                 {
+                    if (!(part.Effect is SkinnedEffect))
+                    {
+                        SkinnedEffect newEffect = new SkinnedEffect(Game.GraphicsDevice);
 
-                    SkinnedEffect newEffect = new SkinnedEffect(Game.GraphicsDevice);
-                    BasicEffect oldEffect = ((BasicEffect)part.Effect);
-                    newEffect.EnableDefaultLighting();
-                    newEffect.SpecularColor = Color.Black.ToVector3();
+                        BasicEffect oldEffect = ((BasicEffect)part.Effect);
+                        newEffect.EnableDefaultLighting();
+                        newEffect.SpecularColor = Color.Black.ToVector3();
 
-                    newEffect.AmbientLightColor = oldEffect.AmbientLightColor;
-                    newEffect.DiffuseColor = oldEffect.DiffuseColor;
-                    newEffect.Texture = oldEffect.Texture;
+                        newEffect.AmbientLightColor = oldEffect.AmbientLightColor;
+                        newEffect.DiffuseColor = oldEffect.DiffuseColor;
+                        newEffect.Texture = oldEffect.Texture;
 
-                    part.Effect = newEffect;
+                        part.Effect = newEffect;
+                    }
                 }
             }
 
