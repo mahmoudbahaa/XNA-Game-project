@@ -54,14 +54,23 @@ namespace MyGame
                     {
                         SkinnedEffect newEffect = new SkinnedEffect(Game.GraphicsDevice);
 
-                        BasicEffect oldEffect = ((BasicEffect)part.Effect);
                         newEffect.EnableDefaultLighting();
                         newEffect.SpecularColor = Color.Black.ToVector3();
 
-                        newEffect.AmbientLightColor = oldEffect.AmbientLightColor;
-                        newEffect.DiffuseColor = oldEffect.DiffuseColor;
-                        newEffect.Texture = oldEffect.Texture;
-
+                        if (part.Effect is BasicEffect)
+                        {
+                            BasicEffect oldEffect = ((BasicEffect)part.Effect);
+                            newEffect.AmbientLightColor = oldEffect.AmbientLightColor;
+                            newEffect.DiffuseColor = oldEffect.DiffuseColor;
+                            newEffect.Texture = oldEffect.Texture;
+                        }
+                        else if (part.Effect is EffectMaterial)
+                        {
+                            //EffectMaterial oldEffect = ((EffectMaterial)part.Effect);
+                            //newEffect.AmbientLightColor = oldEffect.;
+                            //newEffect.DiffuseColor = oldEffect.DiffuseColor;
+                            //newEffect.Texture = oldEffect.Texture;
+                        }
                         part.Effect = newEffect;
                     }
                 }

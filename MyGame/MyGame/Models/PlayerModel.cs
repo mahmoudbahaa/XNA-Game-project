@@ -13,7 +13,8 @@ namespace MyGame
     {
         private bool running;
 
-        readonly String[] animations = new String[] { "Take 001" };
+        //readonly String[] animations = new String[] { "Take 001" };
+        readonly String[] animations = new String[] { "run1" };
 
         public enum PlayAnimations
         {
@@ -23,9 +24,9 @@ namespace MyGame
         public PlayerModel(Game1 game,SkinningData skinningData, Model model, Unit unit)
             : base(game,skinningData, model, unit)
         {
-            game.register(this,MyEvent.P_RUN_Forward, MyEvent.P_RUN_Backward);
+            game.register(this,MyEvent.P_RUN);
             running = false;
-            animator.StartClip(animations[(int)PlayAnimations.Run], true,true);
+            animator.StartClip(animations[(int)PlayAnimations.Run], true);
         }
 
         public override void Draw(GameTime gameTime)
@@ -35,8 +36,7 @@ namespace MyGame
             {
                 switch (ev.eventId)
                 {
-                    case MyEvent.P_RUN_Forward:
-                    case MyEvent.P_RUN_Backward:
+                    case MyEvent.P_RUN:
                         running = true;
                         break;
                     default:
@@ -56,10 +56,13 @@ namespace MyGame
             if (running)
             {
                 animator.loop = true;
+                //animator.StartClip(animations[(int)PlayAnimations.Run],true);
+                
             }
             else
             {
-                animator.StartClip(animations[(int)PlayAnimations.Run], false);
+                animator.loop = false;
+                //animator.StartClip(animations[(int)PlayAnimations.Run],false,true);
             }
         }
 

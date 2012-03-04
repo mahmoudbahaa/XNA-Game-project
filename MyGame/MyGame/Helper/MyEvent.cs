@@ -13,8 +13,7 @@ namespace Helper
          * C_ control related events
          */
 
-        public const int P_RUN_Forward = 0;
-        public const int P_RUN_Backward = 8;
+        public const int P_RUN = 0;
         public const int P_STOP = 7;
 
         public const int C_FORWARD = 1;

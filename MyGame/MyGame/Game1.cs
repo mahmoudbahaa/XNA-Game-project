@@ -66,9 +66,9 @@ namespace MyGame
             //Components.Add(sky);
             //Components.Add(terrain);
             Components.Add(modelManager);
-            
-            
-            
+
+            //run at first to show to the character otherwise the character dont show
+            playerRun();
         }
 
         // Called when the game should update itself
@@ -79,19 +79,6 @@ namespace MyGame
             updateCamera(modelManager.player);
             FireShots(gameTime, modelManager.player.unit.position);
 
-            //if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            //{
-            //    shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            //    if (shotCountdown < 0)
-            //    {
-            //        shotCountdown = shotDelay;
-            //        Vector3 dir = camera.Target - camera.Position;
-            //        dir.Normalize();
-            //        Vector3 pos = modelManager.player.unit.position;
-            //        pos.Y = 20;
-            //        modelManager.AddBullet(pos, dir);
-            //    }
-            //}
             base.Update(gameTime);
         }
 
@@ -121,15 +108,25 @@ namespace MyGame
         private void updatePlayer()
         {
             KeyboardState keyBoard = Keyboard.GetState();
-            if (keyBoard.IsKeyDown(Keys.Up))
+            if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W))
             {
-                playerRunFoward();
+                playerRun();
                 controlForward();
             }
-            if (keyBoard.IsKeyDown(Keys.Down))
+            if (keyBoard.IsKeyDown(Keys.Down) || keyBoard.IsKeyDown(Keys.S))
             {
-                playerRunBackward();
+                playerRun();
                 controlBackward();
+            }
+            if (keyBoard.IsKeyDown(Keys.Left) || keyBoard.IsKeyDown(Keys.A))
+            {
+                playerRun();
+                controlLeft();
+            }
+            if (keyBoard.IsKeyDown(Keys.Right) || keyBoard.IsKeyDown(Keys.D))
+            {
+                playerRun();
+                controlRight();
             }
         }
 
@@ -192,14 +189,9 @@ namespace MyGame
             }
         }
 
-        public void playerRunFoward()
+        public void playerRun()
         {
-            fireEvent(MyEvent.P_RUN_Forward);
-        }
-
-        public void playerRunBackward()
-        {
-            fireEvent(MyEvent.P_RUN_Backward);
+            fireEvent(MyEvent.P_RUN);
         }
 
         public void playerStopRun()

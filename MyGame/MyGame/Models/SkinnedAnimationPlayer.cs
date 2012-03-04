@@ -38,13 +38,10 @@ namespace MyGame
         }
 
         // Starts playing the entirety of the given clip
-        public void StartClip(string clip, bool loop,bool dummy=false)
+        public void StartClip(string clip, bool loop)
         {
             AnimationClip clipVal = skinningData.AnimationClips[clip];
-            if(dummy)
-                StartClip(clip, TimeSpan.FromSeconds(0), new TimeSpan(), loop);
-            else 
-                StartClip(clip, TimeSpan.FromSeconds(0), clipVal.Duration, loop);
+            StartClip(clip, TimeSpan.FromSeconds(0), clipVal.Duration, loop);
         }
 
         // Plays a specific portion of the given clip, from one frame
@@ -75,9 +72,8 @@ namespace MyGame
 
         public void Update(TimeSpan time, Matrix rootTransform)
         {
-            if (CurrentClip == null || Done)
+            if (CurrentClip == null || !loop)
                 return;
-
             currentTime += time;
 
             updateBoneTransforms();
