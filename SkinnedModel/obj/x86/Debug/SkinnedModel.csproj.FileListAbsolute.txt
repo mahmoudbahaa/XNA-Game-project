@@ -1,6 +1,0 @@
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\bin\x86\Debug\SkinnedModel.dll
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\bin\x86\Debug\SkinnedModel.pdb
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\obj\x86\Debug\SkinnedModel.dll
-C:\Users\Etcho\XNA-Game-project\SkinnedModel\obj\x86\Debug\SkinnedModel.pdb

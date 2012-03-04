@@ -1,1 +1,0 @@
-C:\Users\Etcho\XNA-Game-project\MyGame\MyGameContent\obj\x86\Debug\ResolveAssemblyReference.cache

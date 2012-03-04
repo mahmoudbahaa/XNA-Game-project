@@ -7,6 +7,9 @@
 *.o
 *.so
 *.suo
+*.cache
+*.xml
+*.txt
 *.cachefile
 *.xnb
 *.pdb
@@ -36,3 +39,6 @@
 ehthumbs.db
 Icon?
 Thumbs.
+
+*/Debug/*.*
+*/Release/*.*
