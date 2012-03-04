@@ -88,7 +88,7 @@ namespace MyGame
 
         private PlayerModel initializePlayer()
         {
-            Model pmodel = Game.Content.Load<Model>("archer");
+            Model pmodel = Game.Content.Load<Model>("dude");
             SkinningData skinnedData = pmodel.Tag as SkinningData;
             PlayerUnit playerUnit = new PlayerUnit((Game1)Game, new Vector3(0, 5, 0), Vector3.Zero, new Vector3(1f));
             PlayerModel playerModel = new PlayerModel((Game1)Game,skinnedData, pmodel,playerUnit);

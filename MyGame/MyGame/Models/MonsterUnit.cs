@@ -26,12 +26,15 @@ namespace MyGame
 
         public override void update(GameTime gameTime)
         {
-            position += direction * MonsterSpeed;
-
-            if (position.X < -2350 || position.X > 2350 || position.Z < -2350 || position.Z > 2350)
+            if (alive)
             {
-                rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
-                direction = -direction;
+                position += direction * MonsterSpeed;
+
+                if (position.X < -2350 || position.X > 2350 || position.Z < -2350 || position.Z > 2350)
+                {
+                    rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
+                    direction = -direction;
+                }
             }
 
             base.update(gameTime);

@@ -13,6 +13,7 @@ namespace MyGame
         public Vector3 position;
         public Vector3 rotation;
         public Vector3 scale;
+        public bool alive = true;
 
         //public GameTime gameTime { get; set; }
 

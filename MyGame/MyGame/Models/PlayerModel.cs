@@ -13,8 +13,7 @@ namespace MyGame
     {
         private bool running;
 
-        //readonly String[] animations = new String[] { "Take 001" };
-        readonly String[] animations = new String[] { "run1" };
+        readonly String[] animations = new String[] { "Take 001" };
 
         public enum PlayAnimations
         {
@@ -55,13 +54,13 @@ namespace MyGame
         {
             if (running)
             {
-                animator.loop = true;
+                animator.running = true;
                 //animator.StartClip(animations[(int)PlayAnimations.Run],true);
                 
             }
             else
             {
-                animator.loop = false;
+                animator.running = false;
                 //animator.StartClip(animations[(int)PlayAnimations.Run],false,true);
             }
         }

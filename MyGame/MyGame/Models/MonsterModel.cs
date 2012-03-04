@@ -30,6 +30,7 @@ namespace MyGame
             this.dieSkinningData = dieSkinningData;
             
             game.register(this, MyEvent.M_DIE);
+            animator.running = true;
             animator.StartClip(animations[(int)MonsterAnimations.Run], true);
         }
 
@@ -53,6 +54,7 @@ namespace MyGame
         public void Die()
         {
             animator.skinningData = dieSkinningData;
+            unit.alive = false;
             animator.StartClip(animations[(int)MonsterAnimations.Die], false);
         }
     }

@@ -21,7 +21,8 @@ namespace MyGame
         // Timing values
         private TimeSpan startTime, endTime, currentTime;
         private int currentKeyframe;
-        public bool loop;
+        private bool loop;
+        public bool running;
 
         // Transforms
         public Matrix[] BoneTransforms { get; private set; }
@@ -72,7 +73,7 @@ namespace MyGame
 
         public void Update(TimeSpan time, Matrix rootTransform)
         {
-            if (CurrentClip == null || !loop)
+            if (CurrentClip == null || !running)
                 return;
             currentTime += time;
 
