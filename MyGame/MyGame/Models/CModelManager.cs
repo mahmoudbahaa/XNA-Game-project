@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SkinnedModel;
+using Helper;
 
 
 namespace MyGame
@@ -80,7 +81,7 @@ namespace MyGame
             Effect effect = Game.Content.Load<Effect>("skysphere_effect");
             effect.Parameters["CubeMap"].SetValue(tc);
             Model pmodel = Game.Content.Load<Model>("skysphere_mesh");
-            SkyUnit skyUnit = new SkyUnit(((Game1)Game),new Vector3(0,-300,0),Vector3.Zero,Vector3.One*100);
+            SkyUnit skyUnit = new SkyUnit(((Game1)Game),new Vector3(0,0,0),Vector3.Zero,Vector3.One*100);
             SkyModel skyModel = new SkyModel((Game1)Game,  pmodel,skyUnit ,tc);
 
             return skyModel;
@@ -101,7 +102,8 @@ namespace MyGame
             runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
             runSkinnedData = runModel.Tag as SkinningData;
             dieSkinnedData = dieModel.Tag as SkinningData;
-            Vector3 pos = new Vector3((float)(rnd.NextDouble() * 4700 - 2350), 5, (float)(rnd.NextDouble() * 4700 - 2350));
+            Vector3 pos = new Vector3((float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z),
+                5, (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z));
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit((Game1)Game, pos, rot, new Vector3(.5f));
             MonsterModel monsterModel = new MonsterModel((Game1)Game,runSkinnedData,dieSkinnedData, runModel, monsterUnit);
@@ -165,7 +167,11 @@ namespace MyGame
                     // If shot is still in play, check for collisions
                     for (int j = 0; j < monsters.Count; ++j)
                     {
-                        if (bullets[i].unit.collideWith(monsters[j].unit))
+                        if (((MonsterUnit)monsters[j].unit).dead)
+                        {
+                            monsters.Remove(monsters[j]);
+                        } 
+                        else if (monsters[j].unit.alive && bullets[i].unit.collideWith(monsters[j].unit))
                         {
 
                             //TODO: Collision! add an explosion.
@@ -173,6 +179,7 @@ namespace MyGame
                             // Collision! Remove the ship and the shot. 
                             //monsters.RemoveAt(j);
                             ((MonsterModel)monsters[j]).Die();
+                            monsters[j].unit.alive = false;
                             score++;
                             //((Game1)Game).fireEvent(Helper.MyEvent.M_DIE,monsters[j]);
                             bullets.RemoveAt(i);

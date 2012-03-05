@@ -73,11 +73,16 @@ namespace MyGame
 
         public void Update(TimeSpan time, Matrix rootTransform)
         {
-            if (CurrentClip == null || !running)
+            if (CurrentClip == null)
                 return;
-            currentTime += time;
 
-            updateBoneTransforms();
+            if (running)
+            {
+                currentTime += time;
+                updateBoneTransforms();
+            }
+
+            
             updateWorldTransforms(rootTransform);
             updateSkinTransforms();
         }

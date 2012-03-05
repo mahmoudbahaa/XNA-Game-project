@@ -17,7 +17,8 @@ namespace MyGame
         public PlayerUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            game.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT, MyEvent.C_RIGHT);
+            game.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, 
+                MyEvent.C_LEFT, MyEvent.C_RIGHT, MyEvent.C_Pointer);
             PlayerSpeed = .1f;
             Health = 100;
         }
@@ -44,6 +45,10 @@ namespace MyGame
                     case MyEvent.C_BACKWARD:
                         forwardBackward = 1f;
                         break;
+                    case MyEvent.C_Pointer:
+                        float deltaX = (float)ev.args["deltaX"];
+                        rotation += new Vector3(0, deltaX, 0);
+                        break;
                 }
             }
             events.Clear(); 
@@ -52,7 +57,7 @@ namespace MyGame
             Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
             position += Vector3.Transform(new Vector3(leftRight, 0, forwardBackward), rot) *
                (float)gameTime.ElapsedGameTime.TotalMilliseconds * PlayerSpeed;
-            position = Vector3.Clamp(position, new Vector3(-2350), new Vector3(2350));
+            position = Vector3.Clamp(position, new Vector3(Constants.FIELD_MIN_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
         }
     }
 }

@@ -23,19 +23,19 @@ namespace MyGame
         {
             base.update(gameTime);
             // Move the model with the sphere
-            position = game.camera.Position;
-            if(sinceLastUpdate > updateDelay)
-            {
-                rotation.Y += RotationSpeed*.025f;
-                Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z) 
-                    * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                position += Vector3.Transform(Vector3.Zero, rot);
-                sinceLastUpdate = 0;
-            }
-            else
-            {
-                sinceLastUpdate += gameTime.ElapsedGameTime.Milliseconds;
-            }
+            //position = game.camera.Position;
+            //if(sinceLastUpdate > updateDelay)
+            //{
+            //    rotation.Y += RotationSpeed*.025f;
+            //    Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z) 
+            //        * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            //    position += Vector3.Transform(Vector3.Zero, rot);
+            //    sinceLastUpdate = 0;
+            //}
+            //else
+            //{
+            //    sinceLastUpdate += gameTime.ElapsedGameTime.Milliseconds;
+            //}
         }
     }
 }

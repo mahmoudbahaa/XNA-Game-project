@@ -21,6 +21,7 @@ namespace Helper
         public const int C_LEFT = 3;
         public const int C_RIGHT = 4;
         public const int C_ATTACK = 5;
+        public const int C_Pointer = 1000;
 
         public const int M_DIE = 6;
         

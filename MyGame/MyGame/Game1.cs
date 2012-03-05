@@ -6,6 +6,7 @@ using System.Collections;
 using System;
 using Helper;
 using SkinnedModel;
+using control;
 
 namespace MyGame
 {
@@ -19,6 +20,8 @@ namespace MyGame
         //assal
 
         Hashtable hash;
+
+        Controller control;
 
        // PlayerModel playerModel;
         
@@ -34,10 +37,11 @@ namespace MyGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             hash = new Hashtable();
+            control = new Controller(Constants.LEFT_HAND);
 
             //DONT Remove i need this.--Mahmoud Bahaa
-            if(System.IO.File.Exists("fbDeprofiler.dll"))
-                fbDeprofiler.DeProfiler.Run();
+            //if(System.IO.File.Exists("fbDeprofiler.dll"))
+            //    fbDeprofiler.DeProfiler.Run();
         }
 
         // Called when the game should load its content
@@ -93,37 +97,51 @@ namespace MyGame
             KeyboardState keyState = Keyboard.GetState();
 
             // Determine how much the camera should turn
-            float deltaX = (float)lastMouseState.X - (float)mouseState.X;
-            float deltaY = (float)lastMouseState.Y - (float)mouseState.Y;
+            float deltaX ;
+            
+            float deltaY;
+
+
+            if (System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
+            {
+                Vector2 d = control.getPointer();
+                deltaX = d.X;
+                deltaY = d.Y;
+            }
+            else
+            {
+                deltaX = -((float)lastMouseState.X - (float)mouseState.X) * 15;
+                deltaY = ((float)lastMouseState.Y - (float)mouseState.Y) * 15;
+            }
 
             ChaseCamera chaseCamera = (ChaseCamera)camera;
             // Rotate the camera
-            chaseCamera.Rotate(new Vector3(deltaY * .005f, 0, 0));
+            chaseCamera.Rotate(new Vector3(deltaY * .0005f, 0, 0));
             //player.unit.position.Y = terrain.GetHeightAtPosition(player.unit.position.X,
               //  player.unit.position.Z);
-            player.unit.rotation += new Vector3(0, deltaX * .005f, 0);
+            controlPointer(- deltaX * .0005f);
             lastMouseState = mouseState;
         }
 
         private void updatePlayer()
         {
             KeyboardState keyBoard = Keyboard.GetState();
-            if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W))
+            if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W)||control.isActive(Controller.FORWARD))
             {
                 playerRun();
                 controlForward();
             }
-            if (keyBoard.IsKeyDown(Keys.Down) || keyBoard.IsKeyDown(Keys.S))
+            if (keyBoard.IsKeyDown(Keys.Down) || keyBoard.IsKeyDown(Keys.S) || control.isActive(Controller.BACKWARD))
             {
                 playerRun();
                 controlBackward();
             }
-            if (keyBoard.IsKeyDown(Keys.Left) || keyBoard.IsKeyDown(Keys.A))
+            if (keyBoard.IsKeyDown(Keys.Left) || keyBoard.IsKeyDown(Keys.A) || control.isActive(Controller.LEFT))
             {
                 playerRun();
                 controlLeft();
             }
-            if (keyBoard.IsKeyDown(Keys.Right) || keyBoard.IsKeyDown(Keys.D))
+            if (keyBoard.IsKeyDown(Keys.Right) || keyBoard.IsKeyDown(Keys.D) || control.isActive(Controller.RIGHT))
             {
                 playerRun();
                 controlRight();
@@ -136,7 +154,8 @@ namespace MyGame
             if (shotCountdown <= 0)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
-                        Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        Mouse.GetState().LeftButton == ButtonState.Pressed ||
+                        control.isActive(Controller.RIGHT_HAND_STR))
                 {
                     {
                         Vector3 direction = (camera.Target - camera.Position);
@@ -222,6 +241,11 @@ namespace MyGame
         public void controlAttack()
         {
             fireEvent(MyEvent.C_ATTACK);
+        }
+
+        public void controlPointer(float deltaX)
+        {
+            fireEvent(MyEvent.C_Pointer,"deltaX", deltaX);
         }
 
 

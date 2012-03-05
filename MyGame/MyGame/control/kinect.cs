@@ -31,6 +31,9 @@ namespace control
                 }
             }
 
+            if (kinectSensor == null)
+                return;
+
             Console.WriteLine(kinectSensor.Status);
 
             //starting kinect and enabling skeleton data stream

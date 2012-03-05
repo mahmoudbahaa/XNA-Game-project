@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Helper;
 
 namespace MyGame
 {
@@ -11,6 +12,9 @@ namespace MyGame
     {
         private float MonsterSpeed {get;set;}
         private int Health { get; set; }
+
+        private float timeToDie = 5000;
+        public bool dead = false;
 
         private Vector3 direction;
 
@@ -30,11 +34,19 @@ namespace MyGame
             {
                 position += direction * MonsterSpeed;
 
-                if (position.X < -2350 || position.X > 2350 || position.Z < -2350 || position.Z > 2350)
+                if (position.X < Constants.FIELD_MIN_X_Z || position.X > Constants.FIELD_MAX_X_Z ||
+                    position.Z < Constants.FIELD_MIN_X_Z || position.Z > Constants.FIELD_MAX_X_Z)
                 {
                     rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
                     direction = -direction;
                 }
+            }
+
+            else
+            {
+                timeToDie -= gameTime.ElapsedGameTime.Milliseconds;
+                if (timeToDie < 0)
+                    dead = true;
             }
 
             base.update(gameTime);

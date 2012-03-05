@@ -17,6 +17,8 @@ namespace MyGame
         public Vector3 PositionOffset { get; set; }
         public Vector3 TargetOffset { get; set; }
 
+        private Vector3 oldUp = Vector3.Up;
+
         public Vector3 RelativeCameraRotation { get; set; }
 
         float springiness = .15f;
@@ -52,24 +54,9 @@ namespace MyGame
 
         public override void  Update(GameTime gameTime)
         {
-            //// Get the new keyboard and mouse state
-            //MouseState mouseState = Mouse.GetState();
-            //KeyboardState keyState = Keyboard.GetState();
-
-            //// Determine how much the camera should turn
-            //float deltaX = (float)lastMouseState.X - (float)mouseState.X;
-            //float deltaY = (float)lastMouseState.Y - (float)mouseState.Y;
-
-            //// Rotate the camera
-            //Rotate(new Vector3(-deltaY * .0005f, -deltaX * .0005f, 0));
+            Vector3 oldPosition = Position;
 
             Vector3 translation = Vector3.Zero;
-
-            // Determine in which direction to move the camera
-
-            // Move 4 units per millisecond, independent of frame rate
-            //translation *= 0.5f *
-            //    (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // Sum the rotations of the model and the camera to ensure it 
             // is rotated to the correct position relative to the model's 
@@ -89,18 +76,24 @@ namespace MyGame
             // Interpolate between the current position and desired position
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
-            if (Position.Y < 10) Position.Y = 10 ;
-
-            // Calculate the new target using the rotation matrix
-            Target = FollowTargetPosition +
-                Vector3.Transform(TargetOffset, rotation);
-
-            // Obtain the up vector from the matrix
-            Vector3 up = Vector3.Transform(Vector3.Up, rotation);
+            Vector3 up = oldUp;
+            if (Position.Y < 5)
+            {
+                Position.Y = 5;
+            }
+            //else
+            //{
+                // Calculate the new target using the rotation matrix
+                Target = FollowTargetPosition +
+                    Vector3.Transform(TargetOffset, rotation);
+                // Obtain the up vector from the matrix
+                up = Vector3.Transform(Vector3.Up, rotation);
+            //}
 
             // Recalculate the view matrix
             View = Matrix.CreateLookAt(Position, Target, up);
-            //lastMouseState = mouseState;
+
+            oldUp = up ;
             base.Update(gameTime);
         }
     }
