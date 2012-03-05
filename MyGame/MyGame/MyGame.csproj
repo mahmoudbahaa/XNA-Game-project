@@ -123,7 +123,6 @@
     <Compile Include="Helper\Event.cs" />
     <Compile Include="Helper\MyEvent.cs" />
     <Compile Include="Helper\util.cs" />
-    <Compile Include="GameManager.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Models\AnimatedModel.cs" />
     <Compile Include="Models\BulletUnit.cs" />
@@ -143,7 +142,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SkinnedAnimationPlayer.cs" />
-    <Compile Include="Terrain\SkySphere.cs" />
     <Compile Include="Terrain\Terrain.cs" />
   </ItemGroup>
   <ItemGroup>
