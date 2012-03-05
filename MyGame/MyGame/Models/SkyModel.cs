@@ -22,24 +22,10 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            // Calculate the base transformation by combining translation, rotation, and scaling
-            updateBaseWorld(unit.position, unit.rotation, unit.scale, unit.baseWorld);
             Game.GraphicsDevice.DepthStencilState = DepthStencilState.None;
-            foreach (ModelMesh mesh in Model.Meshes)
-            {
-                Matrix localWorld = modelTransforms[mesh.ParentBone.Index] * baseWorld;
 
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                {
-                    Effect effect = meshPart.Effect;                    
-                    setEffectParameter(effect, "World", localWorld);
-                    setEffectParameter(effect, "View", ((Game1)Game).camera.View);
-                    setEffectParameter(effect, "Projection", ((Game1)Game).camera.Projection);
-                    setEffectParameter(effect, "CameraPosition", ((Game1)Game).camera.Position);
-                    
-                }
-                mesh.Draw();
-            }
+            base.Draw(gameTime);
+
             Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
         }
         // Sets the specified effect parameter to the given effect, if it has that parameter

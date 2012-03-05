@@ -78,10 +78,10 @@ namespace MyGame
         private SkyModel intitializeSky()
         {
             TextureCube tc = Game.Content.Load<TextureCube>("clouds");
-            Effect effect = Game.Content.Load<Effect>("skysphere_effect");
-            effect.Parameters["CubeMap"].SetValue(tc);
+            //Effect effect = Game.Content.Load<Effect>("skysphere_effect");
+            //effect.Parameters["CubeMap"].SetValue(tc);
             Model pmodel = Game.Content.Load<Model>("skysphere_mesh");
-            SkyUnit skyUnit = new SkyUnit(((Game1)Game),new Vector3(0,0,0),Vector3.Zero,Vector3.One*100);
+            SkyUnit skyUnit = new SkyUnit(((Game1)Game),Vector3.Zero,Vector3.Zero,new Vector3(100000));
             SkyModel skyModel = new SkyModel((Game1)Game,  pmodel,skyUnit ,tc);
 
             return skyModel;

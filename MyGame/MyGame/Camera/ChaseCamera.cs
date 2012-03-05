@@ -17,8 +17,8 @@ namespace MyGame
         public Vector3 PositionOffset { get; set; }
         public Vector3 TargetOffset { get; set; }
 
-        private Vector3 oldCombinedRotation = Vector3.Zero;
-        private Vector3 oldUp = Vector3.Up;
+        //private Vector3 oldCombinedRotation = Vector3.Zero;
+        //private Vector3 oldUp = Vector3.Up;
 
         public Vector3 RelativeCameraRotation { get; set; }
 
@@ -77,10 +77,12 @@ namespace MyGame
             // Interpolate between the current position and desired position
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
-            Vector3 up = oldUp;
             while (Position.Y < 5)
             {
-                combinedRotation.X -= 0.001f;
+                if(combinedRotation.X <= MathHelper.Pi && combinedRotation.X >=0)
+                    combinedRotation.X -= 0.001f;
+                else
+                    combinedRotation.X += 0.001f;
                 // Calculate the rotation matrix for the camera
                 rotation = Matrix.CreateFromYawPitchRoll(
                     combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
@@ -93,20 +95,16 @@ namespace MyGame
                 // Interpolate between the current position and desired position
                 Position = Vector3.Lerp(Position, desiredPosition, Springiness);
             }
-            //else
-            //{
-                // Calculate the new target using the rotation matrix
-                Target = FollowTargetPosition +
-                    Vector3.Transform(TargetOffset, rotation);
-                // Obtain the up vector from the matrix
-                up = Vector3.Transform(Vector3.Up, rotation);
-            //}
+
+            // Calculate the new target using the rotation matrix
+            Target = FollowTargetPosition +
+                Vector3.Transform(TargetOffset, rotation);
+            // Obtain the up vector from the matrix
+            Vector3 up = Vector3.Transform(Vector3.Up, rotation);
 
             // Recalculate the view matrix
             View = Matrix.CreateLookAt(Position, Target, up);
 
-            oldCombinedRotation = combinedRotation;
-            oldUp = up ;
             base.Update(gameTime);
         }
     }

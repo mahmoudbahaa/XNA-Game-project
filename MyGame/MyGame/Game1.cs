@@ -248,6 +248,10 @@ namespace MyGame
             fireEvent(MyEvent.C_Pointer,"deltaX", deltaX);
         }
 
-
+        protected override void  EndRun()
+        {
+            GestureManager.running = false;
+ 	         base.EndRun();
+        }
     }
 }

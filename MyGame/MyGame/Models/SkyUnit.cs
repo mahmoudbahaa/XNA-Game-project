@@ -16,7 +16,7 @@ namespace MyGame
         public SkyUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            RotationSpeed = 20f;
+            //RotationSpeed = 20f;
         }
 
         public override void update(GameTime gameTime)

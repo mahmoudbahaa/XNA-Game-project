@@ -12,6 +12,7 @@ namespace control
         public List<Gesture> gestures { get; private set; }
         private int pointingHand;
         private Thread thread;
+        public static bool running = true;
 
         public GestureManager(int pointingHand)
         {
@@ -38,7 +39,7 @@ namespace control
 
       public void Run()
       {
-          while (true)
+          while (running)
           {
               updateState();
               Thread.Sleep(30);
