@@ -143,7 +143,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SkinnedAnimationPlayer.cs" />
-    <Compile Include="Terrain\SkySphere.cs" />
     <Compile Include="Terrain\Terrain.cs" />
   </ItemGroup>
   <ItemGroup>
