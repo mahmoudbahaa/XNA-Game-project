@@ -3,6 +3,7 @@
 *.com
 *.class
 *.dll
+!fbDeprofiler.dll
 *.exe
 *.o
 *.so

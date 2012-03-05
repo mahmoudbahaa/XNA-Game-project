@@ -40,8 +40,8 @@ namespace MyGame
             control = new Controller(Constants.LEFT_HAND);
 
             //DONT Remove i need this.--Mahmoud Bahaa
-            //if(System.IO.File.Exists("fbDeprofiler.dll"))
-            //    fbDeprofiler.DeProfiler.Run();
+            if (System.IO.File.Exists("fbDeprofiler.dll"))
+                fbDeprofiler.DeProfiler.Run();
         }
 
         // Called when the game should load its content
