@@ -17,6 +17,7 @@ namespace MyGame
         public Vector3 PositionOffset { get; set; }
         public Vector3 TargetOffset { get; set; }
 
+        private Vector3 oldCombinedRotation = Vector3.Zero;
         private Vector3 oldUp = Vector3.Up;
 
         public Vector3 RelativeCameraRotation { get; set; }
@@ -77,9 +78,20 @@ namespace MyGame
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
             Vector3 up = oldUp;
-            if (Position.Y < 5)
+            while (Position.Y < 5)
             {
-                Position.Y = 5;
+                combinedRotation.X -= 0.001f;
+                // Calculate the rotation matrix for the camera
+                rotation = Matrix.CreateFromYawPitchRoll(
+                    combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
+
+                // Calculate the position the camera would be without the spring
+                // value, using the rotation matrix and target position
+                desiredPosition = FollowTargetPosition +
+                    Vector3.Transform(PositionOffset, rotation);
+
+                // Interpolate between the current position and desired position
+                Position = Vector3.Lerp(Position, desiredPosition, Springiness);
             }
             //else
             //{
@@ -93,6 +105,7 @@ namespace MyGame
             // Recalculate the view matrix
             View = Matrix.CreateLookAt(Position, Target, up);
 
+            oldCombinedRotation = combinedRotation;
             oldUp = up ;
             base.Update(gameTime);
         }
