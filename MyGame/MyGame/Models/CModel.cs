@@ -9,7 +9,7 @@ using Helper;
 
 namespace MyGame
 {
-    public class CModel: DrawableGameComponent,IEvent
+    public class CModel: IEvent
     {
         public Model Model { get; private set; }
 
@@ -19,12 +19,9 @@ namespace MyGame
 
         protected List<Event> events;
 
-        public Unit unit;
+        protected Game1 myGame;
 
-        Game1 game;
-
-        public CModel(Game1 game, Model Model, Unit unit)
-            :base(game)
+        public CModel(Game1 game, Model Model)
         {
             this.Model = Model;
 
@@ -35,30 +32,19 @@ namespace MyGame
 
             generateTags();
 
-            this.unit = unit;
-
-            unit.BoundingSphere = buildBoundingSphere();
-
-            this.game = game;
+            myGame = game;
 
             events = new List<Event>();
         }
 
-        protected void updateBaseWorld(Vector3 position, Vector3 rotation, Vector3 scale, Matrix baseWorld)
+        public void updateBaseWorld(Vector3 position, Vector3 rotation, Vector3 scale, Matrix baseWorld)
         {
             this.baseWorld = baseWorld * Matrix.CreateScale(scale)
                 * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)
                 * Matrix.CreateTranslation(position);
         }
-
-        public override void Update(GameTime gameTime)
+        public virtual void Draw(GameTime game)
         {
-            unit.update(gameTime);
-        }
-        public override void Draw(GameTime game)
-        {
-            // Calculate the base transformation by combining translation, rotation, and scaling
-            updateBaseWorld(unit.position, unit.rotation, unit.scale, unit.baseWorld);
 
             foreach (ModelMesh mesh in Model.Meshes)
             {
@@ -71,22 +57,21 @@ namespace MyGame
                     if (effect is BasicEffect)
                     {
                         ((BasicEffect)effect).World = localWorld;
-                        ((BasicEffect)effect).View = ((Game1)Game).camera.View;
-                        ((BasicEffect)effect).Projection = ((Game1)Game).camera.Projection;
+                        ((BasicEffect)effect).View = myGame.camera.View;
+                        ((BasicEffect)effect).Projection = myGame.camera.Projection;
                         ((BasicEffect)effect).EnableDefaultLighting();
                     }
                     else
                     {
                         setEffectParameter(effect, "World", localWorld);
-                        setEffectParameter(effect, "View", ((Game1)Game).camera.View);
-                        setEffectParameter(effect, "Projection", ((Game1)Game).camera.Projection);
-                        setEffectParameter(effect, "CameraPosition", ((Game1)Game).camera.Position);
+                        setEffectParameter(effect, "View", myGame.camera.View);
+                        setEffectParameter(effect, "Projection", myGame.camera.Projection);
+                        setEffectParameter(effect, "CameraPosition", myGame.camera.Position);
                     }
                 }
 
                 mesh.Draw();
             }
-            base.Draw(game);
         }
 
         // Sets the specified effect parameter to the given effect, if it has that parameter

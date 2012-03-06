@@ -9,9 +9,9 @@ using Helper;
 
 namespace MyGame
 {
-    public class Monsters : DrawableGameComponent
+    public class MonstersManager : DrawableGameComponent
     {
-        private List<CModel> monsters;
+        private List<Monster> monsters;
 
         private Random rnd;
         private float spawnTime = 300;
@@ -23,10 +23,10 @@ namespace MyGame
         SkinningData dieSkinnedData;
 
         private Game1 myGame;
-        public Monsters(Game1 game)
+        public MonstersManager(Game1 game)
             : base(game)
         {
-            monsters = new List<CModel>();
+            monsters = new List<Monster>();
             myGame = game;
 
             rnd = new Random();
@@ -35,8 +35,6 @@ namespace MyGame
             runModel = Game.Content.Load<Model>(@"Textures\EnemyBeast");
             runSkinnedData = runModel.Tag as SkinningData;
             dieSkinnedData = dieModel.Tag as SkinningData;
-
-            addEnemy();
         }
 
         public bool checkCollisionWithBullet(BulletUnit bulletUnit)
@@ -52,7 +50,7 @@ namespace MyGame
                 }
                 else if (monsters[j].unit.alive && bulletUnit.collideWith(monsters[j].unit))
                 {
-                    ((MonsterModel)monsters[j]).Die();
+                    ((MonsterModel)monsters[j].cModel).Die();
                     monsters[j].unit.alive = false;
                     return true;
                 }
@@ -71,7 +69,7 @@ namespace MyGame
                 5, (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z));
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, new Vector3(.5f));
-            MonsterModel monster = new MonsterModel(myGame, runSkinnedData, dieSkinnedData, runModel, monsterUnit);
+            Monster monster = new Monster(myGame, runSkinnedData, dieSkinnedData, runModel, monsterUnit);
 
             monsters.Add(monster);
         }
@@ -84,23 +82,15 @@ namespace MyGame
                 reaminingTimeToNextSpawn = spawnTime;
                 addEnemy();
             }
-
-            foreach (CModel monster in monsters)
-            {
-                Vector3 pos = monster.unit.position;
-                monster.unit.position.Y = myGame.terrain.GetHeightAtPosition(pos.X, pos.Z);
-
+            foreach (Monster monster in monsters)
                 monster.Update(gameTime);
-            }
-
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (CModel monster in monsters)
+            foreach (Monster monster in monsters)
                 monster.Draw(gameTime);
-
             base.Draw(gameTime);
         }
     }

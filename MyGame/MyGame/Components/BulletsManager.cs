@@ -11,9 +11,9 @@ using control;
 
 namespace MyGame
 {
-    public class Bullets : DrawableGameComponent
+    public class BulletsManager : DrawableGameComponent
     {
-        private List<CModel> bullets;
+        private List<Bullet> bullets;
         private Game1 myGame;
 
         // Shot variables
@@ -22,17 +22,18 @@ namespace MyGame
         float bulletRange = 3000;
         int shotCountdown = 0;
 
-        public Bullets(Game1 game)
+        public BulletsManager(Game1 game)
             : base(game)
         {
-            bullets = new List<CModel>();
+            bullets = new List<Bullet>();
             myGame = game;
         }
 
         public void AddBullet(Vector3 position, Vector3 direction)
         {
-            bullets.Add(new CModel(myGame, Game.Content.Load<Model>("ammo"),
-                new BulletUnit(myGame, position, Vector3.Zero, 10 * Vector3.One, direction)));
+            Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("ammo"),
+                new BulletUnit(myGame, position, Vector3.Zero, 10 * Vector3.One, direction));
+            bullets.Add(bullet);
 
         }
 
@@ -67,8 +68,8 @@ namespace MyGame
                 bullets[i].Update(gameTime);
 
                 // If shot is out of bounds, remove it from game
-                if (!((BulletUnit)(bullets[i].unit)).isInRange(myGame.player.cModel.unit.position.X,
-                    myGame.player.cModel.unit.position.Z, bulletRange))
+                if (!((BulletUnit)(bullets[i].unit)).isInRange(myGame.player.unit.position.X,
+                    myGame.player.unit.position.Z, bulletRange))
                 {
                     bullets.RemoveAt(i);
                     --i;
@@ -88,14 +89,14 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            FireShots(gameTime, myGame.player.cModel.unit.position);
+            FireShots(gameTime, myGame.player.unit.position);
             UpdateShots(gameTime);
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (CModel bullet in bullets)
+            foreach (Bullet bullet in bullets)
                 //if (camera.BoundingVolumeIsInView(skModel.unit.BoundingSphere))
                 bullet.Draw(gameTime);
             base.Draw(gameTime);

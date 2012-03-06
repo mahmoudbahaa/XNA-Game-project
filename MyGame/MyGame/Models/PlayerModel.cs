@@ -20,8 +20,8 @@ namespace MyGame
             Run = 0
         }
 
-        public PlayerModel(Game1 game,SkinningData skinningData, Model model, Unit unit)
-            : base(game,skinningData, model, unit)
+        public PlayerModel(Game1 game,SkinningData skinningData, Model model)
+            : base(game,skinningData, model)
         {
             game.register(this,MyEvent.P_RUN);
             running = false;

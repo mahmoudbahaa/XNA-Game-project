@@ -13,13 +13,11 @@ namespace MyGame
 {
     public class Player : CDrawableComponent
     {
-        Game1 myGame;
-
         public Player(Game1 game,SkinningData skinningData, Model model, Unit unit)
-            : base(game)
+            : base(game, unit)
         {
-            cModel =  new PlayerModel (game,skinningData, model, unit);
-            this.myGame = game;
+            cModel =  new PlayerModel (game,skinningData, model);
+            unit.BoundingSphere = cModel.buildBoundingSphere();
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }

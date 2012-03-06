@@ -13,8 +13,8 @@ namespace MyGame
         protected SkinnedAnimationPlayer animator;
 
 
-        public AnimatedModel(Game1 game,SkinningData skinningData, Model model,Unit unit)
-            : base(game,model,unit)
+        public AnimatedModel(Game1 game,SkinningData skinningData, Model model)
+            : base(game,model)
         {
             animator = new SkinnedAnimationPlayer(skinningData);
             setNewEffect();
@@ -22,15 +22,14 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            updateBaseWorld(unit.position, unit.rotation, unit.scale, unit.baseWorld);
 
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 foreach (SkinnedEffect effect in mesh.Effects)
                 {
                     effect.SetBoneTransforms(animator.SkinTransforms);
-                    effect.View = ((Game1)Game).camera.View;
-                    effect.Projection = ((Game1)Game).camera.Projection;
+                    effect.View = myGame.camera.View;
+                    effect.Projection = myGame.camera.Projection;
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                 }
@@ -52,7 +51,7 @@ namespace MyGame
                 {
                     if (!(part.Effect is SkinnedEffect))
                     {
-                        SkinnedEffect newEffect = new SkinnedEffect(Game.GraphicsDevice);
+                        SkinnedEffect newEffect = new SkinnedEffect(myGame.GraphicsDevice);
 
                         newEffect.EnableDefaultLighting();
                         newEffect.SpecularColor = Color.Black.ToVector3();

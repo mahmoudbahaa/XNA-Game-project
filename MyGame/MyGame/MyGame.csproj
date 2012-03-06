@@ -114,8 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CDrawableComponent.cs" />
-    <Compile Include="Components\Bullets.cs" />
-    <Compile Include="Components\Monsters.cs" />
+    <Compile Include="Components\BulletsManager.cs" />
+    <Compile Include="Components\Bullet.cs" />
+    <Compile Include="Components\Monster.cs" />
+    <Compile Include="Components\MonstersManager.cs" />
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Control\Gesture.cs" />
     <Compile Include="Control\GestureManager.cs" />
@@ -193,9 +195,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Terrain\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

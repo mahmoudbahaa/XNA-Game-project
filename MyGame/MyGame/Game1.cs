@@ -16,7 +16,7 @@ namespace MyGame
         public Camera camera;
         public Terrain terrain;
         public Player player;
-        private Monsters monsters;
+        private MonstersManager monsters;
 
         private ScoreBoard scoreBoard;
         //assal
@@ -70,19 +70,20 @@ namespace MyGame
             terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
                Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
 
-            monsters = new Monsters(this);
 
-            Bullets bullets = new Bullets(this);
+            BulletsManager bullets = new BulletsManager(this);
 
             scoreBoard = new ScoreBoard(this);
+
+            monsters = new MonstersManager(this);
 
             Components.Add(camera);
             Components.Add(sky);
             Components.Add(terrain);
             Components.Add(monsters);
+            Components.Add(bullets);
             Components.Add(player);
             Components.Add(scoreBoard);
-            Components.Add(bullets);
 
         }
 

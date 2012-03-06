@@ -12,8 +12,8 @@ namespace MyGame
 
         Effect effect;
 
-        public SkyModel(Game1 game, Model model, Unit unit, TextureCube Texture)
-            :base(game,model,unit)
+        public SkyModel(Game1 game, Model model, TextureCube Texture)
+            :base(game,model)
         {
             effect = game.Content.Load<Effect>("skysphere_effect");
             effect.Parameters["CubeMap"].SetValue(Texture);
@@ -22,11 +22,11 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.DepthStencilState = DepthStencilState.None;
+            myGame.GraphicsDevice.DepthStencilState = DepthStencilState.None;
 
             base.Draw(gameTime);
 
-            Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            myGame.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
         }
         // Sets the specified effect parameter to the given effect, if it has that parameter
         void setEffectParameter(Effect effect, string paramName, object val)

@@ -23,8 +23,8 @@ namespace MyGame
             Run = 1
         }
 
-        public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model model, Unit unit)
-            : base(game, runSkinningData, model, unit)
+        public MonsterModel(Game1 game,SkinningData runSkinningData,SkinningData dieSkinningData, Model model)
+            : base(game, runSkinningData, model)
         {
             //this.runSkinningData = runSkinningData;
             this.dieSkinningData = dieSkinningData;
@@ -37,7 +37,7 @@ namespace MyGame
         public void Die()
         {
             animator.skinningData = dieSkinningData;
-            unit.alive = false;
+            //unit.alive = false;
             animator.StartClip(animations[(int)MonsterAnimations.Die], false);
         }
     }
