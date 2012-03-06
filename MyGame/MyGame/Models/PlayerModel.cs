@@ -9,7 +9,7 @@ using Helper;
 
 namespace MyGame
 {
-    class PlayerModel : AnimatedModel
+    public class PlayerModel : AnimatedModel
     {
         private bool running;
 

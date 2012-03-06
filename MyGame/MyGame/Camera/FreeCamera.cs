@@ -21,7 +21,7 @@ namespace MyGame
 
         MouseState lastMouseState;
 
-        public FreeCamera(Game game, Vector3 Position, float Yaw, float Pitch,
+        public FreeCamera(Game1 game, Vector3 Position, float Yaw, float Pitch,
             float minHeight, float maxHeight)
             : base(game)
         {

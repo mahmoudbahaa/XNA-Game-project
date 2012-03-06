@@ -17,6 +17,8 @@ namespace MyGame
 
         public Vector3 Target;
 
+        protected Game1 myGame; 
+
         public Matrix Projection
         {
             get { return projection; }
@@ -39,10 +41,11 @@ namespace MyGame
 
         public BoundingFrustum Frustum { get; private set; }
         
-        public Camera(Game game)
+        public Camera(Game1 game)
             : base(game)
         {
             generatePerspectiveProjectionMatrix(MathHelper.PiOver4);
+            myGame = game;
         }
 
         private void generatePerspectiveProjectionMatrix(float FieldOfView)

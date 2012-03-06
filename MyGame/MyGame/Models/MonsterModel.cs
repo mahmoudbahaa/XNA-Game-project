@@ -29,26 +29,9 @@ namespace MyGame
             //this.runSkinningData = runSkinningData;
             this.dieSkinningData = dieSkinningData;
             
-            game.register(this, MyEvent.M_DIE);
+            
             animator.running = true;
             animator.StartClip(animations[(int)MonsterAnimations.Run], true);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            foreach (Event ev in events)
-            {
-                switch (ev.eventId)
-                {
-                    case MyEvent.M_DIE:
-                        Die();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            events.Clear();
-            base.Draw(gameTime);
         }
 
         public void Die()

@@ -11,7 +11,7 @@ namespace MyGame
     {
         private float RotationSpeed {get;set;}
         private const int updateDelay = 1000;
-        private int sinceLastUpdate = 0;
+        //private int sinceLastUpdate = 0;
 
         public SkyUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)

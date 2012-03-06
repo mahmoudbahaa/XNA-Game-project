@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MyGame
 {
-    class BulletUnit : Unit
+    public class BulletUnit : Unit
     {
         Vector3 Direction { get; set; }
         float bulletSpeed = 3f;

@@ -17,8 +17,7 @@ namespace MyGame
         public Vector3 PositionOffset { get; set; }
         public Vector3 TargetOffset { get; set; }
 
-        //private Vector3 oldCombinedRotation = Vector3.Zero;
-        //private Vector3 oldUp = Vector3.Up;
+        private MouseState lastMouseState;
 
         public Vector3 RelativeCameraRotation { get; set; }
 
@@ -32,13 +31,14 @@ namespace MyGame
             set { springiness = MathHelper.Clamp(value, 0, 1); }
         }
 
-        public ChaseCamera(Game game, Vector3 PositionOffset, Vector3 TargetOffset,
+        public ChaseCamera(Game1 game, Vector3 PositionOffset, Vector3 TargetOffset,
             Vector3 RelativeCameraRotation )
             : base(game)
         {
             this.PositionOffset = PositionOffset;
             this.TargetOffset = TargetOffset;
             this.RelativeCameraRotation = RelativeCameraRotation;
+            lastMouseState = Mouse.GetState();
         }
 
         public void Move(Vector3 NewFollowTargetPosition,
@@ -55,8 +55,41 @@ namespace MyGame
 
         public override void  Update(GameTime gameTime)
         {
-            Vector3 oldPosition = Position;
+            //Custom Update
+            Move(myGame.player.cModel.unit.position, myGame.player.cModel.unit.rotation);
 
+            // Get the new keyboard and mouse state
+            MouseState mouseState = Mouse.GetState();
+            KeyboardState keyState = Keyboard.GetState();
+
+            // Determine how much the camera should turn
+            float deltaX;
+            float deltaY;
+
+
+            if (System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
+            {
+                Vector2 d = myGame.controller.getPointer();
+                deltaX = d.X;
+                deltaY = d.Y;
+            }
+            else
+            {
+                deltaX = -((float)lastMouseState.X - (float)mouseState.X) * 15;
+                deltaY = ((float)lastMouseState.Y - (float)mouseState.Y) * 15;
+            }
+
+            // Rotate the camera
+            Rotate(new Vector3(deltaY * .0005f, 0, 0));
+
+            myGame.player.cModel.unit.position.Y = myGame.terrain.GetHeightAtPosition(myGame.player.cModel.unit.position.X,
+                myGame.player.cModel.unit.position.Z) + 5;
+            myGame.controlPointer(-deltaX * .0005f);
+            lastMouseState = mouseState;
+
+
+
+            //Natural Chase Camera Update
             Vector3 translation = Vector3.Zero;
 
             // Sum the rotations of the model and the camera to ensure it 

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
-    class AnimatedModel : CModel
+    public class AnimatedModel : CModel
     {
         protected SkinnedAnimationPlayer animator;
 

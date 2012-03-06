@@ -8,7 +8,7 @@ using Helper;
 
 namespace MyGame
 {
-    class PlayerUnit : Unit
+    public class PlayerUnit : Unit
     {
         //here goes the player attribute like speed health etc ...
         private float PlayerSpeed { get; set; }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace control
 {
-    class Controller
+    public class Controller
     {
         //constants to access specific gesture state
         public const int FORWARD = 0;

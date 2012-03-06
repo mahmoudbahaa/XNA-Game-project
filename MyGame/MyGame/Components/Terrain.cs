@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MyGame
 {
-    public class Terrain : DrawableGameComponent
+    public class Terrain : Microsoft.Xna.Framework.DrawableGameComponent
     {
         VertexPositionNormalTexture[] vertices; // Vertex array
         VertexBuffer vertexBuffer; // Vertex buffer
@@ -121,7 +121,7 @@ namespace MyGame
             float h2 = heights[x2, z2];
 
             // Interpolate between the corner vertices' heights
-            return MathHelper.Max(h1,h2)+50f;
+            return MathHelper.Max(h1,h2);
         }
 
         // Returns the height and steepness of the terrain at point (X, Z)
