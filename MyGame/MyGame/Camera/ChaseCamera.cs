@@ -55,8 +55,6 @@ namespace MyGame
 
         public override void  Update(GameTime gameTime)
         {
-            //Custom Update
-            Move(myGame.player.unit.position, myGame.player.unit.rotation);
 
             // Get the new keyboard and mouse state
             MouseState mouseState = Mouse.GetState();
@@ -82,8 +80,7 @@ namespace MyGame
             // Rotate the camera
             Rotate(new Vector3(deltaY * .0005f, 0, 0));
 
-            myGame.player.unit.position.Y = myGame.terrain.GetHeightAtPosition(myGame.player.unit.position.X,
-                myGame.player.unit.position.Z) + 5;
+            
             myGame.controlPointer(-deltaX * .0005f);
             lastMouseState = mouseState;
 

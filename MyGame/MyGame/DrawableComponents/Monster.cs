@@ -23,7 +23,7 @@ namespace MyGame
         public override void Update(GameTime gameTime)
         {
             Vector3 pos = unit.position;
-            unit.position.Y = myGame.terrain.GetHeightAtPosition(pos.X, pos.Z);
+            unit.position.Y = myGame.GetHeightAtPosition(pos.X, pos.Z);
             base.Update(gameTime);
         }
     }

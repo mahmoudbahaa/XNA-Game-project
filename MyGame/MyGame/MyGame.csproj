@@ -113,11 +113,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\CDrawableComponent.cs" />
-    <Compile Include="Components\BulletsManager.cs" />
-    <Compile Include="Components\Bullet.cs" />
-    <Compile Include="Components\Monster.cs" />
-    <Compile Include="Components\MonstersManager.cs" />
+    <Compile Include="DrawableComponents\CDrawableComponent.cs" />
+    <Compile Include="DrawableComponents\Managers\BulletsManager.cs" />
+    <Compile Include="DrawableComponents\Bullet.cs" />
+    <Compile Include="DrawableComponents\Monster.cs" />
+    <Compile Include="DrawableComponents\Managers\MonstersManager.cs" />
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Control\Gesture.cs" />
     <Compile Include="Control\GestureManager.cs" />
@@ -132,13 +132,13 @@
     <Compile Include="Models\AnimatedModel.cs" />
     <Compile Include="Units\BulletUnit.cs" />
     <Compile Include="Models\CModel.cs" />
-    <Compile Include="Components\ScoreBoard.cs" />
+    <Compile Include="DrawableComponents\Managers\ScoreBoard.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Camera\Camera.cs" />
     <Compile Include="Camera\ChaseCamera.cs" />
     <Compile Include="Camera\FreeCamera.cs" />
-    <Compile Include="Components\Player.cs" />
-    <Compile Include="Components\Sky.cs" />
+    <Compile Include="DrawableComponents\Player.cs" />
+    <Compile Include="DrawableComponents\Sky.cs" />
     <Compile Include="Models\MonsterModel.cs" />
     <Compile Include="Units\MonsterUnit.cs" />
     <Compile Include="Models\PlayerModel.cs" />
@@ -149,7 +149,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SkinnedAnimationPlayer.cs" />
-    <Compile Include="Components\Terrain.cs" />
+    <Compile Include="DrawableComponents\Managers\Terrain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -13,6 +13,11 @@ namespace MyGame
 {
     public class Player : CDrawableComponent
     {
+        // Shot variables
+        float shotSpeed = 0.5f;
+        int shotDelay = 300;
+        int shotCountdown = 0;
+
         public Player(Game1 game,SkinningData skinningData, Model model, Unit unit)
             : base(game, unit)
         {
@@ -24,6 +29,10 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
+
+            //Custom Update
+            ((ChaseCamera)myGame.camera).Move(unit.position, unit.rotation);
+
             KeyboardState keyBoard = Keyboard.GetState();
             if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W) || myGame.controller.isActive(Controller.FORWARD))
             {
@@ -46,7 +55,31 @@ namespace MyGame
                 controlRight();
             }
 
+            unit.position.Y = myGame.GetHeightAtPosition(unit.position.X,
+                unit.position.Z) + 5;
+
+            FireShots(gameTime);
+
             base.Update(gameTime);
+        }
+
+        protected void FireShots(GameTime gameTime)
+        {
+            shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+            if (shotCountdown <= 0)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
+                        Mouse.GetState().LeftButton == ButtonState.Pressed ||
+                        myGame.controller.isActive(Controller.RIGHT_HAND_STR))
+                {
+                    {
+                        myGame.fireEvent(MyEvent.C_ATTACK,"position" ,unit.position);
+
+                        // Reset the shot countdown
+                        shotCountdown = shotDelay;
+                    }
+                }
+            }
         }
 
         public void playerRun()

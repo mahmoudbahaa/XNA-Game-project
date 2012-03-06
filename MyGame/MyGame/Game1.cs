@@ -13,17 +13,18 @@ namespace MyGame
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+
         public Camera camera;
-        public Terrain terrain;
-        public Player player;
+        public Controller controller;
+
+        private Terrain terrain;
+        private Player player;
         private MonstersManager monsters;
 
         private ScoreBoard scoreBoard;
         //assal
 
         Hashtable hash;
-
-        public Controller controller;
 
         public Game1()
         {
@@ -61,20 +62,13 @@ namespace MyGame
         {
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
-
-            player = initializePlayer();
-
+            camera  = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            player  = initializePlayer();
             Sky sky = intitializeSky();
-
             terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
                Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
-
-
             BulletsManager bullets = new BulletsManager(this);
-
             scoreBoard = new ScoreBoard(this);
-
             monsters = new MonstersManager(this);
 
             Components.Add(camera);
@@ -84,7 +78,6 @@ namespace MyGame
             Components.Add(bullets);
             Components.Add(player);
             Components.Add(scoreBoard);
-
         }
 
         public bool checkCollisionWithBullet(BulletUnit bulletUnit)
@@ -129,6 +122,11 @@ namespace MyGame
         {
             GestureManager.running = false;
  	         base.EndRun();
+        }
+
+        public float GetHeightAtPosition(float X, float Z)
+        {
+            return terrain.GetHeightAtPosition(X, Z);
         }
     }
 }

@@ -11,22 +11,27 @@ using control;
 
 namespace MyGame
 {
-    public class BulletsManager : DrawableGameComponent
+    public class BulletsManager : DrawableGameComponent,IEvent
     {
+        protected List<Event> events;
+
         private List<Bullet> bullets;
         private Game1 myGame;
 
         // Shot variables
         float shotSpeed = 0.5f;
         int shotDelay = 300;
-        float bulletRange = 3000;
         int shotCountdown = 0;
+
+        float bulletRange = 3000;
 
         public BulletsManager(Game1 game)
             : base(game)
         {
             bullets = new List<Bullet>();
             myGame = game;
+            events = new List<Event>();
+            game.register(this, MyEvent.C_ATTACK);
         }
 
         public void AddBullet(Vector3 position, Vector3 direction)
@@ -37,26 +42,26 @@ namespace MyGame
 
         }
 
-        protected void FireShots(GameTime gameTime, Vector3 position)
+        public void addEvent(Event ev)
         {
-            shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (shotCountdown <= 0)
+            events.Add(ev);
+        }
+
+        protected void FireShots()
+        {
+            foreach (Event ev in events)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
-                        Mouse.GetState().LeftButton == ButtonState.Pressed ||
-                        myGame.controller.isActive(Controller.RIGHT_HAND_STR))
+                switch (ev.eventId)
                 {
-                    {
+                    case MyEvent.C_ATTACK:
                         Vector3 direction = (myGame.camera.Target - myGame.camera.Position);
                         direction.Y += 25;
                         direction.Normalize();
-                        AddBullet(position + new Vector3(0, 40, 0), direction * shotSpeed);
-
-                        // Reset the shot countdown
-                        shotCountdown = shotDelay;
-                    }
+                        AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0), direction * shotSpeed);
+                        break;
                 }
             }
+            events.Clear();
         }
 
         protected void UpdateShots(GameTime gameTime)
@@ -67,9 +72,10 @@ namespace MyGame
                 // Update each shot
                 bullets[i].Update(gameTime);
 
-                // If shot is out of bounds, remove it from game
-                if (!((BulletUnit)(bullets[i].unit)).isInRange(myGame.player.unit.position.X,
-                    myGame.player.unit.position.Z, bulletRange))
+                 //If shot is out of bounds, remove it from game
+                //if (!((BulletUnit)(bullets[i].unit)).isInRange(myGame.player.unit.position.X,
+                //    myGame.player.unit.position.Z, bulletRange))
+                if(Math.Abs(bullets[i].unit.position.Length()) > bulletRange)
                 {
                     bullets.RemoveAt(i);
                     --i;
@@ -89,7 +95,7 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            FireShots(gameTime, myGame.player.unit.position);
+            FireShots();
             UpdateShots(gameTime);
             base.Update(gameTime);
         }
