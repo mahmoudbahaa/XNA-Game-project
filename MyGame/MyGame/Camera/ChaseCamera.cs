@@ -107,9 +107,9 @@ namespace MyGame
             // Interpolate between the current position and desired position
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
-            while (Position.Y < 5)
+            while (Position.Y < myGame.GetHeightAtPosition(Position.X , Position.Z) +10)
             {
-                if(combinedRotation.X <= MathHelper.Pi && combinedRotation.X >=0)
+                if (combinedRotation.X >= -MathHelper.PiOver2)
                     combinedRotation.X -= 0.001f;
                 else
                     combinedRotation.X += 0.001f;
