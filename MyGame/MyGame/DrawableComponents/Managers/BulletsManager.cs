@@ -20,8 +20,6 @@ namespace MyGame
 
         // Shot variables
         float shotSpeed = 0.5f;
-        int shotDelay = 300;
-        int shotCountdown = 0;
 
         float bulletRange = 3000;
 

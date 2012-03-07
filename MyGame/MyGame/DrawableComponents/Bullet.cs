@@ -14,10 +14,8 @@ namespace MyGame
     public class Bullet : CDrawableComponent
     {
         public Bullet(Game1 game, Model model, Unit unit)
-            : base(game, unit)
+            : base(game, unit,new CModel(game, model))
         {
-            cModel = new CModel(game, model);
-            unit.BoundingSphere = cModel.buildBoundingSphere();
         }
     }
 }

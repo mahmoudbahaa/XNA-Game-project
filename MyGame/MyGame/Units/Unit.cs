@@ -8,7 +8,7 @@ using Helper;
 
 namespace MyGame
 {
-    public abstract class Unit : IEvent
+    public class Unit : IEvent
     {
         public Vector3 position;
         public Vector3 rotation;

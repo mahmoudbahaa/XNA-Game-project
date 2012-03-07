@@ -51,7 +51,7 @@ namespace MyGame
         {
             TextureCube tc = Content.Load<TextureCube>("clouds");
             Model pmodel = Content.Load<Model>("skysphere_mesh");
-            SkyUnit skyUnit = new SkyUnit(this, Vector3.Zero, Vector3.Zero, new Vector3(100000));
+            SkyUnit skyUnit = new SkyUnit(this, Vector3.Zero, Vector3.Zero, new Vector3(10000));
             Sky sky = new Sky(this, pmodel, skyUnit, tc);
 
             return sky;
@@ -70,6 +70,9 @@ namespace MyGame
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
+
+            //CDrawableComponent test = new CDrawableComponent(this, 
+            //    new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
 
             Components.Add(camera);
             Components.Add(sky);

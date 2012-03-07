@@ -13,11 +13,13 @@ namespace MyGame
         public Unit unit;
         protected Game1 myGame;
 
-        public CDrawableComponent(Game1 game,Unit unit)
+        public CDrawableComponent(Game1 game,Unit unit, CModel model)
             :base(game)
         {
             myGame = game;
             this.unit = unit;
+            this.cModel = model;
+            unit.BoundingSphere = cModel.buildBoundingSphere();
         }
 
         public override void Draw(GameTime gameTime)

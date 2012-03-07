@@ -14,10 +14,8 @@ namespace MyGame
     public class Monster : CDrawableComponent
     {
         public Monster(Game1 game, SkinningData runSkinningData, SkinningData dieSkinningData, Model model, Unit unit)
-            : base(game, unit)
+            : base(game, unit,new MonsterModel(game, runSkinningData, dieSkinningData, model))
         {
-            cModel = new MonsterModel(myGame, runSkinningData, dieSkinningData, model);
-            unit.BoundingSphere = cModel.buildBoundingSphere();
         }
 
         public override void Update(GameTime gameTime)

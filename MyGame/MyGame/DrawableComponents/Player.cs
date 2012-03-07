@@ -14,15 +14,12 @@ namespace MyGame
     public class Player : CDrawableComponent
     {
         // Shot variables
-        float shotSpeed = 0.5f;
         int shotDelay = 300;
         int shotCountdown = 0;
 
         public Player(Game1 game,SkinningData skinningData, Model model, Unit unit)
-            : base(game, unit)
+            : base(game, unit,new PlayerModel (game,skinningData, model))
         {
-            cModel =  new PlayerModel (game,skinningData, model);
-            unit.BoundingSphere = cModel.buildBoundingSphere();
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }

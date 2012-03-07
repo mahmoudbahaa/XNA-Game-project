@@ -45,7 +45,6 @@ namespace MyGame
         }
         public virtual void Draw(GameTime game)
         {
-
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index]
