@@ -21,7 +21,7 @@ namespace MyGame
 
         public Vector3 RelativeCameraRotation { get; set; }
 
-        float springiness = .15f;
+        float springiness = 0.15f;
 
         //MouseState lastMouseState;
 
@@ -107,12 +107,16 @@ namespace MyGame
             // Interpolate between the current position and desired position
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
-            while (Position.Y < myGame.GetHeightAtPosition(Position.X , Position.Z) +10)
+            int i = 0;
+            while (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
             {
+                if (i++ > 1000)
+                    break;
                 if (combinedRotation.X >= -MathHelper.PiOver2)
-                    combinedRotation.X -= 0.001f;
+                    combinedRotation.X -= 0.01f;
                 else
                     combinedRotation.X += 0.001f;
+
                 // Calculate the rotation matrix for the camera
                 rotation = Matrix.CreateFromYawPitchRoll(
                     combinedRotation.Y, combinedRotation.X, combinedRotation.Z);

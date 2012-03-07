@@ -65,14 +65,15 @@ namespace MyGame
             camera  = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
             player  = initializePlayer();
             Sky sky = intitializeSky();
-            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
+            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 1000,
                Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
 
-            //CDrawableComponent test = new CDrawableComponent(this, 
-            //    new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
+            //CDrawableComponent test = new CDrawableComponent(this,
+            //    new Unit(this, new Vector3(0,100,0), Vector3.Zero, Vector3.One*100),
+            //    new CModel(this,Content.Load<Model>(@"model/Dwarf")));
 
             Components.Add(camera);
             Components.Add(sky);
@@ -81,6 +82,7 @@ namespace MyGame
             Components.Add(bullets);
             Components.Add(player);
             Components.Add(scoreBoard);
+            //Components.Add(test);
         }
 
         public bool checkCollisionWithBullet(BulletUnit bulletUnit)
@@ -130,6 +132,12 @@ namespace MyGame
         public float GetHeightAtPosition(float X, float Z)
         {
             return terrain.GetHeightAtPosition(X, Z);
+        }
+
+        public float GetHeightAtPosition2(float X, float Z)
+        {
+            float steepness ;
+            return terrain.GetHeightAtPosition(X, Z,out steepness);
         }
     }
 }
