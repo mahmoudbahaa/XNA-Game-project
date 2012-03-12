@@ -13,6 +13,7 @@ namespace MyGame
     {
         private bool running;
         private bool attacking;
+        public bool shooting = false;
 
         //private int activeAnimationClip;
 
@@ -32,7 +33,7 @@ namespace MyGame
             this.aimSkinnedModel = aimSkinnedModel;
             this.shootSkinnedModel = shootSkinnedModel;
 
-            game.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET);
+            game.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
             animationController.Speed = 1.2f;
             animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
         }
@@ -47,7 +48,7 @@ namespace MyGame
                     case (int)MyEvent.P_RUN:
                         running = true;
                         break;
-                    case (int) MyEvent.C_ATTACK_BULLET:
+                    case (int) MyEvent.C_ATTACK_BULLET_BEGIN:
                         attacking = true;
                         break;
 
@@ -99,6 +100,7 @@ namespace MyGame
                 else if(!animationController.IsPlaying && skinnedModel == shootSkinnedModel)
                 {
                     attacking = false;
+                    shooting = true;
                 }
             }
         }

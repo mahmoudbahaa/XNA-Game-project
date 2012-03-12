@@ -28,13 +28,13 @@ namespace MyGame
             bullets = new List<Bullet>();
             myGame = game;
             events = new List<Event>();
-            game.register(this, MyEvent.C_ATTACK_BULLET);
+            game.register(this, MyEvent.C_ATTACK_BULLET_END);
         }
 
-        public void AddBullet(Vector3 position, Vector3 direction)
+        public void AddBullet(Vector3 position,Vector3 rotation, Vector3 direction)
         {
-            Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("ammo"),
-                new BulletUnit(myGame, position, Vector3.Zero, 10 * Vector3.One, direction));
+            Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("projectile"),
+                new BulletUnit(myGame, position, rotation, 10 * Vector3.One, direction));
             bullets.Add(bullet);
 
         }
@@ -50,11 +50,12 @@ namespace MyGame
             {
                 switch (ev.EventId)
                 {
-                    case (int)MyEvent.C_ATTACK_BULLET:
+                    case (int)MyEvent.C_ATTACK_BULLET_END:
                         Vector3 direction = (myGame.camera.Target - myGame.camera.Position);
-                        direction.Y += 25;
+                        //direction.Y += 25;
                         direction.Normalize();
-                        AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0), direction * shotSpeed);
+                        AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0),
+                            (Vector3)ev.args["rotation"], direction * shotSpeed);
                         break;
                 }
             }

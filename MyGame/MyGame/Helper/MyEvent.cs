@@ -25,7 +25,8 @@ namespace Helper
         C_BACKWARD,
         C_LEFT,
         C_RIGHT,
-        C_ATTACK_BULLET,
+        C_ATTACK_BULLET_BEGIN,
+        C_ATTACK_BULLET_END,
         C_ATTACK_AXE,
         C_Pointer,
 

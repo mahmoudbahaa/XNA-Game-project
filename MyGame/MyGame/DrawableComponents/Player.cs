@@ -103,6 +103,14 @@ namespace MyGame
 
         protected void FireShots(GameTime gameTime)
         {
+            if (((PlayerModel)cModel).shooting)
+            {
+                //Vector3 dir = Vector3.Normalize(myGame.camera.Target - myGame.camera.Position);
+                //float rotz = (float)Math.Atan2(dir.Y, dir.X);
+                myGame.fireEvent(MyEvent.C_ATTACK_BULLET_END, "position", unit.position,
+                    "rotation", new Vector3(0, unit.rotation.Y, 0));
+                ((PlayerModel)cModel).shooting = false;
+            }
             shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
             if (shotCountdown <= 0)
             {
@@ -111,7 +119,7 @@ namespace MyGame
                         myGame.controller.isActive(Controller.RIGHT_HAND_STR))
                 {
                     {
-                        myGame.fireEvent(MyEvent.C_ATTACK_BULLET,"position" ,unit.position);
+                        myGame.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
 
                         // Reset the shot countdown
                         shotCountdown = shotDelay;
