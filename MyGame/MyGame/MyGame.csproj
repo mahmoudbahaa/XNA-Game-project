@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawableComponents\CDrawableComponent.cs" />
+    <Compile Include="DrawableComponents\Weapon.cs" />
     <Compile Include="DrawableComponents\Managers\BulletsManager.cs" />
     <Compile Include="DrawableComponents\Bullet.cs" />
     <Compile Include="DrawableComponents\Monster.cs" />
@@ -156,9 +157,9 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SkinnedModel\SkinnedModel.csproj">
-      <Project>{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}</Project>
-      <Name>SkinnedModel</Name>
+    <ProjectReference Include="..\..\XNAnimation\XNAnimation.csproj">
+      <Project>{2A857645-A225-4177-99BD-C8F6D22B72FA}</Project>
+      <Name>XNAnimation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyGameContent\MyGameContent.contentproj">
       <Name>MyGameContent</Name>

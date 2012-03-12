@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Helper
 {
-    public static class MyEvent
+    public enum MyEvent
     {
         /*
          * P_ player related events
@@ -13,18 +13,22 @@ namespace Helper
          * C_ control related events
          */
 
-        public const int P_RUN = 0;
-        public const int P_STOP = 7;
-
-        public const int C_FORWARD = 1;
-        public const int C_BACKWARD = 2;
-        public const int C_LEFT = 3;
-        public const int C_RIGHT = 4;
-        public const int C_ATTACK = 5;
-        public const int C_Pointer = 1000;
-
-        public const int M_DIE = 6;
+        P_RUN = 0,
+        P_STOP,
+        P_ATTACK_AXE1,
+        P_ATTACK_AXE2,
+        P_ATTACK_AXE3,
+        P_ATTACK_AXE4,
+        P_ATTACK_AXE5,
         
+        C_FORWARD,
+        C_BACKWARD,
+        C_LEFT,
+        C_RIGHT,
+        C_ATTACK_BULLET,
+        C_ATTACK_AXE,
+        C_Pointer,
 
+        M_DIE,
     }
 }

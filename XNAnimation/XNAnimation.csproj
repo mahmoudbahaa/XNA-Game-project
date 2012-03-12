@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}</ProjectGuid>
+    <ProjectGuid>{2A857645-A225-4177-99BD-C8F6D22B72FA}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkinnedModel</RootNamespace>
-    <AssemblyName>SkinnedModel</AssemblyName>
+    <RootNamespace>XNAnimation</RootNamespace>
+    <AssemblyName>XNAnimation</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>HiDef</XnaProfile>
-    <XnaCrossPlatformGroupID>5d29517c-6ef8-4204-a7fa-4c655997e2e8</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>37631729-108d-4de7-9cda-d013af2c21a6</XnaCrossPlatformGroupID>
     <XnaOutputType>Library</XnaOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -92,10 +92,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationChannel.cs" />
+    <Compile Include="AnimationChannelDictionary.cs" />
+    <Compile Include="AnimationChannelKeyframe.cs" />
     <Compile Include="AnimationClip.cs" />
-    <Compile Include="Keyframe.cs" />
+    <Compile Include="AnimationClipDictionary.cs" />
+    <Compile Include="Controllers\AnimationController.cs" />
+    <Compile Include="Controllers\IAnimationController.cs" />
+    <Compile Include="Controllers\IBlendable.cs" />
+    <Compile Include="Controllers\IBlendController.cs" />
+    <Compile Include="Controllers\ISkeletonController.cs" />
+    <Compile Include="Controllers\SkeletonController.cs" />
+    <Compile Include="Pipeline\AnimationClipReader.cs" />
+    <Compile Include="Pipeline\SkinnedModelBoneReader.cs" />
+    <Compile Include="Pipeline\SkinnedModelReader.cs" />
+    <Compile Include="Pose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SkinningData.cs" />
+    <Compile Include="ReadOnlyDictionary.cs" />
+    <Compile Include="SkinnedModel.cs" />
+    <Compile Include="SkinnedModelBone.cs" />
+    <Compile Include="SkinnedModelBoneCollection.cs" />
+    <Compile Include="SkinnedModelBoneDictionary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

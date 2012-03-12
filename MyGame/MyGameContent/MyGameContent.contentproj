@@ -76,9 +76,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SkinnedModelPipeline\SkinnedModelPipeline.csproj">
-      <Project>{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}</Project>
-      <Name>SkinnedModelPipeline</Name>
+    <ProjectReference Include="..\..\XNAnimationPipeline\XNAnimationPipeline.csproj">
+      <Project>{863795EB-0753-4461-AF43-48F38828D8E0}</Project>
+      <Name>XNAnimationPipeline</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -89,10 +89,35 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Miko\BUMP.TGA">
+      <Name>BUMP</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Miko\MIKO.X">
+      <Name>MIKO</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\PlayerMarineRun.fbx">
+      <Name>PlayerMarineRun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
     <Compile Include="terrain-plain.bmp">
       <Name>terrain-plain</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="model\PlayerMarine.fbx">
+      <Name>PlayerMarine</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\WeaponMachineGun.fbx">
+      <Name>WeaponMachineGun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -103,7 +128,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\EnemyBeast.fbx">
+    <Compile Include="model\EnemyBeast.fbx">
       <Name>EnemyBeast</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
@@ -140,13 +165,6 @@
       <Name>diffusexparent</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\EnemyBeastDie.fbx">
-      <Name>EnemyBeastDie</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +223,37 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\axe.jpg">
+      <Name>axe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\dwarf.jpg">
+      <Name>dwarf</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="model\EnemyBeastDie.fbx">
+      <Name>EnemyBeastDie</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="model\PlayerMarineAim.fbx">
+      <Name>PlayerMarineAim</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\PlayerMarineShoot.fbx">
+      <Name>PlayerMarineShoot</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

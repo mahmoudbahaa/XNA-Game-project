@@ -10,7 +10,7 @@ namespace MyGame
     public class BulletUnit : Unit
     {
         Vector3 Direction { get; set; }
-        float bulletSpeed = 3f;
+        float bulletSpeed = 20f;
 
         public BulletUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale,Vector3 Direction)
             : base(game,Position, Rotation, Scale)
@@ -21,14 +21,8 @@ namespace MyGame
         public override void update(GameTime gameTime)
         {
             // Move bullet
-            baseWorld *= Matrix.CreateTranslation(Direction* bulletSpeed);
-        }
-
-
-        public bool isInRange(float x,float z,float range){
-            return true;
-                //baseWorld.Translation.Z > z-range && baseWorld.Translation.X > x-range &&
-                //baseWorld.Translation.Z < z + range && baseWorld.Translation.X < x + range;
+            position += Direction * bulletSpeed;
+            base.update(gameTime);
         }
     }
 }

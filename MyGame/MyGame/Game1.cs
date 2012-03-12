@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections;
 using System;
 using Helper;
-using SkinnedModel;
 using control;
+using XNAnimation;
 
 namespace MyGame
 {
@@ -40,10 +40,15 @@ namespace MyGame
 
         private Player initializePlayer()
         {
-            Model pmodel = Content.Load<Model>("dude");
-            SkinningData skinnedData = pmodel.Tag as SkinningData;
-            PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 5, 0), Vector3.Zero, new Vector3(1f));
-            Player player= new Player(this, skinnedData, pmodel, playerUnit);
+            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarine");
+            SkinnedModel pmodelRun  = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
+            SkinnedModel pmodelAim  = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
+            SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");
+            //SkinningData skinnedData = pmodel.Tag as SkinningData;
+            PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 50, 0),
+                new Vector3(0, 0, 0),
+                new Vector3(2f));
+            Player player = new Player(this, pmodelIdle, pmodelRun ,pmodelAim,pmodelShoot, playerUnit);
             return player;
         }
 
@@ -65,7 +70,10 @@ namespace MyGame
             camera  = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
             player  = initializePlayer();
             Sky sky = intitializeSky();
-            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 1000,
+
+            Weapon weapon = new Weapon(this, player, Content.Load<Model>("model//WeaponMachineGun"),
+                new Unit(this, Vector3.Zero, Vector3.Zero,Vector3.One));
+            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
                Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
@@ -80,17 +88,18 @@ namespace MyGame
             Components.Add(terrain);
             Components.Add(monsters);
             Components.Add(bullets);
+            Components.Add(weapon);
             Components.Add(player);
             Components.Add(scoreBoard);
             //Components.Add(test);
         }
 
-        public bool checkCollisionWithBullet(BulletUnit bulletUnit)
+        public bool checkCollisionWithBullet(Unit unit)
         {
-            return (monsters.checkCollisionWithBullet(bulletUnit));
+            return (monsters.checkCollisionWithBullet(unit));
         }
 
-        public void register(IEvent ie,params int[] eventKey)
+        public void register(IEvent ie,params MyEvent[] eventKey)
         {
             foreach (int ev in eventKey)
             {
@@ -107,10 +116,10 @@ namespace MyGame
             }
         }
 
-        public void fireEvent(int ev,params Object[] param)
+        public void fireEvent(MyEvent ev,params Object[] param)
         {
-            if (hash[ev] == null) return;
-            List<IEvent> list = (List<IEvent>)hash[ev];
+            if (hash[(int)ev] == null) return;
+            List<IEvent> list = (List<IEvent>)hash[(int)ev];
             Event eve = new Event(ev,param);
             foreach (IEvent ie in list)
             {

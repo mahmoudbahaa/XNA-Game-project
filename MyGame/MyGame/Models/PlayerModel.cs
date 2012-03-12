@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SkinnedModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using XNAnimation;
 using Helper;
 
 namespace MyGame
@@ -12,20 +12,29 @@ namespace MyGame
     public class PlayerModel : AnimatedModel
     {
         private bool running;
+        private bool attacking;
 
-        readonly String[] animations = new String[] { "Take 001" };
+        //private int activeAnimationClip;
 
-        public enum PlayAnimations
+        static int RIGHT_HAND_BONE_ID = 15;
+
+        SkinnedModel idleSkinnedModel;
+        SkinnedModel runSkinnedModel;
+        SkinnedModel aimSkinnedModel;
+        SkinnedModel shootSkinnedModel;
+
+        public PlayerModel(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
+                                    SkinnedModel aimSkinnedModel, SkinnedModel shootSkinnedModel)
+            : base(game, idleSkinnedModel)
         {
-            Run = 0
-        }
+            this.idleSkinnedModel = idleSkinnedModel;
+            this.runSkinnedModel = runSkinnedModel;
+            this.aimSkinnedModel = aimSkinnedModel;
+            this.shootSkinnedModel = shootSkinnedModel;
 
-        public PlayerModel(Game1 game,SkinningData skinningData, Model model)
-            : base(game,skinningData, model)
-        {
-            game.register(this,MyEvent.P_RUN);
-            running = false;
-            animator.StartClip(animations[(int)PlayAnimations.Run], true);
+            game.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET);
+            animationController.Speed = 1.2f;
+            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
         }
 
         public override void Draw(GameTime gameTime)
@@ -33,38 +42,251 @@ namespace MyGame
             running = false;
             foreach (Event ev in events)
             {
-                switch (ev.eventId)
+                switch (ev.EventId)
                 {
-                    case MyEvent.P_RUN:
+                    case (int)MyEvent.P_RUN:
                         running = true;
                         break;
+                    case (int) MyEvent.C_ATTACK_BULLET:
+                        attacking = true;
+                        break;
+
+                    //case (int)MyEvent.P_ATTACK_AXE1:
+                    //    AttackByAxe(PlayerAnimations.Attack1);
+                    //    break;
+                    //case (int)MyEvent.P_ATTACK_AXE2:
+                    //    AttackByAxe(PlayerAnimations.Attack2);
+                    //    break;
+                    //case (int)MyEvent.P_ATTACK_AXE3:
+                    //    AttackByAxe(PlayerAnimations.Attack3);
+                    //    break;
+                    //case (int)MyEvent.P_ATTACK_AXE4:
+                    //    AttackByAxe(PlayerAnimations.Attack4);
+                    //    break;
+                    //case (int)MyEvent.P_ATTACK_AXE5:
+                    //    AttackByAxe(PlayerAnimations.Attack5);
+                    //    break;
                     default:
                         break;
                 }
             }
             Run();
+            Attack();
             events.Clear();
             base.Draw(gameTime);
             
         }
-       
 
-       
-        public void Run()
+        private void Attack()
         {
-            if (running)
+            if (attacking)
             {
-                animator.running = true;
-                //animator.StartClip(animations[(int)PlayAnimations.Run],true);
-                
-            }
-            else
-            {
-                animator.running = false;
-                //animator.StartClip(animations[(int)PlayAnimations.Run],false,true);
+                if (animationController.IsPlaying && skinnedModel != aimSkinnedModel 
+                    && skinnedModel != shootSkinnedModel)
+                {
+                    skinnedModel = aimSkinnedModel;
+                    Model = aimSkinnedModel.Model;
+                    animationController.LoopEnabled = false;
+                    playAnimation();
+                }
+                else if (!animationController.IsPlaying && skinnedModel == aimSkinnedModel)
+                {
+                    skinnedModel = shootSkinnedModel;
+                    Model = shootSkinnedModel.Model;
+                    animationController.LoopEnabled = false;
+                    playAnimation();
+                }
+                else if(!animationController.IsPlaying && skinnedModel == shootSkinnedModel)
+                {
+                    attacking = false;
+                }
             }
         }
 
+        //public void AttackByAxe(PlayerAnimations playerAnimation)
+        //{
+        //    animationController.LoopEnabled = false;
+        //    activeAnimationClip = (int)playerAnimation;
+        //    playAnimation();
+        //}
+       
+        private void Run()
+        {
+            if (running)
+            {
+                if (skinnedModel != runSkinnedModel && !attacking)
+                {
+                    skinnedModel = runSkinnedModel;
+                    Model = runSkinnedModel.Model;
+                    animationController.LoopEnabled = true;
+                    playAnimation();
+                }
+                //if (activeAnimationClip != (int)PlayerAnimations.RunWithPistol)
+                //{
+                //    animationController.LoopEnabled = true;
+                //    activeAnimationClip = (int)PlayerAnimations.RunWithPistol;
+                //    playAnimation();
+                //}
+            }
+            else
+            {
+                if (skinnedModel != idleSkinnedModel && !attacking)
+                {
+                    skinnedModel = idleSkinnedModel;
+                    Model = idleSkinnedModel.Model;
+                    animationController.LoopEnabled = true;
+                    playAnimation();
+                }
+                //if (activeAnimationClip == (int)PlayerAnimations.Run || !animationController.IsPlaying)
+                //{
+                //    //animationController.LoopEnabled = false;
+                //    //animationController.LoopEnabled
+                //    activeAnimationClip = (int)PlayerAnimations.LookBlowKiss;
+                //    playAnimation();
+
+                //}
+            }
+        }
+
+        public Matrix RHandTransformation()
+        {
+            return Model.Bones["R_Hand"].Transform
+                * animationController.SkinnedBoneTransforms[RIGHT_HAND_BONE_ID];
+               //* animationController.SkinnedBoneTransforms[0];
+        }
+
+        private void playAnimation()
+        {
+            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
+            //animationController.CrossFade(skinnedModel.AnimationClips.Values[activeAnimationClip], TimeSpan.FromSeconds(0.5f));
+        }
+
+
+        //readonly String[] animations = new String[] {   "Take 001" ,
+        //                                                "Walk",
+        //                                                "Run",
+        //                                                "Jump",
+        //                                                "Jump2",
+        //                                                "CrouchDown",
+        //                                                "Crouch",
+        //                                                "GetUp",
+        //                                                "BattleIdle1",
+        //                                                "BattleIdle2",
+        //                                                "Attack1",
+        //                                                "Attack2",
+        //                                                "Attack3",
+        //                                                "Attack4",
+        //                                                "Attack5",
+        //                                                "Block",
+        //                                                "Die1",
+        //                                                "Die2",
+        //                                                "Yes",
+        //                                                "No",
+        //                                                "Idle1",
+        //                                                "Idle2"
+        //};
+
+        //public enum PlayerAnimations
+        //{
+        //    Take001 = 0,
+        //    Walk,
+        //    Run,
+        //    Jump,
+        //    Jump2,
+        //    CrouchDown,
+        //    Crouch,
+        //    GetUp,
+        //    BattleIdle1,
+        //    BattleIdle2,
+        //    Attack1,
+        //    Attack2,
+        //    Attack3,
+        //    Attack4,
+        //    Attack5,
+        //    Block,
+        //    Die1,
+        //    Die2,
+        //    Yes,
+        //    No,
+        //    Idle1,
+        //    Idle2
+        //}
+
+        //readonly String[] animations = new String[] {   "",
+        //                                                "Look Blow Kiss",
+        //                                                "Ready With Rifle",
+        //                                                "Ready With Pistol",
+        //                                                "Slash With Blade",
+        //                                                "Walk",
+        //                                                "Walk With Weapon",
+        //                                                "Sneak With Rifle",
+        //                                                "Stalk With Pistol",
+        //                                                "Overhead Slash With Blade",
+        //                                                "Run",
+        //                                                "Run With Rifle Safe",
+        //                                                "Run With Rifle Aimed",
+        //                                                "Run With Pistol",
+        //                                                "Running Slash With Blade",
+        //                                                "Crouch",
+        //                                                "Crouched Rifle",
+        //                                                "Crouched Pistol",
+        //                                                "Crouched Stab With Blade",
+        //                                                "Crouched Stalk",
+        //                                                "Crouched Stalk With Rifle",
+        //                                                "Crouched Stalk With Pistol",
+        //                                                "Crouched Stalk Stab With Blade",
+        //                                                "Free Fall",
+        //                                                "Free Fall With Pistol",
+        //                                                "Free Fall With Rifle",
+        //                                                "Free Fall Slash With Blade",
+        //                                                "Climb Ladder",
+        //                                                "Jump Land",
+        //                                                "Die Standing",
+        //                                                "Die Falling",
+        //                                                "Die Crouched"
+        //                                    };
+
+        public enum PlayerAnimations
+        {
+            LookBlowKiss = 1,
+            ReadyWithRifle,
+            ReadyWithPistol,
+            SlashWithBlade,
+            Walk,
+            WalkWithWeapon,
+            SneakWithRifle,
+            StalkWithPistol,
+            OverheadSlashWithBlade,
+            Run,
+            RunWithRifleSafe,
+            RunWithRifleAimed,
+            RunWithPistol,
+            RunningSlashWithBlade,
+            Crouch,
+            CrouchedRifle,
+            CrouchedPistol,
+            CrouchedStabWithBlade,
+            CrouchedStalk,
+            CrouchedStalkWithRifle,
+            CrouchedStalkWithPistol,
+            CrouchedStalkStabWithBlade,
+            FreeFall,
+            FreeFallWithPistol,
+            FreeFallWithRifle,
+            FreeFallSlashWithBlade,
+            ClimbLadder,
+            JumpLand,
+            DieStanding,
+            DieFalling,
+            DieCrouched
+        }
+
+        //readonly String[] animations = new String[] { "Animation0" };
+
+        //public enum PlayAnimations
+        //{
+        //    Run = 0
+        //}
 
     }
 }
