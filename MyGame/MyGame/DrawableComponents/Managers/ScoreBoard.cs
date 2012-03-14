@@ -34,7 +34,7 @@ namespace MyGame
         {
             this.camera = game.camera;
             myGame = game;
-            game.register(this, MyEvent.M_DIE);
+            game.mediator.register(this, MyEvent.M_DIE);
             events = new List<Event>();
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);

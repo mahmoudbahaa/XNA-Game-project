@@ -17,7 +17,7 @@ namespace MyGame
         public PlayerUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            game.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT,
+            game.mediator.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT,
                 MyEvent.C_RIGHT, MyEvent.C_Pointer,MyEvent.C_ATTACK_AXE);
             PlayerSpeed = .1f;
             Health = 100;

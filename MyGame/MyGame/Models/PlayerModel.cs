@@ -33,7 +33,7 @@ namespace MyGame
             this.aimSkinnedModel = aimSkinnedModel;
             this.shootSkinnedModel = shootSkinnedModel;
 
-            game.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
+            game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
             animationController.Speed = 1.2f;
             animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
         }

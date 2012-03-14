@@ -28,7 +28,7 @@ namespace MyGame
             bullets = new List<Bullet>();
             myGame = game;
             events = new List<Event>();
-            game.register(this, MyEvent.C_ATTACK_BULLET_END);
+            game.mediator.register(this, MyEvent.C_ATTACK_BULLET_END);
         }
 
         public void AddBullet(Vector3 position,Vector3 rotation, Vector3 direction)
@@ -84,7 +84,7 @@ namespace MyGame
                 {
                     if (myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
                     {
-                        myGame.fireEvent(MyEvent.M_DIE);
+                        myGame.mediator.fireEvent(MyEvent.M_DIE);
                         bullets.RemoveAt(i);
                         --i;
                         break;

@@ -113,6 +113,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
+    <Compile Include="Mediator.cs" />
     <Compile Include="DrawableComponents\CDrawableComponent.cs" />
     <Compile Include="DrawableComponents\Weapon.cs" />
     <Compile Include="DrawableComponents\Managers\BulletsManager.cs" />

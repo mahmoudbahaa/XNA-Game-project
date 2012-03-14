@@ -12,6 +12,7 @@ namespace MyGame
     public class MonstersManager : DrawableGameComponent
     {
         private List<Monster> monsters;
+        private HPBillboardSystem billBoardSystem;
 
         private Random rnd;
         private float spawnTime = 300;
@@ -29,6 +30,8 @@ namespace MyGame
 
             rnd = new Random();
 
+
+            billBoardSystem = new HPBillboardSystem(game.GraphicsDevice,game.Content, new Vector2(100,20),monsters);
             //skinnedModel = Game.Content.Load<SkinnedModel>(@"Textures\EnemyBeast");
         }
 
@@ -41,12 +44,20 @@ namespace MyGame
                 if (((MonsterUnit)monsters[j].unit).dead)
                 {
                     monsters.Remove(monsters[j]);
+                    billBoardSystem.monstersTextures.RemoveAt(j);
                     Game.Components.Remove(monsters[j]);
+                    j--;
                 }
                 else if (monsters[j].unit.alive && unit.collideWith(monsters[j].unit))
                 {
-                    ((MonsterModel)monsters[j].cModel).Die();
-                    monsters[j].unit.alive = false;
+                    monsters[j].health -= 20;
+                    billBoardSystem.setTexture(j);
+
+                    if (monsters[j].health <= 0)
+                    {
+                        ((MonsterModel)monsters[j].cModel).Die();
+                        monsters[j].unit.alive = false;
+                    }
                     return true;
                 }
             }
@@ -67,6 +78,8 @@ namespace MyGame
             Monster monster = new Monster(myGame, runSkinnedModel ,dieSkinnedModel, monsterUnit);
 
             monsters.Add(monster);
+            billBoardSystem.monstersTextures.Add(billBoardSystem.HP100);
+            //billBoardSystem.monsters.Add(monster);
         }
 
         public override void Update(GameTime gameTime)
@@ -79,6 +92,9 @@ namespace MyGame
             }
             foreach (Monster monster in monsters)
                 monster.Update(gameTime);
+
+            if (monsters.Count != 0) 
+                billBoardSystem.generateParticles();
             base.Update(gameTime);
         }
 
@@ -86,6 +102,10 @@ namespace MyGame
         {
             foreach (Monster monster in monsters)
                 monster.Draw(gameTime);
+
+            if (monsters.Count != 0) 
+                billBoardSystem.Draw(myGame.camera.View, myGame.camera.Projection,
+                    ((ChaseCamera)myGame.camera).Up, ((ChaseCamera)myGame.camera).Right);
             base.Draw(gameTime);
         }
     }

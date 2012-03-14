@@ -16,26 +16,26 @@ namespace MyGame
 
         public Camera camera;
         public Controller controller;
+        public Mediator mediator;
+        public Player player;
 
         private Terrain terrain;
-        private Player player;
         private MonstersManager monsters;
 
         private ScoreBoard scoreBoard;
         //assal
 
-        Hashtable hash;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            hash = new Hashtable();
             controller = new Controller(Constants.LEFT_HAND);
 
             //DONT Remove i need this.--Mahmoud Bahaa
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
+
+            mediator = new Mediator();
         }
 
         private Player initializePlayer()
@@ -80,8 +80,8 @@ namespace MyGame
             monsters = new MonstersManager(this);
 
             //CDrawableComponent test = new CDrawableComponent(this,
-            //    new Unit(this, new Vector3(0,100,0), Vector3.Zero, Vector3.One*100),
-            //    new CModel(this,Content.Load<Model>(@"model/Dwarf")));
+            //    new Unit(this, new Vector3(0, 100, 0), Vector3.Zero, Vector3.One * 100),
+            //    new CModel(this, Content.Load<Model>(@"hp")));
 
             Components.Add(camera);
             Components.Add(sky);
@@ -97,39 +97,6 @@ namespace MyGame
         public bool checkCollisionWithBullet(Unit unit)
         {
             return (monsters.checkCollisionWithBullet(unit));
-        }
-
-        public void register(IEvent ie,params MyEvent[] eventKey)
-        {
-            foreach (int ev in eventKey)
-            {
-                if (hash[ev] != null)
-                {
-                    ((List<IEvent>)hash[ev]).Add(ie);
-                }
-                else
-                {
-                    List<IEvent> list = new List<IEvent>();
-                    list.Add(ie);
-                    hash[ev] = list;
-                }
-            }
-        }
-
-        public void fireEvent(MyEvent ev,params Object[] param)
-        {
-            if (hash[(int)ev] == null) return;
-            List<IEvent> list = (List<IEvent>)hash[(int)ev];
-            Event eve = new Event(ev,param);
-            foreach (IEvent ie in list)
-            {
-                ie.addEvent(eve);
-            }
-        }
-
-        public void controlPointer(float deltaX)
-        {
-            fireEvent(MyEvent.C_Pointer,"deltaX", deltaX);
         }
 
         protected override void  EndRun()

@@ -23,27 +23,9 @@ namespace MyGame
             : base(game, unit, new PlayerModel(game, idleSkinnedModel, runSkinnedModel,
                                                 aimSkinnedModel, shootSkinnedModel))
         {
-            // THe dwarf model is slightly broken so we set the textures manually.
-            //Texture2D axe = game.Content.Load<Texture2D>("Textures\\axe");
-            //Texture2D dwarf = game.Content.Load<Texture2D>("Textures\\dwarf");
-
             foreach (ModelMesh mesh in idleSkinnedModel.Model.Meshes)
-            {
                 foreach (SkinnedEffect effect in mesh.Effects)
-                {
-                    //effect.Texture = dwarf;
-
-                    //if (mesh.Name == "axe")
-                    //{
-                    //    effect.Texture = axe;
-                    //}
-
                     effect.EnableDefaultLighting();
-
-                    //effect.SpecularColor = new Vector3(0.25f);
-                    //effect.SpecularPower = 16;
-                }
-            }
 
             foreach (ModelMesh mesh in runSkinnedModel.Model.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
@@ -94,8 +76,6 @@ namespace MyGame
 
             FireShots(gameTime);
 
-
-
             base.Update(gameTime);
         }
 
@@ -107,7 +87,7 @@ namespace MyGame
             {
                 //Vector3 dir = Vector3.Normalize(myGame.camera.Target - myGame.camera.Position);
                 //float rotz = (float)Math.Atan2(dir.Y, dir.X);
-                myGame.fireEvent(MyEvent.C_ATTACK_BULLET_END, "position", unit.position,
+                myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_END, "position", unit.position,
                     "rotation", new Vector3(0, unit.rotation.Y, 0));
                 ((PlayerModel)cModel).shooting = false;
             }
@@ -119,38 +99,38 @@ namespace MyGame
                         myGame.controller.isActive(Controller.RIGHT_HAND_STR))
                 {
                     {
-                        myGame.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
+                        myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
 
                         // Reset the shot countdown
                         shotCountdown = shotDelay;
                     }
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.D1))
-                {
-                    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                    myGame.fireEvent(MyEvent.P_ATTACK_AXE1);
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D2))
-                {
-                    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                    myGame.fireEvent(MyEvent.P_ATTACK_AXE2);
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D3))
-                {
-                    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                    myGame.fireEvent(MyEvent.P_ATTACK_AXE3);
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D4))
-                {
-                    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                    myGame.fireEvent(MyEvent.P_ATTACK_AXE4);
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D5))
-                {
-                    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                    myGame.fireEvent(MyEvent.P_ATTACK_AXE5);
-                }
+                //if (Keyboard.GetState().IsKeyDown(Keys.D1))
+                //{
+                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
+                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE1);
+                //}
+                //if (Keyboard.GetState().IsKeyDown(Keys.D2))
+                //{
+                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
+                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE2);
+                //}
+                //if (Keyboard.GetState().IsKeyDown(Keys.D3))
+                //{
+                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
+                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE3);
+                //}
+                //if (Keyboard.GetState().IsKeyDown(Keys.D4))
+                //{
+                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
+                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE4);
+                //}
+                //if (Keyboard.GetState().IsKeyDown(Keys.D5))
+                //{
+                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
+                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE5);
+                //}
 
             }
         }
@@ -163,34 +143,39 @@ namespace MyGame
 
         public void playerRun()
         {
-            myGame.fireEvent(MyEvent.P_RUN);
+            myGame.mediator.fireEvent(MyEvent.P_RUN);
         }
 
         public void playerStopRun()
         {
-            myGame.fireEvent(MyEvent.P_STOP);
+            myGame.mediator.fireEvent(MyEvent.P_STOP);
         }
 
         public void controlForward()
         {
-            myGame.fireEvent(MyEvent.C_FORWARD);
+            myGame.mediator.fireEvent(MyEvent.C_FORWARD);
         }
 
         public void controlBackward()
         {
-            myGame.fireEvent(MyEvent.C_BACKWARD);
+            myGame.mediator.fireEvent(MyEvent.C_BACKWARD);
         }
 
         public void controlLeft()
         {
-            myGame.fireEvent(MyEvent.C_LEFT);
+            myGame.mediator.fireEvent(MyEvent.C_LEFT);
         }
 
         public void controlRight()
         {
-            myGame.fireEvent(MyEvent.C_RIGHT);
+            myGame.mediator.fireEvent(MyEvent.C_RIGHT);
         }
 
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
 
     }
 }

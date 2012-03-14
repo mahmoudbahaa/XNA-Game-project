@@ -13,6 +13,7 @@ namespace MyGame
 {
     public class Monster : CDrawableComponent
     {
+        public int health = 100;
         public Monster(Game1 game, SkinnedModel runSkinnedModel, SkinnedModel dieSkinnedModel, Unit unit)
             : base(game, unit, new MonsterModel(game, runSkinnedModel, dieSkinnedModel))
         {
@@ -32,6 +33,11 @@ namespace MyGame
             Vector3 pos = unit.position;
             unit.position.Y = myGame.GetHeightAtPosition(pos.X, pos.Z);
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
         }
     }
 }
