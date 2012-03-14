@@ -11,7 +11,7 @@ namespace MyGame
 {
     public class CModel: IEvent
     {
-        public Model Model { get; private set; }
+        public Model Model { get; set; }
 
         protected Matrix baseWorld { get; set; }
 
@@ -26,6 +26,7 @@ namespace MyGame
             this.Model = Model;
 
             baseWorld = Matrix.Identity;
+
 
             modelTransforms = new Matrix[Model.Bones.Count];
             Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
@@ -45,7 +46,6 @@ namespace MyGame
         }
         public virtual void Draw(GameTime game)
         {
-
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index]

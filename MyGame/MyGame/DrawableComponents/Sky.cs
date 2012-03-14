@@ -10,10 +10,8 @@ namespace MyGame
     class Sky : CDrawableComponent
     {
         public Sky(Game1 game, Model model, Unit unit, TextureCube Texture)
-            :base(game,unit)
+            :base(game,unit,new SkyModel(game, model,Texture))
         {
-            cModel = new SkyModel(game, model,Texture);
-            unit.BoundingSphere = cModel.buildBoundingSphere();
         }
 
     }

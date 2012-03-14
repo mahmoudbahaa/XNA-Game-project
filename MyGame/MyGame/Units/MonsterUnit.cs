@@ -11,7 +11,6 @@ namespace MyGame
     class MonsterUnit:Unit
     {
         private float MonsterSpeed {get;set;}
-        private int Health { get; set; }
 
         private float timeToDie = 5000;
         public bool dead = false;
@@ -22,7 +21,6 @@ namespace MyGame
             : base(game,Position, Rotation, Scale)
         {
             MonsterSpeed = 3f;
-            Health = 100;
             direction = Vector3.Transform(Vector3.Backward,
                 Matrix.CreateFromYawPitchRoll(rotation.Y,rotation.X,rotation.Z));
 

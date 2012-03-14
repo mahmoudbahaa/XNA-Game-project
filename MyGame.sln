@@ -5,9 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGame", "MyGame\MyGame\MyG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameContent", "MyGame\MyGameContent\MyGameContent.contentproj", "{9D19B923-BE72-406B-9760-B3CBB8AA5959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModel", "SkinnedModel\SkinnedModel.csproj", "{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAnimationPipeline", "XNAnimationPipeline\XNAnimationPipeline.csproj", "{863795EB-0753-4461-AF43-48F38828D8E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelPipeline", "SkinnedModelPipeline\SkinnedModelPipeline.csproj", "{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAnimation", "XNAnimation\XNAnimation.csproj", "{2A857645-A225-4177-99BD-C8F6D22B72FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{B71BE7A4-B7A5-4086-AF3E-2F844110AFD1}.Release|x86.Build.0 = Release|x86
 		{9D19B923-BE72-406B-9760-B3CBB8AA5959}.Debug|x86.ActiveCfg = Debug|x86
 		{9D19B923-BE72-406B-9760-B3CBB8AA5959}.Release|x86.ActiveCfg = Release|x86
-		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Debug|x86.ActiveCfg = Debug|x86
-		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Debug|x86.Build.0 = Debug|x86
-		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Release|x86.ActiveCfg = Release|x86
-		{0E41F5E1-138D-45DA-B5B6-0EB6FAF983DB}.Release|x86.Build.0 = Release|x86
-		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Debug|x86.ActiveCfg = Debug|x86
-		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Debug|x86.Build.0 = Debug|x86
-		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Release|x86.ActiveCfg = Debug|x86
-		{40EC7D0A-AC77-48A1-8CBB-AFDE11527E04}.Release|x86.Build.0 = Debug|x86
+		{863795EB-0753-4461-AF43-48F38828D8E0}.Debug|x86.ActiveCfg = Debug|x86
+		{863795EB-0753-4461-AF43-48F38828D8E0}.Debug|x86.Build.0 = Debug|x86
+		{863795EB-0753-4461-AF43-48F38828D8E0}.Release|x86.ActiveCfg = Debug|x86
+		{863795EB-0753-4461-AF43-48F38828D8E0}.Release|x86.Build.0 = Debug|x86
+		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Debug|x86.ActiveCfg = Debug|x86
+		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Debug|x86.Build.0 = Debug|x86
+		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Release|x86.ActiveCfg = Release|x86
+		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

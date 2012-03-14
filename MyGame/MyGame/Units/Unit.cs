@@ -8,7 +8,7 @@ using Helper;
 
 namespace MyGame
 {
-    public abstract class Unit : IEvent
+    public class Unit : IEvent
     {
         public Vector3 position;
         public Vector3 rotation;
@@ -22,7 +22,7 @@ namespace MyGame
 
         protected List<Event> events;
 
-        protected Game1 game;
+        protected Game1 myGame;
 
         //attribute holding the bounding sphere for this unit model
         protected BoundingSphere boundingSphere;
@@ -54,7 +54,7 @@ namespace MyGame
             this.rotation = rotation;
             this.scale = scale;
 
-            this.game = game;
+            this.myGame = game;
 
             this.events = new List<Event>();
         }

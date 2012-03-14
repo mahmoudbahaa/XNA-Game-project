@@ -21,7 +21,11 @@ namespace MyGame
 
         public Vector3 RelativeCameraRotation { get; set; }
 
-        float springiness = .15f;
+        public Vector3 Up;
+
+        public Vector3 Right;
+
+        float springiness = 0.15f;
 
         //MouseState lastMouseState;
 
@@ -80,8 +84,8 @@ namespace MyGame
             // Rotate the camera
             Rotate(new Vector3(deltaY * .0005f, 0, 0));
 
-            
-            myGame.controlPointer(-deltaX * .0005f);
+
+            myGame.mediator.controlPointer(-deltaX * .0005f);
             lastMouseState = mouseState;
 
 
@@ -107,12 +111,16 @@ namespace MyGame
             // Interpolate between the current position and desired position
             Position = Vector3.Lerp(Position, desiredPosition, Springiness);
 
-            while (Position.Y < 5)
+            int i = 0;
+            while (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
             {
-                if(combinedRotation.X <= MathHelper.Pi && combinedRotation.X >=0)
-                    combinedRotation.X -= 0.001f;
+                if (i++ > 1000)
+                    break;
+                if (combinedRotation.X >= -MathHelper.PiOver2)
+                    combinedRotation.X -= 0.01f;
                 else
                     combinedRotation.X += 0.001f;
+
                 // Calculate the rotation matrix for the camera
                 rotation = Matrix.CreateFromYawPitchRoll(
                     combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
@@ -135,6 +143,13 @@ namespace MyGame
             // Recalculate the view matrix
             View = Matrix.CreateLookAt(Position, Target, up);
 
+            // Calculate the new target
+            Vector3 forward = Vector3.Transform(Vector3.Forward, rotation);
+
+            this.Up = up;
+            this.Right = Vector3.Cross(forward, up);
+
+            
             base.Update(gameTime);
         }
     }

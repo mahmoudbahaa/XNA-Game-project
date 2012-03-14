@@ -8,10 +8,17 @@ namespace Helper
 {
     public class Event
     {
-        public int eventId { get; set; }
+        private MyEvent eventId;
+        public int EventId
+        {
+            get
+            {
+                return (int)eventId;
+            }
+        }
         public Hashtable args;
 
-        public Event(int id, params Object[] kv)
+        public Event(MyEvent id, params Object[] kv)
         {
             this.eventId = id;
             if (kv.Length == 0)
