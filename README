@@ -5,6 +5,10 @@ Sounds:
 * Added bullet sound
 * Added Scream and Die sound
 * Added music track
+* Added ability to mute or play music by pressing 'M'
+
+MedKits:
+* Added Medkits with max spawn of 3 and spawn time of 5 second and they increase health by 50
 
 General:
 * Added more states :
