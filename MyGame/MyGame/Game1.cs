@@ -40,7 +40,7 @@ namespace MyGame
 
         private Player initializePlayer()
         {
-            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarine");
+            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarineIdle");
             SkinnedModel pmodelRun  = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
             SkinnedModel pmodelAim  = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
             SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");

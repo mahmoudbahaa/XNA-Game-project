@@ -105,33 +105,6 @@ namespace MyGame
                         shotCountdown = shotDelay;
                     }
                 }
-
-                //if (Keyboard.GetState().IsKeyDown(Keys.D1))
-                //{
-                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE1);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D2))
-                //{
-                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE2);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D3))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE3);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D4))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE4);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D5))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE5);
-                //}
-
             }
         }
 
