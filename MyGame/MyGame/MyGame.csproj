@@ -114,6 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioManager.cs" />
+    <Compile Include="DrawableComponents\FirstAid.cs" />
+    <Compile Include="DrawableComponents\Managers\FirstAidManager.cs" />
     <Compile Include="DrawableComponents\Managers\StateManager.cs" />
     <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
     <Compile Include="Mediator.cs" />

@@ -59,10 +59,12 @@ namespace MyGame
                     {
                         monsters[j].Die();
                         monsters[j].unit.alive = false;
+                        myGame.mediator.fireEvent(MyEvent.M_DIE);
                     }
                     else
                     {
                         monsters[j].TakeDamage();
+                        ((MonsterUnit)monsters[j].unit).moving = true;
                     }
                     return true;
                 }
@@ -98,15 +100,6 @@ namespace MyGame
             }
             for (int j = 0; j < monsters.Count; j++)// Monster monster in monsters)
             {
-                if (monsters[j].monsterUnit.dead)
-                {
-                    monsters.Remove(monsters[j]);
-                    hpBillBoardSystem.monstersTextures.RemoveAt(j);
-                    Game.Components.Remove(monsters[j]);
-                    myGame.mediator.fireEvent(MyEvent.M_DIE);
-                    j--;
-                }
-
                 if (monsters[j].unit.alive && myGame.player.unit.collideWith(monsters[j].unit))
                 {
                     monsters[j].monsterUnit.moving = false;
@@ -116,7 +109,12 @@ namespace MyGame
                         myGame.mediator.fireEvent(MyEvent.M_BITE);
                     }
                 }
-
+                else if (monsters[j].monsterUnit.dead)
+                {
+                    monsters.RemoveAt(j);
+                    hpBillBoardSystem.monstersTextures.RemoveAt(j);
+                    j--;
+                }
 
                 monsters[j].Update(gameTime);
             }

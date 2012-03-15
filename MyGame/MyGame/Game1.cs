@@ -80,24 +80,27 @@ namespace MyGame
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
+            FirstAidManager firstAidManger = new FirstAidManager(this);
 
             StateManager stateManager = new StateManager(this);
             AudioManager audioManager = new AudioManager(this);
+
             //CDrawableComponent test = new CDrawableComponent(this,
-            //    new Unit(this, new Vector3(0, 100, 0), Vector3.Zero, Vector3.One * 100),
-            //    new CModel(this, Content.Load<Model>(@"hp")));
+            //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
+            //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
 
             Components.Add(camera);
             Components.Add(sky);
             Components.Add(terrain);
             Components.Add(monsters);
+            Components.Add(firstAidManger);
             Components.Add(bullets);
             Components.Add(weapon);
+            //Components.Add(test);
             Components.Add(player);
             Components.Add(scoreBoard);
             Components.Add(stateManager);
             Components.Add(audioManager);
-            //Components.Add(test);
         }
 
         public bool checkCollisionWithBullet(Unit unit)

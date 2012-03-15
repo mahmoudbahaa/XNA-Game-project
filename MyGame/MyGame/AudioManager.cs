@@ -20,6 +20,10 @@ namespace MyGame
         SoundBank soundBank;
         Cue trackCue;
 
+        // Shot variables
+        int musicDelay = 800;
+        int musicCountdown = 0;
+
         private Game1 myGame;
 
         public AudioManager(Game1 game)
@@ -34,11 +38,31 @@ namespace MyGame
             waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
 
-            soundBank.PlayCue("Cowboy");
+            trackCue =  soundBank.GetCue("Cowboy");
+            trackCue.Play();
+            trackCue.Pause();
         }
 
         public override void Update(GameTime gameTime)
         {
+            KeyboardState keyboard = Keyboard.GetState();
+
+            musicCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+            if (musicCountdown <= 0)
+            {
+                if (keyboard.IsKeyDown(Keys.M))
+                {
+                    if (trackCue.IsPaused)
+                        trackCue.Resume();
+                    else
+                        trackCue.Pause();
+                    musicCountdown = musicDelay;
+                }
+                else
+                    musicCountdown = 0;
+                
+            }
+
             foreach (Event ev in events)
             {
                 switch (ev.EventId)
