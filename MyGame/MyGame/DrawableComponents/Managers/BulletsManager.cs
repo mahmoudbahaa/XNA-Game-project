@@ -84,7 +84,6 @@ namespace MyGame
                 {
                     if (myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
                     {
-                        myGame.mediator.fireEvent(MyEvent.M_DIE);
                         bullets.RemoveAt(i);
                         --i;
                         break;
@@ -95,6 +94,8 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
+            if (myGame.paused)
+                return;
             FireShots();
             UpdateShots(gameTime);
             base.Update(gameTime);

@@ -13,9 +13,24 @@ namespace MyGame
 {
     public class Player : CDrawableComponent
     {
+        private SpriteBatch spriteBatch;
+
         // Shot variables
-        int shotDelay = 300;
+        int shotDelay = 800;
         int shotCountdown = 0;
+
+        public int health
+        {
+            get
+            {
+                return ((PlayerUnit)unit).health;
+            }
+
+            set
+            {
+                ((PlayerUnit)unit).health = value;
+            }
+        }
 
 
         public Player(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
@@ -39,12 +54,16 @@ namespace MyGame
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
 
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (myGame.paused)
+                return;
             ((AnimatedModel)cModel).animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
             //Custom Update
             ((ChaseCamera)myGame.camera).Move(unit.position,  unit.rotation + new Vector3(0,MathHelper.Pi,0));
@@ -75,11 +94,9 @@ namespace MyGame
                 unit.position.Z) + 5;
 
             FireShots(gameTime);
-
+   
             base.Update(gameTime);
         }
-
-        
 
         protected void FireShots(GameTime gameTime)
         {
@@ -119,11 +136,6 @@ namespace MyGame
             myGame.mediator.fireEvent(MyEvent.P_RUN);
         }
 
-        public void playerStopRun()
-        {
-            myGame.mediator.fireEvent(MyEvent.P_STOP);
-        }
-
         public void controlForward()
         {
             myGame.mediator.fireEvent(MyEvent.C_FORWARD);
@@ -144,9 +156,19 @@ namespace MyGame
             myGame.mediator.fireEvent(MyEvent.C_RIGHT);
         }
 
+        private void DrawHP()
+        {
+            //Draw HP
+            spriteBatch.Begin();
+            Rectangle rect = new Rectangle(0, 0, 300, 50);
+            spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect , Color.White);
+            spriteBatch.End();
+        }
 
         public override void Draw(GameTime gameTime)
         {
+            DrawHP();
+
             base.Draw(gameTime);
         }
 

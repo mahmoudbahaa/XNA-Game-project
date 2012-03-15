@@ -59,7 +59,8 @@ namespace MyGame
 
         public override void  Update(GameTime gameTime)
         {
-
+            if (myGame.paused)
+                return;
             // Get the new keyboard and mouse state
             MouseState mouseState = Mouse.GetState();
             KeyboardState keyState = Keyboard.GetState();

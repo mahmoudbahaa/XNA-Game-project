@@ -11,7 +11,6 @@ namespace MyGame
 {
     public class MonsterModel : AnimatedModel
     {
-
         //readonly string[] animations = new string[] { "Idle", "Run", "Bite", "Take Damage", "Die", };
 
         SkinnedModel idleSkinnedModel;
@@ -35,7 +34,7 @@ namespace MyGame
 
         public MonsterModel(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
             SkinnedModel biteSkinnedModel, SkinnedModel takeDamageSkinnedModel, SkinnedModel dieSkinnedModel)
-            : base(game, runSkinnedModel)
+            : base(game, idleSkinnedModel)
         {
             this.idleSkinnedModel       = idleSkinnedModel;
             this.runSkinnedModel        = runSkinnedModel;

@@ -14,7 +14,7 @@ namespace MyGame
 
         private float timeToDie = 5000;
         public bool dead = false;
-        public bool moving = true;
+        public bool moving = false;
 
         private Vector3 direction;
 
@@ -31,16 +31,23 @@ namespace MyGame
         {
             if (alive)
             {
+                Vector3 relPos = position - myGame.player.unit.position;
+
+                rotation = new Vector3(0, (float)Math.Atan2(relPos.X, relPos.Z)+MathHelper.Pi, 0);
+
                 if (moving)
                 {
+                    direction = Vector3.Transform(Vector3.Backward,
+                   Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
+
                     position += direction * MonsterSpeed;
 
-                    if (position.X < Constants.FIELD_MIN_X_Z || position.X > Constants.FIELD_MAX_X_Z ||
-                        position.Z < Constants.FIELD_MIN_X_Z || position.Z > Constants.FIELD_MAX_X_Z)
-                    {
-                        rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
-                        direction = -direction;
-                    }
+                    //if (position.X < Constants.FIELD_MIN_X_Z || position.X > Constants.FIELD_MAX_X_Z ||
+                    //    position.Z < Constants.FIELD_MIN_X_Z || position.Z > Constants.FIELD_MAX_X_Z)
+                    //{
+                    //    rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
+                    //    direction = -direction;
+                    //}
                 }
             }
 

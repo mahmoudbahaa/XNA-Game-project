@@ -23,17 +23,17 @@ namespace MyGame
         // Billboard settings
         int nBillboards;
         Vector2 billboardSize;
-        public Texture2D HP000;
-        public Texture2D HP010;
-        public Texture2D HP020;
-        public Texture2D HP030;
-        public Texture2D HP040;
-        public Texture2D HP050;
-        public Texture2D HP060;
-        public Texture2D HP070;
-        public Texture2D HP080;
-        public Texture2D HP090;
-        public Texture2D HP100;
+        private static Texture2D HP000;
+        private static Texture2D HP010;
+        private static Texture2D HP020;
+        private static Texture2D HP030;
+        private static Texture2D HP040;
+        private static Texture2D HP050;
+        private static Texture2D HP060;
+        private static Texture2D HP070;
+        private static Texture2D HP080;
+        private static Texture2D HP090;
+        private static Texture2D HP100;
 
         // GraphicsDevice and Effect
         GraphicsDevice graphicsDevice;
@@ -108,22 +108,29 @@ namespace MyGame
             ints.SetData<int>(indices);
         }
 
+        public static Texture2D getTexture(int health)
+        {
+            switch (health)
+            {
+                case 00: return HP000; 
+                case 10: return HP010; 
+                case 20: return HP020; 
+                case 30: return HP030; 
+                case 40: return HP040; 
+                case 50: return HP050; 
+                case 60: return HP060; 
+                case 70: return HP070; 
+                case 80: return HP080; 
+                case 90: return HP090; 
+                case 100: return HP100; 
+            }
+
+            return HP100;
+        }
+
         public void setTexture(int j)
         {
-            switch (monsters[j].health)
-            {
-                case 00: monstersTextures[j] = HP000; break;
-                case 10: monstersTextures[j] = HP010; break;
-                case 20: monstersTextures[j] = HP020; break;
-                case 30: monstersTextures[j] = HP030; break;
-                case 40: monstersTextures[j] = HP040; break;
-                case 50: monstersTextures[j] = HP050; break;
-                case 60: monstersTextures[j] = HP060; break;
-                case 70: monstersTextures[j] = HP070; break;
-                case 80: monstersTextures[j] = HP080; break;
-                case 90: monstersTextures[j] = HP090; break;
-                case 100: monstersTextures[j] = HP100; break;
-            }
+            monstersTextures[j] = getTexture(monsters[j].health);
         }
         void setEffectParameters(Matrix View, Matrix Projection, Vector3 Up, Vector3 Right)
         {

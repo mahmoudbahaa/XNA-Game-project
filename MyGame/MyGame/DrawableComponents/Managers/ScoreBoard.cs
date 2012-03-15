@@ -64,7 +64,7 @@ namespace MyGame
         {
             spriteBatch.Begin();
             SpriteFont font = Game.Content.Load<SpriteFont>("SpriteFont1");
-            spriteBatch.DrawString(font, "Score: " + score, new Vector2(5, 5), Color.Red);
+            spriteBatch.DrawString(font, "Score: " + score, new Vector2(14, 40), Color.Red);
             spriteBatch.End();
             base.Draw(gameTime);
         }

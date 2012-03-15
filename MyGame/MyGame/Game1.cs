@@ -18,6 +18,8 @@ namespace MyGame
         public Controller controller;
         public Mediator mediator;
         public Player player;
+        public bool paused = false;
+        public bool gameOver = false;
 
         private Terrain terrain;
         private MonstersManager monsters;
@@ -79,6 +81,8 @@ namespace MyGame
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
 
+            StateManager stateManager = new StateManager(this);
+            AudioManager audioManager = new AudioManager(this);
             //CDrawableComponent test = new CDrawableComponent(this,
             //    new Unit(this, new Vector3(0, 100, 0), Vector3.Zero, Vector3.One * 100),
             //    new CModel(this, Content.Load<Model>(@"hp")));
@@ -91,6 +95,8 @@ namespace MyGame
             Components.Add(weapon);
             Components.Add(player);
             Components.Add(scoreBoard);
+            Components.Add(stateManager);
+            Components.Add(audioManager);
             //Components.Add(test);
         }
 

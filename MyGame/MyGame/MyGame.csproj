@@ -113,6 +113,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioManager.cs" />
+    <Compile Include="DrawableComponents\Managers\StateManager.cs" />
     <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="DrawableComponents\CDrawableComponent.cs" />

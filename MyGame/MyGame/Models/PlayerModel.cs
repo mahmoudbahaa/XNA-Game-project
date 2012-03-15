@@ -58,6 +58,7 @@ namespace MyGame
             Run();
             Attack();
             events.Clear();
+
             base.Draw(gameTime);
             
         }

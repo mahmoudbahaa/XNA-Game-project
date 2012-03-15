@@ -81,13 +81,14 @@ namespace MyGame
                                                 takeDamageSkinnedModel, dieSkinnedModel, monsterUnit);
 
             monsters.Add(monster);
-            hpBillBoardSystem.monstersTextures.Add(hpBillBoardSystem.HP100);
+            hpBillBoardSystem.monstersTextures.Add(HPBillboardSystem.getTexture(monster.health));
             //billBoardSystem.monsters.Add(monster);
         }
 
         public override void Update(GameTime gameTime)
         {
-
+            if (myGame.paused)
+                return;
 
             reaminingTimeToNextSpawn -= gameTime.ElapsedGameTime.Milliseconds;
             if (reaminingTimeToNextSpawn < 0 && monsters.Count < 30)
@@ -102,14 +103,18 @@ namespace MyGame
                     monsters.Remove(monsters[j]);
                     hpBillBoardSystem.monstersTextures.RemoveAt(j);
                     Game.Components.Remove(monsters[j]);
+                    myGame.mediator.fireEvent(MyEvent.M_DIE);
                     j--;
                 }
 
                 if (monsters[j].unit.alive && myGame.player.unit.collideWith(monsters[j].unit))
                 {
                     monsters[j].monsterUnit.moving = false;
-                    if(monsters[j].ActiveAnimation != MonsterModel.MonsterAnimations.Bite)
+                    if (monsters[j].ActiveAnimation != MonsterModel.MonsterAnimations.Bite)
+                    {
                         monsters[j].Bite();
+                        myGame.mediator.fireEvent(MyEvent.M_BITE);
+                    }
                 }
 
 
