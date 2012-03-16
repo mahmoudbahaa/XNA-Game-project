@@ -114,6 +114,7 @@ namespace MyGame
                     monsters.RemoveAt(j);
                     hpBillBoardSystem.monstersTextures.RemoveAt(j);
                     j--;
+                    continue;
                 }
 
                 monsters[j].Update(gameTime);

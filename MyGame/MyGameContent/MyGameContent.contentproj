@@ -308,15 +308,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\medkit.FBX">
-      <Name>medkit</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+    <Compile Include="SpriteFontMedium.spritefont">
+      <Name>SpriteFontMedium</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\FirstAid.png">
-      <Name>FirstAid</Name>
+    <Compile Include="empty.png">
+      <Name>empty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="empty2.png">
+      <Name>empty2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
