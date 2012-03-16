@@ -20,7 +20,7 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            unit.rotation += new Vector3(0, MathHelper.Pi / 100, 0);
+            unit.rotation += new Vector3(0, MathHelper.Pi / 80, 0);
 
             base.Update(gameTime);
         }

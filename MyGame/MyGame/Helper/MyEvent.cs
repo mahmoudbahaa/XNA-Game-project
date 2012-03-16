@@ -26,6 +26,10 @@ namespace Helper
         M_DIE,
         M_BITE,
 
+        G_StartScreen,
+        G_HelpScreen,
+        G_StartGame,
         G_GameOver,
+        G_Exit,
     }
 }
