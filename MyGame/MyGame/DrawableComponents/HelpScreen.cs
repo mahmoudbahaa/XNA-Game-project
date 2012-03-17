@@ -13,10 +13,10 @@ namespace MyGame
     public class HelpScreen : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
+        private DelayedAction delayedAction;
 
         // Shot variables
-        int keyDelay = 100;
-        int keyCountdown = 100;
+        //private const int keyDelay = 100;
 
         private Color backgroundColor = Color.Navy;
         private Color menuItemColor = Color.Green;
@@ -37,25 +37,17 @@ namespace MyGame
             myGame = game;
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            delayedAction = new DelayedAction();
         }
 
         public override void Update(GameTime gameTime)
         {
-            KeyboardState keyboard = Keyboard.GetState();
-            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (keyCountdown <= 0)
+            KeyboardState keyState = Keyboard.GetState();
+            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Enter) 
+                                                    && !keyState.IsKeyDown(Keys.RightAlt)))
             {
-                if (keyboard.IsKeyDown(Keys.Enter))
-                {
-                    myGame.mediator.fireEvent(MyEvent.G_StartScreen);
-                    keyCountdown = keyDelay;
-                }
-                else
-                    keyCountdown = 0;
-
+                myGame.mediator.fireEvent(MyEvent.G_StartScreen);
             }
-            
-
             base.Update(gameTime);
         }
 

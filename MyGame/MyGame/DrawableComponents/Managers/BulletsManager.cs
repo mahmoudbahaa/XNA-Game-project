@@ -20,7 +20,7 @@ namespace MyGame
         // Shot variables
         float shotSpeed = 0.5f;
 
-        float bulletRange = 3000;
+        float bulletRange = 30000;
 
         public BulletsManager(Game1 game)
             : base(game)

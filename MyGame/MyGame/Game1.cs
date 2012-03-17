@@ -10,7 +10,7 @@ using XNAnimation;
 
 namespace MyGame
 {
-    public class Game1 : Microsoft.Xna.Framework.Game,IEvent
+    public class Game1 : Microsoft.Xna.Framework.Game, IEvent
     {
         List<Event> events;
 
@@ -26,13 +26,13 @@ namespace MyGame
 
         private Terrain terrain;
         private MonstersManager monsters;
-
+        private DelayedAction delayedAction;
         private ScoreBoard scoreBoard;
         //assal
 
         // Shot variables
-        int keyDelay = 800;
-        int keyCountdown = 0;
+        //int keyDelay = 800;
+        //int keyCountdown = 0;
 
         public Game1()
         {
@@ -48,20 +48,21 @@ namespace MyGame
 
             mediator = new Mediator();
             events = new List<Event>();
-            mediator.register(this, MyEvent.G_StartGame,MyEvent.G_StartScreen,MyEvent.G_HelpScreen, MyEvent.G_Exit);
+            delayedAction = new DelayedAction(800);
+            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
         }
 
         private Player initializePlayer()
         {
             SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarineIdle");
-            SkinnedModel pmodelRun  = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
-            SkinnedModel pmodelAim  = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
+            SkinnedModel pmodelRun = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
+            SkinnedModel pmodelAim = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
             SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");
             //SkinningData skinnedData = pmodel.Tag as SkinningData;
             PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 50, 0),
                 new Vector3(0, 0, 0),
                 new Vector3(2f));
-            Player player = new Player(this, pmodelIdle, pmodelRun ,pmodelAim,pmodelShoot, playerUnit);
+            Player player = new Player(this, pmodelIdle, pmodelRun, pmodelAim, pmodelShoot, playerUnit);
             return player;
         }
 
@@ -140,9 +141,8 @@ namespace MyGame
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-            // Allows the default game to exit on Xbox 360 and Windows.
             if (keyState.IsKeyDown(Keys.Escape))
-                this.Exit();
+                Exit();
 
             foreach (Event ev in events)
             {
@@ -156,20 +156,11 @@ namespace MyGame
             }
             events.Clear();
 
-           
-            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (keyCountdown <= 0)
+            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.RightAlt) &&
+                                                    keyState.IsKeyDown(Keys.Enter)))
             {
-                if (keyState.IsKeyDown(Keys.RightAlt) && keyState.IsKeyDown(Keys.Enter))
-                {
-                    graphics.ToggleFullScreen();
-                    keyCountdown = keyDelay;
-                }
-                else
-                    keyCountdown = 0;
+                graphics.ToggleFullScreen();
             }
-
-           
 
             base.Update(gameTime);
         }
@@ -184,10 +175,10 @@ namespace MyGame
             return (monsters.checkCollisionWithBullet(unit));
         }
 
-        protected override void  EndRun()
+        protected override void EndRun()
         {
             GestureManager.running = false;
- 	         base.EndRun();
+            base.EndRun();
         }
 
         public float GetHeightAtPosition(float X, float Z)
@@ -197,8 +188,8 @@ namespace MyGame
 
         public float GetHeightAtPosition2(float X, float Z)
         {
-            float steepness ;
-            return terrain.GetHeightAtPosition(X, Z,out steepness);
+            float steepness;
+            return terrain.GetHeightAtPosition(X, Z, out steepness);
         }
     }
 }

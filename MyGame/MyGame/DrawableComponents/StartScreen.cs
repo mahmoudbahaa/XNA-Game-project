@@ -14,10 +14,10 @@ namespace MyGame
     {
         private SpriteBatch spriteBatch;
         private int chosenMenuItem = 0;
-
+        private DelayedAction delayedAction;
         // Shot variables
-        int keyDelay = 100;
-        int keyCountdown = 100;
+        //int keyDelay = 100;
+        //int keyCountdown = 100;
 
         private Color backgroundColor = Color.Navy;
         private Color titleColor = Color.Green;
@@ -40,27 +40,28 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             emptyTex = game.Content.Load<Texture2D>("empty2");
+            delayedAction = new DelayedAction(100);
         }
 
         public override void Update(GameTime gameTime)
         {
-            KeyboardState keyboard = Keyboard.GetState();
-            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (keyCountdown <= 0)
+            KeyboardState keyState = Keyboard.GetState();
+            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Down) ||
+                                                      keyState.IsKeyDown(Keys.Up) ||
+                                                      (keyState.IsKeyDown(Keys.Enter) &&
+                                                      !keyState.IsKeyDown(Keys.RightAlt))))
             {
-                if (keyboard.IsKeyDown(Keys.Down))
+                if (keyState.IsKeyDown(Keys.Down))
                 {
                     chosenMenuItem++;
                     chosenMenuItem = chosenMenuItem % menuItems.Count();
-                    keyCountdown = keyDelay;
                 }
-                else if (keyboard.IsKeyDown(Keys.Up))
+                else if (keyState.IsKeyDown(Keys.Up))
                 {
                     chosenMenuItem--;
-                    chosenMenuItem = (chosenMenuItem+menuItems.Count()) % menuItems.Count();
-                    keyCountdown = keyDelay;
+                    chosenMenuItem = (chosenMenuItem + menuItems.Count()) % menuItems.Count();
                 }
-                else if (keyboard.IsKeyDown(Keys.Enter))
+                else if (keyState.IsKeyDown(Keys.Enter))
                 {
                     switch (chosenMenuItem)
                     {
@@ -69,11 +70,7 @@ namespace MyGame
                         case 2: myGame.mediator.fireEvent(MyEvent.G_Exit); break;
                     }
                 }
-                else
-                    keyCountdown = 0;
-
             }
-
             base.Update(gameTime);
         }
 

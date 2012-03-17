@@ -15,10 +15,10 @@ namespace MyGame
     {
         private SpriteBatch spriteBatch;
         private Texture2D crossHairTex;
-
+        private DelayedAction delayedAction;
         // Shot variables
-        int shotDelay = 800;
-        int shotCountdown = 0;
+        //int shotDelay = 800;
+        //int shotCountdown = 0;
 
         public int health
         {
@@ -57,6 +57,7 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             crossHairTex = game.Content.Load<Texture2D>("crosshair");
+            delayedAction = new DelayedAction(800);
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }
@@ -109,20 +110,11 @@ namespace MyGame
                     "rotation", new Vector3(0, unit.rotation.Y, 0));
                 ((PlayerModel)cModel).shooting = false;
             }
-            shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (shotCountdown <= 0)
+            if (delayedAction.eventHappened(gameTime, Keyboard.GetState().IsKeyDown(Keys.Space) ||
+                                            Mouse.GetState().LeftButton == ButtonState.Pressed ||
+                                            myGame.controller.isActive(Controller.RIGHT_HAND_STR)))
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
-                        Mouse.GetState().LeftButton == ButtonState.Pressed ||
-                        myGame.controller.isActive(Controller.RIGHT_HAND_STR))
-                {
-                    {
-                        myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
-
-                        // Reset the shot countdown
-                        shotCountdown = shotDelay;
-                    }
-                }
+                myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
             }
         }
 
