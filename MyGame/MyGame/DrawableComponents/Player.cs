@@ -14,6 +14,7 @@ namespace MyGame
     public class Player : CDrawableComponent
     {
         private SpriteBatch spriteBatch;
+        private Texture2D crossHairTex;
 
         // Shot variables
         int shotDelay = 800;
@@ -55,7 +56,7 @@ namespace MyGame
                     effect.EnableDefaultLighting();
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
-
+            crossHairTex = game.Content.Load<Texture2D>("crosshair");
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }
@@ -156,18 +157,27 @@ namespace MyGame
             myGame.mediator.fireEvent(MyEvent.C_RIGHT);
         }
 
+
+        private void DrawCrossHair()
+        {
+            int x = (Game.GraphicsDevice.Viewport.Width - 50) / 2;
+            int y = (Game.GraphicsDevice.Viewport.Height - 50) / 2;
+            Rectangle rect = new Rectangle(x, y, 50, 50);
+            spriteBatch.Draw(crossHairTex, rect, Color.White);
+        }
+
         private void DrawHP()
         {
-            //Draw HP
-            spriteBatch.Begin();
             Rectangle rect = new Rectangle(0, 0, 300, 50);
             spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect , Color.White);
-            spriteBatch.End();
         }
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
             DrawHP();
+            DrawCrossHair();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

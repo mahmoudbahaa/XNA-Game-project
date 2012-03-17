@@ -100,6 +100,8 @@ namespace MyGame
             }
             for (int j = 0; j < monsters.Count; j++)// Monster monster in monsters)
             {
+                monsters[j].Update(gameTime);
+
                 if (monsters[j].unit.alive && myGame.player.unit.collideWith(monsters[j].unit))
                 {
                     monsters[j].monsterUnit.moving = false;
@@ -114,10 +116,7 @@ namespace MyGame
                     monsters.RemoveAt(j);
                     hpBillBoardSystem.monstersTextures.RemoveAt(j);
                     j--;
-                    continue;
                 }
-
-                monsters[j].Update(gameTime);
             }
 
             if (monsters.Count != 0) 

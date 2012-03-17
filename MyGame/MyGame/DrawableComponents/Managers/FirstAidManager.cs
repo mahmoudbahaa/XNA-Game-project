@@ -51,6 +51,8 @@ namespace MyGame
             }
             for (int j = 0; j < firstAidKits.Count; j++)// Monster monster in monsters)
             {
+                firstAidKits[j].Update(gameTime);
+
                 if (myGame.player.unit.collideWith(firstAidKits[j].unit))
                 {
                     myGame.player.health += 50;
@@ -59,9 +61,6 @@ namespace MyGame
                     firstAidKits.RemoveAt(j);
                     j--;
                 }
-
-
-                firstAidKits[j].Update(gameTime);
             }
 
             base.Update(gameTime);
