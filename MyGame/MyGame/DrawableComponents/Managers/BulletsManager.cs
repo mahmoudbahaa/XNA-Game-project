@@ -51,11 +51,11 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case (int)MyEvent.C_ATTACK_BULLET_END:
-                        Vector3 direction = (myGame.camera.Target - myGame.camera.Position);
+                        Vector3 direction = Vector3.Normalize(myGame.camera.Target - myGame.camera.Position);
                         //direction.Y += 25;
-                        direction.Normalize();
+                        float rotX = (float)Math.Atan2(direction.Y, direction.Z);
                         AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0),
-                            (Vector3)ev.args["rotation"], direction * shotSpeed);
+                            (Vector3)ev.args["rotation"] + new Vector3(-rotX, 0, 0), direction * shotSpeed);
                         break;
                 }
             }
