@@ -21,10 +21,11 @@ namespace MyGame
         private SpriteBatch spriteBatch;
         
         private Game1 myGame;
+        private DelayedAction delayedAction;
 
         // Pause variables
-        int pauseDelay = 300;
-        int pauseCountdown = 0;
+        //int pauseDelay = 300;
+        //int pauseCountdown = 0;
 
         public StateManager(Game1 game)
             : base(game)
@@ -32,6 +33,7 @@ namespace MyGame
             myGame = game;
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            delayedAction = new DelayedAction();
         }
 
         /// <summary>
@@ -42,17 +44,9 @@ namespace MyGame
         {
             if (myGame.gameOver)
                 return;
-            KeyboardState keyBoard = Keyboard.GetState();
-            pauseCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (pauseCountdown <= 0)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.P))
-                {
-                    myGame.paused = !myGame.paused;
-                    // Reset the shot countdown
-                    pauseCountdown = pauseDelay;
-                }
-            }
+            KeyboardState keyState = Keyboard.GetState();
+            if(delayedAction.eventHappened(gameTime,keyState,Keys.P))
+                myGame.paused = !myGame.paused;
 
         }
 

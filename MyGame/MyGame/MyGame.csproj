@@ -120,6 +120,7 @@
     <Compile Include="DrawableComponents\Managers\FirstAidManager.cs" />
     <Compile Include="DrawableComponents\Managers\StateManager.cs" />
     <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
+    <Compile Include="Helper\DelayedAction.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="DrawableComponents\CDrawableComponent.cs" />
     <Compile Include="DrawableComponents\Weapon.cs" />

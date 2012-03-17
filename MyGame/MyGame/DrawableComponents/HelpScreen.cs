@@ -13,22 +13,23 @@ namespace MyGame
     public class HelpScreen : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private int chosenMenuItem = 0;
+        private DelayedAction delayedAction;
 
         // Shot variables
-        int keyDelay = 100;
-        int keyCountdown = 100;
+        //private const int keyDelay = 100;
 
         private Color backgroundColor = Color.Navy;
         private Color menuItemColor = Color.Green;
         private Color menuItemDescriptionColor = Color.Yellow;
 
-        private String[] menuItems = new String[]{"Movement" , "Attack" , "Camera", "Music"};
+        private String[] menuItems = new String[] { "Movement", "Attack", "Camera", "Music", "FullScreen" };
         private String[] menuItemsDescription = new String[] { 
-            "press W/A/S/D or Up/Left/Down/Right for movement",
+            "press W/A/S/D for movement",
             "press spacebar or left mouse button to attack", 
-            "Control the camera with you mouse",
-            "press M to toggle Music on/off"};
+            "press Up/Left/Down/Right/mouse wheel for moving the camera\n"+
+            "Press C to toggle camera mode (1st person/3rd person)",
+            "press 'M' to toggle Music on/off",
+            "press 'rightAlt'+'Enter' to toggle full screen"};
 
         private Game1 myGame;
         public HelpScreen(Game1 game)
@@ -37,25 +38,17 @@ namespace MyGame
             myGame = game;
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            delayedAction = new DelayedAction();
         }
 
         public override void Update(GameTime gameTime)
         {
-            KeyboardState keyboard = Keyboard.GetState();
-            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (keyCountdown <= 0)
+            KeyboardState keyState = Keyboard.GetState();
+            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Enter) 
+                                                    && !keyState.IsKeyDown(Keys.RightAlt)))
             {
-                if (keyboard.IsKeyDown(Keys.Enter))
-                {
-                    myGame.mediator.fireEvent(MyEvent.G_StartScreen);
-                    keyCountdown = keyDelay;
-                }
-                else
-                    keyCountdown = 0;
-
+                myGame.mediator.fireEvent(MyEvent.G_StartScreen);
             }
-            
-
             base.Update(gameTime);
         }
 
@@ -74,10 +67,14 @@ namespace MyGame
                 
                 pos = findCenteredPos(menuItems[i],mediumFont) + nextPosOffset;
                 spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
-                nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItemsDescription[i]).Y);
-                pos = findCenteredPos(menuItemsDescription[i], smallFont) + nextPosOffset;
-                spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
-                nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);
+                nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);          
+                //String[] lines = menuItemsDescription[i].Split('\n');
+                //foreach (String line in lines)
+                //{
+                    pos = findCenteredPos(menuItemsDescription[i], smallFont) + nextPosOffset;
+                    spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
+                    nextPosOffset += new Vector2(0, smallFont.MeasureString(menuItemsDescription[i]).Y);
+                //}
                 
             }
 

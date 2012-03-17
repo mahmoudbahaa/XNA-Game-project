@@ -10,7 +10,7 @@ using XNAnimation;
 
 namespace MyGame
 {
-    public class Game1 : Microsoft.Xna.Framework.Game,IEvent
+    public class Game1 : Microsoft.Xna.Framework.Game, IEvent
     {
         List<Event> events;
 
@@ -23,11 +23,26 @@ namespace MyGame
         public bool paused = false;
         public bool gameOver = false;
 
+        public CameraMode cameraMode = CameraMode.thirdPerson;
+
+        public enum CameraMode
+        {
+            thirdPerson = 0,
+            firstPersonWithWeapon ,
+            firstPersonWithoutWeapon ,
+        }
+        
+
         private Terrain terrain;
         private MonstersManager monsters;
-
+        private DelayedAction delayedAction;
+        private DelayedAction delayedAction2;
         private ScoreBoard scoreBoard;
         //assal
+
+        // Shot variables
+        //int keyDelay = 800;
+        //int keyCountdown = 0;
 
         public Game1()
         {
@@ -39,23 +54,26 @@ namespace MyGame
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
 
+            Window.AllowUserResizing = true;
 
             mediator = new Mediator();
             events = new List<Event>();
-            mediator.register(this, MyEvent.G_StartGame,MyEvent.G_StartScreen,MyEvent.G_HelpScreen, MyEvent.G_Exit);
+            delayedAction = new DelayedAction(800);
+            delayedAction2 = new DelayedAction();
+            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
         }
 
         private Player initializePlayer()
         {
             SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarineIdle");
-            SkinnedModel pmodelRun  = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
-            SkinnedModel pmodelAim  = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
+            SkinnedModel pmodelRun = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
+            SkinnedModel pmodelAim = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
             SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");
             //SkinningData skinnedData = pmodel.Tag as SkinningData;
             PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 50, 0),
                 new Vector3(0, 0, 0),
                 new Vector3(2f));
-            Player player = new Player(this, pmodelIdle, pmodelRun ,pmodelAim,pmodelShoot, playerUnit);
+            Player player = new Player(this, pmodelIdle, pmodelRun, pmodelAim, pmodelShoot, playerUnit);
             return player;
         }
 
@@ -74,7 +92,7 @@ namespace MyGame
             Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            camera = new ChaseCamera(this, new Vector3(0, 40, 150), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
             player = initializePlayer();
             Sky sky = intitializeSky();
 
@@ -133,6 +151,10 @@ namespace MyGame
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.Escape))
+                Exit();
+
             foreach (Event ev in events)
             {
                 switch (ev.EventId)
@@ -143,8 +165,23 @@ namespace MyGame
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }
             }
-
             events.Clear();
+
+            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.RightAlt) &&
+                                                    keyState.IsKeyDown(Keys.Enter)))
+            {
+                graphics.ToggleFullScreen();
+            }
+
+            if (delayedAction2.eventHappened(gameTime, keyState,Keys.C))
+            {
+                if ((int)cameraMode == 2)
+                    cameraMode = CameraMode.thirdPerson;
+                else
+                    cameraMode++;
+                
+            }
+
             base.Update(gameTime);
         }
 
@@ -158,10 +195,10 @@ namespace MyGame
             return (monsters.checkCollisionWithBullet(unit));
         }
 
-        protected override void  EndRun()
+        protected override void EndRun()
         {
             GestureManager.running = false;
- 	         base.EndRun();
+            base.EndRun();
         }
 
         public float GetHeightAtPosition(float X, float Z)
@@ -171,8 +208,8 @@ namespace MyGame
 
         public float GetHeightAtPosition2(float X, float Z)
         {
-            float steepness ;
-            return terrain.GetHeightAtPosition(X, Z,out steepness);
+            float steepness;
+            return terrain.GetHeightAtPosition(X, Z, out steepness);
         }
     }
 }

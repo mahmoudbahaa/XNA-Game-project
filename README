@@ -1,7 +1,13 @@
 What's New:
 ----------
+Camera:
+* scroll wheel move the camera in the z axis
+* up/down/right/left move the camera in the respective direction up to certain limit
+
 GamePlay:
 * Added CrossHair
+* window is now resizable
+* alt+Enter toggle full Screen
 -----------
 Menus:
 * Added StartScreen And HelpScreen

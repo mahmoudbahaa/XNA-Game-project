@@ -15,10 +15,10 @@ namespace MyGame
     {
         private SpriteBatch spriteBatch;
         private Texture2D crossHairTex;
-
+        private DelayedAction delayedAction;
         // Shot variables
-        int shotDelay = 800;
-        int shotCountdown = 0;
+        //int shotDelay = 800;
+        //int shotCountdown = 0;
 
         public int health
         {
@@ -57,6 +57,7 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             crossHairTex = game.Content.Load<Texture2D>("crosshair");
+            delayedAction = new DelayedAction(800);
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }
@@ -70,22 +71,22 @@ namespace MyGame
             ((ChaseCamera)myGame.camera).Move(unit.position,  unit.rotation + new Vector3(0,MathHelper.Pi,0));
 
             KeyboardState keyBoard = Keyboard.GetState();
-            if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W) || myGame.controller.isActive(Controller.FORWARD))
+            if (keyBoard.IsKeyDown(Keys.W) || myGame.controller.isActive(Controller.FORWARD))
             {
                 playerRun();
                 controlForward();
             }
-            if (keyBoard.IsKeyDown(Keys.Down) || keyBoard.IsKeyDown(Keys.S) || myGame.controller.isActive(Controller.BACKWARD))
+            if (keyBoard.IsKeyDown(Keys.S) || myGame.controller.isActive(Controller.BACKWARD))
             {
                 playerRun();
                 controlBackward();
             }
-            if (keyBoard.IsKeyDown(Keys.Left) || keyBoard.IsKeyDown(Keys.A) || myGame.controller.isActive(Controller.LEFT))
+            if (keyBoard.IsKeyDown(Keys.A) || myGame.controller.isActive(Controller.LEFT))
             {
                 playerRun();
                 controlLeft();
             }
-            if (keyBoard.IsKeyDown(Keys.Right) || keyBoard.IsKeyDown(Keys.D) || myGame.controller.isActive(Controller.RIGHT))
+            if (keyBoard.IsKeyDown(Keys.D) || myGame.controller.isActive(Controller.RIGHT))
             {
                 playerRun();
                 controlRight();
@@ -109,20 +110,11 @@ namespace MyGame
                     "rotation", new Vector3(0, unit.rotation.Y, 0));
                 ((PlayerModel)cModel).shooting = false;
             }
-            shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (shotCountdown <= 0)
+            if (delayedAction.eventHappened(gameTime, Keyboard.GetState().IsKeyDown(Keys.Space) ||
+                                            Mouse.GetState().LeftButton == ButtonState.Pressed ||
+                                            myGame.controller.isActive(Controller.RIGHT_HAND_STR)))
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) ||
-                        Mouse.GetState().LeftButton == ButtonState.Pressed ||
-                        myGame.controller.isActive(Controller.RIGHT_HAND_STR))
-                {
-                    {
-                        myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
-
-                        // Reset the shot countdown
-                        shotCountdown = shotDelay;
-                    }
-                }
+                myGame.mediator.fireEvent(MyEvent.C_ATTACK_BULLET_BEGIN);
             }
         }
 
