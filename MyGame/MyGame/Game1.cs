@@ -22,6 +22,7 @@ namespace MyGame
         public Player player;
         public bool paused = false;
         public bool gameOver = false;
+        public bool firstPerson = false;
 
         private Terrain terrain;
         private MonstersManager monsters;
@@ -39,6 +40,7 @@ namespace MyGame
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
 
+            graphics.IsFullScreen = true;
 
             mediator = new Mediator();
             events = new List<Event>();
@@ -74,7 +76,7 @@ namespace MyGame
             Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            camera = new ChaseCamera(this, new Vector3(0, 40, 100), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
             player = initializePlayer();
             Sky sky = intitializeSky();
 

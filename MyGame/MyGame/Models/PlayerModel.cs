@@ -59,7 +59,8 @@ namespace MyGame
             Attack();
             events.Clear();
 
-            base.Draw(gameTime);
+            if (!myGame.firstPerson)
+                base.Draw(gameTime);
             
         }
 

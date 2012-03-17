@@ -14,8 +14,8 @@ namespace MyGame
         public Vector3 FollowTargetPosition { get; private set; }
         public Vector3 FollowTargetRotation { get; private set; }
 
-        public Vector3 PositionOffset { get; set; }
-        public Vector3 TargetOffset { get; set; }
+        public Vector3 PositionOffset;
+        public Vector3 TargetOffset;
 
         private MouseState lastMouseState;
 
@@ -26,8 +26,6 @@ namespace MyGame
         public Vector3 Right;
 
         float springiness = 0.15f;
-
-        //MouseState lastMouseState;
 
         public float Springiness
         {
@@ -87,9 +85,6 @@ namespace MyGame
 
 
             myGame.mediator.controlPointer(-deltaX * .0005f);
-            lastMouseState = mouseState;
-
-
 
             //Natural Chase Camera Update
             Vector3 translation = Vector3.Zero;
@@ -150,7 +145,23 @@ namespace MyGame
             this.Up = up;
             this.Right = Vector3.Cross(forward, up);
 
-            
+            int scrollWheelValue = mouseState.ScrollWheelValue - lastMouseState.ScrollWheelValue;
+
+            if (keyState.IsKeyDown(Keys.Up) && TargetOffset.Y < 80) 
+                TargetOffset.Y += 1;
+            if (keyState.IsKeyDown(Keys.Down) && TargetOffset.Y > 0)
+                TargetOffset.Y -= 1;
+            if (keyState.IsKeyDown(Keys.Right) && TargetOffset.X < 50)
+                TargetOffset.X += 1;
+            if (keyState.IsKeyDown(Keys.Left) && TargetOffset.X > -50)
+                TargetOffset.X -= 1;
+
+            if ((Position.Z - Target.Z)> scrollWheelValue/2)
+                PositionOffset.Z -= scrollWheelValue/2;
+            else if ((Position.Z - Target.Z) < scrollWheelValue / 2)
+                PositionOffset.Z += scrollWheelValue/2 ;
+
+            lastMouseState = mouseState;
             base.Update(gameTime);
         }
     }

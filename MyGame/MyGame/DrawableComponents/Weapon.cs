@@ -32,10 +32,10 @@ namespace MyGame
             Vector3 cameraDirection = myGame.camera.Target - myGame.camera.Position;
             Vector3 perp =  Vector3.Normalize(Vector3.Cross(cameraDirection, Vector3.Up));
             unit.baseWorld = player.unit.baseWorld * player.RHandTransformation();
-            unit.position = player.unit.position - 4*perp;
+            unit.position = player.unit.position - 4 * perp;
             unit.rotation = player.unit.rotation;// +Matrix.Invert(player.RHandTransformation()).Translation;
             //unit.baseWorld = player.RHandTransformation();
-            unit.scale = new Vector3(2f);
+            unit.scale = player.unit.scale;//new Vector3(2f);
             base.Update(gameTime);
         }
     }

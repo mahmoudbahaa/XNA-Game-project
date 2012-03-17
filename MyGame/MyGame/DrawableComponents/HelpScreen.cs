@@ -25,9 +25,9 @@ namespace MyGame
 
         private String[] menuItems = new String[]{"Movement" , "Attack" , "Camera", "Music"};
         private String[] menuItemsDescription = new String[] { 
-            "press W/A/S/D or Up/Left/Down/Right for movement",
+            "press W/A/S/Dfor movement",
             "press spacebar or left mouse button to attack", 
-            "Control the camera with you mouse",
+            "press Up/Left/Down/Right/mouse wheel for moving the camera",
             "press M to toggle Music on/off"};
 
         private Game1 myGame;

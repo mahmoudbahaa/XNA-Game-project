@@ -70,22 +70,22 @@ namespace MyGame
             ((ChaseCamera)myGame.camera).Move(unit.position,  unit.rotation + new Vector3(0,MathHelper.Pi,0));
 
             KeyboardState keyBoard = Keyboard.GetState();
-            if (keyBoard.IsKeyDown(Keys.Up) || keyBoard.IsKeyDown(Keys.W) || myGame.controller.isActive(Controller.FORWARD))
+            if (keyBoard.IsKeyDown(Keys.W) || myGame.controller.isActive(Controller.FORWARD))
             {
                 playerRun();
                 controlForward();
             }
-            if (keyBoard.IsKeyDown(Keys.Down) || keyBoard.IsKeyDown(Keys.S) || myGame.controller.isActive(Controller.BACKWARD))
+            if (keyBoard.IsKeyDown(Keys.S) || myGame.controller.isActive(Controller.BACKWARD))
             {
                 playerRun();
                 controlBackward();
             }
-            if (keyBoard.IsKeyDown(Keys.Left) || keyBoard.IsKeyDown(Keys.A) || myGame.controller.isActive(Controller.LEFT))
+            if (keyBoard.IsKeyDown(Keys.A) || myGame.controller.isActive(Controller.LEFT))
             {
                 playerRun();
                 controlLeft();
             }
-            if (keyBoard.IsKeyDown(Keys.Right) || keyBoard.IsKeyDown(Keys.D) || myGame.controller.isActive(Controller.RIGHT))
+            if (keyBoard.IsKeyDown(Keys.D) || myGame.controller.isActive(Controller.RIGHT))
             {
                 playerRun();
                 controlRight();
