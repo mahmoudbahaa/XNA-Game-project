@@ -71,30 +71,21 @@ namespace MyGame
                 bullets[i].Update(gameTime);
 
                  //If shot is out of bounds, remove it from game
-                //if (!((BulletUnit)(bullets[i].unit)).isInRange(myGame.player.unit.position.X,
-                //    myGame.player.unit.position.Z, bulletRange))
                 Vector3 pos = bullets[i].unit.position ;
                 if(Math.Abs(pos.Length()) > bulletRange || 
-                    pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z))
+                    pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z)||
+                    myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
                 {
                     bullets.RemoveAt(i);
                     --i;
-                }
-                else
-                {
-                    if (myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
-                    {
-                        myGame.mediator.fireEvent(MyEvent.M_DIE);
-                        bullets.RemoveAt(i);
-                        --i;
-                        break;
-                    }
                 }
             }
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (myGame.paused)
+                return;
             FireShots();
             UpdateShots(gameTime);
             base.Update(gameTime);
@@ -103,7 +94,6 @@ namespace MyGame
         public override void Draw(GameTime gameTime)
         {
             foreach (Bullet bullet in bullets)
-                //if (camera.BoundingVolumeIsInView(skModel.unit.BoundingSphere))
                 bullet.Draw(gameTime);
             base.Draw(gameTime);
         }

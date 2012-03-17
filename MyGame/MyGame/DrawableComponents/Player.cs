@@ -13,9 +13,25 @@ namespace MyGame
 {
     public class Player : CDrawableComponent
     {
+        private SpriteBatch spriteBatch;
+        private Texture2D crossHairTex;
+
         // Shot variables
-        int shotDelay = 300;
+        int shotDelay = 800;
         int shotCountdown = 0;
+
+        public int health
+        {
+            get
+            {
+                return ((PlayerUnit)unit).health;
+            }
+
+            set
+            {
+                ((PlayerUnit)unit).health = value;
+            }
+        }
 
 
         public Player(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
@@ -39,12 +55,16 @@ namespace MyGame
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
 
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            crossHairTex = game.Content.Load<Texture2D>("crosshair");
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (myGame.paused)
+                return;
             ((AnimatedModel)cModel).animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
             //Custom Update
             ((ChaseCamera)myGame.camera).Move(unit.position,  unit.rotation + new Vector3(0,MathHelper.Pi,0));
@@ -75,11 +95,9 @@ namespace MyGame
                 unit.position.Z) + 5;
 
             FireShots(gameTime);
-
+   
             base.Update(gameTime);
         }
-
-        
 
         protected void FireShots(GameTime gameTime)
         {
@@ -105,33 +123,6 @@ namespace MyGame
                         shotCountdown = shotDelay;
                     }
                 }
-
-                //if (Keyboard.GetState().IsKeyDown(Keys.D1))
-                //{
-                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE1);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D2))
-                //{
-                //    myGame.mediator.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.mediator.fireEvent(MyEvent.P_ATTACK_AXE2);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D3))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE3);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D4))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE4);
-                //}
-                //if (Keyboard.GetState().IsKeyDown(Keys.D5))
-                //{
-                //    myGame.fireEvent(MyEvent.C_ATTACK_AXE);
-                //    myGame.fireEvent(MyEvent.P_ATTACK_AXE5);
-                //}
-
             }
         }
 
@@ -144,11 +135,6 @@ namespace MyGame
         public void playerRun()
         {
             myGame.mediator.fireEvent(MyEvent.P_RUN);
-        }
-
-        public void playerStopRun()
-        {
-            myGame.mediator.fireEvent(MyEvent.P_STOP);
         }
 
         public void controlForward()
@@ -172,8 +158,27 @@ namespace MyGame
         }
 
 
+        private void DrawCrossHair()
+        {
+            int x = (Game.GraphicsDevice.Viewport.Width - 50) / 2;
+            int y = (Game.GraphicsDevice.Viewport.Height - 50) / 2;
+            Rectangle rect = new Rectangle(x, y, 50, 50);
+            spriteBatch.Draw(crossHairTex, rect, Color.White);
+        }
+
+        private void DrawHP()
+        {
+            Rectangle rect = new Rectangle(0, 0, 300, 50);
+            spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect , Color.White);
+        }
+
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            DrawHP();
+            DrawCrossHair();
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
 

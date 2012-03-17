@@ -12,15 +12,15 @@ namespace MyGame
     {
         //here goes the player attribute like speed health etc ...
         private float PlayerSpeed { get; set; }
-        private int Health { get; set; }
+        public int health;
 
         public PlayerUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
             game.mediator.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT,
-                MyEvent.C_RIGHT, MyEvent.C_Pointer,MyEvent.C_ATTACK_AXE);
+                MyEvent.C_RIGHT, MyEvent.C_Pointer, MyEvent.M_BITE);
             PlayerSpeed = .1f;
-            Health = 100;
+            health = 100;
         }
 
         public override void update(GameTime gameTime)
@@ -49,8 +49,8 @@ namespace MyGame
                         float deltaX = (float)ev.args["deltaX"];
                         rotation += new Vector3(0, deltaX, 0);
                         break;
-                    case (int)MyEvent.C_ATTACK_AXE :
-                        myGame.checkCollisionWithBullet(this);
+                    case (int)MyEvent.M_BITE:
+                        decreaseHealth();
                         break;
                 }
             }
@@ -65,5 +65,19 @@ namespace MyGame
 
             base.update(gameTime);
         }
+
+        public void decreaseHealth()
+        {
+            health -= 10;
+            if (health <= 0)
+            {
+                myGame.gameOver = true;
+                myGame.paused = true;
+                myGame.mediator.fireEvent(MyEvent.G_GameOver);
+            }
+
+        }
+
+       
     }
 }

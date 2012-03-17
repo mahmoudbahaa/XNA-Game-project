@@ -24,7 +24,8 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            cModel.Draw(gameTime);
+            if(myGame.camera.BoundingVolumeIsInView(unit.BoundingSphere))
+                cModel.Draw(gameTime);
             base.Draw(gameTime);
         }
 

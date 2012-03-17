@@ -14,12 +14,6 @@ namespace Helper
          */
 
         P_RUN = 0,
-        P_STOP,
-        P_ATTACK_AXE1,
-        P_ATTACK_AXE2,
-        P_ATTACK_AXE3,
-        P_ATTACK_AXE4,
-        P_ATTACK_AXE5,
         
         C_FORWARD,
         C_BACKWARD,
@@ -27,9 +21,15 @@ namespace Helper
         C_RIGHT,
         C_ATTACK_BULLET_BEGIN,
         C_ATTACK_BULLET_END,
-        C_ATTACK_AXE,
         C_Pointer,
 
         M_DIE,
+        M_BITE,
+
+        G_StartScreen,
+        G_HelpScreen,
+        G_StartGame,
+        G_GameOver,
+        G_Exit,
     }
 }

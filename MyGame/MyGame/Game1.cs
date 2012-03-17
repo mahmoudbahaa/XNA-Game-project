@@ -10,14 +10,18 @@ using XNAnimation;
 
 namespace MyGame
 {
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Microsoft.Xna.Framework.Game,IEvent
     {
+        List<Event> events;
+
         GraphicsDeviceManager graphics;
 
         public Camera camera;
         public Controller controller;
         public Mediator mediator;
         public Player player;
+        public bool paused = false;
+        public bool gameOver = false;
 
         private Terrain terrain;
         private MonstersManager monsters;
@@ -35,12 +39,15 @@ namespace MyGame
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
 
+
             mediator = new Mediator();
+            events = new List<Event>();
+            mediator.register(this, MyEvent.G_StartGame,MyEvent.G_StartScreen,MyEvent.G_HelpScreen, MyEvent.G_Exit);
         }
 
         private Player initializePlayer()
         {
-            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarine");
+            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarineIdle");
             SkinnedModel pmodelRun  = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
             SkinnedModel pmodelAim  = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
             SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");
@@ -62,36 +69,88 @@ namespace MyGame
             return sky;
         }
 
-        // Called when the game should load its content
-        protected override void LoadContent()
+        private void initializeGame()
         {
+            Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera  = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
-            player  = initializePlayer();
+            camera = new ChaseCamera(this, new Vector3(0, 20, 200), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            player = initializePlayer();
             Sky sky = intitializeSky();
 
             Weapon weapon = new Weapon(this, player, Content.Load<Model>("model//WeaponMachineGun"),
-                new Unit(this, Vector3.Zero, Vector3.Zero,Vector3.One));
+                new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
             terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
                Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
+            FirstAidManager firstAidManger = new FirstAidManager(this);
+
+            StateManager stateManager = new StateManager(this);
+            AudioManager audioManager = new AudioManager(this);
 
             //CDrawableComponent test = new CDrawableComponent(this,
-            //    new Unit(this, new Vector3(0, 100, 0), Vector3.Zero, Vector3.One * 100),
-            //    new CModel(this, Content.Load<Model>(@"hp")));
+            //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
+            //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
 
             Components.Add(camera);
             Components.Add(sky);
             Components.Add(terrain);
             Components.Add(monsters);
+            Components.Add(firstAidManger);
             Components.Add(bullets);
             Components.Add(weapon);
+            //Components.Add(test);
             Components.Add(player);
             Components.Add(scoreBoard);
-            //Components.Add(test);
+            Components.Add(stateManager);
+            Components.Add(audioManager);
+        }
+
+
+        private void initializeStartMenu()
+        {
+            Components.Clear();
+            StartScreen startScreen = new StartScreen(this);
+
+            Components.Add(startScreen);
+        }
+
+        private void initializeHelpScreen()
+        {
+            Components.Clear();
+            HelpScreen helpScreen = new HelpScreen(this);
+
+            Components.Add(helpScreen);
+        }
+
+        // Called when the game should load its content
+        protected override void LoadContent()
+        {
+            initializeStartMenu();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            foreach (Event ev in events)
+            {
+                switch (ev.EventId)
+                {
+                    case (int)MyEvent.G_Exit: Exit(); break;
+                    case (int)MyEvent.G_StartGame: initializeGame(); break;
+                    case (int)MyEvent.G_StartScreen: initializeStartMenu(); break;
+                    case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
+                }
+            }
+
+            events.Clear();
+            base.Update(gameTime);
+        }
+
+        public void addEvent(Helper.Event ev)
+        {
+            events.Add(ev);
         }
 
         public bool checkCollisionWithBullet(Unit unit)

@@ -1,0 +1,37 @@
+What's New:
+----------
+GamePlay:
+* Added CrossHair
+-----------
+Menus:
+* Added StartScreen And HelpScreen
+-----------
+Sounds:
+* Added bite sound
+* Added bullet sound
+* Added Scream and Die sound
+* Added music track
+* Added ability to mute or play music by pressing 'M'
+
+MedKits:
+* Added Medkits with max spawn of 3 and spawn time of 5 second and they increase health by 50
+
+General:
+* Added more states :
+	* Pause feature when 'p' is pressed
+	* GameOver when player health reaches 0
+
+Player:
+* Added new player Model 
+* Added gun attacked to right arm
+* Added players animation : run,idle aim and shoot
+* Added HP to player
+* player now take hits when bitten by monster
+
+Monster:
+* Added HP bar
+* monster now die from multiple shots instead of one
+* added take damage animation that play on hit 
+* added bite animation that play on collision with player
+* Now monster start idle and on collision with player or on being shot they move toward player
+

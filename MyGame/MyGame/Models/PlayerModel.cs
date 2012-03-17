@@ -51,22 +51,6 @@ namespace MyGame
                     case (int) MyEvent.C_ATTACK_BULLET_BEGIN:
                         attacking = true;
                         break;
-
-                    //case (int)MyEvent.P_ATTACK_AXE1:
-                    //    AttackByAxe(PlayerAnimations.Attack1);
-                    //    break;
-                    //case (int)MyEvent.P_ATTACK_AXE2:
-                    //    AttackByAxe(PlayerAnimations.Attack2);
-                    //    break;
-                    //case (int)MyEvent.P_ATTACK_AXE3:
-                    //    AttackByAxe(PlayerAnimations.Attack3);
-                    //    break;
-                    //case (int)MyEvent.P_ATTACK_AXE4:
-                    //    AttackByAxe(PlayerAnimations.Attack4);
-                    //    break;
-                    //case (int)MyEvent.P_ATTACK_AXE5:
-                    //    AttackByAxe(PlayerAnimations.Attack5);
-                    //    break;
                     default:
                         break;
                 }
@@ -74,6 +58,7 @@ namespace MyGame
             Run();
             Attack();
             events.Clear();
+
             base.Draw(gameTime);
             
         }

@@ -57,31 +57,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ground.x">
-      <Name>Ground</Name>
-      <Importer>XImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="LightingEffect.fx">
-      <Name>LightingEffect</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="grass.bmp">
-      <Name>grass</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\XNAnimationPipeline\XNAnimationPipeline.csproj">
       <Project>{863795EB-0753-4461-AF43-48F38828D8E0}</Project>
       <Name>XNAnimationPipeline</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clouds.dds">
+      <Name>clouds</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="grass.bmp">
+      <Name>grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="model\First Aid Kit2.FBX">
+      <Name>First Aid Kit2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <Compile Include="model\PlayerMarineRun.fbx">
       <Name>PlayerMarineRun</Name>
       <Importer>FbxImporter</Importer>
@@ -91,11 +87,6 @@
       <Name>terrain-plain</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="model\PlayerMarine.fbx">
-      <Name>PlayerMarine</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
     </Compile>
     <Compile Include="model\WeaponMachineGun.fbx">
       <Name>WeaponMachineGun</Name>
@@ -108,39 +99,6 @@
       <Name>TerrainEffect</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="model\EnemyBeast.fbx">
-      <Name>EnemyBeast</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="tree_billboard.png">
-      <Name>tree_billboard</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="diffuseonly.fx">
-      <Name>diffuseonly</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="diffusexparent.fx">
-      <Name>diffusexparent</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="clouds.dds">
-      <Name>clouds</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -239,13 +197,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="100.png">
-      <Name>100</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="BillboardEffect.fx">
       <Name>BillboardEffect</Name>
       <Importer>EffectImporter</Importer>
@@ -309,6 +260,77 @@
     </Compile>
     <Compile Include="HP\090.png">
       <Name>090</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="model\EnemyBeastBite.fbx">
+      <Name>EnemyBeastBite</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\EnemyBeastIdle.fbx">
+      <Name>EnemyBeastIdle</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\EnemyBeastRun.fbx">
+      <Name>EnemyBeastRun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="model\EnemyBeastTakeDamage.fbx">
+      <Name>EnemyBeastTakeDamage</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="model\PlayerMarineIdle.fbx">
+      <Name>PlayerMarineIdle</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteFontLarge.spritefont">
+      <Name>SpriteFontLarge</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\GameAudio.xap">
+      <Name>GameAudio</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteFontMedium.spritefont">
+      <Name>SpriteFontMedium</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="empty.png">
+      <Name>empty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="empty2.png">
+      <Name>empty2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="crosshair.png">
+      <Name>crosshair</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
