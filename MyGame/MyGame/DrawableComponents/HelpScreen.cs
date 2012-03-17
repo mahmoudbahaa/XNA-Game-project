@@ -13,7 +13,6 @@ namespace MyGame
     public class HelpScreen : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
-        private int chosenMenuItem = 0;
 
         // Shot variables
         int keyDelay = 100;
@@ -23,12 +22,13 @@ namespace MyGame
         private Color menuItemColor = Color.Green;
         private Color menuItemDescriptionColor = Color.Yellow;
 
-        private String[] menuItems = new String[]{"Movement" , "Attack" , "Camera", "Music"};
+        private String[] menuItems = new String[] { "Movement", "Attack", "Camera", "Music", "FullScreen" };
         private String[] menuItemsDescription = new String[] { 
             "press W/A/S/Dfor movement",
             "press spacebar or left mouse button to attack", 
             "press Up/Left/Down/Right/mouse wheel for moving the camera",
-            "press M to toggle Music on/off"};
+            "press 'M' to toggle Music on/off",
+            "press 'rightAlt'+'Enter' to toggle full screen"};
 
         private Game1 myGame;
         public HelpScreen(Game1 game)

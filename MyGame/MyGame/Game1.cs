@@ -30,6 +30,10 @@ namespace MyGame
         private ScoreBoard scoreBoard;
         //assal
 
+        // Shot variables
+        int keyDelay = 800;
+        int keyCountdown = 0;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -40,7 +44,7 @@ namespace MyGame
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
 
-            graphics.IsFullScreen = true;
+            Window.AllowUserResizing = true;
 
             mediator = new Mediator();
             events = new List<Event>();
@@ -76,7 +80,7 @@ namespace MyGame
             Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, new Vector3(0, 40, 100), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            camera = new ChaseCamera(this, new Vector3(0, 40, 150), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
             player = initializePlayer();
             Sky sky = intitializeSky();
 
@@ -135,6 +139,11 @@ namespace MyGame
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState keyState = Keyboard.GetState();
+            // Allows the default game to exit on Xbox 360 and Windows.
+            if (keyState.IsKeyDown(Keys.Escape))
+                this.Exit();
+
             foreach (Event ev in events)
             {
                 switch (ev.EventId)
@@ -145,8 +154,23 @@ namespace MyGame
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }
             }
-
             events.Clear();
+
+           
+            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+            if (keyCountdown <= 0)
+            {
+                if (keyState.IsKeyDown(Keys.RightAlt) && keyState.IsKeyDown(Keys.Enter))
+                {
+                    graphics.ToggleFullScreen();
+                    keyCountdown = keyDelay;
+                }
+                else
+                    keyCountdown = 0;
+            }
+
+           
+
             base.Update(gameTime);
         }
 
