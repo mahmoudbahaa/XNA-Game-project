@@ -22,11 +22,21 @@ namespace MyGame
         public Player player;
         public bool paused = false;
         public bool gameOver = false;
-        public bool firstPerson = false;
+
+        public CameraMode cameraMode = CameraMode.thirdPerson;
+
+        public enum CameraMode
+        {
+            thirdPerson = 0,
+            firstPersonWithWeapon ,
+            firstPersonWithoutWeapon ,
+        }
+        
 
         private Terrain terrain;
         private MonstersManager monsters;
         private DelayedAction delayedAction;
+        private DelayedAction delayedAction2;
         private ScoreBoard scoreBoard;
         //assal
 
@@ -49,6 +59,7 @@ namespace MyGame
             mediator = new Mediator();
             events = new List<Event>();
             delayedAction = new DelayedAction(800);
+            delayedAction2 = new DelayedAction();
             mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
         }
 
@@ -160,6 +171,15 @@ namespace MyGame
                                                     keyState.IsKeyDown(Keys.Enter)))
             {
                 graphics.ToggleFullScreen();
+            }
+
+            if (delayedAction2.eventHappened(gameTime, keyState,Keys.C))
+            {
+                if ((int)cameraMode == 2)
+                    cameraMode = CameraMode.thirdPerson;
+                else
+                    cameraMode++;
+                
             }
 
             base.Update(gameTime);

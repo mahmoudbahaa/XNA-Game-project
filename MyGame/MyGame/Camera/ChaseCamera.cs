@@ -25,7 +25,7 @@ namespace MyGame
 
         public Vector3 Right;
 
-        float springiness = 0.15f;
+        float springiness = 1f;
 
         public float Springiness
         {
@@ -59,6 +59,13 @@ namespace MyGame
         {
             if (myGame.paused)
                 return;
+
+            if (myGame.cameraMode != Game1.CameraMode.thirdPerson)
+            {
+                TargetOffset = new Vector3(0, 40, 0);
+                PositionOffset = new Vector3(0,40,1);
+            }
+
             // Get the new keyboard and mouse state
             MouseState mouseState = Mouse.GetState();
             KeyboardState keyState = Keyboard.GetState();

@@ -38,5 +38,11 @@ namespace MyGame
             unit.scale = player.unit.scale;//new Vector3(2f);
             base.Update(gameTime);
         }
+
+        public override void Draw(GameTime gameTime)
+        {
+            if(myGame.cameraMode != Game1.CameraMode.firstPersonWithoutWeapon)
+                base.Draw(gameTime);
+        }
     }
 }

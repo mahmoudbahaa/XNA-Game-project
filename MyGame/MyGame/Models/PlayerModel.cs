@@ -59,7 +59,7 @@ namespace MyGame
             Attack();
             events.Clear();
 
-            if (!myGame.firstPerson)
+            if (myGame.cameraMode == Game1.CameraMode.thirdPerson)
                 base.Draw(gameTime);
             
         }
