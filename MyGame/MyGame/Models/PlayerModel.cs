@@ -11,31 +11,32 @@ namespace MyGame
 {
     public class PlayerModel : AnimatedModel
     {
+        readonly String[] animations = new String[] { "Idle", "Run", "Aim", "Shoot" };
+
+        public enum PlayerAnimations
+        {
+            Idle = 0,
+            Run,
+            Aim,
+            Shoot,
+        }
+
         private bool running;
         private bool attacking;
+        private PlayerAnimations activeAnimation;
         public bool shooting = false;
 
         //private int activeAnimationClip;
 
         static int RIGHT_HAND_BONE_ID = 15;
 
-        SkinnedModel idleSkinnedModel;
-        SkinnedModel runSkinnedModel;
-        SkinnedModel aimSkinnedModel;
-        SkinnedModel shootSkinnedModel;
-
-        public PlayerModel(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
-                                    SkinnedModel aimSkinnedModel, SkinnedModel shootSkinnedModel)
-            : base(game, idleSkinnedModel)
+        public PlayerModel(Game1 game, SkinnedModel skinnedModel)
+            : base(game, skinnedModel)
         {
-            this.idleSkinnedModel = idleSkinnedModel;
-            this.runSkinnedModel = runSkinnedModel;
-            this.aimSkinnedModel = aimSkinnedModel;
-            this.shootSkinnedModel = shootSkinnedModel;
-
             game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
             animationController.Speed = 1.2f;
-            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
+            activeAnimation = PlayerAnimations.Idle;
+            playAnimation();    
         }
 
         public override void Draw(GameTime gameTime)
@@ -68,71 +69,46 @@ namespace MyGame
         {
             if (attacking)
             {
-                if (animationController.IsPlaying && skinnedModel != aimSkinnedModel 
-                    && skinnedModel != shootSkinnedModel)
+                if (animationController.IsPlaying && activeAnimation != PlayerAnimations.Aim &&
+                    activeAnimation != PlayerAnimations.Shoot)
                 {
-                    skinnedModel = aimSkinnedModel;
-                    Model = aimSkinnedModel.Model;
+                    activeAnimation = PlayerAnimations.Aim ;
                     animationController.LoopEnabled = false;
                     playAnimation();
                 }
-                else if (!animationController.IsPlaying && skinnedModel == aimSkinnedModel)
+                else if (!animationController.IsPlaying && activeAnimation == PlayerAnimations.Aim)
                 {
-                    skinnedModel = shootSkinnedModel;
-                    Model = shootSkinnedModel.Model;
+                    activeAnimation = PlayerAnimations.Shoot;
                     animationController.LoopEnabled = false;
                     playAnimation();
                 }
-                else if(!animationController.IsPlaying && skinnedModel == shootSkinnedModel)
+                else if(!animationController.IsPlaying && activeAnimation == PlayerAnimations.Shoot)
                 {
                     attacking = false;
                     shooting = true;
                 }
             }
         }
-
-        //public void AttackByAxe(PlayerAnimations playerAnimation)
-        //{
-        //    animationController.LoopEnabled = false;
-        //    activeAnimationClip = (int)playerAnimation;
-        //    playAnimation();
-        //}
        
         private void Run()
         {
             if (running)
             {
-                if (skinnedModel != runSkinnedModel && !attacking)
+                if (activeAnimation != PlayerAnimations.Run && !attacking)
                 {
-                    skinnedModel = runSkinnedModel;
-                    Model = runSkinnedModel.Model;
+                    activeAnimation = PlayerAnimations.Run;
                     animationController.LoopEnabled = true;
                     playAnimation();
                 }
-                //if (activeAnimationClip != (int)PlayerAnimations.RunWithPistol)
-                //{
-                //    animationController.LoopEnabled = true;
-                //    activeAnimationClip = (int)PlayerAnimations.RunWithPistol;
-                //    playAnimation();
-                //}
             }
             else
             {
-                if (skinnedModel != idleSkinnedModel && !attacking)
+                if (activeAnimation != PlayerAnimations.Idle && !attacking)
                 {
-                    skinnedModel = idleSkinnedModel;
-                    Model = idleSkinnedModel.Model;
+                    activeAnimation = PlayerAnimations.Idle;
                     animationController.LoopEnabled = true;
                     playAnimation();
                 }
-                //if (activeAnimationClip == (int)PlayerAnimations.Run || !animationController.IsPlaying)
-                //{
-                //    //animationController.LoopEnabled = false;
-                //    //animationController.LoopEnabled
-                //    activeAnimationClip = (int)PlayerAnimations.LookBlowKiss;
-                //    playAnimation();
-
-                //}
             }
         }
 
@@ -145,7 +121,7 @@ namespace MyGame
 
         private void playAnimation()
         {
-            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
+            animationController.StartClip(skinnedModel.AnimationClips[animations[(int)activeAnimation]]);
             //animationController.CrossFade(skinnedModel.AnimationClips.Values[activeAnimationClip], TimeSpan.FromSeconds(0.5f));
         }
 
@@ -234,40 +210,40 @@ namespace MyGame
         //                                                "Die Crouched"
         //                                    };
 
-        public enum PlayerAnimations
-        {
-            LookBlowKiss = 1,
-            ReadyWithRifle,
-            ReadyWithPistol,
-            SlashWithBlade,
-            Walk,
-            WalkWithWeapon,
-            SneakWithRifle,
-            StalkWithPistol,
-            OverheadSlashWithBlade,
-            Run,
-            RunWithRifleSafe,
-            RunWithRifleAimed,
-            RunWithPistol,
-            RunningSlashWithBlade,
-            Crouch,
-            CrouchedRifle,
-            CrouchedPistol,
-            CrouchedStabWithBlade,
-            CrouchedStalk,
-            CrouchedStalkWithRifle,
-            CrouchedStalkWithPistol,
-            CrouchedStalkStabWithBlade,
-            FreeFall,
-            FreeFallWithPistol,
-            FreeFallWithRifle,
-            FreeFallSlashWithBlade,
-            ClimbLadder,
-            JumpLand,
-            DieStanding,
-            DieFalling,
-            DieCrouched
-        }
+        //public enum PlayerAnimations
+        //{
+        //    LookBlowKiss = 1,
+        //    ReadyWithRifle,
+        //    ReadyWithPistol,
+        //    SlashWithBlade,
+        //    Walk,
+        //    WalkWithWeapon,
+        //    SneakWithRifle,
+        //    StalkWithPistol,
+        //    OverheadSlashWithBlade,
+        //    Run,
+        //    RunWithRifleSafe,
+        //    RunWithRifleAimed,
+        //    RunWithPistol,
+        //    RunningSlashWithBlade,
+        //    Crouch,
+        //    CrouchedRifle,
+        //    CrouchedPistol,
+        //    CrouchedStabWithBlade,
+        //    CrouchedStalk,
+        //    CrouchedStalkWithRifle,
+        //    CrouchedStalkWithPistol,
+        //    CrouchedStalkStabWithBlade,
+        //    FreeFall,
+        //    FreeFallWithPistol,
+        //    FreeFallWithRifle,
+        //    FreeFallSlashWithBlade,
+        //    ClimbLadder,
+        //    JumpLand,
+        //    DieStanding,
+        //    DieFalling,
+        //    DieCrouched
+        //}
 
         //readonly String[] animations = new String[] { "Animation0" };
 

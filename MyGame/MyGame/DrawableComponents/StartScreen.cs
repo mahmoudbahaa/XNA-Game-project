@@ -24,7 +24,8 @@ namespace MyGame
         private Color menuItemColor = Color.Green;
         private Color shadedMenuItemColor = Color.Yellow;
 
-        private Vector2 titlePosOffset = new Vector2(0, 150);
+        //private Vector2 titlePosOffset = new Vector2(0, 150);
+        private float preferredtitlePosOffset = 150;
         private const String title1 = "XNA Shooter";
         private const String title2 = "Xterme - Novice - Advanced";
 
@@ -82,17 +83,17 @@ namespace MyGame
             SpriteFont bigFont = Game.Content.Load<SpriteFont>("SpriteFontLarge");
             SpriteFont mediumFont = Game.Content.Load<SpriteFont>("SpriteFontMedium");
 
-            spriteBatch.DrawString(bigFont, title1, findCenteredPos(title1, bigFont) - titlePosOffset, titleColor);
+            Vector2 pos = findCenteredPos(title1, bigFont);
+            Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
+            pos -= nextPosOffset;
+            spriteBatch.DrawString(bigFont, title1, pos , titleColor);
 
-            //Vector2 prevStringMeasure = ;
-            Vector2 nextPosOffset = titlePosOffset - new Vector2(0, bigFont.MeasureString(title1).Y);
+            nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title1).Y);
+            pos = findCenteredPos(title2, bigFont) - nextPosOffset;
+            spriteBatch.DrawString(bigFont, title2, pos, titleColor);
 
-            spriteBatch.DrawString(bigFont, title2, findCenteredPos(title2, bigFont) - nextPosOffset, titleColor);
-
-            //prevStringMeasure = bigFont.MeasureString(title2);
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title2).Y + 30);
 
-            Vector2 pos;
             for (int i = 0; i < menuItems.Count(); i++)
             {
                 pos =findCenteredPos(menuItems[i], mediumFont) - nextPosOffset;

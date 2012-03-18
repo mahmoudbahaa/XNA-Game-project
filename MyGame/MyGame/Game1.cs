@@ -61,19 +61,17 @@ namespace MyGame
             delayedAction = new DelayedAction(800);
             delayedAction2 = new DelayedAction();
             mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
+            mediator.fireEvent(MyEvent.G_StartGame);
         }
 
         private Player initializePlayer()
         {
-            SkinnedModel pmodelIdle = Content.Load<SkinnedModel>(@"model/PlayerMarineIdle");
-            SkinnedModel pmodelRun = Content.Load<SkinnedModel>(@"model/PlayerMarineRun");
-            SkinnedModel pmodelAim = Content.Load<SkinnedModel>(@"model/PlayerMarineAim");
-            SkinnedModel pmodelShoot = Content.Load<SkinnedModel>(@"model/PlayerMarineShoot");
+            SkinnedModel pmodel = Content.Load<SkinnedModel>(@"model/PlayerMarine");
             //SkinningData skinnedData = pmodel.Tag as SkinningData;
             PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 50, 0),
                 new Vector3(0, 0, 0),
                 new Vector3(2f));
-            Player player = new Player(this, pmodelIdle, pmodelRun, pmodelAim, pmodelShoot, playerUnit);
+            Player player = new Player(this, pmodel,playerUnit);
             return player;
         }
 

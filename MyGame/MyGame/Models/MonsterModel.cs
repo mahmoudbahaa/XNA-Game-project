@@ -11,13 +11,7 @@ namespace MyGame
 {
     public class MonsterModel : AnimatedModel
     {
-        //readonly string[] animations = new string[] { "Idle", "Run", "Bite", "Take Damage", "Die", };
-
-        SkinnedModel idleSkinnedModel;
-        SkinnedModel runSkinnedModel;
-        SkinnedModel biteSkinnedModel;
-        SkinnedModel takeDamageSkinnedModel;
-        SkinnedModel dieSkinnedModel;
+        readonly string[] animations = new string[] { "Idle", "Run", "Bite", "Take Damage", "Die", };
 
         public MonsterAnimations activeAnimation;
         public bool isRunning = true;
@@ -32,50 +26,43 @@ namespace MyGame
 
         }
 
-        public MonsterModel(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
-            SkinnedModel biteSkinnedModel, SkinnedModel takeDamageSkinnedModel, SkinnedModel dieSkinnedModel)
-            : base(game, idleSkinnedModel)
+        public MonsterModel(Game1 game, SkinnedModel skinnedModel)
+            : base(game, skinnedModel)
         {
-            this.idleSkinnedModel       = idleSkinnedModel;
-            this.runSkinnedModel        = runSkinnedModel;
-            this.biteSkinnedModel       = biteSkinnedModel;
-            this.takeDamageSkinnedModel = takeDamageSkinnedModel;
-            this.dieSkinnedModel        = dieSkinnedModel;
 
-            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
+            animationController.StartClip(skinnedModel.AnimationClips[animations[(int)MonsterAnimations.Idle]]);
             //animationController.CrossFade(skinnedModel.AnimationClips.Values[0], TimeSpan.FromSeconds(0.05f));
         }
 
         public void Idle()
         {
-            DoAction(idleSkinnedModel, true,MonsterAnimations.Idle);
+            DoAction(true,MonsterAnimations.Idle);
         }
 
         public void Run()
         {
-            DoAction(runSkinnedModel, true, MonsterAnimations.Run);
+            DoAction(true, MonsterAnimations.Run);
         }
 
         public void Bite()
         {
-            DoAction(biteSkinnedModel, false, MonsterAnimations.Bite);
+            DoAction(false, MonsterAnimations.Bite);
         }
 
         public void TakeDamage()
         {
-            DoAction(takeDamageSkinnedModel, false, MonsterAnimations.TakeDamage);
+            DoAction(false, MonsterAnimations.TakeDamage);
         }
 
         public void Die()
         {
-            DoAction(dieSkinnedModel, false, MonsterAnimations.Die);
+            DoAction(false, MonsterAnimations.Die);
         }
 
-        private void DoAction(SkinnedModel newSkinnedModel, bool LoopEnabled,MonsterAnimations anim)
+        private void DoAction(bool LoopEnabled,MonsterAnimations anim)
         {
-            skinnedModel = newSkinnedModel;
             animationController.LoopEnabled = LoopEnabled;
-            animationController.StartClip(skinnedModel.AnimationClips.Values[0]);
+            animationController.StartClip(skinnedModel.AnimationClips[animations[(int)anim]]);
             activeAnimation = anim;
 
         }
