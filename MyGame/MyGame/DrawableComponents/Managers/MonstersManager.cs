@@ -19,11 +19,7 @@ namespace MyGame
         private float reaminingTimeToNextSpawn = 0;
 
 
-        SkinnedModel idleSkinnedModel;
-        SkinnedModel runSkinnedModel;
-        SkinnedModel biteSkinnedModel;
-        SkinnedModel takeDamageSkinnedModel;
-        SkinnedModel dieSkinnedModel;
+        SkinnedModel skinnedModel;
 
         private Game1 myGame;
         public MonstersManager(Game1 game)
@@ -38,11 +34,7 @@ namespace MyGame
             hpBillBoardSystem = new HPBillboardSystem(game.GraphicsDevice,game.Content, new Vector2(100,20),monsters);
             //skinnedModel = Game.Content.Load<SkinnedModel>(@"Textures\EnemyBeast");
 
-            idleSkinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeastIdle");
-            biteSkinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeastBite");
-            takeDamageSkinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeastTakeDamage");
-            runSkinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeastRun");
-            dieSkinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeastDie");
+            skinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeast");
         }
 
         public bool checkCollisionWithBullet(Unit unit)
@@ -79,8 +71,7 @@ namespace MyGame
                 5, (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z));
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, new Vector3(.5f));
-            Monster monster = new Monster(myGame, idleSkinnedModel, runSkinnedModel, biteSkinnedModel,
-                                                takeDamageSkinnedModel, dieSkinnedModel, monsterUnit);
+            Monster monster = new Monster(myGame, skinnedModel, monsterUnit);
 
             monsters.Add(monster);
             hpBillBoardSystem.monstersTextures.Add(HPBillboardSystem.getTexture(monster.health));

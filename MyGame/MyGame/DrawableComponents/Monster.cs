@@ -26,33 +26,13 @@ namespace MyGame
             }
         }
 
-        public Monster(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
-                        SkinnedModel biteSkinnedModel, SkinnedModel takeDamageSkinnedModel,
-                        SkinnedModel dieSkinnedModel, Unit unit)
-            : base(game, unit, new MonsterModel(game, idleSkinnedModel, runSkinnedModel, biteSkinnedModel,
-                                                takeDamageSkinnedModel, dieSkinnedModel))
+        public Monster(Game1 game, SkinnedModel skinnedModel, Unit unit)
+            : base(game, unit, new MonsterModel(game, skinnedModel))
         {
             monsterModel = ((MonsterModel)cModel);
             monsterUnit = ((MonsterUnit)unit);
 
-            foreach (ModelMesh mesh in runSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
-
-            foreach (ModelMesh mesh in idleSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
-
-            foreach (ModelMesh mesh in biteSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
-
-            foreach (ModelMesh mesh in takeDamageSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
-
-
-            foreach (ModelMesh mesh in dieSkinnedModel.Model.Meshes)
+            foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
         }

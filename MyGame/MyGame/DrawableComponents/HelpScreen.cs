@@ -24,12 +24,12 @@ namespace MyGame
 
         private String[] menuItems = new String[] { "Movement", "Attack", "Camera", "Music", "FullScreen" };
         private String[] menuItemsDescription = new String[] { 
-            "press W/A/S/D for movement",
-            "press spacebar or left mouse button to attack", 
-            "press Up/Left/Down/Right/mouse wheel for moving the camera\n"+
+            "Press W/A/S/D for movement",
+            "Press spacebar or left mouse button to attack", 
+            "Press Up/Left/Down/Right/mouse wheel for moving the camera\n"+
             "Press C to toggle camera mode (1st person/3rd person)",
-            "press 'M' to toggle Music on/off",
-            "press 'rightAlt'+'Enter' to toggle full screen"};
+            "Press 'M' to toggle Music on/off",
+            "Press 'rightAlt'+'Enter' to toggle full screen"};
 
         private Game1 myGame;
         public HelpScreen(Game1 game)
@@ -64,18 +64,13 @@ namespace MyGame
             Vector2 pos;
             for (int i = 0; i < menuItems.Count(); i++)
             {
-                
-                pos = findCenteredPos(menuItems[i],mediumFont) + nextPosOffset;
+
+                pos = findCenteredPos(menuItems[i], mediumFont) + nextPosOffset;
                 spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
-                nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);          
-                //String[] lines = menuItemsDescription[i].Split('\n');
-                //foreach (String line in lines)
-                //{
-                    pos = findCenteredPos(menuItemsDescription[i], smallFont) + nextPosOffset;
-                    spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
-                    nextPosOffset += new Vector2(0, smallFont.MeasureString(menuItemsDescription[i]).Y);
-                //}
-                
+                nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);
+                pos = findCenteredPos(menuItemsDescription[i], smallFont) + nextPosOffset;
+                spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
+                nextPosOffset += new Vector2(0, smallFont.MeasureString(menuItemsDescription[i]).Y);
             }
 
             spriteBatch.End();

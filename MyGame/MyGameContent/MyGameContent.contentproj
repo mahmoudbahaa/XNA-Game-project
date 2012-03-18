@@ -73,14 +73,19 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="model\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>SkinnedModelImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
     <Compile Include="model\First Aid Kit2.FBX">
       <Name>First Aid Kit2</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="model\PlayerMarineRun.fbx">
-      <Name>PlayerMarineRun</Name>
-      <Importer>FbxImporter</Importer>
+    <Compile Include="model\PlayerMarine.fbx">
+      <Name>PlayerMarine</Name>
+      <Importer>SkinnedModelImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
     </Compile>
     <Compile Include="terrain-plain.bmp">
@@ -164,25 +169,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\EnemyBeastDie.fbx">
-      <Name>EnemyBeastDie</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="model\PlayerMarineAim.fbx">
-      <Name>PlayerMarineAim</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="model\PlayerMarineShoot.fbx">
-      <Name>PlayerMarineShoot</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="projectile.FBX">
       <Name>projectile</Name>
       <Importer>FbxImporter</Importer>
@@ -262,35 +248,6 @@
       <Name>090</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="model\EnemyBeastBite.fbx">
-      <Name>EnemyBeastBite</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="model\EnemyBeastIdle.fbx">
-      <Name>EnemyBeastIdle</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="model\EnemyBeastRun.fbx">
-      <Name>EnemyBeastRun</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="model\EnemyBeastTakeDamage.fbx">
-      <Name>EnemyBeastTakeDamage</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="model\PlayerMarineIdle.fbx">
-      <Name>PlayerMarineIdle</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>

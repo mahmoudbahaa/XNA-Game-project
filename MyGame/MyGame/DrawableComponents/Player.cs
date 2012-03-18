@@ -34,26 +34,24 @@ namespace MyGame
         }
 
 
-        public Player(Game1 game, SkinnedModel idleSkinnedModel, SkinnedModel runSkinnedModel,
-                        SkinnedModel aimSkinnedModel, SkinnedModel shootSkinnedModel, Unit unit)
-            : base(game, unit, new PlayerModel(game, idleSkinnedModel, runSkinnedModel,
-                                                aimSkinnedModel, shootSkinnedModel))
+        public Player(Game1 game, SkinnedModel skinnedModel, Unit unit)
+            : base(game, unit, new PlayerModel(game, skinnedModel))
         {
-            foreach (ModelMesh mesh in idleSkinnedModel.Model.Meshes)
+            foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
 
-            foreach (ModelMesh mesh in runSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
+            //foreach (ModelMesh mesh in runSkinnedModel.Model.Meshes)
+            //    foreach (SkinnedEffect effect in mesh.Effects)
+            //        effect.EnableDefaultLighting();
 
-            foreach (ModelMesh mesh in aimSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
+            //foreach (ModelMesh mesh in aimSkinnedModel.Model.Meshes)
+            //    foreach (SkinnedEffect effect in mesh.Effects)
+            //        effect.EnableDefaultLighting();
 
-            foreach (ModelMesh mesh in shootSkinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
+            //foreach (ModelMesh mesh in shootSkinnedModel.Model.Meshes)
+            //    foreach (SkinnedEffect effect in mesh.Effects)
+            //        effect.EnableDefaultLighting();
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             crossHairTex = game.Content.Load<Texture2D>("crosshair");

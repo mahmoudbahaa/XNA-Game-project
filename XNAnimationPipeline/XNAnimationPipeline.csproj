@@ -27,6 +27,7 @@
       <Private>False</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
@@ -56,6 +57,7 @@
     <Compile Include="AnimationClipContent.cs" />
     <Compile Include="AnimationClipContentDictionary.cs" />
     <Compile Include="AnimationKeyframeContent.cs" />
+    <Compile Include="SkinnedModelImporter.cs" />
     <Compile Include="TiffImporter.cs" />
     <Compile Include="Pipeline\AnimationClipWriter.cs" />
     <Compile Include="Pipeline\PathType.cs" />
