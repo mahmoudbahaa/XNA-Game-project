@@ -76,7 +76,7 @@ namespace MyGame
                 Vector3 pos = bullets[i].unit.position ;
                 if(Math.Abs(pos.Length()) > bulletRange || 
                     pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z)||
-                    myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
+                    myGame.checkCollisionWithBullet(bullets[i].unit))
                 {
                     bullets.RemoveAt(i);
                     --i;

@@ -31,8 +31,9 @@ namespace MyGame
             firstPersonWithWeapon ,
             firstPersonWithoutWeapon ,
         }
-        
 
+
+        private FirstAidManager firstAidManger;
         private Terrain terrain;
         private MonstersManager monsters;
         private DelayedAction delayedAction;
@@ -101,7 +102,7 @@ namespace MyGame
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
-            FirstAidManager firstAidManger = new FirstAidManager(this);
+           firstAidManger = new FirstAidManager(this);
 
             StateManager stateManager = new StateManager(this);
             AudioManager audioManager = new AudioManager(this);
@@ -190,7 +191,7 @@ namespace MyGame
 
         public bool checkCollisionWithBullet(Unit unit)
         {
-            return (monsters.checkCollisionWithBullet(unit));
+            return (monsters.checkCollisionWithBullet(unit)||firstAidManger.checkCollisionWithBullet(unit));
         }
 
         protected override void EndRun()

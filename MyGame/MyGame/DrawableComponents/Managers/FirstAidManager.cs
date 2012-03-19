@@ -27,15 +27,33 @@ namespace MyGame
             rnd = new Random();
         }
 
-        private void addEnemy()
+        private void addFirstAidKit()
         {
-            Vector3 pos = new Vector3((float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z),
-                80, (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z));
+            float x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
+            float z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
+            Vector3 pos = new Vector3(x, myGame.GetHeightAtPosition(x, z) + 30, z);
             //Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             Unit unit = new Unit(myGame, pos, Vector3.Zero, new Vector3(.5f));
             FirstAid firstAid = new FirstAid(myGame, myGame.Content.Load<Model>(@"model/First Aid Kit2"), unit);
 
             firstAidKits.Add(firstAid);
+        }
+
+        public bool checkCollisionWithBullet(Unit unit)
+        {
+            // If shot is still in play, check for collisions
+            for (int j = 0; j < firstAidKits.Count; ++j)
+            {
+                if (unit.collideWith(firstAidKits[j].unit))
+                {
+                    myGame.player.health += 50;
+                    if (myGame.player.health > 100)
+                        myGame.player.health = 100;
+                    firstAidKits.RemoveAt(j);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public override void Update(GameTime gameTime)
@@ -47,7 +65,7 @@ namespace MyGame
             if (reaminingTimeToNextSpawn < 0 && firstAidKits.Count < 5)
             {
                 reaminingTimeToNextSpawn = spawnTime;
-                addEnemy();
+                addFirstAidKit();
             }
             for (int j = 0; j < firstAidKits.Count; j++)// Monster monster in monsters)
             {
