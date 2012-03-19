@@ -32,7 +32,6 @@ namespace MyGame
             float x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
             float z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
             Vector3 pos = new Vector3(x, myGame.GetHeightAtPosition(x, z) + 30, z);
-            //Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             Unit unit = new Unit(myGame, pos, Vector3.Zero, new Vector3(.5f));
             FirstAid firstAid = new FirstAid(myGame, myGame.Content.Load<Model>(@"model/First Aid Kit2"), unit);
 
@@ -46,14 +45,19 @@ namespace MyGame
             {
                 if (unit.collideWith(firstAidKits[j].unit))
                 {
-                    myGame.player.health += 50;
-                    if (myGame.player.health > 100)
-                        myGame.player.health = 100;
-                    firstAidKits.RemoveAt(j);
+                    addHealth(j);
                     return true;
                 }
             }
             return false;
+        }
+
+        private void addHealth(int j)
+        {
+            myGame.player.health += 50;
+            if (myGame.player.health > 100)
+                myGame.player.health = 100;
+            firstAidKits.RemoveAt(j);
         }
 
         public override void Update(GameTime gameTime)
@@ -73,10 +77,7 @@ namespace MyGame
 
                 if (myGame.player.unit.collideWith(firstAidKits[j].unit))
                 {
-                    myGame.player.health += 50;
-                    if (myGame.player.health > 100)
-                        myGame.player.health = 100;
-                    firstAidKits.RemoveAt(j);
+                    addHealth(j);
                     j--;
                 }
             }

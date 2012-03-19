@@ -40,6 +40,7 @@ namespace MyGame
             this.PositionOffset = PositionOffset;
             this.TargetOffset = TargetOffset;
             this.RelativeCameraRotation = RelativeCameraRotation;
+            Mouse.SetPosition(myGame.GraphicsDevice.Viewport.Width / 2, myGame.GraphicsDevice.Viewport.Height / 2);
             lastMouseState = Mouse.GetState();
         }
 
@@ -168,7 +169,16 @@ namespace MyGame
             else if ((Position.Z - Target.Z) < scrollWheelValue / 2)
                 PositionOffset.Z += scrollWheelValue/2 ;
 
-            lastMouseState = mouseState;
+            if (keyState.IsKeyDown(Keys.LeftControl))
+            {
+                lastMouseState = mouseState;
+            }
+            else
+            {
+                Mouse.SetPosition(myGame.GraphicsDevice.Viewport.Width / 2, myGame.GraphicsDevice.Viewport.Height / 2);
+                lastMouseState = Mouse.GetState();
+            }
+
             base.Update(gameTime);
         }
     }
