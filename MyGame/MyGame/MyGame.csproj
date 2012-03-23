@@ -158,7 +158,6 @@
     <Compile Include="Units\Unit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\SkinnedAnimationPlayer.cs" />
     <Compile Include="DrawableComponents\Managers\Terrain.cs" />
   </ItemGroup>
   <ItemGroup>

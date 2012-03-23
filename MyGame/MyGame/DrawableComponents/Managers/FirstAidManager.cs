@@ -32,7 +32,7 @@ namespace MyGame
             float x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
             float z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
             Vector3 pos = new Vector3(x, myGame.GetHeightAtPosition(x, z) + 30, z);
-            Unit unit = new Unit(myGame, pos, Vector3.Zero, new Vector3(.5f));
+            Unit unit = new Unit(myGame, pos, Vector3.Zero, Constants.MEDKIT_SCALE);
             FirstAid firstAid = new FirstAid(myGame, myGame.Content.Load<Model>(@"model/First Aid Kit2"), unit);
 
             firstAidKits.Add(firstAid);

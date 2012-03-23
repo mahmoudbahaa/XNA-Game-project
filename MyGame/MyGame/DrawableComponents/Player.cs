@@ -16,9 +16,6 @@ namespace MyGame
         private SpriteBatch spriteBatch;
         private Texture2D crossHairTex;
         private DelayedAction delayedAction;
-        // Shot variables
-        //int shotDelay = 800;
-        //int shotCountdown = 0;
 
         public int health
         {
@@ -40,18 +37,6 @@ namespace MyGame
             foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
-
-            //foreach (ModelMesh mesh in runSkinnedModel.Model.Meshes)
-            //    foreach (SkinnedEffect effect in mesh.Effects)
-            //        effect.EnableDefaultLighting();
-
-            //foreach (ModelMesh mesh in aimSkinnedModel.Model.Meshes)
-            //    foreach (SkinnedEffect effect in mesh.Effects)
-            //        effect.EnableDefaultLighting();
-
-            //foreach (ModelMesh mesh in shootSkinnedModel.Model.Meshes)
-            //    foreach (SkinnedEffect effect in mesh.Effects)
-            //        effect.EnableDefaultLighting();
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             crossHairTex = game.Content.Load<Texture2D>("crosshair");
@@ -89,9 +74,6 @@ namespace MyGame
                 playerRun();
                 controlRight();
             }
-
-            unit.position.Y = myGame.GetHeightAtPosition(unit.position.X,
-                unit.position.Z) + 5;
 
             FireShots(gameTime);
    

@@ -11,7 +11,6 @@ namespace MyGame
     public class PlayerUnit : Unit
     {
         //here goes the player attribute like speed health etc ...
-        private float PlayerSpeed { get; set; }
         public int health;
 
         public PlayerUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
@@ -19,7 +18,6 @@ namespace MyGame
         {
             game.mediator.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT,
                 MyEvent.C_RIGHT, MyEvent.C_Pointer, MyEvent.M_BITE);
-            PlayerSpeed = .1f;
             health = 100;
         }
 
@@ -34,16 +32,16 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case  (int)MyEvent.C_LEFT:
-                        leftRight -= 1f;
+                        leftRight -= 1;
                         break;
                     case (int)MyEvent.C_RIGHT:
-                        leftRight += 1f;
+                        leftRight += 1;
                         break;
                     case (int)MyEvent.C_FORWARD:
-                        forwardBackward = -1f;
+                        forwardBackward = -1;
                         break;
                     case (int)MyEvent.C_BACKWARD:
-                        forwardBackward = 1f;
+                        forwardBackward = 1;
                         break;
                     case (int)MyEvent.C_Pointer:
                         float deltaX = (float)ev.args["deltaX"];
@@ -59,8 +57,10 @@ namespace MyGame
             //rotation += new Vector3(0, rotY * .025f, 0);
             Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
             position += Vector3.Transform(new Vector3(-leftRight, 0, -forwardBackward), rot) *
-               (float)gameTime.ElapsedGameTime.TotalMilliseconds * PlayerSpeed;
+               (float)gameTime.ElapsedGameTime.TotalMilliseconds * Constants.PLAYER_SPEED;
             position = Vector3.Clamp(position, new Vector3(Constants.FIELD_MIN_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
+
+            position.Y = myGame.GetHeightAtPosition2(position.X, position.Z);
 
 
             base.update(gameTime);

@@ -34,7 +34,7 @@ namespace MyGame
         public void AddBullet(Vector3 position,Vector3 rotation, Vector3 direction)
         {
             Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("projectile"),
-                new BulletUnit(myGame, position, rotation, 10 * Vector3.One, direction));
+                new BulletUnit(myGame, position, rotation, Constants.BULLET_SCALE, direction));
             bullets.Add(bullet);
 
         }
@@ -56,7 +56,7 @@ namespace MyGame
                         Vector3 rotatedDir = Vector3.Transform(direction, Matrix.CreateRotationY(-rotation.Y));
                     //direction.Y += 25;
                         float rotX = (float)Math.Atan2(rotatedDir.Y, rotatedDir.Z);
-                        AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0),
+                        AddBullet((Vector3)ev.args["position"] + Constants.BULLET_OFFSET,
                             rotation + new Vector3(-rotX, 0, 0), direction * shotSpeed);
                         break;
                 }
