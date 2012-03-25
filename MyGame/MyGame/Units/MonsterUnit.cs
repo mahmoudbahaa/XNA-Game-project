@@ -10,8 +10,6 @@ namespace MyGame
 {
     public class MonsterUnit:Unit
     {
-        private float MonsterSpeed {get;set;}
-
         private float timeToDie = 5000;
         public bool dead = false;
         public bool moving = false;
@@ -21,7 +19,6 @@ namespace MyGame
         public MonsterUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
-            MonsterSpeed = 3f;
             direction = Vector3.Transform(Vector3.Backward,
                 Matrix.CreateFromYawPitchRoll(rotation.Y,rotation.X,rotation.Z));
 
@@ -40,7 +37,7 @@ namespace MyGame
                     direction = Vector3.Transform(Vector3.Backward,
                    Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
 
-                    position += direction * MonsterSpeed;
+                    position += direction * Constants.MONSTER_SPEED;
 
                     //if (position.X < Constants.FIELD_MIN_X_Z || position.X > Constants.FIELD_MAX_X_Z ||
                     //    position.Z < Constants.FIELD_MIN_X_Z || position.Z > Constants.FIELD_MAX_X_Z)

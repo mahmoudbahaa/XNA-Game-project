@@ -31,8 +31,9 @@ namespace MyGame
             firstPersonWithWeapon ,
             firstPersonWithoutWeapon ,
         }
-        
 
+
+        private FirstAidManager firstAidManger;
         private Terrain terrain;
         private MonstersManager monsters;
         private DelayedAction delayedAction;
@@ -68,9 +69,9 @@ namespace MyGame
         {
             SkinnedModel pmodel = Content.Load<SkinnedModel>(@"model/PlayerMarine");
             //SkinningData skinnedData = pmodel.Tag as SkinningData;
-            PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, 50, 0),
+            PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, terrain.GetHeightAtPosition(0, 0) + 5, 0),
                 new Vector3(0, 0, 0),
-                new Vector3(2f));
+                Constants.PLAYER_SCALE);
             Player player = new Player(this, pmodel,playerUnit);
             return player;
         }
@@ -90,18 +91,21 @@ namespace MyGame
             Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, new Vector3(0, 40, 150), new Vector3(0, 50, 0), new Vector3(0, 0, 0));
+            camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
+            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain2"), Constants.TERRAIN_CELL_SIZE,
+                Constants.TERRAIN_HEIGHT, Content.Load<Texture2D>("grass"), Constants.TERRAIN_TEXTURE_TILING, new Vector3(1, -1, 0));
+
             player = initializePlayer();
             Sky sky = intitializeSky();
 
+
+            
             Weapon weapon = new Weapon(this, player, Content.Load<Model>("model//WeaponMachineGun"),
                 new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
-            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), 10, 100,
-               Content.Load<Texture2D>("grass"), 100, new Vector3(1, -1, 0));
             BulletsManager bullets = new BulletsManager(this);
             scoreBoard = new ScoreBoard(this);
             monsters = new MonstersManager(this);
-            FirstAidManager firstAidManger = new FirstAidManager(this);
+           firstAidManger = new FirstAidManager(this);
 
             StateManager stateManager = new StateManager(this);
             AudioManager audioManager = new AudioManager(this);
@@ -190,7 +194,7 @@ namespace MyGame
 
         public bool checkCollisionWithBullet(Unit unit)
         {
-            return (monsters.checkCollisionWithBullet(unit));
+            return (monsters.checkCollisionWithBullet(unit)||firstAidManger.checkCollisionWithBullet(unit));
         }
 
         protected override void EndRun()

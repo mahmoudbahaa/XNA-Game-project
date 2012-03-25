@@ -31,7 +31,7 @@ namespace MyGame
             rnd = new Random();
 
 
-            hpBillBoardSystem = new HPBillboardSystem(game.GraphicsDevice,game.Content, new Vector2(100,20),monsters);
+            hpBillBoardSystem = new HPBillboardSystem(game.GraphicsDevice, game.Content, Constants.HP_SIZE, monsters);
             //skinnedModel = Game.Content.Load<SkinnedModel>(@"Textures\EnemyBeast");
 
             skinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeast");
@@ -67,10 +67,10 @@ namespace MyGame
 
         private void addEnemy()
         {
-            Vector3 pos = new Vector3((float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z),
-                5, (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z));
+            Vector3 pos = new Vector3((float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z*2 - Constants.FIELD_MAX_X_Z),
+                5, (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z));
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
-            MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, new Vector3(.5f));
+            MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, Constants.MONSTER_SCALE);
             Monster monster = new Monster(myGame, skinnedModel, monsterUnit);
 
             monsters.Add(monster);

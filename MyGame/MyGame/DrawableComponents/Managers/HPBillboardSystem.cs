@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Helper;
 
 namespace MyGame
 {
@@ -80,7 +81,7 @@ namespace MyGame
             // For each billboard...
             for (int i = 0; i < nBillboards * 4; i += 4)
             {
-                Vector3 pos = monsters[i / 4].unit.position + new Vector3(0,60,0);
+                Vector3 pos = monsters[i / 4].unit.position + Constants.HP_OFFSET;
 
                 // Add 4 vertices at the billboard's position
                 particles[i + 0] = new VertexPositionTexture(pos, new Vector2(0, 0));

@@ -157,18 +157,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\axe.jpg">
-      <Name>axe</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\dwarf.jpg">
-      <Name>dwarf</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="projectile.FBX">
       <Name>projectile</Name>
       <Importer>FbxImporter</Importer>
@@ -288,6 +276,16 @@
   <ItemGroup>
     <Compile Include="crosshair.png">
       <Name>crosshair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Textures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="terrain2.bmp">
+      <Name>terrain2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

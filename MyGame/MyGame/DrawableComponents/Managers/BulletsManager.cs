@@ -34,7 +34,7 @@ namespace MyGame
         public void AddBullet(Vector3 position,Vector3 rotation, Vector3 direction)
         {
             Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("projectile"),
-                new BulletUnit(myGame, position, rotation, 10 * Vector3.One, direction));
+                new BulletUnit(myGame, position, rotation, Constants.BULLET_SCALE, direction));
             bullets.Add(bullet);
 
         }
@@ -52,10 +52,12 @@ namespace MyGame
                 {
                     case (int)MyEvent.C_ATTACK_BULLET_END:
                         Vector3 direction = Vector3.Normalize(myGame.camera.Target - myGame.camera.Position);
-                        //direction.Y += 25;
-                        float rotX = (float)Math.Atan2(direction.Y, direction.Z);
-                        AddBullet((Vector3)ev.args["position"] + new Vector3(0, 40, 0),
-                            (Vector3)ev.args["rotation"] + new Vector3(-rotX, 0, 0), direction * shotSpeed);
+                        Vector3 rotation = (Vector3)ev.args["rotation"];
+                        Vector3 rotatedDir = Vector3.Transform(direction, Matrix.CreateRotationY(-rotation.Y));
+                    //direction.Y += 25;
+                        float rotX = (float)Math.Atan2(rotatedDir.Y, rotatedDir.Z);
+                        AddBullet((Vector3)ev.args["position"] + Constants.BULLET_OFFSET,
+                            rotation + new Vector3(-rotX, 0, 0), direction * shotSpeed);
                         break;
                 }
             }
@@ -74,7 +76,7 @@ namespace MyGame
                 Vector3 pos = bullets[i].unit.position ;
                 if(Math.Abs(pos.Length()) > bulletRange || 
                     pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z)||
-                    myGame.checkCollisionWithBullet((BulletUnit)bullets[i].unit))
+                    myGame.checkCollisionWithBullet(bullets[i].unit))
                 {
                     bullets.RemoveAt(i);
                     --i;
