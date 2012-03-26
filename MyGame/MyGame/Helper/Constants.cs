@@ -17,7 +17,6 @@ namespace Helper
 
 
         public const int FIELD_MAX_X_Z = (int)(250 * TERRAIN_CELL_SIZE * 480 / 512);
-        public const int FIELD_MIN_X_Z = -(int)(250 * TERRAIN_CELL_SIZE * 480 / 512);
 
         public static Vector3 CAMERA_POSITION = new Vector3(0, 40, 150);
         public static Vector3 CAMERA_TARGET = new Vector3(0, 50, 0);
