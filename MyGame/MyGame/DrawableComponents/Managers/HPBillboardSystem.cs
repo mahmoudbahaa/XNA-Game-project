@@ -99,12 +99,12 @@ namespace MyGame
             }
 
             // Create and set the vertex buffer
-            verts = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture), 
+            verts = new VertexBuffer(graphicsDevice, typeof(VertexPositionTexture),
                 nBillboards * 4, BufferUsage.WriteOnly);
             verts.SetData<VertexPositionTexture>(particles);
 
             // Create and set the index buffer
-            ints = new IndexBuffer(graphicsDevice, IndexElementSize.ThirtyTwoBits, 
+            ints = new IndexBuffer(graphicsDevice, IndexElementSize.ThirtyTwoBits,
                 nBillboards * 6, BufferUsage.WriteOnly);
             ints.SetData<int>(indices);
         }
@@ -113,17 +113,17 @@ namespace MyGame
         {
             switch (health)
             {
-                case 00: return HP000; 
-                case 10: return HP010; 
-                case 20: return HP020; 
-                case 30: return HP030; 
-                case 40: return HP040; 
-                case 50: return HP050; 
-                case 60: return HP060; 
-                case 70: return HP070; 
-                case 80: return HP080; 
-                case 90: return HP090; 
-                case 100: return HP100; 
+                case 00: return HP000;
+                case 10: return HP010;
+                case 20: return HP020;
+                case 30: return HP030;
+                case 40: return HP040;
+                case 50: return HP050;
+                case 60: return HP060;
+                case 70: return HP070;
+                case 80: return HP080;
+                case 90: return HP090;
+                case 100: return HP100;
             }
 
             return HP100;
@@ -216,7 +216,7 @@ namespace MyGame
 
             effect.CurrentTechnique.Passes[0].Apply();
 
-            graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, 
+            graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0,
                 4, 6 * monsterId, 2);
         }
     }

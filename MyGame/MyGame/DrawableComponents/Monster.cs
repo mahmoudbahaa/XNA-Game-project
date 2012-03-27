@@ -20,40 +20,44 @@ namespace MyGame
 
         public MonsterModel.MonsterAnimations ActiveAnimation
         {
-            get 
+            get
             {
                 return monsterModel.activeAnimation;
             }
         }
 
-        public Monster(Game1 game, SkinnedModel skinnedModel, Unit unit)
+        public Monster(Game1 game, Model skinnedModel, Unit unit)
             : base(game, unit, new MonsterModel(game, skinnedModel))
         {
             monsterModel = ((MonsterModel)cModel);
             monsterUnit = ((MonsterUnit)unit);
 
-            foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
+            foreach (ModelMesh mesh in skinnedModel.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
         }
 
         public override void Update(GameTime gameTime)
         {
-            monsterModel.animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
+            //monsterModel.animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
 
             if ((monsterModel.activeAnimation == MonsterModel.MonsterAnimations.TakeDamage ||
-                monsterModel.activeAnimation == MonsterModel.MonsterAnimations.Bite)&&
-                !monsterModel.animationController.IsPlaying)
+                monsterModel.activeAnimation == MonsterModel.MonsterAnimations.Bite))
             {
-                if (monsterModel.isRunning)
-                {
-                    monsterUnit.moving = true;
-                    monsterModel.Run();
-                }
+                if (monsterModel.countDown > 0)
+                    monsterModel.countDown -= gameTime.ElapsedGameTime.Milliseconds;
                 else
                 {
-                    monsterUnit.moving = false;
-                    monsterModel.Idle();
+                    if (monsterModel.isRunning)
+                    {
+                        monsterUnit.moving = true;
+                        monsterModel.Run();
+                    }
+                    else
+                    {
+                        monsterUnit.moving = false;
+                        monsterModel.Idle();
+                    }
                 }
             }
 

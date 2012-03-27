@@ -25,23 +25,18 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            
-            //cModel.baseWorld = player.unit.baseWorld * player.RHandTransformation();
-            //Vector3 transform = Vector3.Transform(Vector3.Zero, player.RHandTransformation());
-
-            Vector3 cameraDirection = myGame.camera.Target - myGame.camera.Position;
-            Vector3 perp =  Vector3.Normalize(Vector3.Cross(cameraDirection, Vector3.Up));
-            unit.baseWorld = player.unit.baseWorld * player.RHandTransformation();
-            unit.position = player.unit.position - 2 * player.unit.scale * perp;
-            unit.rotation = player.unit.rotation;// +Matrix.Invert(player.RHandTransformation()).Translation;
-            //unit.baseWorld = player.RHandTransformation();
-            unit.scale = player.unit.scale;//new Vector3(2f);
+            //Vector3 cameraDirection = myGame.camera.Target - myGame.camera.Position;
+            //Vector3 perp =  Vector3.Normalize(Vector3.Cross(cameraDirection, Vector3.Up));
+            unit.baseWorld = player.unit.baseWorld *player.RHandTransformation();
+            unit.position = player.unit.position;// -2 * player.unit.scale * perp;
+            unit.rotation = player.unit.rotation;
+            unit.scale = player.unit.scale;
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            if(myGame.cameraMode != Game1.CameraMode.firstPersonWithoutWeapon)
+            if (myGame.cameraMode != Game1.CameraMode.firstPersonWithoutWeapon)
                 base.Draw(gameTime);
         }
     }

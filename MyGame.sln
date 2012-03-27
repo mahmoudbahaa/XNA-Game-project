@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAnimationPipeline", "XNAn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAnimation", "XNAnimation\XNAnimation.csproj", "{2A857645-A225-4177-99BD-C8F6D22B72FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentPipelineExtensions", "ContentPipelineExtensions\ContentPipelineExtensions.csproj", "{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Debug|x86.Build.0 = Debug|x86
 		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Release|x86.ActiveCfg = Release|x86
 		{2A857645-A225-4177-99BD-C8F6D22B72FA}.Release|x86.Build.0 = Release|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.Build.0 = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

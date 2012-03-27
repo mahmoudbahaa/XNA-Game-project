@@ -13,7 +13,7 @@ namespace MyGame
     {
         public Model Model { get; set; }
 
-        protected Matrix baseWorld { get; set; }
+        public Matrix baseWorld { get; set; }
 
         protected Matrix[] modelTransforms;
 

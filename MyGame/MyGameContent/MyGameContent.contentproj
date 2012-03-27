@@ -37,6 +37,12 @@
     <RootNamespace>MyGameContent</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DigitalRune.Animation.Content.Pipeline">
+      <HintPath>..\..\dlls\DigitalRune.Animation.Content.Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Mathematics.Content.Pipeline">
+      <HintPath>..\..\dlls\DigitalRune.Mathematics.Content.Pipeline.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -57,9 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XNAnimationPipeline\XNAnimationPipeline.csproj">
-      <Project>{863795EB-0753-4461-AF43-48F38828D8E0}</Project>
-      <Name>XNAnimationPipeline</Name>
+    <ProjectReference Include="..\..\ContentPipelineExtensions\ContentPipelineExtensions.csproj">
+      <Project>{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}</Project>
+      <Name>ContentPipelineExtensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

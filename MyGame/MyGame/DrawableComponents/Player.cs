@@ -31,10 +31,10 @@ namespace MyGame
         }
 
 
-        public Player(Game1 game, SkinnedModel skinnedModel, Unit unit)
+        public Player(Game1 game, Model skinnedModel, Unit unit)
             : base(game, unit, new PlayerModel(game, skinnedModel))
         {
-            foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
+            foreach (ModelMesh mesh in skinnedModel.Meshes)
                 foreach (SkinnedEffect effect in mesh.Effects)
                     effect.EnableDefaultLighting();
 
@@ -49,7 +49,7 @@ namespace MyGame
         {
             if (myGame.paused)
                 return;
-            ((AnimatedModel)cModel).animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
+            //((AnimatedModel)cModel).animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
             //Custom Update
             ((ChaseCamera)myGame.camera).Move(unit.position,  unit.rotation + new Vector3(0,MathHelper.Pi,0));
 
@@ -141,7 +141,7 @@ namespace MyGame
         private void DrawHP()
         {
             Rectangle rect = new Rectangle(0, 0, 300, 50);
-            spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect , Color.White);
+            spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect, Color.White);
         }
 
         public override void Draw(GameTime gameTime)

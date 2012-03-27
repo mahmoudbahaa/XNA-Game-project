@@ -19,7 +19,7 @@ namespace MyGame
         private float reaminingTimeToNextSpawn = 0;
 
 
-        SkinnedModel skinnedModel;
+        Model skinnedModel;
 
         private Game1 myGame;
         public MonstersManager(Game1 game)
@@ -34,7 +34,7 @@ namespace MyGame
             hpBillBoardSystem = new HPBillboardSystem(game.GraphicsDevice, game.Content, Constants.HP_SIZE, monsters);
             //skinnedModel = Game.Content.Load<SkinnedModel>(@"Textures\EnemyBeast");
 
-            skinnedModel = Game.Content.Load<SkinnedModel>(@"model\EnemyBeast");
+            skinnedModel = Game.Content.Load<Model>(@"model\EnemyBeast");
         }
 
         public bool checkCollisionWithBullet(Unit unit)
@@ -67,7 +67,7 @@ namespace MyGame
 
         private void addEnemy()
         {
-            Vector3 pos = new Vector3((float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z*2 - Constants.FIELD_MAX_X_Z),
+            Vector3 pos = new Vector3((float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z),
                 5, (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z));
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, Constants.MONSTER_SCALE);
@@ -110,7 +110,7 @@ namespace MyGame
                 }
             }
 
-            if (monsters.Count != 0) 
+            if (monsters.Count != 0)
                 hpBillBoardSystem.generateParticles();
             base.Update(gameTime);
         }
@@ -120,7 +120,7 @@ namespace MyGame
             foreach (Monster monster in monsters)
                 monster.Draw(gameTime);
 
-            if (monsters.Count != 0) 
+            if (monsters.Count != 0)
                 hpBillBoardSystem.Draw(myGame.camera.View, myGame.camera.Projection,
                     ((ChaseCamera)myGame.camera).Up, ((ChaseCamera)myGame.camera).Right);
             base.Draw(gameTime);

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using DigitalRune.Animation;
+using DigitalRune.Animation.Character;
 using XNAnimation;
 using Helper;
 
@@ -12,6 +14,8 @@ namespace MyGame
     public class PlayerModel : AnimatedModel
     {
         readonly String[] animations = new String[] { "Idle", "Run", "Aim", "Shoot" };
+
+        float countdown;
 
         public enum PlayerAnimations
         {
@@ -28,15 +32,16 @@ namespace MyGame
 
         //private int activeAnimationClip;
 
-        static int RIGHT_HAND_BONE_ID = 15;
+        //static int RIGHT_HAND_BONE_ID = 15;
 
-        public PlayerModel(Game1 game, SkinnedModel skinnedModel)
+        public PlayerModel(Game1 game, Model skinnedModel)
             : base(game, skinnedModel)
         {
             game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
-            animationController.Speed = 1.2f;
+            //animationController.Speed = 1.2f;
+
             activeAnimation = PlayerAnimations.Idle;
-            playAnimation();    
+            playAnimation(true);    
         }
 
         public override void Draw(GameTime gameTime)
@@ -57,7 +62,7 @@ namespace MyGame
                 }
             }
             Run();
-            Attack();
+            Attack(gameTime);
             events.Clear();
 
             if (myGame.cameraMode == Game1.CameraMode.thirdPerson)
@@ -65,27 +70,35 @@ namespace MyGame
             
         }
 
-        private void Attack()
+        private void Attack(GameTime gameTime)
         {
             if (attacking)
             {
-                if (animationController.IsPlaying && activeAnimation != PlayerAnimations.Aim &&
+                if (AnimationService.IsAnimated((IAnimatableProperty)_skeletonPose) && activeAnimation != PlayerAnimations.Aim &&
                     activeAnimation != PlayerAnimations.Shoot)
                 {
-                    activeAnimation = PlayerAnimations.Aim ;
-                    animationController.LoopEnabled = false;
-                    playAnimation();
+                    activeAnimation = PlayerAnimations.Aim;
+                    playAnimation(false);
+                    countdown = theAnimations[animations[(int)activeAnimation]].GetTotalDuration().Milliseconds;
                 }
-                else if (!animationController.IsPlaying && activeAnimation == PlayerAnimations.Aim)
+                else if (countdown > 0 && activeAnimation == PlayerAnimations.Aim)
                 {
-                    activeAnimation = PlayerAnimations.Shoot;
-                    animationController.LoopEnabled = false;
-                    playAnimation();
+                    countdown -= gameTime.ElapsedGameTime.Milliseconds;
+                    if (countdown < 0)
+                    {
+                        activeAnimation = PlayerAnimations.Shoot;
+                        playAnimation(false);
+                        countdown = theAnimations[animations[(int)activeAnimation]].GetTotalDuration().Milliseconds;
+                    }
                 }
-                else if(!animationController.IsPlaying && activeAnimation == PlayerAnimations.Shoot)
+                else if (countdown > 0  && activeAnimation == PlayerAnimations.Shoot)
                 {
-                    attacking = false;
-                    shooting = true;
+                    countdown -= gameTime.ElapsedGameTime.Milliseconds;
+                    if (countdown < 0)
+                    {
+                        attacking = false;
+                        shooting = true;
+                    }
                 }
             }
         }
@@ -97,8 +110,7 @@ namespace MyGame
                 if (activeAnimation != PlayerAnimations.Run && !attacking)
                 {
                     activeAnimation = PlayerAnimations.Run;
-                    animationController.LoopEnabled = true;
-                    playAnimation();
+                    playAnimation(true);
                 }
             }
             else
@@ -106,22 +118,71 @@ namespace MyGame
                 if (activeAnimation != PlayerAnimations.Idle && !attacking)
                 {
                     activeAnimation = PlayerAnimations.Idle;
-                    animationController.LoopEnabled = true;
-                    playAnimation();
+                    playAnimation(true);
                 }
             }
         }
 
         public Matrix RHandTransformation()
         {
-            return Model.Bones["R_Hand"].Transform
-                * animationController.SkinnedBoneTransforms[RIGHT_HAND_BONE_ID];
-               //* animationController.SkinnedBoneTransforms[0];
+              int handBoneIndex = _skeletonPose.Skeleton.GetIndex("R_Hand2");
+              return _skeletonPose.SkinningMatricesXna[handBoneIndex];
         }
 
-        private void playAnimation()
+        private void playAnimation(bool loop)
         {
-            animationController.StartClip(skinnedModel.AnimationClips[animations[(int)activeAnimation]]);
+            // The Dude model contains only one animation, which is a SkeletonKeyFrameAnimation with 
+            // a walk cycle.
+            SkeletonKeyFrameAnimation animation = theAnimations[animations[(int)activeAnimation]];
+
+            // Wrap the walk animation in an animation clip that loops the animation forever.
+            AnimationClip<SkeletonPose> loopingAnimation = new AnimationClip<SkeletonPose>(animation)
+            {
+                LoopBehavior = loop?LoopBehavior.Cycle:LoopBehavior.Constant,
+                Duration = loop ? TimeSpan.MaxValue : animation.GetTotalDuration(),
+            };
+
+            if (activeAnimation == PlayerAnimations.Shoot || activeAnimation == PlayerAnimations.Aim)
+            {
+                // The SkeletonKeyFrameAnimations allows to set a weight for each bone channel. 
+                // For the 'Shoot' animation, we set the weight to 0 for all bones that are 
+                // not descendents of the second spine bone (bone index 2). That means, the 
+                // animation affects only the upper body bones and is disabled on the lower 
+                // body bones.
+                for (int i = 0; i < skeleton.NumberOfBones; i++)
+                {
+                    if(i>15 || i==1)
+                    //if (!SkeletonHelper.IsAncestorOrSelf(_skeletonPose,_skeletonPose.Skeleton.GetIndex("spine2") , i))
+                        animation.SetWeight(i, 0);
+                }
+
+                AnimationService.StartAnimation(animation, (IAnimatableProperty)_skeletonPose,
+                                        AnimationTransitions.Compose()).AutoRecycle();
+            }
+
+            else
+            {
+                // Start the animation and keep the created AnimationController.
+                // We must cast the SkeletonPose to IAnimatableProperty because SkeletonPose implements
+                // IAnimatableObject and IAnimatableProperty. We must tell the AnimationService if we want
+                // to animate an animatable property of the SkeletonPose (IAnimatableObject), or if we want to
+                // animate the whole SkeletonPose (IAnimatableProperty).
+                _animationController = AnimationService.StartAnimation(loopingAnimation, (IAnimatableProperty)_skeletonPose);
+
+                // The animation will be applied the next time AnimationManager.ApplyAnimations() is called
+                // in the mainloop. ApplyAnimations() is called before this method is called, therefore
+                // the model will be rendered in the bind pose in this frame and in the first animation key
+                // frame in the next frame - this creates an annoying visual popping effect. 
+                // We can avoid this if we call AnimationController.UpdateAndApply(). This will immediately
+                // change the model pose to the first key frame pose.
+                _animationController.UpdateAndApply();
+
+                // (Optional) Enable Auto-Recycling: 
+                // After the animation is stopped, the animation service will recycle all
+                // intermediate data structures. 
+                _animationController.AutoRecycle();
+            }
+            //animationController.StartClip(skinnedModel.AnimationClips[animations[(int)activeAnimation]]);
             //animationController.CrossFade(skinnedModel.AnimationClips.Values[activeAnimationClip], TimeSpan.FromSeconds(0.5f));
         }
 

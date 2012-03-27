@@ -60,6 +60,18 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DigitalRune">
+      <HintPath>..\..\dlls\DigitalRune.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Animation">
+      <HintPath>..\..\dlls\DigitalRune.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Geometry">
+      <HintPath>..\..\dlls\DigitalRune.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Mathematics">
+      <HintPath>..\..\dlls\DigitalRune.Mathematics.dll</HintPath>
+    </Reference>
     <Reference Include="fbDeprofiler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\fbDeprofiler.dll</HintPath>

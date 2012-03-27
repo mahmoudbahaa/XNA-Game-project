@@ -7,6 +7,7 @@ using System;
 using Helper;
 using control;
 using XNAnimation;
+using DigitalRune.Animation;
 
 namespace MyGame
 {
@@ -22,6 +23,8 @@ namespace MyGame
         public Player player;
         public bool paused = false;
         public bool gameOver = false;
+
+        private AnimationManager _animationManager;
 
         public CameraMode cameraMode = CameraMode.thirdPerson;
 
@@ -67,10 +70,10 @@ namespace MyGame
 
         private Player initializePlayer()
         {
-            SkinnedModel pmodel = Content.Load<SkinnedModel>(@"model/PlayerMarine");
+            Model pmodel = Content.Load<Model>(@"model/PlayerMarine");
             //SkinningData skinnedData = pmodel.Tag as SkinningData;
             PlayerUnit playerUnit = new PlayerUnit(this, new Vector3(0, terrain.GetHeightAtPosition(0, 0) + 5, 0),
-                new Vector3(0, 0, 0),
+                Vector3.Zero,
                 Constants.PLAYER_SCALE);
             Player player = new Player(this, pmodel,playerUnit);
             return player;
@@ -88,6 +91,15 @@ namespace MyGame
 
         private void initializeGame()
         {
+            // Add the animation service.
+            _animationManager = new AnimationManager();
+
+            Services.AddService(typeof(IAnimationService), _animationManager);
+
+
+
+
+
             Components.Clear();
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
@@ -113,6 +125,7 @@ namespace MyGame
             //CDrawableComponent test = new CDrawableComponent(this,
             //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
             //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
+
 
             Components.Add(camera);
             Components.Add(sky);
@@ -153,6 +166,16 @@ namespace MyGame
 
         protected override void Update(GameTime gameTime)
         {
+
+            if (_animationManager != null)
+            {
+                _animationManager.Update(gameTime.ElapsedGameTime);
+                _animationManager.ApplyAnimations();
+            }
+
+
+
+
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Escape))
                 Exit();
@@ -194,7 +217,7 @@ namespace MyGame
 
         public bool checkCollisionWithBullet(Unit unit)
         {
-            return (monsters.checkCollisionWithBullet(unit)||firstAidManger.checkCollisionWithBullet(unit));
+            return (monsters.checkCollisionWithBullet(unit) || firstAidManger.checkCollisionWithBullet(unit));
         }
 
         protected override void EndRun()
@@ -213,5 +236,7 @@ namespace MyGame
             float steepness;
             return terrain.GetHeightAtPosition(X, Z, out steepness);
         }
+
+
     }
 }
