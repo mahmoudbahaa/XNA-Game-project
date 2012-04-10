@@ -55,7 +55,7 @@ namespace MyGame
             if (myGame.paused)
             {
                 if(myGame.gameOver)
-                    Draw("Game Over");
+                    Draw("Game  ver  ");
                 else
                     Draw("PAUSED");
             }

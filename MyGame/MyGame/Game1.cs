@@ -16,6 +16,7 @@ namespace MyGame
 
         GraphicsDeviceManager graphics;
 
+        public DifficultyConstants difficultyConstants;
         public Camera camera;
         public Controller controller;
         public Mediator mediator;
@@ -33,12 +34,17 @@ namespace MyGame
         }
 
 
+        private Sky sky;
         private FirstAidManager firstAidManger;
         private Terrain terrain;
         private MonstersManager monsters;
         private DelayedAction delayedAction;
         private DelayedAction delayedAction2;
         private ScoreBoard scoreBoard;
+        private Weapon weapon;
+        private BulletsManager bullets;
+        private StateManager stateManager;
+        private AudioManager audioManager;
         //assal
 
         // Shot variables
@@ -62,7 +68,7 @@ namespace MyGame
             delayedAction = new DelayedAction(800);
             delayedAction2 = new DelayedAction();
             mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
-            mediator.fireEvent(MyEvent.G_StartGame);
+            //mediator.fireEvent(MyEvent.G_StartGame);
         }
 
         private Player initializePlayer()
@@ -86,33 +92,9 @@ namespace MyGame
             return sky;
         }
 
-        private void initializeGame()
+        private void initializeGame2()
         {
             Components.Clear();
-            //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
-            //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
-            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain2"), Constants.TERRAIN_CELL_SIZE,
-                Constants.TERRAIN_HEIGHT, Content.Load<Texture2D>("grass"), Constants.TERRAIN_TEXTURE_TILING, new Vector3(1, -1, 0));
-
-            player = initializePlayer();
-            Sky sky = intitializeSky();
-
-
-            
-            Weapon weapon = new Weapon(this, player, Content.Load<Model>("model//WeaponMachineGun"),
-                new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
-            BulletsManager bullets = new BulletsManager(this);
-            scoreBoard = new ScoreBoard(this);
-            monsters = new MonstersManager(this);
-           firstAidManger = new FirstAidManager(this);
-
-            StateManager stateManager = new StateManager(this);
-            AudioManager audioManager = new AudioManager(this);
-
-            //CDrawableComponent test = new CDrawableComponent(this,
-            //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
-            //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
 
             Components.Add(camera);
             Components.Add(sky);
@@ -126,6 +108,43 @@ namespace MyGame
             Components.Add(scoreBoard);
             Components.Add(stateManager);
             Components.Add(audioManager);
+        }
+
+        private void initializeGame1()
+        {
+            switch (StartScreen.Difficulty)
+            {
+                case Constants.Difficulties.Novice: difficultyConstants = new NoviceConstants(); break ;
+                case Constants.Difficulties.Advanced: difficultyConstants = new AdvancedConstants(); break;
+                case Constants.Difficulties.Xtreme: difficultyConstants = new XtremeConstants(); break;
+
+            }
+            //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
+            //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
+            camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
+            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terraintTest"), Constants.TERRAIN_CELL_SIZE,
+                Constants.TERRAIN_HEIGHT, Content.Load<Texture2D>("grass"), Constants.TERRAIN_TEXTURE_TILING, new Vector3(1, -1, 0));
+
+            player = initializePlayer();
+            sky = intitializeSky();
+
+
+            
+            weapon = new Weapon(this, player, Content.Load<Model>("model//WeaponMachineGun"),
+                new Unit(this, Vector3.Zero, Vector3.Zero, Vector3.One));
+            bullets = new BulletsManager(this);
+            scoreBoard = new ScoreBoard(this);
+            monsters = new MonstersManager(this);
+           firstAidManger = new FirstAidManager(this);
+
+            stateManager = new StateManager(this);
+            audioManager = new AudioManager(this);
+
+            //CDrawableComponent test = new CDrawableComponent(this,
+            //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
+            //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
+
+           
         }
 
 
@@ -149,6 +168,7 @@ namespace MyGame
         protected override void LoadContent()
         {
             initializeStartMenu();
+            initializeGame1();
         }
 
         protected override void Update(GameTime gameTime)
@@ -162,7 +182,7 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case (int)MyEvent.G_Exit: Exit(); break;
-                    case (int)MyEvent.G_StartGame: initializeGame(); break;
+                    case (int)MyEvent.G_StartGame: initializeGame2(); break;
                     case (int)MyEvent.G_StartScreen: initializeStartMenu(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }

@@ -111,22 +111,22 @@ namespace MyGame
 
         public static Texture2D getTexture(int health)
         {
-            switch (health)
+            switch (health/10*10)
             {
-                case 00: return HP000; 
-                case 10: return HP010; 
-                case 20: return HP020; 
-                case 30: return HP030; 
-                case 40: return HP040; 
-                case 50: return HP050; 
-                case 60: return HP060; 
-                case 70: return HP070; 
-                case 80: return HP080; 
-                case 90: return HP090; 
+                case 00 : return HP000; 
+                case 10 : return HP010; 
+                case 20 : return HP020; 
+                case 30 : return HP030; 
+                case 40 : return HP040; 
+                case 50 : return HP050; 
+                case 60 : return HP060; 
+                case 70 : return HP070; 
+                case 80 : return HP080; 
+                case 90 : return HP090; 
                 case 100: return HP100; 
             }
 
-            return HP100;
+            return HP000;
         }
 
         public void setTexture(int j)
