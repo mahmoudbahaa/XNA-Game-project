@@ -15,6 +15,7 @@ namespace MyGame
         private SpriteBatch spriteBatch;
         private int chosenMenuItem = 0;
         private DelayedAction delayedAction;
+        public static Constants.Difficulties Difficulty = Constants.Difficulties.Advanced;
         // Shot variables
         //int keyDelay = 100;
         //int keyCountdown = 100;
@@ -29,7 +30,7 @@ namespace MyGame
         private const String title1 = "XNA Shooter";
         private const String title2 = "Xterme - Novice - Advanced";
 
-        private String[] menuItems = new String[]{"Start Game" , "Help" , "Exit"};
+        private String[] menuItems = new String[]{"Start Game" , "Help" ,"Difficulty <-$$->" , "Exit"};
 
         private Texture2D emptyTex;
 
@@ -49,6 +50,8 @@ namespace MyGame
             KeyboardState keyState = Keyboard.GetState();
             if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Down) ||
                                                       keyState.IsKeyDown(Keys.Up) ||
+                                                      keyState.IsKeyDown(Keys.Left) ||
+                                                      keyState.IsKeyDown(Keys.Right) ||
                                                       (keyState.IsKeyDown(Keys.Enter) &&
                                                       !keyState.IsKeyDown(Keys.RightAlt))))
             {
@@ -61,6 +64,19 @@ namespace MyGame
                 {
                     chosenMenuItem--;
                     chosenMenuItem = (chosenMenuItem + menuItems.Count()) % menuItems.Count();
+                }
+                else if (keyState.IsKeyDown(Keys.Left) && chosenMenuItem == 2)
+                {
+                    Difficulty--;
+                    Difficulty = (Constants.Difficulties)(((int)Difficulty + Constants.DifficultiesString.Count())
+                        % Constants.DifficultiesString.Count());
+                }
+                else if (keyState.IsKeyDown(Keys.Right) && chosenMenuItem == 2)
+                {
+                    Difficulty++;
+                    Difficulty = (Constants.Difficulties)((int)Difficulty % Constants.DifficultiesString.Count());
+                    
+                    //chosenMenuItem = (Difficulty + menuItems.Count()) % menuItems.Count();
                 }
                 else if (keyState.IsKeyDown(Keys.Enter))
                 {
@@ -96,15 +112,19 @@ namespace MyGame
 
             for (int i = 0; i < menuItems.Count(); i++)
             {
-                pos =findCenteredPos(menuItems[i], mediumFont) - nextPosOffset;
+                String text = menuItems[i];
+                if (i == 2)
+                    text = text.Replace("$$", Constants.DifficultiesString[(int)Difficulty]);
+                pos =findCenteredPos(text, mediumFont) - nextPosOffset;
                 if (i == chosenMenuItem)
                 {
-                    Vector2 meausre = mediumFont.MeasureString(menuItems[i]);
+                    Vector2 meausre = mediumFont.MeasureString(text);
                     spriteBatch.Draw(emptyTex, new Rectangle((int)pos.X, (int)pos.Y, (int)meausre.X, (int)meausre.Y),
                         shadedMenuItemColor);
                 }
-                spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
-                nextPosOffset = nextPosOffset - new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);
+                
+                spriteBatch.DrawString(mediumFont,text , pos, menuItemColor);
+                nextPosOffset = nextPosOffset - new Vector2(0, mediumFont.MeasureString(text).Y);
                 
             }
 

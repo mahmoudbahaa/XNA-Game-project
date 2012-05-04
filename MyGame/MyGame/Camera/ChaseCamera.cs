@@ -78,9 +78,18 @@ namespace MyGame
 
             if (System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
             {
-                Vector2 d = myGame.controller.getPointer();
-                deltaX = d.X;
-                deltaY = d.Y;
+                if (myGame.controller.isActive(control.Controller.POINTER))
+                {
+                    Vector2 d = myGame.controller.getPointer();
+                    deltaX = d.X;
+                    deltaY = d.Y;
+                }
+                else
+                {
+                    float diff = myGame.controller.getShoulderDiff();
+                    deltaX = diff;
+                    deltaY = 0;
+                }
             }
             else
             {

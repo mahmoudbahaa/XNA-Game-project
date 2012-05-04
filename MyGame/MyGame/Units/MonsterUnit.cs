@@ -37,14 +37,14 @@ namespace MyGame
                     direction = Vector3.Transform(Vector3.Backward,
                    Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
 
-                    position += direction * Constants.MONSTER_SPEED;
+                    Vector3 oldPos = position ;
+                    position += direction * myGame.difficultyConstants.MONSTER_SPEED;
 
-                    //if (position.X < Constants.FIELD_MIN_X_Z || position.X > Constants.FIELD_MAX_X_Z ||
-                    //    position.Z < Constants.FIELD_MIN_X_Z || position.Z > Constants.FIELD_MAX_X_Z)
-                    //{
-                    //    rotation = new Vector3(rotation.X, MathHelper.Pi + rotation.Y, rotation.Z);
-                    //    direction = -direction;
-                    //}
+                    float y = myGame.GetHeightAtPosition(position.X, position.Z);
+                    if (y > .7 * Constants.TERRAIN_HEIGHT)
+                    {
+                        position = oldPos;
+                    }
                 }
             }
 

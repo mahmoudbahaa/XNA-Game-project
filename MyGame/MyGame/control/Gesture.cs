@@ -123,6 +123,30 @@ namespace control
         }
     }
 
+    class shoulderDifference : Gesture
+    {
+        public float diff { get; private set; }
+        public bool left = false;
+        public bool right = false;
+
+        public shoulderDifference()
+        {
+            diff = 0;
+        }
+
+        public override void eval()
+        {
+            diff = Kinect.skeleton.rShoulder.Z - Kinect.skeleton.lShoulder.Z;
+            if (Math.Abs(diff) < 0.1)
+                left = right = false;
+            else
+            {
+                left = (diff < 0);
+                right = !left;
+            }
+        }
+    }
+
     class HandPointer : Gesture
     {
         private int hand;
@@ -142,6 +166,12 @@ namespace control
 
         public override void eval()
         {
+
+            if (hand == Constants.RIGHT_HAND)
+                active = Math.Abs(Kinect.skeleton.rWrist.Z - Kinect.skeleton.rShoulder.Z) > .05f;
+            else
+                active = Math.Abs(Kinect.skeleton.lWrist.Z - Kinect.skeleton.lShoulder.Z) > .05f;
+
             
             currentPos = getPos();
             currentAngle = getAngle(currentPos[0], currentPos[1]); // currentPos[0] => hand 

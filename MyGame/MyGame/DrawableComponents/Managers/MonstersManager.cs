@@ -44,7 +44,7 @@ namespace MyGame
             {
                 if (monsters[j].unit.alive && unit.collideWith(monsters[j].unit))
                 {
-                    monsters[j].health -= 20;
+                    monsters[j].health -= myGame.difficultyConstants.MONSTER_HEALTH_PER_BULLET;
                     hpBillBoardSystem.setTexture(j);
 
                     if (monsters[j].health <= 0)
@@ -67,8 +67,15 @@ namespace MyGame
 
         private void addEnemy()
         {
-            Vector3 pos = new Vector3((float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z*2 - Constants.FIELD_MAX_X_Z),
-                5, (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z));
+            float x=0,z=0;
+            float y = Constants.TERRAIN_HEIGHT;
+            //while(y > .5 * Constants.TERRAIN_HEIGHT)
+            //{
+                x = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
+                z = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
+                y = myGame.GetHeightAtPosition(x, z);
+            //}
+            Vector3 pos = new Vector3(x, y, z);
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, Constants.MONSTER_SCALE);
             Monster monster = new Monster(myGame, skinnedModel, monsterUnit);
@@ -84,7 +91,7 @@ namespace MyGame
                 return;
 
             reaminingTimeToNextSpawn -= gameTime.ElapsedGameTime.Milliseconds;
-            if (reaminingTimeToNextSpawn < 0 && monsters.Count < 30)
+            if (reaminingTimeToNextSpawn < 0 && monsters.Count < myGame.difficultyConstants.NUM_MONSTERS_IN_FIELD)
             {
                 reaminingTimeToNextSpawn = spawnTime;
                 addEnemy();

@@ -29,9 +29,15 @@ namespace MyGame
 
         private void addFirstAidKit()
         {
-            float x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
-            float z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
-            Vector3 pos = new Vector3(x, myGame.GetHeightAtPosition(x, z) + 30, z);
+            float y = Constants.TERRAIN_HEIGHT;
+            float x = 0, z = 0;
+            while (y > .7 * Constants.TERRAIN_HEIGHT)
+            {
+                x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
+                z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
+                y = myGame.GetHeightAtPosition(x, z);
+            }
+            Vector3 pos = new Vector3(x, y + 30, z);
             Unit unit = new Unit(myGame, pos, Vector3.Zero, Constants.MEDKIT_SCALE);
             FirstAid firstAid = new FirstAid(myGame, myGame.Content.Load<Model>(@"model/First Aid Kit2"), unit);
 
@@ -54,7 +60,7 @@ namespace MyGame
 
         private void addHealth(int j)
         {
-            myGame.player.health += 50;
+            myGame.player.health += myGame.difficultyConstants.INCREASED_HEALTH_BY_MEDKIT;
             if (myGame.player.health > 100)
                 myGame.player.health = 100;
             firstAidKits.RemoveAt(j);
@@ -66,7 +72,7 @@ namespace MyGame
                 return;
 
             reaminingTimeToNextSpawn -= gameTime.ElapsedGameTime.Milliseconds;
-            if (reaminingTimeToNextSpawn < 0 && firstAidKits.Count < 5)
+            if (reaminingTimeToNextSpawn < 0 && firstAidKits.Count < myGame.difficultyConstants.NUM_MEDKITS_IN_FIELD)
             {
                 reaminingTimeToNextSpawn = spawnTime;
                 addFirstAidKit();

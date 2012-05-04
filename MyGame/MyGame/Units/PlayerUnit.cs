@@ -56,11 +56,15 @@ namespace MyGame
    
             //rotation += new Vector3(0, rotY * .025f, 0);
             Matrix rot = Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z);
+            Vector3 oldPos = position;
             position += Vector3.Transform(new Vector3(-leftRight, 0, -forwardBackward), rot) *
                (float)gameTime.ElapsedGameTime.TotalMilliseconds * Constants.PLAYER_SPEED;
-            position = Vector3.Clamp(position, new Vector3(Constants.FIELD_MIN_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
-
+            //position = Vector3.Clamp(position, new Vector3(-Constants.FIELD_MAX_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
             position.Y = myGame.GetHeightAtPosition2(position.X, position.Z);
+            //if (position.Y > .7 * Constants.TERRAIN_HEIGHT)
+            //{
+            //    position = oldPos;
+            //}
 
 
             base.update(gameTime);
@@ -68,7 +72,7 @@ namespace MyGame
 
         public void decreaseHealth()
         {
-            health -= 10;
+            health -= myGame.difficultyConstants.PLAYER_HEALTH_DECREASE;
             if (health <= 0)
             {
                 myGame.gameOver = true;
