@@ -14,6 +14,9 @@ namespace MyGame
         public Vector3 FollowTargetPosition { get; private set; }
         public Vector3 FollowTargetRotation { get; private set; }
 
+        private Vector3 savedTargetOffset ;
+        private Vector3 savedPositionOffset;
+
         public Vector3 PositionOffset;
         public Vector3 TargetOffset;
 
@@ -37,6 +40,8 @@ namespace MyGame
             Vector3 RelativeCameraRotation )
             : base(game)
         {
+            this.savedTargetOffset = TargetOffset;
+            this.savedPositionOffset = PositionOffset;
             this.PositionOffset = PositionOffset;
             this.TargetOffset = TargetOffset;
             this.RelativeCameraRotation = RelativeCameraRotation;
@@ -64,7 +69,12 @@ namespace MyGame
             if (myGame.cameraMode != Game1.CameraMode.thirdPerson)
             {
                 TargetOffset = new Vector3(0, 40, 0);
-                PositionOffset = new Vector3(0,40,1);
+                PositionOffset = new Vector3(0, 40, 1);
+            }
+            else
+            {
+                TargetOffset = savedTargetOffset;
+                PositionOffset = savedPositionOffset;
             }
 
             // Get the new keyboard and mouse state
@@ -80,14 +90,22 @@ namespace MyGame
             {
                 if (myGame.controller.isActive(control.Controller.POINTER))
                 {
+                    //savedPositionOffset = PositionOffset;
+                    //savedTargetOffset = TargetOffset;
+                    myGame.cameraMode = Game1.CameraMode.firstPersonWithoutWeapon;
                     Vector2 d = myGame.controller.getPointer();
-                    deltaX = d.X;
-                    deltaY = d.Y;
+                    deltaX = d.X *.5f;
+                    deltaY = d.Y * .5f;
                 }
                 else
                 {
+                    myGame.cameraMode = Game1.CameraMode.thirdPerson;
+                    //PositionOffset = savedPositionOffset;
+                    //TargetOffset = savedTargetOffset;
                     float diff = myGame.controller.getShoulderDiff();
-                    deltaX = diff;
+                    deltaX = diff * 200;
+                    if (Math.Abs(deltaX) < 10f)
+                        deltaX = 0;
                     deltaY = 0;
                 }
             }

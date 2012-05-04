@@ -168,9 +168,9 @@ namespace control
         {
 
             if (hand == Constants.RIGHT_HAND)
-                active = Math.Abs(Kinect.skeleton.rWrist.Z - Kinect.skeleton.rShoulder.Z) > .05f;
+                active = Math.Abs(Kinect.skeleton.rWrist.Z - Kinect.skeleton.rShoulder.Z) > .25f;
             else
-                active = Math.Abs(Kinect.skeleton.lWrist.Z - Kinect.skeleton.lShoulder.Z) > .05f;
+                active = Math.Abs(Kinect.skeleton.lWrist.Z - Kinect.skeleton.lShoulder.Z) > .25f;
 
             
             currentPos = getPos();

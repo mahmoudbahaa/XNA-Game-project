@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="control.Controller">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgAAAAAAAAgAIAIAAABAMAAAAAAAgAIAAAIAIAAA=</HashCode>
+      <FileName>Control\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.skeleton">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABCAAgQAAAUAEAAAwAAgIAAAIAAAAwQAAAAACAhA=</HashCode>
+      <FileName>Control\skeleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.Gesture">
+    <Position X="6.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.handBackHead">
+    <Position X="9.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.LeanRight">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.LeanLeft">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.RightLegForward">
+    <Position X="8" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.RightLegBackward">
+    <Position X="11.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.HandStretchForward">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.HandPointer">
+    <Position X="6.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAEAAAAACAABgABAAAAAAAAAIAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Control\Gesture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.GestureManager">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAMgAAAABAAAAAgAAAACAAAAAIAAAAI=</HashCode>
+      <FileName>Control\GestureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.Kinect">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Control\kinect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="control.util">
+    <Position X="2" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAIEAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Control\util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

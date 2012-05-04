@@ -41,10 +41,10 @@ namespace MyGame
                     position += direction * myGame.difficultyConstants.MONSTER_SPEED;
 
                     float y = myGame.GetHeightAtPosition(position.X, position.Z);
-                    if (y > .7 * Constants.TERRAIN_HEIGHT)
-                    {
-                        position = oldPos;
-                    }
+                    //if (y > .7 * Constants.TERRAIN_HEIGHT)
+                    //{
+                    //    position = oldPos;
+                    //}
                 }
             }
 
