@@ -61,10 +61,10 @@ namespace MyGame
                (float)gameTime.ElapsedGameTime.TotalMilliseconds * Constants.PLAYER_SPEED;
             //position = Vector3.Clamp(position, new Vector3(-Constants.FIELD_MAX_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
             position.Y = myGame.GetHeightAtPosition2(position.X, position.Z);
-            if (position.Y > .7 * Constants.TERRAIN_HEIGHT)
-            {
-                position = oldPos;
-            }
+            //if (position.Y > .7 * Constants.TERRAIN_HEIGHT)
+            //{
+            //    position = oldPos;
+            //}
 
 
             base.update(gameTime);

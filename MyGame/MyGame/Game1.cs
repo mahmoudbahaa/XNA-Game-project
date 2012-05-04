@@ -122,7 +122,7 @@ namespace MyGame
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
             camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
-            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terraintTest"), Constants.TERRAIN_CELL_SIZE,
+            terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"), Constants.TERRAIN_CELL_SIZE,
                 Constants.TERRAIN_HEIGHT, Content.Load<Texture2D>("grass"), Constants.TERRAIN_TEXTURE_TILING, new Vector3(1, -1, 0));
 
             player = initializePlayer();

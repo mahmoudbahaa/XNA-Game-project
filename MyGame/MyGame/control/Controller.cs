@@ -15,7 +15,9 @@ namespace control
         public const int LEFT = 2;
         public const int RIGHT = 3;
         public const int RIGHT_HAND_STR = 4;
-        private const int POINTER = 5;
+        public const int POINTER = 5;
+        private const int SHOULDER = 6;
+
 
 
         //gesture manager containing all gestures
@@ -51,6 +53,7 @@ namespace control
             gestureManager.AddGesture(new LeanRight());
             gestureManager.AddGesture(new HandStretchForward((pointingHand+1)%2));
             gestureManager.AddGesture(new HandPointer(pointingHand));
+            gestureManager.AddGesture(new shoulderDifference());
             gestureManager.start();
         }
 
@@ -61,6 +64,7 @@ namespace control
             activeGesture[LEFT] = gestureManager.gestures[LEFT].active;
             activeGesture[RIGHT] = gestureManager.gestures[RIGHT].active;
             activeGesture[RIGHT_HAND_STR] = gestureManager.gestures[RIGHT_HAND_STR].active;
+            activeGesture[POINTER] = gestureManager.gestures[POINTER].active;
         }
 
         public Boolean isActive(int gesture)
@@ -73,6 +77,21 @@ namespace control
         public Vector2 getPointer()
         {
             return ((HandPointer)gestureManager.gestures[POINTER]).theta;
+        }
+
+        public bool getShoulderLeft()
+        {
+            return ((shoulderDifference)gestureManager.gestures[SHOULDER]).left;
+        }
+
+        public bool getShoulderRight()
+        {
+            return ((shoulderDifference)gestureManager.gestures[SHOULDER]).right;
+        }
+
+        public float getShoulderDiff()
+        {
+            return ((shoulderDifference)gestureManager.gestures[SHOULDER]).diff;
         }
 
 

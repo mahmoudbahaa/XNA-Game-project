@@ -69,12 +69,12 @@ namespace MyGame
         {
             float x=0,z=0;
             float y = Constants.TERRAIN_HEIGHT;
-            while(y > .7 * Constants.TERRAIN_HEIGHT)
-            {
-                x = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z*2 - Constants.FIELD_MAX_X_Z);
+            //while(y > .5 * Constants.TERRAIN_HEIGHT)
+            //{
+                x = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 z = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 y = myGame.GetHeightAtPosition(x, z);
-            }
+            //}
             Vector3 pos = new Vector3(x, y, z);
             Vector3 rot = new Vector3(0, (float)(rnd.NextDouble() * MathHelper.TwoPi), 0);
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, Constants.MONSTER_SCALE);

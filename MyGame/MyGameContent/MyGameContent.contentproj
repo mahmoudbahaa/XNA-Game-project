@@ -128,8 +128,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="terrain.bmp">
-      <Name>terrain</Name>
+    <Compile Include="terrain-maze.bmp">
+      <Name>terrain-maze</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -284,8 +284,8 @@
     <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="terrain2.bmp">
-      <Name>terrain2</Name>
+    <Compile Include="terrain.bmp">
+      <Name>terrain</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
