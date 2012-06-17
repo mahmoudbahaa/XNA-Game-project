@@ -19,9 +19,9 @@ namespace MyGame
 
         protected List<Event> events;
 
-        protected Game1 myGame;
+        protected MyGame myGame;
 
-        public CModel(Game1 game, Model Model)
+        public CModel(MyGame game, Model Model)
         {
             this.Model = Model;
 
@@ -108,6 +108,36 @@ namespace MyGame
                 sphere = BoundingSphere.CreateMerged(sphere, transformed);
             }
             return sphere;
+        }
+
+        public void SetModelEffect(Effect effect, bool CopyEffect)
+        {
+            foreach (ModelMesh mesh in Model.Meshes)
+                foreach (ModelMeshPart part in mesh.MeshParts)
+                {
+                    Effect toSet = effect;
+
+                    // Copy the effect if necessary
+                    if (CopyEffect)
+                        toSet = effect.Clone();
+
+                    MeshTag tag = ((MeshTag)part.Tag);
+
+                    // If this ModelMeshPart has a texture, set it to the effect
+                    if (tag.Texture != null)
+                    {
+                        setEffectParameter(toSet, "BasicTexture", tag.Texture);
+                        setEffectParameter(toSet, "TextureEnabled", true);
+                    }
+                    else
+                        setEffectParameter(toSet, "TextureEnabled", false);
+
+                    // Set our remaining parameters to the effect
+                    setEffectParameter(toSet, "DiffuseColor", tag.Color);
+                    setEffectParameter(toSet, "SpecularPower", tag.SpecularPower);
+
+                    part.Effect = toSet;
+                }
         }
 
         private void generateTags()

@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Helper;
 
 namespace MyGame
 {
@@ -36,7 +37,7 @@ namespace MyGame
             set { springiness = MathHelper.Clamp(value, 0, 1); }
         }
 
-        public ChaseCamera(Game1 game, Vector3 PositionOffset, Vector3 TargetOffset,
+        public ChaseCamera(MyGame game, Vector3 PositionOffset, Vector3 TargetOffset,
             Vector3 RelativeCameraRotation )
             : base(game)
         {
@@ -66,15 +67,15 @@ namespace MyGame
             if (myGame.paused)
                 return;
 
-            if (myGame.cameraMode != Game1.CameraMode.thirdPerson)
+            if (myGame.cameraMode != MyGame.CameraMode.thirdPerson)
             {
                 TargetOffset = new Vector3(0, 40, 0);
                 PositionOffset = new Vector3(0, 40, 1);
             }
             else
             {
-                TargetOffset = savedTargetOffset;
-                PositionOffset = savedPositionOffset;
+                //TargetOffset = savedTargetOffset;
+                //PositionOffset = savedPositionOffset;
             }
 
             // Get the new keyboard and mouse state
@@ -92,14 +93,14 @@ namespace MyGame
                 {
                     //savedPositionOffset = PositionOffset;
                     //savedTargetOffset = TargetOffset;
-                    myGame.cameraMode = Game1.CameraMode.firstPersonWithoutWeapon;
+                    myGame.cameraMode = MyGame.CameraMode.firstPersonWithoutWeapon;
                     Vector2 d = myGame.controller.getPointer();
                     deltaX = d.X *.5f;
                     deltaY = d.Y * .5f;
                 }
                 else
                 {
-                    myGame.cameraMode = Game1.CameraMode.thirdPerson;
+                    myGame.cameraMode = MyGame.CameraMode.thirdPerson;
                     //PositionOffset = savedPositionOffset;
                     //TargetOffset = savedTargetOffset;
                     float diff = myGame.controller.getShoulderDiff();
@@ -119,7 +120,7 @@ namespace MyGame
             Rotate(new Vector3(deltaY * .0005f, 0, 0));
 
 
-            myGame.mediator.controlPointer(-deltaX * .0005f);
+            myGame.mediator.fireEvent(MyEvent.C_Pointer, "deltaX", -deltaX * .0005f);//controlPointer(-deltaX * .0005f);
 
             //Natural Chase Camera Update
             Vector3 translation = Vector3.Zero;
@@ -191,10 +192,10 @@ namespace MyGame
             if (keyState.IsKeyDown(Keys.Left) && TargetOffset.X > -50)
                 TargetOffset.X -= 1;
 
-            if ((Position.Z - Target.Z)> scrollWheelValue/2)
+            if ((PositionOffset.Z - Target.Z) > scrollWheelValue / 2)
                 PositionOffset.Z -= scrollWheelValue/2;
-            else if ((Position.Z - Target.Z) < scrollWheelValue / 2)
-                PositionOffset.Z += scrollWheelValue/2 ;
+            //else if ((Position.Z - Target.Z) < scrollWheelValue / 2)
+            //    PositionOffset.Z += scrollWheelValue/2 ;
 
             if (keyState.IsKeyDown(Keys.LeftControl))
             {

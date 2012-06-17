@@ -34,8 +34,8 @@ namespace MyGame
 
         private Texture2D emptyTex;
 
-        private Game1 myGame;
-        public StartScreen(Game1 game)
+        private MyGame myGame;
+        public StartScreen(MyGame game)
             : base(game)
         {
             myGame = game;

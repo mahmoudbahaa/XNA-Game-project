@@ -22,7 +22,7 @@ namespace MyGame
 
         protected List<Event> events;
 
-        protected Game1 myGame;
+        protected MyGame myGame;
 
         //attribute holding the bounding sphere for this unit model
         protected BoundingSphere boundingSphere;
@@ -46,7 +46,7 @@ namespace MyGame
             }
         }
 
-        public Unit(Game1 game,Vector3 position,Vector3 rotation,Vector3 scale)
+        public Unit(MyGame game,Vector3 position,Vector3 rotation,Vector3 scale)
         {
             baseWorld = Matrix.Identity;
 

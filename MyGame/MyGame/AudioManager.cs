@@ -24,9 +24,9 @@ namespace MyGame
         int musicDelay = 800;
         int musicCountdown = 0;
 
-        private Game1 myGame;
+        private MyGame myGame;
 
-        public AudioManager(Game1 game)
+        public AudioManager(MyGame game)
             :base(game)
         {
             myGame = game;

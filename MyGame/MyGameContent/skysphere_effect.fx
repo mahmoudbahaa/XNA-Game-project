@@ -11,6 +11,9 @@ samplerCUBE CubeMapSampler = sampler_state {
 	magfilter = anisotropic;
 };
 
+float4 ClipPlane;
+bool ClipPlaneEnabled = false;
+
 struct VertexShaderInput
 {
     float4 Position : POSITION0;
@@ -36,6 +39,9 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 
 float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 {
+	if (ClipPlaneEnabled)
+		clip(dot(float4(input.WorldPosition, 1), ClipPlane));
+
 	float3 viewDirection = normalize(input.WorldPosition - CameraPosition);
 
 	return texCUBE(CubeMapSampler, viewDirection);

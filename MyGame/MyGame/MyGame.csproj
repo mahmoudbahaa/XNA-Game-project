@@ -114,6 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioManager.cs" />
+    <Compile Include="Camera\TargetCamera.cs" />
+    <Compile Include="DrawableComponents\Tree.cs" />
+    <Compile Include="DrawableComponents\Managers\BillboardSystem.cs" />
+    <Compile Include="DrawableComponents\SkyCube.cs" />
+    <Compile Include="DrawableComponents\Water.cs" />
     <Compile Include="DrawableComponents\HelpScreen.cs" />
     <Compile Include="DrawableComponents\StartScreen.cs" />
     <Compile Include="DrawableComponents\FirstAid.cs" />
@@ -141,24 +146,26 @@
     <Compile Include="Helper\Constants.cs" />
     <Compile Include="Helper\Event.cs" />
     <Compile Include="Helper\MyEvent.cs" />
-    <Compile Include="Helper\util.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="Models\AnimatedModel.cs" />
+    <Compile Include="Models\SkyCubeModel.cs" />
     <Compile Include="Units\BulletUnit.cs" />
     <Compile Include="Models\CModel.cs" />
     <Compile Include="DrawableComponents\Managers\ScoreBoard.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="MyGame.cs" />
     <Compile Include="Camera\Camera.cs" />
     <Compile Include="Camera\ChaseCamera.cs" />
     <Compile Include="Camera\FreeCamera.cs" />
     <Compile Include="DrawableComponents\Player.cs" />
     <Compile Include="DrawableComponents\Sky.cs" />
     <Compile Include="Models\MonsterModel.cs" />
+    <Compile Include="Units\Copy of SkyUnit.cs" />
+    <Compile Include="Units\WaterUnit.cs" />
     <Compile Include="Units\MonsterUnit.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Units\PlayerUnit.cs" />
     <Compile Include="Models\SkyModel.cs" />
-    <Compile Include="Units\SkyUnit.cs" />
+    <Compile Include="Units\SkyCubeUnit.cs" />
     <Compile Include="Units\Unit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

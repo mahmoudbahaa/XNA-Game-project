@@ -30,7 +30,7 @@ namespace MyGame
 
         static int RIGHT_HAND_BONE_ID = 15;
 
-        public PlayerModel(Game1 game, SkinnedModel skinnedModel)
+        public PlayerModel(MyGame game, SkinnedModel skinnedModel)
             : base(game, skinnedModel)
         {
             game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
@@ -60,7 +60,7 @@ namespace MyGame
             Attack();
             events.Clear();
 
-            if (myGame.cameraMode == Game1.CameraMode.thirdPerson)
+            if (myGame.cameraMode == MyGame.CameraMode.thirdPerson)
                 base.Draw(gameTime);
             
         }

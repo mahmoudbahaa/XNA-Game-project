@@ -15,7 +15,7 @@ namespace MyGame
         public AnimationController animationController;
 
 
-        public AnimatedModel(Game1 game,SkinnedModel skinnedModel)
+        public AnimatedModel(MyGame game,SkinnedModel skinnedModel)
             : base(game,skinnedModel.Model)
         {
             this.skinnedModel = skinnedModel;

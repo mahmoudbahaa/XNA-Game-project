@@ -12,7 +12,7 @@ namespace MyGame
     {
         Vector3 Direction { get; set; }
 
-        public BulletUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale,Vector3 Direction)
+        public BulletUnit(MyGame game,Vector3 Position, Vector3 Rotation, Vector3 Scale,Vector3 Direction)
             : base(game,Position, Rotation, Scale)
         {
             this.Direction = Direction;            

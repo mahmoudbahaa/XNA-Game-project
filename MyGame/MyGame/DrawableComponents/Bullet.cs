@@ -12,7 +12,7 @@ namespace MyGame
 {
     public class Bullet : CDrawableComponent
     {
-        public Bullet(Game1 game, Model model, Unit unit)
+        public Bullet(MyGame game, Model model, Unit unit)
             : base(game, unit,new CModel(game, model))
         {
         }

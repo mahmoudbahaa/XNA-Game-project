@@ -16,7 +16,7 @@ namespace MyGame
 
         private Vector3 direction;
 
-        public MonsterUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
+        public MonsterUnit(MyGame game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
             direction = Vector3.Transform(Vector3.Backward,
@@ -35,12 +35,31 @@ namespace MyGame
                 if (moving)
                 {
                     direction = Vector3.Transform(Vector3.Backward,
-                   Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
+                        Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
 
                     Vector3 oldPos = position ;
                     position += direction * myGame.difficultyConstants.MONSTER_SPEED;
 
+                    int num_of_Steps_backward = 0;
+                    if(myGame.checkCollisionWithTrees(this, 15))
+                    {
+                        position = oldPos;
+                        for (int i = 0; i < num_of_Steps_backward; i++)
+                        {
+                            direction = Vector3.Transform(Vector3.Forward,
+                            Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z));
+
+                            position += direction * myGame.difficultyConstants.MONSTER_SPEED;
+                        }
+                        direction = Vector3.Transform(Vector3.Right,
+                            Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z));
+
+                        position += direction * myGame.difficultyConstants.MONSTER_SPEED;
+                        num_of_Steps_backward++;
+                    }
+
                     float y = myGame.GetHeightAtPosition(position.X, position.Z);
+                    
                     //if (y > .7 * Constants.TERRAIN_HEIGHT)
                     //{
                     //    position = oldPos;

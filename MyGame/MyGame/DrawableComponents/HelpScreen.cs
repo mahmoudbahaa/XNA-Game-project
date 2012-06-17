@@ -31,8 +31,8 @@ namespace MyGame
             "Press 'M' to toggle Music on/off",
             "Press 'rightAlt'+'Enter' to toggle full screen"};
 
-        private Game1 myGame;
-        public HelpScreen(Game1 game)
+        private MyGame myGame;
+        public HelpScreen(MyGame game)
             : base(game)
         {
             myGame = game;

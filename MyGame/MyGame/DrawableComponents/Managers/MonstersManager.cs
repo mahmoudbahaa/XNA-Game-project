@@ -21,8 +21,8 @@ namespace MyGame
 
         SkinnedModel skinnedModel;
 
-        private Game1 myGame;
-        public MonstersManager(Game1 game)
+        private MyGame myGame;
+        public MonstersManager(MyGame game)
             : base(game)
         {
             monsters = new List<Monster>();

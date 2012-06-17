@@ -15,14 +15,14 @@ namespace MyGame
         protected List<Event> events;
 
         private List<Bullet> bullets;
-        private Game1 myGame;
+        private MyGame myGame;
 
         // Shot variables
         float shotSpeed = 0.5f;
 
         float bulletRange = 30000;
 
-        public BulletsManager(Game1 game)
+        public BulletsManager(MyGame game)
             : base(game)
         {
             bullets = new List<Bullet>();

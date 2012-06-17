@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MyGame
 {
-    public class Terrain : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Terrain : DrawableGameComponent, IRenderable
     {
         VertexPositionNormalTexture[] vertices; // Vertex array
         VertexBuffer vertexBuffer; // Vertex buffer
@@ -25,10 +25,16 @@ namespace MyGame
         Texture2D baseTexture;
         float textureTiling;
         Vector3 lightDirection;
+        Vector2 pos;
+
+        public Texture2D RTexture, BTexture, GTexture, WeightMap;
+        public Texture2D DetailTexture;
+        public float DetailDistance = 2500;
+        public float DetailTextureTiling = 100;
 
         Camera camera;
         public Terrain(Game game,Camera camera, Texture2D HeightMap, float CellSize, float Height,
-            Texture2D BaseTexture, float TextureTiling, Vector3 LightDirection) : base(game)
+            Texture2D BaseTexture, float TextureTiling, Vector3 LightDirection,Vector2 pos) : base(game)
         {
             this.baseTexture = BaseTexture;
             this.camera = camera;
@@ -39,6 +45,7 @@ namespace MyGame
             this.length = HeightMap.Height;
             this.cellSize = CellSize;
             this.height = Height;
+            this.pos = pos;
 
             effect = Game.Content.Load<Effect>("TerrainEffect");
 
@@ -121,7 +128,9 @@ namespace MyGame
             float h2 = heights[x2, z2];
 
             // Interpolate between the corner vertices' heights
-            return MathHelper.Max(h1,h2);
+            //float h = MathHelper.Max(h1, h2);
+            //if (h < 35) h = 35;
+            return MathHelper.Max(h1, h2);
         }
 
         // Returns the height and steepness of the terrain at point (X, Z)
@@ -129,15 +138,21 @@ namespace MyGame
             out float Steepness)
         {
             // Clamp coordinates to locations on terrain
-            X = MathHelper.Clamp(X, (-width / 2) * cellSize,
-                (width / 2) * cellSize);
-            Z = MathHelper.Clamp(Z, (-length / 2) * cellSize,
-                (length / 2) * cellSize);
+            X = MathHelper.Clamp(X, (width-1) * pos.X * cellSize,
+                (width - 1) * pos.X * cellSize + (width - 1) * cellSize);
+            Z = MathHelper.Clamp(Z, (length - 1) * pos.Y * cellSize,
+                (length - 1) * pos.Y * cellSize + (length - 1) * cellSize);
 
+            Vector3 offsetToCenter = new Vector3(width * pos.X * cellSize,
+                0, length * pos.Y * cellSize);
+            //// Map from (-Width/2->Width/2,-Length/2->Length/2) 
+            //// to (0->Width, 0->Length)
+            //X += (width / 2f) * cellSize;
+            //Z += (length / 2f) * cellSize;
             // Map from (-Width/2->Width/2,-Length/2->Length/2) 
             // to (0->Width, 0->Length)
-            X += (width / 2f) * cellSize;
-            Z += (length / 2f) * cellSize;
+            X -= width * pos.X * cellSize;
+            Z -= length * pos.Y * cellSize;
 
             // Map to cell coordinates
             X /= cellSize;
@@ -148,8 +163,8 @@ namespace MyGame
             int z1 = (int)Z;
 
             // Try to get coordinates of bottom right cell vertex
-            int x2 = x1 + 1 == width ? x1 : x1 + 1;
-            int z2 = z1 + 1 == length ? z1 : z1 + 1;
+            int x2 = x1 + 1 >= width -1 ? x1 : x1 + 1;
+            int z2 = z1 + 1 >= length-1 ? z1 : z1 + 1;
 
             // Get the heights at the two corners of the cell
             float h1 = heights[x1, z1];
@@ -173,8 +188,11 @@ namespace MyGame
             vertices = new VertexPositionNormalTexture[nVertices];
 
             // Calculate the position offset that will center the terrain at (0, 0, 0)
-            Vector3 offsetToCenter = -new Vector3(((float)width / 2.0f) * cellSize,
-                0, ((float)length / 2.0f) * cellSize);
+            //Vector3 offsetToCenter = -new Vector3(((float)width / 2.0f) * cellSize,
+            //   0, ((float)length / 2.0f) * cellSize);
+
+            Vector3 offsetToCenter = new Vector3(width * pos.X * cellSize,
+                0, length *pos.Y * cellSize);
 
             // For each pixel in the image
             for (int z = 0; z < length; z++)
@@ -264,12 +282,56 @@ namespace MyGame
             effect.Parameters["LightDirection"].SetValue(lightDirection);
             effect.Parameters["BaseTexture"].SetValue(baseTexture);
 
+            effect.Parameters["RTexture"].SetValue(RTexture);
+            effect.Parameters["GTexture"].SetValue(GTexture);
+            effect.Parameters["BTexture"].SetValue(BTexture);
+            effect.Parameters["WeightMap"].SetValue(WeightMap);
+
+            effect.Parameters["DetailTexture"].SetValue(DetailTexture);
+            effect.Parameters["DetailDistance"].SetValue(DetailDistance);
+            effect.Parameters["DetailTextureTiling"].SetValue(DetailTextureTiling);
+
             effect.Techniques[0].Passes[0].Apply();
 
             Game.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0,
                 nVertices, 0, nIndices / 3);
 
             base.Draw(gameTime);
+        }
+
+        public void Draw()
+        {
+            Game.GraphicsDevice.SetVertexBuffer(vertexBuffer);
+            Game.GraphicsDevice.Indices = indexBuffer;
+
+            effect.Parameters["View"].SetValue(camera.View);
+            effect.Parameters["Projection"].SetValue(camera.Projection);
+            effect.Parameters["TextureTiling"].SetValue(textureTiling);
+            effect.Parameters["LightDirection"].SetValue(lightDirection);
+            effect.Parameters["BaseTexture"].SetValue(baseTexture);
+
+            effect.Parameters["RTexture"].SetValue(RTexture);
+            effect.Parameters["GTexture"].SetValue(GTexture);
+            effect.Parameters["BTexture"].SetValue(BTexture);
+            effect.Parameters["WeightMap"].SetValue(WeightMap);
+
+            effect.Parameters["DetailTexture"].SetValue(DetailTexture);
+            effect.Parameters["DetailDistance"].SetValue(DetailDistance);
+            effect.Parameters["DetailTextureTiling"].SetValue(DetailTextureTiling);
+
+            effect.Techniques[0].Passes[0].Apply();
+
+            Game.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0,
+                nVertices, 0, nIndices / 3);
+        }
+
+
+        public void SetClipPlane(Vector4? Plane)
+        {
+            effect.Parameters["ClipPlaneEnabled"].SetValue(Plane.HasValue);
+
+            if (Plane.HasValue)
+                effect.Parameters["ClipPlane"].SetValue(Plane.Value);
         }
     }
 }

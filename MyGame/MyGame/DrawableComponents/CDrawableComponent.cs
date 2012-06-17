@@ -11,9 +11,9 @@ namespace MyGame
     {
         public CModel cModel;
         public Unit unit;
-        protected Game1 myGame;
+        protected MyGame myGame;
 
-        public CDrawableComponent(Game1 game,Unit unit, CModel model)
+        public CDrawableComponent(MyGame game,Unit unit, CModel model)
             :base(game)
         {
             myGame = game;

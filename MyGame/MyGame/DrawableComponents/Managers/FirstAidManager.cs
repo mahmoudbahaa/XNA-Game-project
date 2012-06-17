@@ -17,8 +17,8 @@ namespace MyGame
         private float spawnTime = 5000;
         private float reaminingTimeToNextSpawn = 0;
 
-        private Game1 myGame;
-        public FirstAidManager(Game1 game)
+        private MyGame myGame;
+        public FirstAidManager(MyGame game)
             : base(game)
         {
             firstAidKits = new List<FirstAid>();
@@ -33,11 +33,11 @@ namespace MyGame
             float x = 0, z = 0;
             while (y > .7 * Constants.TERRAIN_HEIGHT)
             {
-                x = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
-                z = (float)(rnd.NextDouble() * 4700 - Constants.FIELD_MAX_X_Z);
+                x = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
+                z = (float)(rnd.NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 y = myGame.GetHeightAtPosition(x, z);
             }
-            Vector3 pos = new Vector3(x, y + 30, z);
+            Vector3 pos = new Vector3(x, y, z) + Constants.MEDKIT_OFFSET;
             Unit unit = new Unit(myGame, pos, Vector3.Zero, Constants.MEDKIT_SCALE);
             FirstAid firstAid = new FirstAid(myGame, myGame.Content.Load<Model>(@"model/First Aid Kit2"), unit);
 

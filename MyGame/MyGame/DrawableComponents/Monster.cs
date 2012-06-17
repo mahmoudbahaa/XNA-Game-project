@@ -26,7 +26,7 @@ namespace MyGame
             }
         }
 
-        public Monster(Game1 game, SkinnedModel skinnedModel, Unit unit)
+        public Monster(MyGame game, SkinnedModel skinnedModel, Unit unit)
             : base(game, unit, new MonsterModel(game, skinnedModel))
         {
             monsterModel = ((MonsterModel)cModel);

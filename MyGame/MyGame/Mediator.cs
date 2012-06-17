@@ -47,9 +47,9 @@ namespace MyGame
             }
         }
 
-        public void controlPointer(float deltaX)
-        {
-            fireEvent(MyEvent.C_Pointer,"deltaX", deltaX);
-        }
+        //public void controlPointer(float deltaX)
+        //{
+        //    fireEvent(MyEvent.C_Pointer,"deltaX", deltaX);
+        //}
     }
 }

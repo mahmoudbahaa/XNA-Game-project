@@ -10,21 +10,45 @@ namespace MyGame
     class SkyModel : CModel
     {
 
-        Effect effect;
+        //Effect effect;
+        Texture2D cloudMap;
 
-        public SkyModel(Game1 game, Model model, TextureCube Texture)
+        public SkyModel(MyGame game, Model model, Texture2D cloudMap)
             :base(game,model)
         {
-            effect = game.Content.Load<Effect>("skysphere_effect");
-            effect.Parameters["CubeMap"].SetValue(Texture);
-            SetModelEffect(effect, false);
+            this.cloudMap = cloudMap;
+            model.Meshes[0].MeshParts[0].Effect = myGame.Content.Load<Effect>("Series4Effects");
+            //effect = game.Content.Load<Effect>("skysphere_effect");
+            //effect.Parameters["CubeMap"].SetValue(Texture);
+            //SetModelEffect(effect, false);
         }
 
         public override void Draw(GameTime gameTime)
         {
             myGame.GraphicsDevice.DepthStencilState = DepthStencilState.None;
 
-            base.Draw(gameTime);
+            Matrix[] modelTransforms = new Matrix[Model.Bones.Count];
+            Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(10) * baseWorld;
+            foreach (ModelMesh mesh in Model.Meshes)
+            {
+                foreach (Effect currentEffect in mesh.Effects)
+                {
+                    Matrix worldMatrix = modelTransforms[mesh.ParentBone.Index] * wMatrix;
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
+                    currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
+                    currentEffect.Parameters["xView"].SetValue(myGame.camera.View);
+                    currentEffect.Parameters["xProjection"].SetValue(myGame.camera.Projection);
+                    currentEffect.Parameters["xTexture"].SetValue(cloudMap);
+                    currentEffect.Parameters["xEnableLighting"].SetValue(false);
+                }
+                mesh.Draw();
+            }
+
+            
+
+            //base.Draw(gameTime);
 
             myGame.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
         }
@@ -44,37 +68,37 @@ namespace MyGame
                 effect.Parameters[paramName].SetValue((Texture2D)val);
         }
 
-        public void SetModelEffect(Effect effect, bool CopyEffect)
-        {
-            foreach (ModelMesh mesh in Model.Meshes)
-                foreach (ModelMeshPart part in mesh.MeshParts)
-                {
-                    Effect toSet = effect;
+        //public void SetModelEffect(Effect effect, bool CopyEffect)
+        //{
+        //    foreach (ModelMesh mesh in Model.Meshes)
+        //        foreach (ModelMeshPart part in mesh.MeshParts)
+        //        {
+        //            Effect toSet = effect;
 
-                    // Copy the effect if necessary
-                    if (CopyEffect)
-                        toSet = effect.Clone();
+        //            // Copy the effect if necessary
+        //            if (CopyEffect)
+        //                toSet = effect.Clone();
 
-                    MeshTag tag = ((MeshTag)part.Tag);
+        //            MeshTag tag = ((MeshTag)part.Tag);
 
-                    // If this ModelMeshPart has a texture, set it to the effect
-                    if (tag.Texture != null)
-                    {
-                        setEffectParameter(toSet, "BasicTexture", tag.Texture);
-                        setEffectParameter(toSet, "TextureEnabled", true);
-                    }
-                    else
-                    {
-                        setEffectParameter(toSet, "TextureEnabled", false);
-                    }
+        //            // If this ModelMeshPart has a texture, set it to the effect
+        //            if (tag.Texture != null)
+        //            {
+        //                setEffectParameter(toSet, "BasicTexture", tag.Texture);
+        //                setEffectParameter(toSet, "TextureEnabled", true);
+        //            }
+        //            else
+        //            {
+        //                setEffectParameter(toSet, "TextureEnabled", false);
+        //            }
 
-                    // Set our remaining parameters to the effect
-                    setEffectParameter(toSet, "DiffuseColor", tag.Color);
-                    setEffectParameter(toSet, "SpecularPower", tag.SpecularPower);
+        //            // Set our remaining parameters to the effect
+        //            setEffectParameter(toSet, "DiffuseColor", tag.Color);
+        //            setEffectParameter(toSet, "SpecularPower", tag.SpecularPower);
 
-                    part.Effect = toSet;
-                }
-        }
+        //            part.Effect = toSet;
+        //        }
+        //}
 
 
     }

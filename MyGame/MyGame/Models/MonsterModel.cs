@@ -26,7 +26,7 @@ namespace MyGame
 
         }
 
-        public MonsterModel(Game1 game, SkinnedModel skinnedModel)
+        public MonsterModel(MyGame game, SkinnedModel skinnedModel)
             : base(game, skinnedModel)
         {
 

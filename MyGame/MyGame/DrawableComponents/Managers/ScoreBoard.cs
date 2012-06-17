@@ -23,13 +23,13 @@ namespace MyGame
 
         protected List<Event> events;
         
-        private Game1 myGame;
+        private MyGame myGame;
 
         //List<CModel> models = new List<CModel>();
         //List<CModel> enemies = new List<CModel>();
         Camera camera;
 
-        public ScoreBoard(Game1 game)
+        public ScoreBoard(MyGame game)
             : base(game)
         {
             this.camera = game.camera;

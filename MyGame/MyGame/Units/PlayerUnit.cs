@@ -13,7 +13,7 @@ namespace MyGame
         //here goes the player attribute like speed health etc ...
         public int health;
 
-        public PlayerUnit(Game1 game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
+        public PlayerUnit(MyGame game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
             : base(game,Position, Rotation, Scale)
         {
             game.mediator.register(this, MyEvent.C_FORWARD, MyEvent.C_BACKWARD, MyEvent.C_LEFT,
@@ -59,8 +59,11 @@ namespace MyGame
             Vector3 oldPos = position;
             position += Vector3.Transform(new Vector3(-leftRight, 0, -forwardBackward), rot) *
                (float)gameTime.ElapsedGameTime.TotalMilliseconds * Constants.PLAYER_SPEED;
-            //position = Vector3.Clamp(position, new Vector3(-Constants.FIELD_MAX_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
-            position.Y = myGame.GetHeightAtPosition2(position.X, position.Z);
+            position = Vector3.Clamp(position, new Vector3(-Constants.FIELD_MAX_X_Z), new Vector3(Constants.FIELD_MAX_X_Z));
+            position.Y = myGame.GetHeightAtPosition(position.X, position.Z);
+            if (position.Y == Constants.WATER_HEIGHT - 5) position.Y = Constants.WATER_HEIGHT - 15;
+            if (myGame.checkCollisionWithTrees(this,8))
+                position = oldPos;
             //if (position.Y > .7 * Constants.TERRAIN_HEIGHT)
             //{
             //    position = oldPos;

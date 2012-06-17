@@ -15,7 +15,7 @@ namespace MyGame
     {
         Player player;
 
-        public Weapon(Game1 game,Player player, Model model, Unit unit)
+        public Weapon(MyGame game,Player player, Model model, Unit unit)
             : base(game, unit, new CModel(game, model))
         {
             this.player = player;
@@ -41,7 +41,7 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            if(myGame.cameraMode != Game1.CameraMode.firstPersonWithoutWeapon)
+            if(myGame.cameraMode != MyGame.CameraMode.firstPersonWithoutWeapon)
                 base.Draw(gameTime);
         }
     }

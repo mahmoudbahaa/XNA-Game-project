@@ -20,14 +20,14 @@ namespace MyGame
     {
         private SpriteBatch spriteBatch;
         
-        private Game1 myGame;
+        private MyGame myGame;
         private DelayedAction delayedAction;
 
         // Pause variables
         //int pauseDelay = 300;
         //int pauseCountdown = 0;
 
-        public StateManager(Game1 game)
+        public StateManager(MyGame game)
             : base(game)
         {
             myGame = game;

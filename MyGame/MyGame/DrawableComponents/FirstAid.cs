@@ -13,7 +13,7 @@ namespace MyGame
 {
     public class FirstAid : CDrawableComponent
     {
-        public FirstAid(Game1 game, Model model, Unit unit)
+        public FirstAid(MyGame game, Model model, Unit unit)
             : base(game, unit, new CModel(game,model))
         {
         }

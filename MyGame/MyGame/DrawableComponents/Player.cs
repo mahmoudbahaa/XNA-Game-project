@@ -31,7 +31,7 @@ namespace MyGame
         }
 
 
-        public Player(Game1 game, SkinnedModel skinnedModel, Unit unit)
+        public Player(MyGame game, SkinnedModel skinnedModel, Unit unit)
             : base(game, unit, new PlayerModel(game, skinnedModel))
         {
             foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
