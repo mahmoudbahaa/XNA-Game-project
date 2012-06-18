@@ -49,6 +49,7 @@ namespace MyGame
         private Water water;
         private BillboardSystem grass;
         private BillboardSystem clouds;
+        private FrameRateCounter frameRateCounter;
         //private BillboardSystem trees;
         private List<CDrawableComponent> trees = new List<CDrawableComponent>();
         //assal
@@ -67,7 +68,7 @@ namespace MyGame
             if (System.IO.File.Exists("fbDeprofiler.dll"))
                 fbDeprofiler.DeProfiler.Run();
 
-            TargetElapsedTime = TimeSpan.FromMilliseconds(100);
+            //TargetElapsedTime = TimeSpan.FromMilliseconds(100);
 
             Window.AllowUserResizing = true;
 
@@ -135,7 +136,7 @@ namespace MyGame
 
                 // Reject this position if it is too low, high, or steep. Otherwise
                 // add it to the list
-                if (/*steepness < MathHelper.ToRadians(15) &&*/ y > Constants.WATER_HEIGHT * 1.2 + size.X / 2 && y < Constants.WATER_HEIGHT * 3)
+                if (/*steepness < MathHelper.ToRadians(15) &&*/ y >= Constants.WATER_HEIGHT * 1.2 + size.X / 2 && y <= Constants.WATER_HEIGHT * 3)
                     positions.Add(new Vector3(x, y, z));
                 else
                     i--;
@@ -191,22 +192,22 @@ namespace MyGame
 
             Components.Add(camera);
             Components.Add(sky);
-            for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++) 
+            for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
                 Components.Add(terrain[i]);
             Components.Add(water);
-            foreach (CDrawableComponent comp in trees)
-                Components.Add(comp);
+            foreach (CDrawableComponent tree in trees)
+                Components.Add(tree);
             Components.Add(grass);
             Components.Add(clouds);
             Components.Add(monsters);
             Components.Add(firstAidManger);
             Components.Add(bullets);
             Components.Add(weapon);
-            //Components.Add(test);
             Components.Add(player);
             Components.Add(scoreBoard);
             Components.Add(stateManager);
             Components.Add(audioManager);
+            Components.Add(frameRateCounter);
         }
 
         private void initializeGame1()
@@ -263,6 +264,7 @@ namespace MyGame
             stateManager = new StateManager(this);
             audioManager = new AudioManager(this);
 
+            frameRateCounter = new FrameRateCounter(this);
             //CDrawableComponent test = new CDrawableComponent(this,
             //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
             //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
@@ -370,17 +372,22 @@ namespace MyGame
         public float GetHeightAtPosition(float X, float Z)
         {
             float steepness;
-            if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 && 
+            if(Constants.NUM_OF_TERRAINS ==1)
+                return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
+            else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
                 Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
                 return clamp(terrain[3].GetHeightAtPosition(X, Z, out steepness));
-            else if (X > -512 * Constants.TERRAIN_CELL_SIZE &&
-                    X < 0 && Z > 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
+            else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
+                     Z > 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
                 return clamp(terrain[1].GetHeightAtPosition(X, Z, out steepness));
             else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
-                    Z >= 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
+                     Z >= 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
                 return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
-            else
+            else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
+                     Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
                 return clamp(terrain[2].GetHeightAtPosition(X, Z, out steepness));
+            else
+                return 0;
             //return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness)) ;
         }
 

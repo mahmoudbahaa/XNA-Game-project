@@ -19,12 +19,12 @@ namespace Helper
 
 
         public const int NUM_OF_TERRAINS = 4;
-        public const int FIELD_MAX_X_Z = 2 * (int)(250 * TERRAIN_CELL_SIZE * 500 / 512);
+        public const int FIELD_MAX_X_Z = 2 * (int)(250 * TERRAIN_CELL_SIZE * 506 / 512);
 
         public static Vector3 CAMERA_POSITION = new Vector3(0, 15, 60);
         public static Vector3 CAMERA_TARGET = new Vector3(0, 20, 0);
 
-        public const    float PLAYER_SPEED = .025f;//.1f;
+        public const    float PLAYER_SPEED = .05f;//.1f;
         public static Vector3 PLAYER_SCALE = new Vector3(.75f);//new Vector3(2f);
 
         public static Vector3 MONSTER_SCALE = new Vector3(.185f);//new Vector3(.5f);
@@ -35,7 +35,7 @@ namespace Helper
         public static Vector3 MEDKIT_SCALE = new Vector3(.25f);//new Vector3(.5f);
         public static Vector3 MEDKIT_OFFSET = new Vector3(0,20,0);//new Vector3(0,30,0);
 
-        public const    float BULLET_SPEED = 20f;
+        public const    float BULLET_SPEED = 80f;
         public static Vector3 BULLET_SCALE = new Vector3(.5f);//new Vector3(10f);
         public static Vector3 BULLET_OFFSET = new Vector3(0, 20, 0);//new Vector3(0, 40, 0);
 

@@ -191,8 +191,8 @@ namespace MyGame
             //Vector3 offsetToCenter = -new Vector3(((float)width / 2.0f) * cellSize,
             //   0, ((float)length / 2.0f) * cellSize);
 
-            Vector3 offsetToCenter = new Vector3(width * pos.X * cellSize,
-                0, length *pos.Y * cellSize);
+            Vector3 offsetToCenter = new Vector3((width-3) * pos.X * cellSize,
+                0, (length-3) *pos.Y * cellSize);
 
             // For each pixel in the image
             for (int z = 0; z < length; z++)

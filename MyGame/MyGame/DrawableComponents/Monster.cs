@@ -39,10 +39,12 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
+            if (!myGame.camera.BoundingVolumeIsInView(unit.BoundingSphere) && !monsterModel.isRunning)
+                return;
             monsterModel.animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
 
             if ((monsterModel.activeAnimation == MonsterModel.MonsterAnimations.TakeDamage ||
-                monsterModel.activeAnimation == MonsterModel.MonsterAnimations.Bite)&&
+                monsterModel.activeAnimation == MonsterModel.MonsterAnimations.Bite) &&
                 !monsterModel.animationController.IsPlaying)
             {
                 if (monsterModel.isRunning)

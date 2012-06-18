@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="AudioManager.cs" />
     <Compile Include="Camera\TargetCamera.cs" />
+    <Compile Include="DrawableComponents\FrameRateCounter.cs" />
     <Compile Include="DrawableComponents\Tree.cs" />
     <Compile Include="DrawableComponents\Managers\BillboardSystem.cs" />
     <Compile Include="DrawableComponents\SkyCube.cs" />
