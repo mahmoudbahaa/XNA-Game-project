@@ -48,7 +48,8 @@ namespace MyGame
                         rotation += new Vector3(0, deltaX, 0);
                         break;
                     case (int)MyEvent.M_BITE:
-                        decreaseHealth();
+                        int decreasedHealth = (int)ev.args["decreasedHealth"];
+                        decreaseHealth(decreasedHealth);
                         break;
                 }
             }
@@ -73,9 +74,9 @@ namespace MyGame
             base.update(gameTime);
         }
 
-        public void decreaseHealth()
+        public void decreaseHealth(int decreasedHealth)
         {
-            health -= myGame.difficultyConstants.PLAYER_HEALTH_DECREASE;
+            health -= decreasedHealth;
             if (health <= 0)
             {
                 myGame.gameOver = true;

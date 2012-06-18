@@ -15,13 +15,15 @@ namespace MyGame
         public bool moving = false;
 
         private Vector3 direction;
+        public MonsterConstants monsterConstants;
 
-        public MonsterUnit(MyGame game,Vector3 Position, Vector3 Rotation, Vector3 Scale)
+        public MonsterUnit(MyGame game,Vector3 Position, Vector3 Rotation, Vector3 Scale, MonsterConstants monsterConstants)
             : base(game,Position, Rotation, Scale)
         {
             direction = Vector3.Transform(Vector3.Backward,
                 Matrix.CreateFromYawPitchRoll(rotation.Y,rotation.X,rotation.Z));
 
+            this.monsterConstants = monsterConstants;
         }
 
         public override void update(GameTime gameTime)
@@ -38,7 +40,7 @@ namespace MyGame
                         Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)); 
 
                     Vector3 oldPos = position ;
-                    position += direction * myGame.difficultyConstants.MONSTER_SPEED;
+                    position += direction * monsterConstants.MONSTER_SPEED;
 
                     int num_of_Steps_backward = 0;
                     if(myGame.checkCollisionWithTrees(this, 15))
@@ -49,12 +51,12 @@ namespace MyGame
                             direction = Vector3.Transform(Vector3.Forward,
                             Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z));
 
-                            position += direction * myGame.difficultyConstants.MONSTER_SPEED;
+                            position += direction * monsterConstants.MONSTER_SPEED;
                         }
                         direction = Vector3.Transform(Vector3.Right,
                             Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z));
 
-                        position += direction * myGame.difficultyConstants.MONSTER_SPEED;
+                        position += direction * monsterConstants.MONSTER_SPEED;
                         num_of_Steps_backward++;
                     }
 

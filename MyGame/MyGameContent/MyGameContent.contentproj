@@ -286,7 +286,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Textures\" />
+    <Folder Include="monsters\1\Textures\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="terrain-2.bmp">
@@ -356,6 +356,21 @@
       <Name>firtree1</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="monsters\1\model\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>SkinnedModelImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="monsters\2\model\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>SkinnedModelImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="monsters\3\model\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>SkinnedModelImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
     </Compile>
     <None Include="PPShared.vsi">
       <Name>PPShared</Name>
@@ -480,6 +495,35 @@
     </Compile>
     <Compile Include="weightMap4.bmp">
       <Name>weightMap4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="monsters\2\Textures\EnemyBeastDiffuse.jpg">
+      <Name>EnemyBeastDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="monsters\3\Textures\EnemyBeastDiffuse.jpg">
+      <Name>EnemyBeastDiffuse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\monster texture\EnemyBeastDiffuse_0.jpg">
+      <Name>EnemyBeastDiffuse_0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\monster texture\EnemyBeastDiffuse_1.jpg">
+      <Name>EnemyBeastDiffuse_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\monster texture\EnemyBeastDiffuse_2.jpg">
+      <Name>EnemyBeastDiffuse_2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

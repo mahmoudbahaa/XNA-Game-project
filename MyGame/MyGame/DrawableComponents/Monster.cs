@@ -31,10 +31,6 @@ namespace MyGame
         {
             monsterModel = ((MonsterModel)cModel);
             monsterUnit = ((MonsterUnit)unit);
-
-            foreach (ModelMesh mesh in skinnedModel.Model.Meshes)
-                foreach (SkinnedEffect effect in mesh.Effects)
-                    effect.EnableDefaultLighting();
         }
 
         public override void Update(GameTime gameTime)

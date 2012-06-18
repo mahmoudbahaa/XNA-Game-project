@@ -127,6 +127,10 @@
     <Compile Include="DrawableComponents\Managers\StateManager.cs" />
     <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
     <Compile Include="Helper\AdvancedConstants.cs" />
+    <Compile Include="Helper\MonsterLevel3Constants.cs" />
+    <Compile Include="Helper\MonsterLevel2Constants.cs" />
+    <Compile Include="Helper\MonsterConstants.cs" />
+    <Compile Include="Helper\MonsterLevel1Constants.cs" />
     <Compile Include="Helper\XtremeConstants.cs" />
     <Compile Include="Helper\NoviceConstants.cs" />
     <Compile Include="Helper\DifficultyConstants.cs" />

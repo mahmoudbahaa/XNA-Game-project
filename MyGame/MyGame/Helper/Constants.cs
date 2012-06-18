@@ -19,6 +19,8 @@ namespace Helper
 
 
         public const int NUM_OF_TERRAINS = 4;
+
+        public const int NUM_OF_TYPES_OF_MONSTERS = 3;
         public const int FIELD_MAX_X_Z = 2 * (int)(250 * TERRAIN_CELL_SIZE * 506 / 512);
 
         public static Vector3 CAMERA_POSITION = new Vector3(0, 15, 60);

@@ -372,9 +372,9 @@ namespace MyGame
         public float GetHeightAtPosition(float X, float Z)
         {
             float steepness;
-            if(Constants.NUM_OF_TERRAINS ==1)
+            if (Constants.NUM_OF_TERRAINS == 1) 
                 return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
-            else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
+            if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
                 Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
                 return clamp(terrain[3].GetHeightAtPosition(X, Z, out steepness));
             else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
