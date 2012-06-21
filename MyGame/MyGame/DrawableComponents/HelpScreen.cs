@@ -47,7 +47,9 @@ namespace MyGame
             if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Enter) 
                                                     && !keyState.IsKeyDown(Keys.RightAlt)))
             {
-                myGame.mediator.fireEvent(MyEvent.G_StartScreen);
+                if(keyState.IsKeyDown(Keys.Enter)) {
+                    myGame.mediator.fireEvent(MyEvent.G_StartScreen);
+                }
             }
             base.Update(gameTime);
         }

@@ -39,7 +39,7 @@ namespace Helper
 
         public const    float BULLET_SPEED = 40f;
         public static Vector3 BULLET_SCALE = new Vector3(4f);//new Vector3(10f);
-        public static Vector3 BULLET_OFFSET = new Vector3(0, 12, 0);//new Vector3(0, 40, 0);
+        public static Vector3 BULLET_OFFSET = new Vector3(0, 6, 0);//new Vector3(0, 40, 0);
 
         public static Vector2 TREE_SIZE = new Vector2(50);
         public static Vector2 GRASS_SIZE = new Vector2(8);

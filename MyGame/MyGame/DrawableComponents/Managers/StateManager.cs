@@ -45,8 +45,18 @@ namespace MyGame
             if (myGame.gameOver)
                 return;
             KeyboardState keyState = Keyboard.GetState();
-            if(delayedAction.eventHappened(gameTime,keyState,Keys.P))
+            if (delayedAction.eventHappened(gameTime, keyState, Keys.P))
+            {
                 myGame.paused = !myGame.paused;
+                if (myGame.paused)
+                {
+                    myGame.pause();
+                    StartScreen.continueEnabled = true;
+                }
+                else
+                    myGame.resume();
+
+            }
 
         }
 

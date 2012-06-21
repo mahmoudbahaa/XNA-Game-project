@@ -38,7 +38,7 @@ namespace Helper
 
         public bool eventHappened(GameTime gameTime, params bool[] conditions)
         {
-            keyCountdown += gameTime.ElapsedGameTime.Milliseconds;
+            keyCountdown += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (keyCountdown >= keyDelay)
             {
                 foreach (bool condition in conditions)
@@ -49,7 +49,7 @@ namespace Helper
                         return true;
                     }
                 }
-                //keyCountdown = keyDelay;
+                keyCountdown = keyDelay;
             }
 
             return false;

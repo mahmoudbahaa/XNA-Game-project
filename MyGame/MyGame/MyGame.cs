@@ -52,6 +52,9 @@ namespace MyGame
         private FrameRateCounter frameRateCounter;
         //private BillboardSystem trees;
         private List<CDrawableComponent> trees = new List<CDrawableComponent>();
+
+        private StartScreen startScreen;
+        private HelpScreen helpScreen;
         //assal
 
         // Shot variables
@@ -186,8 +189,20 @@ namespace MyGame
             clouds.EnsureOcclusion = false;
         }
 
+        public void pause()
+        {
+            Components.Remove(startScreen);
+            Components.Insert(0, startScreen);
+        }
+
+        public void resume()
+        {
+            Components.Remove(startScreen);
+        }
+
         private void initializeGame2()
         {
+            initializeGame1();
             Components.Clear();
 
             Components.Add(camera);
@@ -268,32 +283,32 @@ namespace MyGame
             //CDrawableComponent test = new CDrawableComponent(this,
             //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
             //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));
-            mediator.fireEvent(MyEvent.G_StartGame);
+            //mediator.fireEvent(MyEvent.G_StartGame);
 
         }
 
 
         private void initializeStartMenu()
         {
-            Components.Clear();
-            StartScreen startScreen = new StartScreen(this);
-
-            Components.Add(startScreen);
+            startScreen.reInitialize();
+            Components.Remove(helpScreen);
+            Components.Remove(startScreen);
+            Components.Insert(0, startScreen);
         }
 
         private void initializeHelpScreen()
         {
-            Components.Clear();
-            HelpScreen helpScreen = new HelpScreen(this);
-
-            Components.Add(helpScreen);
+            Components.Remove(helpScreen);
+            Components.Insert(0, helpScreen);
         }
 
         // Called when the game should load its content
         protected override void LoadContent()
         {
+            helpScreen = new HelpScreen(this);
+            startScreen = new StartScreen(this);
             initializeStartMenu();
-            initializeGame1();
+            //initializeGame1();
         }
 
         protected override void Update(GameTime gameTime)

@@ -160,6 +160,8 @@ namespace MyGame
             }
             else
             {
+                if (TargetOffset.Y < savedTargetOffset.Y)
+                    TargetOffset.Y = savedTargetOffset.Y;
                 // Rotate the camera
                 Rotate(new Vector3(deltaY * .0005f * sensitivity, 0, 0));
 
@@ -171,7 +173,7 @@ namespace MyGame
 
                 rotation = recalculatePosition();
 
-                if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
+                if (Position.Y < myGame.GetHeightAtPosition(myGame.player.unit.position.X, myGame.player.unit.position.Z) + 10)
                 {
                     //Rotate(new Vector3(-deltaY * .0005f, 0, 0));
                     //TargetOffset.Y = savedTargetOffset.Y;
@@ -181,6 +183,11 @@ namespace MyGame
                     Rotate(new Vector3(-deltaY * .0005f * sensitivity, 0, 0));
                     lastTargetOffsetY = TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
                     rotation = recalculatePosition();
+                    //if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
+                    //{
+                    //    Rotate(new Vector3(-deltaY * .0005f * sensitivity, 0, 0));
+                    //    rotation = recalculatePosition();
+                    //}
                     //}
                 }
             }
