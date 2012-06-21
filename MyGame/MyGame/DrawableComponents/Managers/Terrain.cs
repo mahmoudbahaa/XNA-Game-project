@@ -138,21 +138,21 @@ namespace MyGame
             out float Steepness)
         {
             // Clamp coordinates to locations on terrain
-            X = MathHelper.Clamp(X, (width-1) * pos.X * cellSize,
-                (width - 1) * pos.X * cellSize + (width - 1) * cellSize);
-            Z = MathHelper.Clamp(Z, (length - 1) * pos.Y * cellSize,
-                (length - 1) * pos.Y * cellSize + (length - 1) * cellSize);
+            X = MathHelper.Clamp(X, -((width / 2f)-1) * cellSize, ((width / 2f)-1) * cellSize);
+            Z = MathHelper.Clamp(Z, -((width / 2f)-1) * cellSize, ((width / 2f)-1) * cellSize);
 
-            Vector3 offsetToCenter = new Vector3(width * pos.X * cellSize,
-                0, length * pos.Y * cellSize);
-            //// Map from (-Width/2->Width/2,-Length/2->Length/2) 
-            //// to (0->Width, 0->Length)
-            //X += (width / 2f) * cellSize;
-            //Z += (length / 2f) * cellSize;
+            //X = MathHelper.Clamp(X, (width - 1) * pos.X * cellSize,
+            //    (width - 1) * pos.X * cellSize + (width - 1) * cellSize);
+            //Z = MathHelper.Clamp(Z, (length - 1) * pos.Y * cellSize,
+            //    (length - 1) * pos.Y * cellSize + (length - 1) * cellSize);
+
             // Map from (-Width/2->Width/2,-Length/2->Length/2) 
             // to (0->Width, 0->Length)
-            X -= width * pos.X * cellSize;
-            Z -= length * pos.Y * cellSize;
+            X += (width / 2f) * cellSize;
+            Z += (length / 2f) * cellSize;
+
+            //X -= width * pos.X * cellSize;
+            //Z -= length * pos.Y * cellSize;
 
             // Map to cell coordinates
             X /= cellSize;
@@ -179,7 +179,7 @@ namespace MyGame
             float leftOver = ((X - x1) + (Z - z1)) / 2f;
 
             // Interpolate between the corner vertices' heights
-            return MathHelper.Lerp(h1, h2, leftOver);
+            return MathHelper.Max(h1, h2);// MathHelper.Lerp(h1, h2, leftOver);
         }
 
         // create vertices for each pixel.
@@ -188,11 +188,11 @@ namespace MyGame
             vertices = new VertexPositionNormalTexture[nVertices];
 
             // Calculate the position offset that will center the terrain at (0, 0, 0)
-            //Vector3 offsetToCenter = -new Vector3(((float)width / 2.0f) * cellSize,
-            //   0, ((float)length / 2.0f) * cellSize);
+            Vector3 offsetToCenter = -new Vector3(((float)width / 2.0f) * cellSize,
+               0, ((float)length / 2.0f) * cellSize);
 
-            Vector3 offsetToCenter = new Vector3((width-3) * pos.X * cellSize,
-                0, (length-3) *pos.Y * cellSize);
+            //Vector3 offsetToCenter = new Vector3((width-3) * pos.X * cellSize,
+            //    0, (length-3) *pos.Y * cellSize);
 
             // For each pixel in the image
             for (int z = 0; z < length; z++)

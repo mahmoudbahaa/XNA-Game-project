@@ -287,6 +287,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="monsters\1\Textures\" />
+    <Folder Include="monsters\2\Textures\" />
+    <Folder Include="monsters\3\Textures\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="terrain-2.bmp">
@@ -495,18 +497,6 @@
     </Compile>
     <Compile Include="weightMap4.bmp">
       <Name>weightMap4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="monsters\2\Textures\EnemyBeastDiffuse.jpg">
-      <Name>EnemyBeastDiffuse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="monsters\3\Textures\EnemyBeastDiffuse.jpg">
-      <Name>EnemyBeastDiffuse</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -38,18 +38,18 @@ namespace Helper
 
         public bool eventHappened(GameTime gameTime, params bool[] conditions)
         {
-            keyCountdown -= gameTime.ElapsedGameTime.Milliseconds;
-            if (keyCountdown <= 0)
+            keyCountdown += gameTime.ElapsedGameTime.Milliseconds;
+            if (keyCountdown >= keyDelay)
             {
                 foreach (bool condition in conditions)
                 {
                     if (condition)
                     {
-                        keyCountdown = keyDelay;
+                        keyCountdown = 0;
                         return true;
                     }
                 }
-                keyCountdown = 0;
+                //keyCountdown = keyDelay;
             }
 
             return false;

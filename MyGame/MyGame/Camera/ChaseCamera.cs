@@ -15,11 +15,15 @@ namespace MyGame
         public Vector3 FollowTargetPosition { get; private set; }
         public Vector3 FollowTargetRotation { get; private set; }
 
-        private Vector3 savedTargetOffset ;
+        private Vector3 savedTargetOffset;
         private Vector3 savedPositionOffset;
 
-        public Vector3 PositionOffset;
-        public Vector3 TargetOffset;
+        private Vector3 PositionOffset;
+        private Vector3 initialPositionOffset;
+        private Vector3 TargetOffset;
+
+        private float sensitivity;
+        private float lastTargetOffsetY;
 
         private MouseState lastMouseState;
 
@@ -43,6 +47,7 @@ namespace MyGame
         {
             this.savedTargetOffset = TargetOffset;
             this.savedPositionOffset = PositionOffset;
+            initialPositionOffset = PositionOffset;
             this.PositionOffset = PositionOffset;
             this.TargetOffset = TargetOffset;
             this.RelativeCameraRotation = RelativeCameraRotation;
@@ -62,21 +67,50 @@ namespace MyGame
             this.RelativeCameraRotation += RotationChange;
         }
 
+
+        private Matrix recalculatePosition()
+        {
+            // Sum the rotations of the model and the camera to ensure it 
+            // is rotated to the correct position relative to the model's 
+            // rotation
+            Vector3 combinedRotation = FollowTargetRotation +
+                RelativeCameraRotation;
+
+            // Calculate the rotation matrix for the camera
+            Matrix rotation = Matrix.CreateFromYawPitchRoll(
+                combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
+
+            // Calculate the position the camera would be without the spring
+            // value, using the rotation matrix and target position
+            Vector3 desiredPosition = FollowTargetPosition +
+                Vector3.Transform(PositionOffset, rotation);
+
+            // Interpolate between the current position and desired position
+            Position = Vector3.Lerp(Position, desiredPosition, Springiness);
+
+            return rotation;
+        }
+
+        public void resetOffsets()
+        {
+            TargetOffset = savedTargetOffset;
+            PositionOffset = savedPositionOffset;
+            sensitivity = 1;
+        }
+
+        public void setOffsetsFor1stPerson()
+        {
+            TargetOffset.Z = 0;
+            TargetOffset.Y = TargetOffset.Y * 2.5f;
+            PositionOffset.Y = PositionOffset.Y * 2.5f;
+            PositionOffset.Z = 1;
+            sensitivity = 0.5f;
+        }
+
         public override void  Update(GameTime gameTime)
         {
             if (myGame.paused)
                 return;
-
-            if (myGame.cameraMode != MyGame.CameraMode.thirdPerson)
-            {
-                TargetOffset = new Vector3(0, 40, 0);
-                PositionOffset = new Vector3(0, 40, 1);
-            }
-            else
-            {
-                //TargetOffset = savedTargetOffset;
-                //PositionOffset = savedPositionOffset;
-            }
 
             // Get the new keyboard and mouse state
             MouseState mouseState = Mouse.GetState();
@@ -116,55 +150,62 @@ namespace MyGame
                 deltaY = ((float)lastMouseState.Y - (float)mouseState.Y) * 15;
             }
 
-            // Rotate the camera
-            Rotate(new Vector3(deltaY * .0005f, 0, 0));
-
-
-            myGame.mediator.fireEvent(MyEvent.C_Pointer, "deltaX", -deltaX * .0005f);//controlPointer(-deltaX * .0005f);
-
-            //Natural Chase Camera Update
-            Vector3 translation = Vector3.Zero;
-
-            // Sum the rotations of the model and the camera to ensure it 
-            // is rotated to the correct position relative to the model's 
-            // rotation
-            Vector3 combinedRotation = FollowTargetRotation +
-                RelativeCameraRotation;
-
-            // Calculate the rotation matrix for the camera
-            Matrix rotation = Matrix.CreateFromYawPitchRoll(
-                combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
-
-            // Calculate the position the camera would be without the spring
-            // value, using the rotation matrix and target position
-            Vector3 desiredPosition = FollowTargetPosition +
-                Vector3.Transform(PositionOffset, rotation);
-
-            // Interpolate between the current position and desired position
-            Position = Vector3.Lerp(Position, desiredPosition, Springiness);
-
-            int i = 0;
-            while (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
+            Matrix rotation;
+            if (TargetOffset.Y > savedTargetOffset.Y && deltaY < 0)
             {
-                if (i++ > 1000)
-                    break;
-                if (combinedRotation.X >= -MathHelper.PiOver2)
-                    combinedRotation.X -= 0.01f;
-                else
-                    combinedRotation.X += 0.001f;
-
-                // Calculate the rotation matrix for the camera
-                rotation = Matrix.CreateFromYawPitchRoll(
-                    combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
-
-                // Calculate the position the camera would be without the spring
-                // value, using the rotation matrix and target position
-                desiredPosition = FollowTargetPosition +
-                    Vector3.Transform(PositionOffset, rotation);
-
-                // Interpolate between the current position and desired position
-                Position = Vector3.Lerp(Position, desiredPosition, Springiness);
+                TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
+                if (TargetOffset.Y < savedTargetOffset.Y)
+                    TargetOffset.Y = savedTargetOffset.Y;
+                rotation = recalculatePosition();
             }
+            else
+            {
+                // Rotate the camera
+                Rotate(new Vector3(deltaY * .0005f * sensitivity, 0, 0));
+
+
+                myGame.mediator.fireEvent(MyEvent.C_Pointer, "deltaX", -deltaX * .0005f * sensitivity);//controlPointer(-deltaX * .0005f);
+
+                //Natural Chase Camera Update
+                //Vector3 translation = Vector3.Zero;
+
+                rotation = recalculatePosition();
+
+                if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
+                {
+                    //Rotate(new Vector3(-deltaY * .0005f, 0, 0));
+                    //TargetOffset.Y = savedTargetOffset.Y;
+                    //rotation = recalculatePosition();
+                    //if (Position.Y < myGame.GetHeightAtPosition(myGame.player.unit.position.X, myGame.player.unit.position.Z) + 10)
+                    //{
+                    Rotate(new Vector3(-deltaY * .0005f * sensitivity, 0, 0));
+                    lastTargetOffsetY = TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
+                    rotation = recalculatePosition();
+                    //}
+                }
+            }
+            //int i = 0;
+            //while (Position.Y < myGame.GetHeightAtPosition(myGame.player.unit.position.X, myGame.player.unit.position.Z) +2)
+            //{
+            //    if (i++ > 1000)
+            //        break;
+            //    //if (combinedRotation.X >= -MathHelper.PiOver2)
+            //    combinedRotation.X -= 0.01f;
+            //    //else
+            //        //combinedRotation.X += 0.001f;
+
+            //    // Calculate the rotation matrix for the camera
+            //    rotation = Matrix.CreateFromYawPitchRoll(
+            //        combinedRotation.Y, combinedRotation.X, combinedRotation.Z);
+
+            //    // Calculate the position the camera would be without the spring
+            //    // value, using the rotation matrix and target position
+            //    desiredPosition = FollowTargetPosition +
+            //        Vector3.Transform(PositionOffset, rotation);
+
+            //    // Interpolate between the current position and desired position
+            //    Position = Vector3.Lerp(Position, desiredPosition, Springiness);
+            //}
 
             // Calculate the new target using the rotation matrix
             Target = FollowTargetPosition +
@@ -192,8 +233,10 @@ namespace MyGame
             if (keyState.IsKeyDown(Keys.Left) && TargetOffset.X > -50)
                 TargetOffset.X -= 1;
 
-            if ((PositionOffset.Z - Target.Z) > scrollWheelValue / 2)
-                PositionOffset.Z -= scrollWheelValue/2;
+            PositionOffset.Z -= scrollWheelValue / 2;
+            if ((PositionOffset.Z - TargetOffset.Z) < 10)
+                PositionOffset.Z += scrollWheelValue/2;
+
             //else if ((Position.Z - Target.Z) < scrollWheelValue / 2)
             //    PositionOffset.Z += scrollWheelValue/2 ;
 

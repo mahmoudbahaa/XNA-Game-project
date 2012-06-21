@@ -323,9 +323,15 @@ namespace MyGame
             if (delayedAction2.eventHappened(gameTime, keyState, Keys.C))
             {
                 if ((int)cameraMode == 2)
+                {
                     cameraMode = CameraMode.thirdPerson;
+                    ((ChaseCamera)camera).resetOffsets();
+                }
                 else
+                {
                     cameraMode++;
+                    ((ChaseCamera)camera).setOffsetsFor1stPerson();
+                }
 
             }
 
@@ -357,17 +363,17 @@ namespace MyGame
             base.EndRun();
         }
 
-        public float GetHeightAtPosition2(float X, float Z)
-        {
-            if (X > -512 && X < 0 && Z > -512 && Z < 0)
-                return clamp(terrain[3].GetHeightAtPosition(X, Z));
-            else if (X > -512 && X < 0 && Z > 0 && Z < 512)
-                return clamp(terrain[1].GetHeightAtPosition(X, Z));
-            else if (X > -0 && X < 512 && Z > 0 && Z < 512)
-                return clamp(terrain[0].GetHeightAtPosition(X, Z));
-            else 
-                return clamp(terrain[2].GetHeightAtPosition(X, Z));
-        }
+        //public float GetHeightAtPosition2(float X, float Z)
+        //{
+        //    if (X > -512 && X < 0 && Z > -512 && Z < 0)
+        //        return clamp(terrain[3].GetHeightAtPosition(X, Z));
+        //    else if (X > -512 && X < 0 && Z > 0 && Z < 512)
+        //        return clamp(terrain[1].GetHeightAtPosition(X, Z));
+        //    else if (X > -0 && X < 512 && Z > 0 && Z < 512)
+        //        return clamp(terrain[0].GetHeightAtPosition(X, Z));
+        //    else 
+        //        return clamp(terrain[2].GetHeightAtPosition(X, Z));
+        //}
 
         public float GetHeightAtPosition(float X, float Z)
         {
