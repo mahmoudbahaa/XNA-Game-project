@@ -177,8 +177,8 @@ namespace MyGame
                         myGame.mediator.fireEvent(MyEvent.G_RESUME);
                         break;
 
-                    case "LEFT":
-                        Console.WriteLine("left");
+                    case "START":
+                        myGame.mediator.fireEvent(MyEvent.G_StartGame);
                         break;
 
                     case "RIGHT":;

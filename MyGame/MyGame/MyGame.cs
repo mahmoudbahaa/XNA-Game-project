@@ -21,7 +21,7 @@ namespace MyGame
         public Controller controller;
         public Mediator mediator;
         public Player player;
-        public bool paused = false;
+        public bool paused = true;
         public bool canPause = true;
         public bool gameOver = false;
 
@@ -330,9 +330,26 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case (int)MyEvent.G_Exit: Exit(); break;
-                    case (int)MyEvent.G_StartGame: initializeGame2(); break;
-                    case (int)MyEvent.G_NextLevel: paused = true; canPause = false; break;
-                    case (int)MyEvent.G_NextLevel_END_OF_MUSIC: paused = false; canPause = true; currentLevel++; initializeGame2(); break;
+                    case (int)MyEvent.G_StartGame:
+                        {
+                            //if (paused)
+                                initializeGame2();
+                            break;
+                        }
+                    case (int)MyEvent.G_NextLevel:
+                        {
+                            paused = true;
+                            canPause = false;
+                            break;
+                        }
+                    case (int)MyEvent.G_NextLevel_END_OF_MUSIC:
+                        {
+                            paused = false;
+                            canPause = true;
+                            currentLevel++;
+                            initializeGame2();
+                            break;
+                        }
                     case (int)MyEvent.G_StartLevel: Components.Remove(levelScreen); break;
                     case (int)MyEvent.G_StartScreen: initializeStartMenu(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
