@@ -79,16 +79,16 @@ namespace MyGame
             float y = Constants.TERRAIN_HEIGHT;
             //while(y > .5 * Constants.TERRAIN_HEIGHT)
             //{
-            bool flag = true;
-            while (flag)
-            {
+            //bool flag = true;
+            //while (flag)
+            //{
                 x = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 z = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 y = myGame.GetHeightAtPosition(x, z);
-                Unit unit = new Unit(myGame, new Vector3(x, y, z), Vector3.Zero, Vector3.One);
-                if (!myGame.player.unit.collideWith(unit))
-                    flag = false;
-            }
+                //Unit unit = new Unit(myGame, new Vector3(x, y, z), Vector3.Zero, Vector3.One);
+                //if (!myGame.player.unit.collideWith(unit))
+                //    flag = false;
+            //}
             //}
             Vector3 pos = new Vector3(x, y, z);
             Vector3 rot = new Vector3(0, (float)(rnd[0].NextDouble() * MathHelper.TwoPi), 0);

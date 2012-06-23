@@ -40,7 +40,7 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            if (!myGame.camera.BoundingVolumeIsInView(unit.BoundingSphere) && !monsterModel.isRunning)
+            if (!myGame.camera.BoundingVolumeIsInView(unit.BoundingBox/*BoundingSphere*/) && !monsterModel.isRunning)
                 return;
             monsterModel.animationController.Update(gameTime.ElapsedGameTime, Matrix.Identity);
 

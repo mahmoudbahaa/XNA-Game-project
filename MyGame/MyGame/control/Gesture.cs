@@ -137,7 +137,7 @@ namespace control
         public override void eval()
         {
             diff = Kinect.skeleton.rShoulder.Z - Kinect.skeleton.lShoulder.Z;
-            if (Math.Abs(diff) < 0.1)
+            if (Math.Abs(diff) < 0.3)
                 left = right = false;
             else
             {
@@ -168,9 +168,9 @@ namespace control
         {
 
             if (hand == Constants.RIGHT_HAND)
-                active = Math.Abs(Kinect.skeleton.rWrist.Z - Kinect.skeleton.rShoulder.Z) > .25f;
+                active = Math.Abs(Kinect.skeleton.rWrist.Z - Kinect.skeleton.rShoulder.Z) > .17f;
             else
-                active = Math.Abs(Kinect.skeleton.lWrist.Z - Kinect.skeleton.lShoulder.Z) > .25f;
+                active = Math.Abs(Kinect.skeleton.lWrist.Z - Kinect.skeleton.lShoulder.Z) > .17f;
 
             
             currentPos = getPos();

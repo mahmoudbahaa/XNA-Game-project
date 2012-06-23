@@ -127,8 +127,8 @@ namespace MyGame
                     //myGame.cameraMode = MyGame.CameraMode.firstPersonWithoutWeapon;
                     //setOffsetsFor1stPerson();
                     Vector2 d = myGame.controller.getPointer();
-                    deltaX = d.X *1f;
-                    deltaY = d.Y * 1f;
+                    deltaX = d.X * 1f;
+                    deltaY = d.Y * 2f;
                 }
                 else
                 {

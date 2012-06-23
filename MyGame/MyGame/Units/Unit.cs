@@ -26,6 +26,7 @@ namespace MyGame
 
         //attribute holding the bounding sphere for this unit model
         protected BoundingSphere boundingSphere;
+        protected BoundingBox boundingBox;
 
         public BoundingSphere BoundingSphere
         {
@@ -43,6 +44,32 @@ namespace MyGame
             set 
             {
                 boundingSphere = value;
+            }
+        }
+
+        public BoundingBox BoundingBox
+        {
+            get
+            {
+                // No need for rotation, as this is a sphere
+                Matrix worldTransform = baseWorld * Matrix.CreateScale(scale)
+                * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)
+                * Matrix.CreateTranslation(position);
+
+
+                Vector3[] oldVertices = boundingBox.GetCorners();
+                Vector3[] newVertices = new Vector3[oldVertices.Length];
+
+                for (int i = 0; i < oldVertices.Length; i++)
+                {
+                    newVertices[i] = Vector3.Transform(oldVertices[i], worldTransform);
+                }
+
+                return BoundingBox.CreateFromPoints(newVertices);
+            }
+            set
+            {
+                boundingBox = value;
             }
         }
 
@@ -70,7 +97,8 @@ namespace MyGame
 
         public bool collideWith(Unit otherUnit)
         {
-            return (BoundingSphere.Contains(otherUnit.BoundingSphere) != ContainmentType.Disjoint);
+            //return (BoundingSphere.Contains(otherUnit.BoundingSphere) != ContainmentType.Disjoint);
+            return (BoundingBox.Contains(otherUnit.BoundingBox) != ContainmentType.Disjoint);
         }
 
 

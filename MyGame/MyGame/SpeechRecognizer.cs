@@ -169,20 +169,23 @@ namespace MyGame
             {
                 switch (e.Result.Semantics.Value.ToString())
                 {
-                    case "PAUSE":;
+                    case "PAUSE":
+                        Console.WriteLine("PAUSE");
                         myGame.mediator.fireEvent(MyEvent.G_PAUSE);
                         break;
 
                     case "RESUME":
+                        Console.WriteLine("RESUME");
                         myGame.mediator.fireEvent(MyEvent.G_RESUME);
                         break;
 
                     case "START":
+                        Console.WriteLine("START");
                         myGame.mediator.fireEvent(MyEvent.G_StartGame);
                         break;
 
                     case "RIGHT":;
-                        Console.WriteLine("right");
+                        Console.WriteLine("RIGHT");
                         break;
                 }
             }

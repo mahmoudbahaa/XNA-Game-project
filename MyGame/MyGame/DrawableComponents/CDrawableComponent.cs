@@ -20,11 +20,13 @@ namespace MyGame
             this.unit = unit;
             this.cModel = model;
             unit.BoundingSphere = cModel.buildBoundingSphere();
+            unit.BoundingBox = cModel.buildBoundingBox();
         }
 
         public override void Draw(GameTime gameTime)
         {
-            if (myGame.camera.BoundingVolumeIsInView(unit.BoundingSphere))
+            //if (myGame.camera.BoundingVolumeIsInView(unit.BoundingSphere))
+            if (myGame.camera.BoundingVolumeIsInView(unit.BoundingBox))
             {
                 cModel.Draw(gameTime);
                 base.Draw(gameTime);
