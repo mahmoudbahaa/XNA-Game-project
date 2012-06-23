@@ -9,6 +9,7 @@ namespace Helper
     {
         public MonsterLevel1Constants()
         {
+            SCORE = 1;
             MONSTER_SPEED = Constants.PLAYER_SPEED * 20;
             MONSTER_HEALTH_PER_BULLET = 30;
             PLAYER_HEALTH_DECREASE = 5;

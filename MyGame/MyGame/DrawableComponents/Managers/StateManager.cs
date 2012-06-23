@@ -16,10 +16,11 @@ namespace MyGame
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class StateManager : DrawableGameComponent 
+    public class StateManager : DrawableGameComponent ,IEvent
     {
         private SpriteBatch spriteBatch;
-        
+
+        private List<Event> events = new List<Event>();
         private MyGame myGame;
         private DelayedAction delayedAction;
 
@@ -34,6 +35,7 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             delayedAction = new DelayedAction();
+            myGame.mediator.register(this, MyEvent.G_PAUSE,MyEvent.G_RESUME);
         }
 
         /// <summary>
@@ -42,7 +44,28 @@ namespace MyGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            if (myGame.gameOver)
+            foreach (Event ev in events)
+            {
+                switch (ev.EventId)
+                {
+                    case (int)MyEvent.G_PAUSE:
+                        {
+                            myGame.paused = true;
+                            myGame.pause();
+                            StartScreen.continueEnabled = true;
+                            break;
+                        }
+                    case (int)MyEvent.G_RESUME:
+                        {
+                            myGame.paused = false;
+                            myGame.resume();
+                            break;
+                        }
+                }
+            }
+            events.Clear();
+
+            if (myGame.gameOver || !myGame.canPause)
                 return;
             KeyboardState keyState = Keyboard.GetState();
             if (delayedAction.eventHappened(gameTime, keyState, Keys.P))
@@ -62,13 +85,13 @@ namespace MyGame
 
         public override void Draw(GameTime gameTime)
         {
-            if (myGame.paused)
-            {
+            //if (myGame.paused)
+            //{
                 if(myGame.gameOver)
                     Draw("Game  ver  ");
-                else
-                    Draw("PAUSED");
-            }
+                //else
+                //    Draw("PAUSED");
+            //}
         }
 
         private void Draw(String text)
@@ -82,5 +105,10 @@ namespace MyGame
             spriteBatch.End();
         }
 
+
+        public void addEvent(Event ev)
+        {
+            events.Add(ev);
+        }
     }
 }

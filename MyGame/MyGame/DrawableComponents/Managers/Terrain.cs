@@ -25,7 +25,7 @@ namespace MyGame
         Texture2D baseTexture;
         float textureTiling;
         Vector3 lightDirection;
-        Vector2 pos;
+        //Vector2 pos;
 
         public Texture2D RTexture, BTexture, GTexture, WeightMap;
         public Texture2D DetailTexture;
@@ -34,7 +34,8 @@ namespace MyGame
 
         Camera camera;
         public Terrain(Game game,Camera camera, Texture2D HeightMap, float CellSize, float Height,
-            Texture2D BaseTexture, float TextureTiling, Vector3 LightDirection,Vector2 pos) : base(game)
+            Texture2D BaseTexture, float TextureTiling, Vector3 LightDirection/*,Vector2 pos*/)
+            : base(game)
         {
             this.baseTexture = BaseTexture;
             this.camera = camera;
@@ -45,7 +46,7 @@ namespace MyGame
             this.length = HeightMap.Height;
             this.cellSize = CellSize;
             this.height = Height;
-            this.pos = pos;
+            //this.pos = pos;
 
             effect = Game.Content.Load<Effect>("TerrainEffect");
 

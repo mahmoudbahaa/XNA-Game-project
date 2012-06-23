@@ -10,20 +10,17 @@ using control;
 
 namespace MyGame
 {
-    public class StartScreen : DrawableGameComponent
+    public class StartScreen : Screen
     {
-        private SpriteBatch spriteBatch;
         private int chosenMenuItem = 0;
-        private DelayedAction delayedAction;
         public static bool continueEnabled = false;
         public static Constants.Difficulties Difficulty = Constants.Difficulties.Advanced;
         // Shot variables
         //int keyDelay = 100;
         //int keyCountdown = 100;
         private Color disabledMenuItemColor = Color.Red; 
-        private Color backgroundColor = Color.Navy;
+        
         private Color titleColor = Color.LightGreen;
-        private Color menuItemColor = Color.LightGreen;
         private Color shadedMenuItemColor = Color.Yellow;
 
         //private Vector2 titlePosOffset = new Vector2(0, 150);
@@ -35,37 +32,22 @@ namespace MyGame
 
         private Texture2D emptyTex;
 
-        private MyGame myGame;
-        private float silencePeriod = 1000;
         public StartScreen(MyGame game)
-            : base(game)
+            : base(game,100)
         {
-            myGame = game;
-
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
             emptyTex = game.Content.Load<Texture2D>("empty2");
-            delayedAction = new DelayedAction(100);
-        }
-
-        public void reInitialize()
-        {
-            silencePeriod = 500;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (silencePeriod > 0)
-            {
-                silencePeriod -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (silencePeriod > 0)
+            if (checkSilencePeriod(gameTime))
                     return;
-            }
             KeyboardState keyState = Keyboard.GetState();
-            if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Down) ||
+            if (delayedAction.eventHappened(gameTime, (keyState.IsKeyDown(Keys.Down) ||
                                                       keyState.IsKeyDown(Keys.Up) ||
                                                       keyState.IsKeyDown(Keys.Left) ||
                                                       keyState.IsKeyDown(Keys.Right) ||
-                                                      (keyState.IsKeyDown(Keys.Enter) &&
+                                                      (keyState.IsKeyDown(Keys.Enter)) &&
                                                       !keyState.IsKeyDown(Keys.RightAlt))))
             {
                 if (keyState.IsKeyDown(Keys.Down))
@@ -116,16 +98,13 @@ namespace MyGame
             Game.GraphicsDevice.Clear(backgroundColor);
             spriteBatch.Begin();
 
-            SpriteFont bigFont = Game.Content.Load<SpriteFont>("SpriteFontLarge");
-            SpriteFont mediumFont = Game.Content.Load<SpriteFont>("SpriteFontMedium");
-
-            Vector2 pos = findCenteredPos(title1, bigFont);
+            Vector2 pos = findCenteredPos2(title1, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
             pos -= nextPosOffset;
             spriteBatch.DrawString(bigFont, title1, pos , titleColor);
 
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title1).Y);
-            pos = findCenteredPos(title2, bigFont) - nextPosOffset;
+            pos = findCenteredPos2(title2, bigFont) - nextPosOffset;
             spriteBatch.DrawString(bigFont, title2, pos, titleColor);
 
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title2).Y + 30);
@@ -135,7 +114,7 @@ namespace MyGame
                 String text = menuItems[i];
                 if (i == 3)
                     text = text.Replace("$$", Constants.DifficultiesString[(int)Difficulty]);
-                pos =findCenteredPos(text, mediumFont) - nextPosOffset;
+                pos =findCenteredPos2(text, mediumFont) - nextPosOffset;
                 if (i == chosenMenuItem)
                 {
                     Vector2 meausre = mediumFont.MeasureString(text);
@@ -154,15 +133,6 @@ namespace MyGame
 
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        Vector2 findCenteredPos(String text,SpriteFont font)
-        {
-            Vector2 pos = new Vector2();
-            Vector2 textMeasure = font.MeasureString(text);
-            pos.X = (Game.GraphicsDevice.Viewport.Width - textMeasure.X ) / 2;
-            pos.Y = (Game.GraphicsDevice.Viewport.Height - textMeasure.Y) / 2;
-            return pos;
         }
     }
 }

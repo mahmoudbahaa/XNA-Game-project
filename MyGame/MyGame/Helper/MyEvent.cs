@@ -26,9 +26,14 @@ namespace Helper
         M_DIE,
         M_BITE,
 
+        G_PAUSE,
+        G_RESUME,
         G_StartScreen,
         G_HelpScreen,
         G_StartGame,
+        G_StartLevel,
+        G_NextLevel,
+        G_NextLevel_END_OF_MUSIC,
         G_GameOver,
         G_Exit,
     }

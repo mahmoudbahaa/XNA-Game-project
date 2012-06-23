@@ -26,6 +26,11 @@ namespace MyGame
             }
         }
 
+        public int getScore()
+        {
+            return monsterUnit.monsterConstants.SCORE;
+        }
+
         public Monster(MyGame game, SkinnedModel skinnedModel, Unit unit)
             : base(game, unit, new MonsterModel(game, skinnedModel))
         {

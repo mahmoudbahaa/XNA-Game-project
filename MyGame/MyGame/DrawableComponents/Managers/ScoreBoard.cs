@@ -51,7 +51,9 @@ namespace MyGame
                 switch (events[i].EventId)
                 {
                     case (int)MyEvent.M_DIE:
-                        score++;
+                        score+= (int)events[i].args["Score"];
+                        if (score > Constants.LEVEL_SCORES[myGame.currentLevel - 1])
+                            myGame.mediator.fireEvent(MyEvent.G_NextLevel);
                         events.Remove(events[i]);
                         i--;
                         break;
@@ -64,7 +66,7 @@ namespace MyGame
         {
             spriteBatch.Begin();
             SpriteFont font = Game.Content.Load<SpriteFont>("SpriteFont1");
-            spriteBatch.DrawString(font, "Score: " + score, new Vector2(14, 40), Color.Red);
+            spriteBatch.DrawString(font, "Score: " + score +"/" + Constants.LEVEL_SCORES[myGame.currentLevel-1], new Vector2(14, 40), Color.Red);
             spriteBatch.End();
             base.Draw(gameTime);
         }

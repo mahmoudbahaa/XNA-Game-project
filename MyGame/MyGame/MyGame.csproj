@@ -64,7 +64,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\fbDeprofiler.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Kinect, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Speech, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>H:\Program Files (x86)\Microsoft SDKs\Speech\v11.0\Assembly\Microsoft.Speech.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -115,6 +119,8 @@
   <ItemGroup>
     <Compile Include="AudioManager.cs" />
     <Compile Include="Camera\TargetCamera.cs" />
+    <Compile Include="DrawableComponents\Screen.cs" />
+    <Compile Include="DrawableComponents\LevelScreen.cs" />
     <Compile Include="DrawableComponents\FrameRateCounter.cs" />
     <Compile Include="DrawableComponents\Tree.cs" />
     <Compile Include="DrawableComponents\Managers\BillboardSystem.cs" />
@@ -127,6 +133,7 @@
     <Compile Include="DrawableComponents\Managers\StateManager.cs" />
     <Compile Include="DrawableComponents\Managers\HPBillboardSystem.cs" />
     <Compile Include="Helper\AdvancedConstants.cs" />
+    <Compile Include="Helper\MonsterLevel4Constants.cs" />
     <Compile Include="Helper\MonsterLevel3Constants.cs" />
     <Compile Include="Helper\MonsterLevel2Constants.cs" />
     <Compile Include="Helper\MonsterConstants.cs" />
@@ -154,6 +161,7 @@
     <Compile Include="IEvent.cs" />
     <Compile Include="Models\AnimatedModel.cs" />
     <Compile Include="Models\SkyCubeModel.cs" />
+    <Compile Include="SpeechRecognizer.cs" />
     <Compile Include="Units\BulletUnit.cs" />
     <Compile Include="Models\CModel.cs" />
     <Compile Include="DrawableComponents\Managers\ScoreBoard.cs" />
@@ -179,6 +187,9 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="SpeechGrammar.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XNAnimation\XNAnimation.csproj">
@@ -221,7 +232,6 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

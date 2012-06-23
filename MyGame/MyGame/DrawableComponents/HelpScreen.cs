@@ -10,16 +10,11 @@ using control;
 
 namespace MyGame
 {
-    public class HelpScreen : DrawableGameComponent
+    public class HelpScreen : Screen
     {
-        private SpriteBatch spriteBatch;
-        private DelayedAction delayedAction;
-
         // Shot variables
         //private const int keyDelay = 100;
 
-        private Color backgroundColor = Color.Navy;
-        private Color menuItemColor = Color.Green;
         private Color menuItemDescriptionColor = Color.Yellow;
 
         private String[] menuItems = new String[] { "Movement", "Attack", "Camera", "Music", "FullScreen" };
@@ -31,25 +26,20 @@ namespace MyGame
             "Press 'M' to toggle Music on/off",
             "Press 'rightAlt'+'Enter' to toggle full screen"};
 
-        private MyGame myGame;
         public HelpScreen(MyGame game)
-            : base(game)
+            : base(game,300)
         {
-            myGame = game;
-
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            delayedAction = new DelayedAction();
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (checkSilencePeriod(gameTime))
+                return;
             KeyboardState keyState = Keyboard.GetState();
             if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Enter) 
                                                     && !keyState.IsKeyDown(Keys.RightAlt)))
             {
-                if(keyState.IsKeyDown(Keys.Enter)) {
-                    myGame.mediator.fireEvent(MyEvent.G_StartScreen);
-                }
+                myGame.mediator.fireEvent(MyEvent.G_StartScreen);
             }
             base.Update(gameTime);
         }
@@ -66,25 +56,16 @@ namespace MyGame
             Vector2 pos;
             for (int i = 0; i < menuItems.Count(); i++)
             {
-
-                pos = findCenteredPos(menuItems[i], mediumFont) + nextPosOffset;
+                pos = findCenteredPos1(menuItems[i], mediumFont) + nextPosOffset;
                 spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
                 nextPosOffset += new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);
-                pos = findCenteredPos(menuItemsDescription[i], smallFont) + nextPosOffset;
+                pos = findCenteredPos1(menuItemsDescription[i], smallFont) + nextPosOffset;
                 spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
                 nextPosOffset += new Vector2(0, smallFont.MeasureString(menuItemsDescription[i]).Y);
             }
 
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        Vector2 findCenteredPos(String text,SpriteFont font)
-        {
-            Vector2 pos = new Vector2(0);
-            Vector2 textMeasure = font.MeasureString(text);
-            pos.X = (Game.GraphicsDevice.Viewport.Width - textMeasure.X ) / 2;
-            return pos;
         }
     }
 }

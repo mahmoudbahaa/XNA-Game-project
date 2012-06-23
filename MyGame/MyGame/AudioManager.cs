@@ -19,6 +19,8 @@ namespace MyGame
         WaveBank waveBank;
         SoundBank soundBank;
         Cue trackCue;
+        Cue levelCompleteCue;
+        bool levelCompleteRunning = false;
 
         // Shot variables
         int musicDelay = 800;
@@ -31,7 +33,8 @@ namespace MyGame
         {
             myGame = game;
             events = new List<Event>();
-            game.mediator.register(this, MyEvent.C_ATTACK_BULLET_END, MyEvent.M_BITE, MyEvent.G_GameOver);
+            game.mediator.register(this, MyEvent.C_ATTACK_BULLET_END, MyEvent.M_BITE,
+                MyEvent.G_NextLevel, MyEvent.G_GameOver);
 
 
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
@@ -39,6 +42,7 @@ namespace MyGame
             soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
 
             trackCue =  soundBank.GetCue("Cowboy");
+            levelCompleteCue = soundBank.GetCue("LevelComplete");
             trackCue.Play();
             trackCue.Pause();
         }
@@ -68,11 +72,17 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case (int)MyEvent.C_ATTACK_BULLET_END:  soundBank.PlayCue("shot"); break;
+                    case (int)MyEvent.G_NextLevel: levelCompleteCue.Play(); levelCompleteRunning = true; break;
                     case (int)MyEvent.M_BITE:               soundBank.PlayCue("Bite"); break;
                     case (int)MyEvent.G_GameOver:           soundBank.PlayCue("ScreamAndDie"); break;
                 }
             }
 
+            if (levelCompleteRunning && levelCompleteCue.IsStopped)
+            {
+                levelCompleteRunning = false;
+                myGame.mediator.fireEvent(MyEvent.G_NextLevel_END_OF_MUSIC);
+            }
             events.Clear();
             base.Update(gameTime);
         }

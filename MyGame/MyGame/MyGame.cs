@@ -22,6 +22,7 @@ namespace MyGame
         public Mediator mediator;
         public Player player;
         public bool paused = false;
+        public bool canPause = true;
         public bool gameOver = false;
 
         public CameraMode cameraMode = CameraMode.thirdPerson;
@@ -35,9 +36,12 @@ namespace MyGame
 
         Random r = new Random();
 
+        public int currentLevel = 1;
+
         private SkyCube sky;
         private FirstAidManager firstAidManger;
-        private Terrain[] terrain = new Terrain[Constants.NUM_OF_TERRAINS];
+        //private Terrain[] terrain = new Terrain[Constants.NUM_OF_TERRAINS];
+        private Terrain terrain;
         private MonstersManager monsters;
         private DelayedAction delayedAction;
         private DelayedAction delayedAction2;
@@ -55,11 +59,9 @@ namespace MyGame
 
         private StartScreen startScreen;
         private HelpScreen helpScreen;
-        //assal
+        private LevelScreen levelScreen;
 
-        // Shot variables
-        //int keyDelay = 800;
-        //int keyCountdown = 0;
+        SpeechRecognizer speechRecognizer;
 
         public MyGame()
         {
@@ -79,7 +81,8 @@ namespace MyGame
             events = new List<Event>();
             delayedAction = new DelayedAction(800);
             delayedAction2 = new DelayedAction();
-            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_Exit);
+            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen,
+                MyEvent.G_StartLevel, MyEvent.G_NextLevel, MyEvent.G_NextLevel_END_OF_MUSIC, MyEvent.G_Exit);
             //mediator.fireEvent(MyEvent.G_StartGame);
         }
 
@@ -207,8 +210,9 @@ namespace MyGame
 
             Components.Add(camera);
             Components.Add(sky);
-            for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
-                Components.Add(terrain[i]);
+            //for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
+            //    Components.Add(terrain[i]);
+            Components.Add(terrain);
             Components.Add(water);
             foreach (CDrawableComponent tree in trees)
                 Components.Add(tree);
@@ -223,6 +227,8 @@ namespace MyGame
             Components.Add(stateManager);
             Components.Add(audioManager);
             Components.Add(frameRateCounter);
+
+            Components.Insert(0, levelScreen);
         }
 
         private void initializeGame1()
@@ -237,17 +243,17 @@ namespace MyGame
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
             camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
 
-            for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
-            {
-                terrain[i] = new Terrain(this, camera, Content.Load<Texture2D>("terrain"+(i+1)), Constants.TERRAIN_CELL_SIZE,
+            //for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
+            //{
+                terrain = new Terrain(this, camera, Content.Load<Texture2D>("terrain"+currentLevel), Constants.TERRAIN_CELL_SIZE,
                     Constants.TERRAIN_HEIGHT, Content.Load<Texture2D>("grass"), Constants.TERRAIN_TEXTURE_TILING, 
-                    new Vector3(1, -1, 0),new Vector2(i%2*-1,i/2*-1));
-                terrain[i].WeightMap = Content.Load<Texture2D>("weightMap"+(i+1));
-                terrain[i].RTexture = Content.Load<Texture2D>("sand");
-                terrain[i].GTexture = Content.Load<Texture2D>("rock");
-                terrain[i].BTexture = Content.Load<Texture2D>("snow");
-                terrain[i].DetailTexture = Content.Load<Texture2D>("noise_texture");
-            }
+                    new Vector3(1, -1, 0)/*,new Vector2(i%2*-1,i/2*-1)*/);
+                terrain.WeightMap = Content.Load<Texture2D>("weightMap"+currentLevel);
+                terrain.RTexture = Content.Load<Texture2D>("sand");
+                terrain.GTexture = Content.Load<Texture2D>("rock");
+                terrain.BTexture = Content.Load<Texture2D>("snow");
+                terrain.DetailTexture = Content.Load<Texture2D>("noise_texture");
+            //}
             player = initializePlayer();
             sky = intitializeSky();
             initializeClouds();
@@ -305,8 +311,10 @@ namespace MyGame
         // Called when the game should load its content
         protected override void LoadContent()
         {
+            speechRecognizer = new SpeechRecognizer(this);
             helpScreen = new HelpScreen(this);
             startScreen = new StartScreen(this);
+            levelScreen = new LevelScreen(this);
             initializeStartMenu();
             //initializeGame1();
         }
@@ -323,6 +331,9 @@ namespace MyGame
                 {
                     case (int)MyEvent.G_Exit: Exit(); break;
                     case (int)MyEvent.G_StartGame: initializeGame2(); break;
+                    case (int)MyEvent.G_NextLevel: paused = true; canPause = false; break;
+                    case (int)MyEvent.G_NextLevel_END_OF_MUSIC: paused = false; canPause = true; currentLevel++; initializeGame2(); break;
+                    case (int)MyEvent.G_StartLevel: Components.Remove(levelScreen); break;
                     case (int)MyEvent.G_StartScreen: initializeStartMenu(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }
@@ -375,6 +386,7 @@ namespace MyGame
         protected override void EndRun()
         {
             GestureManager.running = false;
+            speechRecognizer.Dispose();
             base.EndRun();
         }
 
@@ -393,22 +405,22 @@ namespace MyGame
         public float GetHeightAtPosition(float X, float Z)
         {
             float steepness;
-            if (Constants.NUM_OF_TERRAINS == 1) 
-                return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
-            if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
-                Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
-                return clamp(terrain[3].GetHeightAtPosition(X, Z, out steepness));
-            else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
-                     Z > 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
-                return clamp(terrain[1].GetHeightAtPosition(X, Z, out steepness));
-            else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
-                     Z >= 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
-                return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
-            else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
-                     Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
-                return clamp(terrain[2].GetHeightAtPosition(X, Z, out steepness));
-            else
-                return 0;
+            //if (Constants.NUM_OF_TERRAINS == 1) 
+                return clamp(terrain.GetHeightAtPosition(X, Z, out steepness));
+            //if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
+            //    Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
+            //    return clamp(terrain[3].GetHeightAtPosition(X, Z, out steepness));
+            //else if (X > -512 * Constants.TERRAIN_CELL_SIZE && X < 0 &&
+            //         Z > 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
+            //    return clamp(terrain[1].GetHeightAtPosition(X, Z, out steepness));
+            //else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
+            //         Z >= 0 && Z < 512 * Constants.TERRAIN_CELL_SIZE)
+            //    return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness));
+            //else if (X >= 0 && X < 512 * Constants.TERRAIN_CELL_SIZE &&
+            //         Z > -512 * Constants.TERRAIN_CELL_SIZE && Z < 0)
+            //    return clamp(terrain[2].GetHeightAtPosition(X, Z, out steepness));
+            //else
+            //    return 0;
             //return clamp(terrain[0].GetHeightAtPosition(X, Z, out steepness)) ;
         }
 

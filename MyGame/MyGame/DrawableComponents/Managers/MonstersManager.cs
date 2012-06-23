@@ -9,8 +9,10 @@ using XNAnimation;
 
 namespace MyGame
 {
-    public class MonstersManager : DrawableGameComponent
+    public class MonstersManager : DrawableGameComponent, IEvent
     {
+        List<Event> events = new List<Event>();
+
         private List<Monster> monsters;
         private HPBillboardSystem hpBillBoardSystem;
 
@@ -38,38 +40,9 @@ namespace MyGame
             hpBillBoardSystem = new HPBillboardSystem(game.GraphicsDevice, game.Content, Constants.HP_SIZE, monsters);
             //skinnedModel = Game.Content.Load<SkinnedModel>(@"Textures\EnemyBeast");
 
-            monsterConstants[0] = new MonsterLevel1Constants();
-            monsterConstants[1] = new MonsterLevel2Constants();
-            monsterConstants[2] = new MonsterLevel3Constants();
+            reinitializeMonstersTypes();
 
-            skinnedModel[0] = Game.Content.Load<SkinnedModel>(@"monsters\1\model\EnemyBeast");
-            skinnedModel[1] = Game.Content.Load<SkinnedModel>(@"monsters\2\model\EnemyBeast");
-            skinnedModel[2] = Game.Content.Load<SkinnedModel>(@"monsters\3\model\EnemyBeast");
-
-            for (int i = 0; i < 3; i++)
-            {
-                foreach (ModelMesh mesh in skinnedModel[i].Model.Meshes)
-                    foreach (SkinnedEffect effect in mesh.Effects)
-                    {
-                        effect.EnableDefaultLighting();
-                    }
-            }
-
-            if (myGame.difficultyConstants is NoviceConstants)
-            {
-                monsterConstants[3] = monsterConstants[0];
-                skinnedModel[3] = skinnedModel[0];
-            }
-            else if (myGame.difficultyConstants is AdvancedConstants)
-            {
-                monsterConstants[3] = monsterConstants[1];
-                skinnedModel[3] = skinnedModel[1];
-            }
-            else
-            {
-                monsterConstants[3] = monsterConstants[2];
-                skinnedModel[3] = skinnedModel[2];
-            }
+            myGame.mediator.register(this, MyEvent.G_NextLevel_END_OF_MUSIC);
         }
 
         public bool checkCollisionWithBullet(Unit unit)
@@ -86,7 +59,7 @@ namespace MyGame
                     {
                         monsters[j].Die();
                         monsters[j].unit.alive = false;
-                        myGame.mediator.fireEvent(MyEvent.M_DIE);
+                        myGame.mediator.fireEvent(MyEvent.M_DIE,"Score",monsters[j].getScore());
                     }
                     else
                     {
@@ -106,9 +79,16 @@ namespace MyGame
             float y = Constants.TERRAIN_HEIGHT;
             //while(y > .5 * Constants.TERRAIN_HEIGHT)
             //{
-            x = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
-            z = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
-            y = myGame.GetHeightAtPosition(x, z);
+            bool flag = true;
+            while (flag)
+            {
+                x = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
+                z = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
+                y = myGame.GetHeightAtPosition(x, z);
+                Unit unit = new Unit(myGame, new Vector3(x, y, z), Vector3.Zero, Vector3.One);
+                if (!myGame.player.unit.collideWith(unit))
+                    flag = false;
+            }
             //}
             Vector3 pos = new Vector3(x, y, z);
             Vector3 rot = new Vector3(0, (float)(rnd[0].NextDouble() * MathHelper.TwoPi), 0);
@@ -122,10 +102,86 @@ namespace MyGame
             //billBoardSystem.monsters.Add(monster);
         }
 
+        public void reinitializeMonstersTypes()
+        {
+            switch (myGame.currentLevel)
+            {
+                case 1:
+                    {
+                        monsterConstants[0] = new MonsterLevel1Constants();
+                        monsterConstants[3] = new MonsterLevel2Constants();
+
+                        skinnedModel[0] = Game.Content.Load<SkinnedModel>(@"monsters\1\model\EnemyBeast");
+                        skinnedModel[3] = Game.Content.Load<SkinnedModel>(@"monsters\2\model\EnemyBeast");
+                        break;
+                    }
+                case 2:
+                    {
+                        monsterConstants[0] = new MonsterLevel2Constants();
+                        monsterConstants[3] = new MonsterLevel3Constants();
+
+                        skinnedModel[0] = Game.Content.Load<SkinnedModel>(@"monsters\2\model\EnemyBeast");
+                        skinnedModel[3] = Game.Content.Load<SkinnedModel>(@"monsters\3\model\EnemyBeast");
+                        break;
+                    }
+
+                case 3:
+                    {
+                        monsterConstants[0] = new MonsterLevel3Constants();
+                        monsterConstants[3] = new MonsterLevel4Constants();
+
+                        skinnedModel[0] = Game.Content.Load<SkinnedModel>(@"monsters\3\model\EnemyBeast");
+                        skinnedModel[3] = Game.Content.Load<SkinnedModel>(@"monsters\4\model\EnemyBeast");
+                        break;
+                    }
+            }
+
+
+            for (int i = 0; i < 5; i+=3)
+            {
+                foreach (ModelMesh mesh in skinnedModel[i].Model.Meshes)
+                    foreach (SkinnedEffect effect in mesh.Effects)
+                    {
+                        effect.EnableDefaultLighting();
+                    }
+            }
+
+            if (myGame.difficultyConstants is NoviceConstants)
+            {
+                monsterConstants[1] = monsterConstants[0];
+                monsterConstants[2] = monsterConstants[0];
+                skinnedModel[1] = skinnedModel[0];
+                skinnedModel[2] = skinnedModel[0];
+            }
+            else if (myGame.difficultyConstants is AdvancedConstants)
+            {
+                monsterConstants[1] = monsterConstants[0];
+                monsterConstants[2] = monsterConstants[3];
+                skinnedModel[1] = skinnedModel[0];
+                skinnedModel[2] = skinnedModel[3];
+            }
+            else
+            {
+                monsterConstants[1] = monsterConstants[3];
+                monsterConstants[2] = monsterConstants[3];
+                skinnedModel[1] = skinnedModel[3];
+                skinnedModel[2] = skinnedModel[3];
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (myGame.paused)
                 return;
+
+            foreach (Event ev in events)
+            {
+                switch (ev.EventId)
+                {
+                    case (int)MyEvent.G_NextLevel_END_OF_MUSIC: reinitializeMonstersTypes(); break;
+                }
+            }
+            events.Clear();
 
             reaminingTimeToNextSpawn -= gameTime.ElapsedGameTime.Milliseconds;
             if (reaminingTimeToNextSpawn < 0 && monsters.Count < myGame.difficultyConstants.NUM_MONSTERS_IN_FIELD)
@@ -169,6 +225,11 @@ namespace MyGame
                 hpBillBoardSystem.Draw(myGame.camera.View, myGame.camera.Projection,
                     ((ChaseCamera)myGame.camera).Up, ((ChaseCamera)myGame.camera).Right);
             base.Draw(gameTime);
+        }
+
+        public void addEvent(Event ev)
+        {
+            events.Add(ev);
         }
     }
 }

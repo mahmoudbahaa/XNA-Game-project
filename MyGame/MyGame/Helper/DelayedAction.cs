@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Helper
 {
-    class DelayedAction
+    public class DelayedAction
     {
         // Shot variables
         private int keyDelay ;
@@ -36,18 +36,15 @@ namespace Helper
             return false;
         }
 
-        public bool eventHappened(GameTime gameTime, params bool[] conditions)
+        public bool eventHappened(GameTime gameTime, bool condition)
         {
             keyCountdown += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (keyCountdown >= keyDelay)
             {
-                foreach (bool condition in conditions)
+                if (condition)
                 {
-                    if (condition)
-                    {
-                        keyCountdown = 0;
-                        return true;
-                    }
+                    keyCountdown = 0;
+                    return true;
                 }
                 keyCountdown = keyDelay;
             }

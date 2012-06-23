@@ -50,5 +50,8 @@ namespace Helper
             Advanced,
             Xtreme
         };
+
+
+        public static int[] LEVEL_SCORES = new int[] { 3, 5, 10 };
     }
 }

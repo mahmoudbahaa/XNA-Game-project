@@ -63,11 +63,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cloudMap.jpg">
-      <Name>cloudMap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="clouds.dds">
       <Name>clouds</Name>
       <Importer>TextureImporter</Importer>
@@ -289,6 +284,7 @@
     <Folder Include="monsters\1\Textures\" />
     <Folder Include="monsters\2\Textures\" />
     <Folder Include="monsters\3\Textures\" />
+    <Folder Include="monsters\4\Textures\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="terrain-2.bmp">
@@ -373,6 +369,16 @@
       <Name>EnemyBeast</Name>
       <Importer>SkinnedModelImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="monsters\4\model\EnemyBeast.fbx">
+      <Name>EnemyBeast</Name>
+      <Importer>SkinnedModelImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+    </Compile>
+    <Compile Include="SpriteFont2.spritefont">
+      <Name>SpriteFont2</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
     <None Include="PPShared.vsi">
       <Name>PPShared</Name>

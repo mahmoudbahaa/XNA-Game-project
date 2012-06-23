@@ -173,7 +173,7 @@ namespace MyGame
 
                 rotation = recalculatePosition();
 
-                if (Position.Y < myGame.GetHeightAtPosition(myGame.player.unit.position.X, myGame.player.unit.position.Z) + 10)
+                if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
                 {
                     //Rotate(new Vector3(-deltaY * .0005f, 0, 0));
                     //TargetOffset.Y = savedTargetOffset.Y;
