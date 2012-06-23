@@ -57,6 +57,7 @@ namespace MyGame
         //private BillboardSystem trees;
         private List<CDrawableComponent> trees = new List<CDrawableComponent>();
 
+        private KinectManager kinectManager;
         private StartScreen startScreen;
         private HelpScreen helpScreen;
         private LevelScreen levelScreen;
@@ -227,8 +228,10 @@ namespace MyGame
             Components.Add(stateManager);
             Components.Add(audioManager);
             Components.Add(frameRateCounter);
+            Components.Add(kinectManager);
 
             Components.Insert(0, levelScreen);
+            ((ChaseCamera)camera).resetOffsets();
         }
 
         private void initializeGame1()
@@ -241,7 +244,7 @@ namespace MyGame
             }
             //camera = new FreeCamera(this, new Vector3(0, 0, 0), 0, 0, 0 , 0);
             //camera = new FreeCamera(new Vector3(400, 600, 400), MathHelper.ToRadians(45), MathHelper.ToRadians(-30), GraphicsDevice);
-            camera = new ChaseCamera(this, Constants.CAMERA_POSITION, Constants.CAMERA_TARGET, Vector3.Zero);
+            camera = new ChaseCamera(this, Constants.CAMERA_POSITION_THIRD_PERSON, Constants.CAMERA_TARGET_THIRD_PERSON, Vector3.Zero);
 
             //for (int i = 0; i < Constants.NUM_OF_TERRAINS; i++)
             //{
@@ -286,6 +289,8 @@ namespace MyGame
             audioManager = new AudioManager(this);
 
             frameRateCounter = new FrameRateCounter(this);
+
+            kinectManager = new KinectManager(this);
             //CDrawableComponent test = new CDrawableComponent(this,
             //    new Unit(this, new Vector3(0, 80, 0), Vector3.Zero, Vector3.One * .5f),
             //    new CModel(this, Content.Load<Model>(@"model/First Aid Kit2")));

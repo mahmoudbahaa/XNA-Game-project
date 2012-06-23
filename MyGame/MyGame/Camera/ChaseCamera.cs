@@ -11,7 +11,6 @@ namespace MyGame
 {
     public class ChaseCamera : Camera
     {
-
         public Vector3 FollowTargetPosition { get; private set; }
         public Vector3 FollowTargetRotation { get; private set; }
 
@@ -100,10 +99,8 @@ namespace MyGame
 
         public void setOffsetsFor1stPerson()
         {
-            TargetOffset.Z = 0;
-            TargetOffset.Y = TargetOffset.Y * 2.5f;
-            PositionOffset.Y = PositionOffset.Y * 2.5f;
-            PositionOffset.Z = 1;
+            TargetOffset = Constants.CAMERA_TARGET_FIRST_PERSON;
+            PositionOffset = Constants.CAMERA_POSITION_FIRST_PERSON;
             sensitivity = 0.5f;
         }
 
@@ -121,20 +118,22 @@ namespace MyGame
             float deltaY;
 
 
-            if (System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.CapsLock))
+            if (!control.GestureManager.paused)
             {
                 if (myGame.controller.isActive(control.Controller.POINTER))
                 {
                     //savedPositionOffset = PositionOffset;
                     //savedTargetOffset = TargetOffset;
-                    myGame.cameraMode = MyGame.CameraMode.firstPersonWithoutWeapon;
+                    //myGame.cameraMode = MyGame.CameraMode.firstPersonWithoutWeapon;
+                    //setOffsetsFor1stPerson();
                     Vector2 d = myGame.controller.getPointer();
-                    deltaX = d.X *.5f;
-                    deltaY = d.Y * .5f;
+                    deltaX = d.X *1f;
+                    deltaY = d.Y * 1f;
                 }
                 else
                 {
-                    myGame.cameraMode = MyGame.CameraMode.thirdPerson;
+                    //myGame.cameraMode = MyGame.CameraMode.thirdPerson;
+                    //resetOffsets();
                     //PositionOffset = savedPositionOffset;
                     //TargetOffset = savedTargetOffset;
                     float diff = myGame.controller.getShoulderDiff();
@@ -151,17 +150,31 @@ namespace MyGame
             }
 
             Matrix rotation;
-            if (TargetOffset.Y > savedTargetOffset.Y && deltaY < 0)
+            if (PositionOffset.Y > savedPositionOffset.Y && deltaY > 0)
             {
-                TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
-                if (TargetOffset.Y < savedTargetOffset.Y)
-                    TargetOffset.Y = savedTargetOffset.Y;
+                PositionOffset.Y -= 5 * deltaY * .0005f * sensitivity;
+                if (PositionOffset.Y < savedPositionOffset.Y)
+                    PositionOffset.Y = savedPositionOffset.Y;
                 rotation = recalculatePosition();
             }
+            else if (PositionOffset.Z < savedPositionOffset.Z && deltaY < 0)
+            {
+                PositionOffset.Z -= 5 * deltaY * .0005f * sensitivity;
+                if (PositionOffset.Z > savedPositionOffset.Z)
+                    PositionOffset.Z = savedPositionOffset.Z;
+                rotation = recalculatePosition();
+            }
+            //else if (TargetOffset.Y < savedTargetOffset.Y && deltaY > 0)
+            //{
+            //    TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
+            //    if (TargetOffset.Y > savedTargetOffset.Y)
+            //        TargetOffset.Y = savedTargetOffset.Y;
+            //    rotation = recalculatePosition();
+            //}
             else
             {
-                if (TargetOffset.Y < savedTargetOffset.Y)
-                    TargetOffset.Y = savedTargetOffset.Y;
+                //if (TargetOffset.Y < savedTargetOffset.Y)
+                //    TargetOffset.Y = savedTargetOffset.Y;
                 // Rotate the camera
                 Rotate(new Vector3(deltaY * .0005f * sensitivity, 0, 0));
 
@@ -173,7 +186,7 @@ namespace MyGame
 
                 rotation = recalculatePosition();
 
-                if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
+                if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 50)
                 {
                     //Rotate(new Vector3(-deltaY * .0005f, 0, 0));
                     //TargetOffset.Y = savedTargetOffset.Y;
@@ -181,8 +194,25 @@ namespace MyGame
                     //if (Position.Y < myGame.GetHeightAtPosition(myGame.player.unit.position.X, myGame.player.unit.position.Z) + 10)
                     //{
                     Rotate(new Vector3(-deltaY * .0005f * sensitivity, 0, 0));
-                    lastTargetOffsetY = TargetOffset.Y += 5 * deltaY * .0005f * sensitivity;
-                    rotation = recalculatePosition();
+                    if (Math.Abs(PositionOffset.Y - savedPositionOffset.Y) < 20)
+                    {
+                        if (deltaY < 0)
+                        {
+                            PositionOffset.Y -= 5 * deltaY * .0005f * sensitivity;
+                            rotation = recalculatePosition();
+                        }
+                        else
+                        {
+                            PositionOffset.Z -= 5 * deltaY * .0005f * sensitivity;
+                            rotation = recalculatePosition();
+                            if(Math.Abs(myGame.player.unit.position.Z - Position.Z)<10)
+                            {
+                                PositionOffset.Z += 5 * deltaY * .0005f * sensitivity;
+                                rotation = recalculatePosition();
+                            }
+                        }
+
+                    }
                     //if (Position.Y < myGame.GetHeightAtPosition(Position.X, Position.Z) + 10)
                     //{
                     //    Rotate(new Vector3(-deltaY * .0005f * sensitivity, 0, 0));

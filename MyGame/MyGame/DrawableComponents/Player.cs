@@ -151,7 +151,8 @@ namespace MyGame
             DrawCrossHair();
             spriteBatch.End();
 
-            base.Draw(gameTime);
+            cModel.Draw(gameTime);
+            //base.Draw(gameTime);
         }
 
     }

@@ -13,6 +13,7 @@ namespace control
         private int pointingHand;
         private Thread thread;
         public static bool running = true;
+        public static bool paused = false;
 
         public GestureManager(int pointingHand)
         {
@@ -41,13 +42,19 @@ namespace control
       {
           while (running)
           {
-              updateState();
-              Thread.Sleep(30);
+              if (paused)
+              {
+                  Thread.Sleep(1000);
+                  foreach (Gesture g in gestures)
+                      g.active = false;
+              }
+              else
+              {
+                  updateState();
+                  Thread.Sleep(30);
+              }
           }
 
       }
-
-
-
     }
 }

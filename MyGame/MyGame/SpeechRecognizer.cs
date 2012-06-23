@@ -162,7 +162,7 @@ namespace MyGame
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             // Speech utterance confidence below which we treat speech as if it hadn't been heard
-            const double ConfidenceThreshold = 0.3;
+            const double ConfidenceThreshold = 0.7;
 
 
             if (e.Result.Confidence >= ConfidenceThreshold)

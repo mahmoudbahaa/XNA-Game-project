@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="AudioManager.cs" />
     <Compile Include="Camera\TargetCamera.cs" />
+    <Compile Include="DrawableComponents\KinectManager.cs" />
     <Compile Include="DrawableComponents\Screen.cs" />
     <Compile Include="DrawableComponents\LevelScreen.cs" />
     <Compile Include="DrawableComponents\FrameRateCounter.cs" />

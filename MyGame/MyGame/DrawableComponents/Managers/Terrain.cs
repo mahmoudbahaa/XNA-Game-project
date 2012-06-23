@@ -139,8 +139,8 @@ namespace MyGame
             out float Steepness)
         {
             // Clamp coordinates to locations on terrain
-            X = MathHelper.Clamp(X, -((width / 2f)-1) * cellSize, ((width / 2f)-1) * cellSize);
-            Z = MathHelper.Clamp(Z, -((width / 2f)-1) * cellSize, ((width / 2f)-1) * cellSize);
+            X = MathHelper.Clamp(X, -((width / 2f)-1) * cellSize, ((width/ 2f)-1) * cellSize);
+            Z = MathHelper.Clamp(Z, -((length/ 2f)-1) * cellSize, ((length / 2f)-1) * cellSize);
 
             //X = MathHelper.Clamp(X, (width - 1) * pos.X * cellSize,
             //    (width - 1) * pos.X * cellSize + (width - 1) * cellSize);
@@ -160,8 +160,8 @@ namespace MyGame
             Z /= cellSize;
 
             // Truncate coordinates to get coordinates of top left cell vertex
-            int x1 = (int)X;
-            int z1 = (int)Z;
+            int x1 = ((int)X)%width;
+            int z1 = ((int)Z)%length;
 
             // Try to get coordinates of bottom right cell vertex
             int x2 = x1 + 1 >= width -1 ? x1 : x1 + 1;

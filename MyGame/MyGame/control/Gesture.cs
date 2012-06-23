@@ -9,7 +9,7 @@ namespace control
 {
     abstract class Gesture
     {
-        public bool active { get; protected set; }
+        public bool active { get; set; }
         //public bool hold;
         public string description { get; protected set; }
         public abstract void eval();

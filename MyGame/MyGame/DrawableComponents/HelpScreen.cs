@@ -49,9 +49,6 @@ namespace MyGame
             Game.GraphicsDevice.Clear(backgroundColor);
             spriteBatch.Begin();
 
-            SpriteFont smallFont = Game.Content.Load<SpriteFont>("SpriteFont1");
-            SpriteFont mediumFont = Game.Content.Load<SpriteFont>("SpriteFontMedium");
-
             Vector2 nextPosOffset = Vector2.Zero ;
             Vector2 pos;
             for (int i = 0; i < menuItems.Count(); i++)
