@@ -52,7 +52,7 @@ namespace MyGame
                 {
                     case (int)MyEvent.M_DIE:
                         score+= (int)events[i].args["Score"];
-                        if (score > Constants.LEVEL_SCORES[myGame.currentLevel - 1])
+                        if (score >= Constants.LEVEL_SCORES[myGame.currentLevel - 1])
                             myGame.mediator.fireEvent(MyEvent.G_NextLevel);
                         events.Remove(events[i]);
                         i--;

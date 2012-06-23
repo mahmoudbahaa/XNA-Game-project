@@ -84,7 +84,7 @@ namespace MyGame
                                 myGame.resume();
                             }
                             break;
-                        case 1: myGame.paused = false; myGame.mediator.fireEvent(MyEvent.G_StartGame); break;
+                        case 1: myGame.mediator.fireEvent(MyEvent.G_StartGame); break;
                         case 2: myGame.mediator.fireEvent(MyEvent.G_HelpScreen); break;
                         case 4: myGame.mediator.fireEvent(MyEvent.G_Exit); break;
                     }

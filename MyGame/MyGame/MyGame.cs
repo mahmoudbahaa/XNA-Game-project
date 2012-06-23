@@ -332,7 +332,7 @@ namespace MyGame
                     case (int)MyEvent.G_Exit: Exit(); break;
                     case (int)MyEvent.G_StartGame:
                         {
-                            //if (paused)
+                            if (paused)
                                 initializeGame2();
                             break;
                         }
@@ -350,8 +350,8 @@ namespace MyGame
                             initializeGame2();
                             break;
                         }
-                    case (int)MyEvent.G_StartLevel: Components.Remove(levelScreen); break;
-                    case (int)MyEvent.G_StartScreen: initializeStartMenu(); break;
+                    case (int)MyEvent.G_StartLevel: Components.Remove(levelScreen); paused = false; break;
+                    case (int)MyEvent.G_StartScreen: paused = true; initializeStartMenu(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }
             }
