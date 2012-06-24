@@ -17,7 +17,7 @@ namespace MyGame
         private float preferredtitlePosOffset = 150;
         private Color titleColor = Color.Yellow;
 
-        private String[] menuItems = new String[] { "Housam Hassan", "Housam Sherif", "Housam Mahmoud", "Mahmoud Bahaa", "Mohamed Madyan", "El Mo3tasem" };
+        private String[] menuItems = new String[] { "Amr EL-Assal","Housam Hassan", "Housam Sherif", "Housam Mahmoud", "Mahmoud Bahaa", "Mohamed Madyan", "El-Mo3tasem" };
 
         public CreditsScreen(MyGame game)
             : base(game,500)
