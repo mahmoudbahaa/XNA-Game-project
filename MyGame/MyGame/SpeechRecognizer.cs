@@ -63,6 +63,7 @@ namespace MyGame
 
         public SpeechRecognizer(MyGame game):base(game)
         {
+            Console.WriteLine("I aveo");
             myGame = game;
             // Look through all sensors and start the first connected one.
             // This requires that a Kinect is connected at the time of app startup.
@@ -162,7 +163,7 @@ namespace MyGame
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             // Speech utterance confidence below which we treat speech as if it hadn't been heard
-            const double ConfidenceThreshold = 0.7;
+            const double ConfidenceThreshold = 0.5;
 
 
             if (e.Result.Confidence >= ConfidenceThreshold)
@@ -181,6 +182,7 @@ namespace MyGame
 
                     case "START":
                         Console.WriteLine("START");
+                        myGame.mediator.fireEvent(MyEvent.G_StartLevel);
                         myGame.mediator.fireEvent(MyEvent.G_StartGame);
                         break;
 

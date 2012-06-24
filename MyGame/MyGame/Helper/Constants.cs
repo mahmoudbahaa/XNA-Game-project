@@ -40,8 +40,8 @@ namespace Helper
         public static Vector3 MEDKIT_SCALE = new Vector3(.25f);//new Vector3(.5f);
         public static Vector3 MEDKIT_OFFSET = new Vector3(0,20,0);//new Vector3(0,30,0);
 
-        public const    float BULLET_SPEED = 40f;
-        public static Vector3 BULLET_SCALE = new Vector3(4f);//new Vector3(10f);
+        public const    float BULLET_SPEED = 20f;
+        public static Vector3 BULLET_SCALE = new Vector3(1f);//new Vector3(10f);
         public static Vector3 BULLET_OFFSET = new Vector3(0, 6, 0);//new Vector3(0, 40, 0);
 
         public static Vector2 TREE_SIZE = new Vector2(50);
@@ -54,7 +54,7 @@ namespace Helper
             Xtreme
         };
 
-
+        public const int NUM_OF_LEVELS = 1;
         public static int[] LEVEL_SCORES = new int[] { 3, 5, 10 };
     }
 }

@@ -61,6 +61,7 @@ namespace MyGame
         private StartScreen startScreen;
         private HelpScreen helpScreen;
         private LevelScreen levelScreen;
+        private CreditsScreen creditsScreen;
 
         SpeechRecognizer speechRecognizer;
 
@@ -82,7 +83,7 @@ namespace MyGame
             events = new List<Event>();
             delayedAction = new DelayedAction(800);
             delayedAction2 = new DelayedAction();
-            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen,
+            mediator.register(this, MyEvent.G_StartGame, MyEvent.G_StartScreen, MyEvent.G_HelpScreen, MyEvent.G_CreditScreen,
                 MyEvent.G_StartLevel, MyEvent.G_NextLevel, MyEvent.G_NextLevel_END_OF_MUSIC, MyEvent.G_Exit);
             //mediator.fireEvent(MyEvent.G_StartGame);
         }
@@ -302,6 +303,7 @@ namespace MyGame
         private void initializeStartMenu()
         {
             startScreen.reInitialize();
+            Components.Remove(creditsScreen);
             Components.Remove(helpScreen);
             Components.Remove(startScreen);
             Components.Insert(0, startScreen);
@@ -309,8 +311,16 @@ namespace MyGame
 
         private void initializeHelpScreen()
         {
+            helpScreen.reInitialize();
             Components.Remove(helpScreen);
             Components.Insert(0, helpScreen);
+        }
+
+        private void initializeCreditsScreen()
+        {
+            creditsScreen.reInitialize();
+            Components.Remove(creditsScreen);
+            Components.Insert(0, creditsScreen);
         }
 
         // Called when the game should load its content
@@ -320,6 +330,7 @@ namespace MyGame
             helpScreen = new HelpScreen(this);
             startScreen = new StartScreen(this);
             levelScreen = new LevelScreen(this);
+            creditsScreen = new CreditsScreen(this);
             initializeStartMenu();
             //initializeGame1();
         }
@@ -351,12 +362,33 @@ namespace MyGame
                         {
                             paused = false;
                             canPause = true;
-                            currentLevel++;
-                            initializeGame2();
+                            if (currentLevel == Constants.NUM_OF_LEVELS)
+                            {
+                                initializeCreditsScreen();
+                            }
+                            else
+                            {
+                                currentLevel++;
+                                initializeGame2();
+                            }
                             break;
                         }
-                    case (int)MyEvent.G_StartLevel: Components.Remove(levelScreen); paused = false; break;
-                    case (int)MyEvent.G_StartScreen: paused = true; initializeStartMenu(); break;
+                    case (int)MyEvent.G_StartLevel:
+                        {
+                            if(Components.Contains(levelScreen))
+                            {
+                                Components.Remove(levelScreen);
+                                paused = false;
+                            }
+                            break;
+                        }
+                    case (int)MyEvent.G_StartScreen:
+                        {
+                            paused = true;
+                            initializeStartMenu();
+                            break;
+                        }
+                    case (int)MyEvent.G_CreditScreen: initializeCreditsScreen(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }
             }

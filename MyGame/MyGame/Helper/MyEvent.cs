@@ -34,6 +34,7 @@ namespace Helper
         G_StartLevel,
         G_NextLevel,
         G_NextLevel_END_OF_MUSIC,
+        G_CreditScreen,
         G_GameOver,
         G_Exit,
     }
