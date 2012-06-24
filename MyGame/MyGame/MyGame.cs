@@ -338,8 +338,8 @@ namespace MyGame
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Escape))
-                Exit();
+            //if (keyState.IsKeyDown(Keys.Escape))
+            //    Exit();
 
             foreach (Event ev in events)
             {
@@ -398,6 +398,12 @@ namespace MyGame
                                                     keyState.IsKeyDown(Keys.Enter)))
             {
                 graphics.ToggleFullScreen();
+            }
+
+            if ((keyState.IsKeyDown(Keys.Enter) || keyState.IsKeyDown(Keys.Escape))&& gameOver)
+            {
+                gameOver = false;
+                mediator.fireEvent(MyEvent.G_StartScreen);
             }
 
             if (delayedAction2.eventHappened(gameTime, keyState, Keys.C))
