@@ -24,6 +24,7 @@ namespace Helper
         C_ATTACK_STOPPED,
         C_Pointer,
 
+        M_HIT,
         M_DIE,
         M_BITE,
 

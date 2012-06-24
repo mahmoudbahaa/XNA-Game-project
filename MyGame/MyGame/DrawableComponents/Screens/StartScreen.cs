@@ -30,12 +30,14 @@ namespace MyGame
 
         private String[] menuItems = new String[]{"Continue","Start Game" , "Help" ,"Difficulty <-$$->" , "Credits","Exit"};
 
+        private Texture2D background;
         private Texture2D emptyTex;
 
         public StartScreen(MyGame game)
             : base(game,100)
         {
             emptyTex = game.Content.Load<Texture2D>("empty2");
+            background = game.Content.Load<Texture2D>("poster");
         }
 
         public override void Update(GameTime gameTime)
@@ -99,6 +101,7 @@ namespace MyGame
             Game.GraphicsDevice.Clear(backgroundColor);
             spriteBatch.Begin();
 
+            spriteBatch.Draw(background, new Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height), Color.White);
             Vector2 pos = findCenteredPos2(title1, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
             pos -= nextPosOffset;

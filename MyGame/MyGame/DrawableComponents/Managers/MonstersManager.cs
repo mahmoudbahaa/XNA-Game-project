@@ -52,6 +52,7 @@ namespace MyGame
             {
                 if (monsters[j].unit.alive && unit.collideWith(monsters[j].unit))
                 {
+                    myGame.mediator.fireEvent(MyEvent.M_HIT);
                     monsters[j].health -= monsters[j].monsterUnit.monsterConstants.MONSTER_HEALTH_PER_BULLET;
                     hpBillBoardSystem.setTexture(j);
 

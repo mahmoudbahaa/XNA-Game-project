@@ -34,7 +34,7 @@ namespace MyGame
             myGame = game;
             events = new List<Event>();
             game.mediator.register(this, MyEvent.C_ATTACK_BULLET_END, MyEvent.M_BITE,
-                MyEvent.G_NextLevel, MyEvent.G_GameOver);
+                MyEvent.G_NextLevel, MyEvent.G_GameOver,MyEvent.M_HIT);
 
 
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
@@ -73,6 +73,7 @@ namespace MyGame
                 {
                     case (int)MyEvent.C_ATTACK_BULLET_END:  soundBank.PlayCue("shot"); break;
                     case (int)MyEvent.G_NextLevel: levelCompleteCue.Play(); levelCompleteRunning = true; break;
+                    case (int)MyEvent.M_HIT:                soundBank.PlayCue("monsterHit"); break;
                     case (int)MyEvent.M_BITE:               soundBank.PlayCue("Bite"); break;
                     case (int)MyEvent.G_GameOver:           soundBank.PlayCue("ScreamAndDie"); break;
                 }

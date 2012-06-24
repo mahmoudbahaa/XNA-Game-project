@@ -127,8 +127,8 @@ namespace MyGame
                     //myGame.cameraMode = MyGame.CameraMode.firstPersonWithoutWeapon;
                     //setOffsetsFor1stPerson();
                     Vector2 d = myGame.controller.getPointer();
-                    deltaX = d.X * 1f;
-                    deltaY = d.Y * 2f;
+                    deltaX = d.X * .5f;
+                    deltaY = d.Y * 3f;
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace MyGame
                     //PositionOffset = savedPositionOffset;
                     //TargetOffset = savedTargetOffset;
                     float diff = myGame.controller.getShoulderDiff();
-                    deltaX = diff * 200;
+                    deltaX = diff * 170;
                     if (Math.Abs(deltaX) < 10f)
                         deltaX = 0;
                     deltaY = 0;
