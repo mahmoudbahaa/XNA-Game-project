@@ -21,8 +21,12 @@ namespace MyGame
             Shoot,
         }
 
+        private int num_of_attacks = 0;
+        private float delay = 0;
+        private float delayInterval = 500;
         private bool running;
         private bool attacking;
+        private bool animationPlay;
         private PlayerAnimations activeAnimation;
         public bool shooting = false;
 
@@ -33,7 +37,7 @@ namespace MyGame
         public PlayerModel(MyGame game, SkinnedModel skinnedModel)
             : base(game, skinnedModel)
         {
-            game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
+            game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN,MyEvent.C_ATTACK_STOPPED);
             animationController.Speed = 1.2f;
             activeAnimation = PlayerAnimations.Idle;
             playAnimation();    
@@ -51,13 +55,19 @@ namespace MyGame
                         break;
                     case (int) MyEvent.C_ATTACK_BULLET_BEGIN:
                         attacking = true;
+                        if (num_of_attacks == 0)
+                            animationPlay = true;
+                        num_of_attacks++;
+                        break;
+                    case (int)MyEvent.C_ATTACK_STOPPED:
+                        attacking = false;
                         break;
                     default:
                         break;
                 }
             }
             Run();
-            Attack();
+            Attack(gameTime);
             events.Clear();
 
             if (myGame.cameraMode == MyGame.CameraMode.thirdPerson)
@@ -65,18 +75,18 @@ namespace MyGame
             
         }
 
-        private void Attack()
+        private void Attack(GameTime gameTime)
         {
             if (attacking)
             {
-                if (animationController.IsPlaying && activeAnimation != PlayerAnimations.Aim &&
+                if (animationPlay && animationController.IsPlaying && activeAnimation != PlayerAnimations.Aim &&
                     activeAnimation != PlayerAnimations.Shoot)
                 {
                     activeAnimation = PlayerAnimations.Aim ;
                     animationController.LoopEnabled = false;
                     playAnimation();
                 }
-                else if (!animationController.IsPlaying && activeAnimation == PlayerAnimations.Aim)
+                else if ((!animationController.IsPlaying && activeAnimation == PlayerAnimations.Aim )|| !animationPlay)
                 {
                     activeAnimation = PlayerAnimations.Shoot;
                     animationController.LoopEnabled = false;
@@ -84,8 +94,15 @@ namespace MyGame
                 }
                 else if(!animationController.IsPlaying && activeAnimation == PlayerAnimations.Shoot)
                 {
-                    attacking = false;
-                    shooting = true;
+                    delay += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (delay > delayInterval)
+                    {
+                        delay -= delayInterval;
+                        shooting = true;
+                        num_of_attacks--;
+                        if (num_of_attacks == 0)
+                            attacking = false;
+                    }
                 }
             }
         }

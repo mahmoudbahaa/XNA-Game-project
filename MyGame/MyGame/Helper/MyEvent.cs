@@ -21,6 +21,7 @@ namespace Helper
         C_RIGHT,
         C_ATTACK_BULLET_BEGIN,
         C_ATTACK_BULLET_END,
+        C_ATTACK_STOPPED,
         C_Pointer,
 
         M_DIE,

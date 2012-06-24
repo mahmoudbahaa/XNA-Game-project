@@ -68,7 +68,7 @@ namespace MyGame
             if (myGame.gameOver || !myGame.canPause)
                 return;
             KeyboardState keyState = Keyboard.GetState();
-            if (delayedAction.eventHappened(gameTime, keyState, Keys.P))
+            if (delayedAction.eventHappened(gameTime, keyState, Keys.P, Keys.Escape))
             {
                 myGame.paused = !myGame.paused;
                 if (myGame.paused)

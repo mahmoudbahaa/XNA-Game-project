@@ -40,7 +40,7 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             crossHairTex = game.Content.Load<Texture2D>("crosshair");
-            delayedAction = new DelayedAction(800);
+            delayedAction = new DelayedAction(500);
             //run at first to show to the character otherwise the character dont show
             playerRun();
         }

@@ -311,14 +311,14 @@ namespace MyGame
 
         private void initializeHelpScreen()
         {
-            helpScreen.reInitialize();
+            //helpScreen.reInitialize();
             Components.Remove(helpScreen);
             Components.Insert(0, helpScreen);
         }
 
         private void initializeCreditsScreen()
         {
-            creditsScreen.reInitialize();
+            //creditsScreen.reInitialize();
             Components.Remove(creditsScreen);
             Components.Insert(0, creditsScreen);
         }
@@ -347,47 +347,37 @@ namespace MyGame
                 {
                     case (int)MyEvent.G_Exit: Exit(); break;
                     case (int)MyEvent.G_StartGame:
-                        {
-                            if (paused)
-                                initializeGame2();
-                            break;
-                        }
+                        if (paused)
+                            initializeGame2();
+                        break;
                     case (int)MyEvent.G_NextLevel:
-                        {
-                            paused = true;
-                            canPause = false;
-                            break;
-                        }
+                        paused = true;
+                        canPause = false;
+                        break;
                     case (int)MyEvent.G_NextLevel_END_OF_MUSIC:
+                        if (currentLevel == Constants.NUM_OF_LEVELS)
+                        {
+                            initializeCreditsScreen();
+                        }
+                        else
                         {
                             paused = false;
                             canPause = true;
-                            if (currentLevel == Constants.NUM_OF_LEVELS)
-                            {
-                                initializeCreditsScreen();
-                            }
-                            else
-                            {
-                                currentLevel++;
-                                initializeGame2();
-                            }
-                            break;
+                            currentLevel++;
+                            initializeGame2();
                         }
+                        break;
                     case (int)MyEvent.G_StartLevel:
+                        if(Components.Contains(levelScreen))
                         {
-                            if(Components.Contains(levelScreen))
-                            {
-                                Components.Remove(levelScreen);
-                                paused = false;
-                            }
-                            break;
+                            Components.Remove(levelScreen);
+                            paused = false;
                         }
+                        break;
                     case (int)MyEvent.G_StartScreen:
-                        {
-                            paused = true;
-                            initializeStartMenu();
-                            break;
-                        }
+                        paused = true;
+                        initializeStartMenu();
+                        break;
                     case (int)MyEvent.G_CreditScreen: initializeCreditsScreen(); break;
                     case (int)MyEvent.G_HelpScreen: initializeHelpScreen(); break;
                 }

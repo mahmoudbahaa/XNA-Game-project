@@ -19,9 +19,6 @@ namespace MyGame
 
         public override void Update(GameTime gameTime)
         {
-            if (checkSilencePeriod(gameTime))
-                return;
-
             KeyboardState keyState = Keyboard.GetState();
             if (delayedAction.eventHappened(gameTime, keyState.IsKeyDown(Keys.Enter) 
                                                     && !keyState.IsKeyDown(Keys.RightAlt)))
