@@ -26,9 +26,10 @@
         </one-of>
       </item>
       <item>
-        <tag>RIGHT</tag>
+        <tag>EXIT</tag>
         <one-of>
-          <item> turn right </item>
+          <item> exit </item>
+          <item> etla </item>
         </one-of>
       </item>
     </one-of>

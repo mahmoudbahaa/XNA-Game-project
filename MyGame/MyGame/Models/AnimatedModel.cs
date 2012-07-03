@@ -18,6 +18,11 @@ namespace MyGame
         public AnimatedModel(MyGame game,SkinnedModel skinnedModel)
             : base(game,skinnedModel.Model)
         {
+            reinitialize2(skinnedModel);
+        }
+
+        private void reinitialize2(SkinnedModel skinnedModel)
+        {
             this.skinnedModel = skinnedModel;
             //setNewEffect();
 
@@ -30,6 +35,12 @@ namespace MyGame
             animationController.ScaleInterpolation = InterpolationMode.Linear;
 
             //animationController.StartClip(skinnedModel.AnimationClips[animation]);
+        }
+
+        public virtual void reinitialize(SkinnedModel skinnedModel)
+        {
+            base.reinitialize(skinnedModel.Model);
+            reinitialize2(skinnedModel);
         }
 
         public override void Draw(GameTime gameTime)

@@ -345,7 +345,7 @@ namespace MyGame
             {
                 switch (ev.EventId)
                 {
-                    case (int)MyEvent.G_Exit: Exit(); break;
+                    case (int)MyEvent.G_Exit: if(paused) Exit(); break;
                     case (int)MyEvent.G_StartGame:
                         if (paused)
                             initializeGame2();

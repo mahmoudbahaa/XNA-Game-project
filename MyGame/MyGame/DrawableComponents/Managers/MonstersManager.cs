@@ -13,6 +13,7 @@ namespace MyGame
     {
         List<Event> events = new List<Event>();
 
+        private List<Monster> deadMonsters;
         private List<Monster> monsters;
         private HPBillboardSystem hpBillBoardSystem;
 
@@ -31,6 +32,7 @@ namespace MyGame
             : base(game)
         {
             monsters = new List<Monster>();
+            deadMonsters = new List<Monster>();
             myGame = game;
 
             rnd[0] = new Random();
@@ -80,23 +82,36 @@ namespace MyGame
             float y = Constants.TERRAIN_HEIGHT;
             //while(y > .5 * Constants.TERRAIN_HEIGHT)
             //{
-            //bool flag = true;
-            //while (flag)
-            //{
+            bool flag = true;
+            while (flag)
+            {
                 x = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
                 z = (float)(rnd[0].NextDouble() * Constants.FIELD_MAX_X_Z * 2 - Constants.FIELD_MAX_X_Z);
-                y = myGame.GetHeightAtPosition(x, z);
-                //Unit unit = new Unit(myGame, new Vector3(x, y, z), Vector3.Zero, Vector3.One);
-                //if (!myGame.player.unit.collideWith(unit))
-                //    flag = false;
-            //}
+                //x = (float)(rnd[0].NextDouble() * 50);
+                //z = (float)(rnd[0].NextDouble() * 50);
+                if (Math.Abs(x - myGame.player.unit.position.X)>20 && Math.Abs(z-myGame.player.unit.position.Z)>20)
+                    flag = false;
+            }
+            y = myGame.GetHeightAtPosition(x, z);
             //}
             Vector3 pos = new Vector3(x, y, z);
             Vector3 rot = new Vector3(0, (float)(rnd[0].NextDouble() * MathHelper.TwoPi), 0);
             int choice = (int)(rnd[1].NextDouble() * 4);
 
             MonsterUnit monsterUnit = new MonsterUnit(myGame, pos, rot, Constants.MONSTER_SCALE, monsterConstants[choice]);
-            Monster monster = new Monster(myGame, skinnedModel[choice], monsterUnit);
+
+            Monster monster;
+            //if(deadMonsters.Count == 0)
+                monster = new Monster(myGame,new MonsterModel(myGame,skinnedModel[choice]) , monsterUnit);
+            //else
+            //{
+            //    monster = deadMonsters[0];
+            //    deadMonsters.RemoveAt(0);
+            //    monster.monsterUnit = monsterUnit;
+            //    monster.unit = monsterUnit;
+            //    monster.health = 100;
+            //    ((MonsterModel)monster.cModel).reinitialize(skinnedModel[choice]);
+            //}
 
             monsters.Add(monster);
             hpBillBoardSystem.monstersTextures.Add(HPBillboardSystem.getTexture(monster.health));
@@ -168,6 +183,7 @@ namespace MyGame
                 skinnedModel[1] = skinnedModel[3];
                 skinnedModel[2] = skinnedModel[3];
             }
+
         }
 
         public override void Update(GameTime gameTime)
@@ -206,6 +222,7 @@ namespace MyGame
                 }
                 else if (monsters[j].monsterUnit.dead)
                 {
+                    deadMonsters.Add(monsters[j]);
                     monsters.RemoveAt(j);
                     hpBillBoardSystem.monstersTextures.RemoveAt(j);
                     j--;

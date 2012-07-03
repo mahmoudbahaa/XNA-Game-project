@@ -23,6 +23,15 @@ namespace MyGame
 
         public CModel(MyGame game, Model Model)
         {
+            reinitialize(Model);
+
+            myGame = game;
+
+            events = new List<Event>();
+        }
+
+        protected void reinitialize(Model Model)
+        {
             this.Model = Model;
 
             baseWorld = Matrix.Identity;
@@ -32,10 +41,6 @@ namespace MyGame
             Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
 
             generateTags();
-
-            myGame = game;
-
-            events = new List<Event>();
         }
 
         public void updateBaseWorld(Vector3 position, Vector3 rotation, Vector3 scale, Matrix baseWorld)

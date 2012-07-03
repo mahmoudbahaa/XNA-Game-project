@@ -34,6 +34,12 @@ namespace MyGame
             //animationController.CrossFade(skinnedModel.AnimationClips.Values[0], TimeSpan.FromSeconds(0.05f));
         }
 
+        public override void reinitialize(SkinnedModel skinnedModel)
+        {
+ 	         base.reinitialize(skinnedModel);
+             animationController.StartClip(skinnedModel.AnimationClips[animations[(int)MonsterAnimations.Idle]]);
+        }
+
         public void Idle()
         {
             DoAction(true,MonsterAnimations.Idle);

@@ -12,7 +12,7 @@ namespace Helper
         {
             INCREASED_HEALTH_BY_MEDKIT = 50;
             NUM_MEDKITS_IN_FIELD = 5;
-            NUM_MONSTERS_IN_FIELD = 50;
+            NUM_MONSTERS_IN_FIELD = 40;
         }
     }
 }

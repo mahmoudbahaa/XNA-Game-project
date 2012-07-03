@@ -49,18 +49,20 @@ namespace MyGame
                 switch (ev.EventId)
                 {
                     case (int)MyEvent.G_PAUSE:
+                        if (!myGame.gameOver && !myGame.paused)
                         {
                             myGame.paused = true;
                             myGame.pause();
                             StartScreen.continueEnabled = true;
-                            break;
                         }
+                        break;
                     case (int)MyEvent.G_RESUME:
+                        if (myGame.paused)
                         {
                             myGame.paused = false;
                             myGame.resume();
-                            break;
                         }
+                        break;
                 }
             }
             events.Clear();

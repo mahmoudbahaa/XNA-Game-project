@@ -37,7 +37,7 @@ namespace MyGame
         public PlayerModel(MyGame game, SkinnedModel skinnedModel)
             : base(game, skinnedModel)
         {
-            game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN,MyEvent.C_ATTACK_STOPPED);
+            game.mediator.register(this, MyEvent.P_RUN, MyEvent.C_ATTACK_BULLET_BEGIN);
             animationController.Speed = 1.2f;
             activeAnimation = PlayerAnimations.Idle;
             playAnimation();    
@@ -58,9 +58,6 @@ namespace MyGame
                         if (num_of_attacks == 0)
                             animationPlay = true;
                         num_of_attacks++;
-                        break;
-                    case (int)MyEvent.C_ATTACK_STOPPED:
-                        attacking = false;
                         break;
                     default:
                         break;

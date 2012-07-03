@@ -31,8 +31,8 @@ namespace MyGame
             return monsterUnit.monsterConstants.SCORE;
         }
 
-        public Monster(MyGame game, SkinnedModel skinnedModel, Unit unit)
-            : base(game, unit, new MonsterModel(game, skinnedModel))
+        public Monster(MyGame game, CModel model, Unit unit)
+            : base(game, unit, model)
         {
             monsterModel = ((MonsterModel)cModel);
             monsterUnit = ((MonsterUnit)unit);

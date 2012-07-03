@@ -75,8 +75,8 @@ namespace MyGame
                  //If shot is out of bounds, remove it from game
                 Vector3 pos = bullets[i].unit.position ;
                 if(Math.Abs(pos.Length()) > bulletRange || 
-                    myGame.checkCollisionWithBullet(bullets[i].unit) ||
-                    pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z) )
+                    myGame.checkCollisionWithBullet(bullets[i].unit) //||
+                    /*pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z)*/ )
                 {
                     bullets.RemoveAt(i);
                     --i;

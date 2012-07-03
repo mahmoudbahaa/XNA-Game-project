@@ -186,8 +186,9 @@ namespace MyGame
                         myGame.mediator.fireEvent(MyEvent.G_StartGame);
                         break;
 
-                    case "RIGHT":;
-                        Console.WriteLine("RIGHT");
+                    case "EXIT":
+                        Console.WriteLine("EXIT");
+                        myGame.mediator.fireEvent(MyEvent.G_Exit);
                         break;
                 }
             }
