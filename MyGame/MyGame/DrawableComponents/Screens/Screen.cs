@@ -22,6 +22,8 @@ namespace MyGame
         protected SpriteFont mediumFont;
         protected SpriteFont bigFont;
 
+        protected Texture2D background;
+
         protected float silencePeriod = 500;
         protected MyGame myGame;
         public Screen(MyGame game,int delayedActionDelay)
@@ -31,6 +33,9 @@ namespace MyGame
 
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             delayedAction = new DelayedAction(delayedActionDelay);
+
+
+            background = game.Content.Load<Texture2D>("poster");
 
             smallFont = Game.Content.Load<SpriteFont>("SpriteFont1");
             mediumFont = Game.Content.Load<SpriteFont>("SpriteFontMedium");

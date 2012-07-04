@@ -38,7 +38,7 @@ namespace MyGame
 
             string kinectStatus = string.Format("kinect: {0}", GestureManager.paused?"Off":"On");
             Vector2 pos;
-            pos.X = myGame.GraphicsDevice.Viewport.Width - 250;
+            pos.X = myGame.GraphicsDevice.Viewport.Width - smallFont.MeasureString(kinectStatus).X;
             spriteBatch.DrawString(smallFont, kinectStatus, new Vector2(pos.X, 5), Color.White);
             spriteBatch.DrawString(smallFont, kinectStatus, new Vector2(pos.X, 4), Color.Black);
 

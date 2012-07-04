@@ -55,7 +55,7 @@ namespace MyGame
             spriteBatch.Begin();
 
             Vector2 pos;
-            pos.X = myGame.GraphicsDevice.Viewport.Width - spriteFont.MeasureString(fps).X;
+            pos.X = myGame.GraphicsDevice.Viewport.Width - 250 - spriteFont.MeasureString(fps).X;
             spriteBatch.DrawString(spriteFont, fps, new Vector2(pos.X, 5), Color.White);
             spriteBatch.DrawString(spriteFont, fps, new Vector2(pos.X, 4), Color.Black);
 

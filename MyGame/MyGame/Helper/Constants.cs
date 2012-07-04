@@ -54,7 +54,7 @@ namespace Helper
             Xtreme
         };
 
-        public const int NUM_OF_LEVELS = 1;
+        public const int NUM_OF_LEVELS = 3;
         public static int[] LEVEL_SCORES = new int[] { 3, 5, 10 };
     }
 }

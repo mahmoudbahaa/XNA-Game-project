@@ -51,6 +51,8 @@ namespace MyGame
         {
             Game.GraphicsDevice.Clear(backgroundColor);
             spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height), Color.White);
+
 
             Vector2 pos = findCenteredPos2(title, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));

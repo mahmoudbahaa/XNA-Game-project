@@ -228,7 +228,7 @@ namespace MyGame
             Components.Add(scoreBoard);
             Components.Add(stateManager);
             Components.Add(audioManager);
-            Components.Add(frameRateCounter);
+            //Components.Add(frameRateCounter);
             Components.Add(kinectManager);
 
             Components.Insert(0, levelScreen);

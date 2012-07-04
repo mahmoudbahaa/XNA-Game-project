@@ -25,19 +25,17 @@ namespace MyGame
 
         //private Vector2 titlePosOffset = new Vector2(0, 150);
         private float preferredtitlePosOffset = 150;
-        private const String title1 = "XNA Shooter";
-        private const String title2 = "Xterme - Novice - Advanced";
+        private const String title1 = " ";
+        private const String title2 = " ";
 
         private String[] menuItems = new String[]{"Continue","Start Game" , "Help" ,"Difficulty <-$$->" , "Credits","Exit"};
 
-        private Texture2D background;
         private Texture2D emptyTex;
 
         public StartScreen(MyGame game)
             : base(game,100)
         {
             emptyTex = game.Content.Load<Texture2D>("empty2");
-            background = game.Content.Load<Texture2D>("poster");
         }
 
         public override void Update(GameTime gameTime)
