@@ -99,9 +99,9 @@ namespace MyGame
 
             RecognizerInfo ri = GetKinectRecognizer();
 
-            if (null != ri)
-            {
-                this.speechEngine = new SpeechRecognitionEngine(ri.Id);
+            //if (null != ri)
+            //{
+                this.speechEngine = new SpeechRecognitionEngine();
 
                 /****************************************************************
                 * 
@@ -137,7 +137,7 @@ namespace MyGame
                 speechEngine.SetInputToAudioStream(
                     sensor.AudioSource.Start(), new SpeechAudioFormatInfo(AudioFormat, AudioSamplesPerSecond, AudioBitsPerSample, AudioChannels, AudioAverageBytesPerSecond, AudioBlockAlign, null));
                 speechEngine.RecognizeAsync(RecognizeMode.Multiple);
-            }
+            //}
         }
 
         private static RecognizerInfo GetKinectRecognizer()

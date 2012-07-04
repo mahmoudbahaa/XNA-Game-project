@@ -225,6 +225,7 @@ namespace MyGame
                     deadMonsters.Add(monsters[j]);
                     monsters.RemoveAt(j);
                     hpBillBoardSystem.monstersTextures.RemoveAt(j);
+                    monsters[j].Dispose();
                     j--;
                 }
             }
