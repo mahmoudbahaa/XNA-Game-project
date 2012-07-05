@@ -6,8 +6,12 @@ using System.Collections;
 
 namespace Helper
 {
+    /// <summary>
+    /// Class repersentign event. each event has a uniqe id and it may contains args.
+    /// </summary>
     public class Event
     {
+        /// <summary> eventId is an enum to ensure the uniqness of the id.</summary>
         private MyEvent eventId;
         public int EventId
         {
@@ -16,8 +20,14 @@ namespace Helper
                 return (int)eventId;
             }
         }
+        /// <summary> hash table containing the args related to this event.</summary>
         public Hashtable args;
 
+        /// <summary>
+        /// Constructor of the Event class.
+        /// </summary>
+        /// <param name="id">the id of the event.</param>
+        /// <param name="kv">the set of args</param>
         public Event(MyEvent id, params Object[] kv)
         {
             this.eventId = id;

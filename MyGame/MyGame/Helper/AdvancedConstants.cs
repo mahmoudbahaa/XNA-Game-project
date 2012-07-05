@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework;
 
 namespace Helper
 {
+    /// <summary>
+    /// Class extend DifficulityConstants and contains constant of the Advanced Difficulity.
+    /// </summary>
     class AdvancedConstants:DifficultyConstants
     {
         public AdvancedConstants()

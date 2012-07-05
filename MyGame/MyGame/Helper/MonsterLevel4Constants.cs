@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Helper
 {
+    /// <summary>
+    /// Class that extends MonsterConstants Class, contains the constants for monster type 4.
+    /// </summary>
     public class MonsterLevel4Constants : MonsterConstants
     {
         public MonsterLevel4Constants()

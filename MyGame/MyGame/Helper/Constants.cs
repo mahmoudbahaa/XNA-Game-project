@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework;
 
 namespace Helper
 {
+    /// <summary>
+    /// Class holding different constant of the game.
+    /// </summary>
     public class Constants
     {
         public const int RIGHT_HAND = 0;
