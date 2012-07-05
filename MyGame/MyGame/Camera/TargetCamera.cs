@@ -19,6 +19,10 @@ namespace MyGame
             this.Target = Target;
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public void Update()
         {
             this.View = Matrix.CreateLookAt(Position, Target, Vector3.Up);

@@ -191,6 +191,10 @@ namespace MyGame
 
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public override void Update(GameTime gameTime)
         {
             if (myGame.paused)
@@ -240,6 +244,10 @@ namespace MyGame
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (Monster monster in monsters)

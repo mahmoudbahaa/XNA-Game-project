@@ -22,6 +22,10 @@ namespace MyGame
             this.Direction = Direction;            
         }
 
+        /// <summary>
+        /// Allows the unit to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>>
         public override void update(GameTime gameTime)
         {
             // Move bullet

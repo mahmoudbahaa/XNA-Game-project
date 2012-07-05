@@ -96,6 +96,10 @@ namespace MyGame
             //}
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         private void Draw(String text)
         {
             spriteBatch.Begin();
@@ -107,7 +111,10 @@ namespace MyGame
             spriteBatch.End();
         }
 
-
+        /// <summary>
+        /// Add event to the event queue
+        /// </summary>
+        /// <param name="ev">Event to be added</param>
         public void addEvent(Event ev)
         {
             events.Add(ev);

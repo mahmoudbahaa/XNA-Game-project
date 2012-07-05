@@ -48,6 +48,10 @@ namespace MyGame
             this.translation += Translation;
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public override void Update(GameTime gameTime)
         {
             // Get the new keyboard and mouse state

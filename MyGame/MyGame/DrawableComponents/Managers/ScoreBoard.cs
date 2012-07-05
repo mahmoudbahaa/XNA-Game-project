@@ -62,6 +62,10 @@ namespace MyGame
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -71,7 +75,10 @@ namespace MyGame
             base.Draw(gameTime);
         }
 
-
+        /// <summary>
+        /// Add event to the event queue
+        /// </summary>
+        /// <param name="ev">Event to be added</param>
         public void addEvent(Event ev)
         {
             events.Add(ev);

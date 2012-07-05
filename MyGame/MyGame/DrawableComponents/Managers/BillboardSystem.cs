@@ -35,6 +35,14 @@ namespace MyGame
         public enum BillboardMode { Cylindrical, Spherical };
         public BillboardMode Mode = BillboardMode.Spherical;
 
+
+        /// <summary>
+        /// Constructor that initialize the billboard attributes
+        /// </summary>
+        /// <param name="game">Instance of MyGame this drawable game component is attached to</param>
+        /// <param name="texture">The Texture2D(2D picture) that is drawn at every position</param>
+        /// <param name="billboardSize">Size of billboard</param>
+        /// <param name="particlePositions">Positions of the billboards</param>
         public BillboardSystem(Game game, Texture2D texture,
             Vector2 billboardSize, Vector3[] particlePositions):base(game)
         {
@@ -47,6 +55,10 @@ namespace MyGame
             generateParticles(particlePositions);
         }
 
+        /// <summary>
+        /// Generate the particles (vertex and index array) for each billboard
+        /// </summary>
+        /// <param name="particlePositions">Positions of the billboards</param>
         void generateParticles(Vector3[] particlePositions)
         {
             // Create vertex and index arrays
@@ -86,6 +98,9 @@ namespace MyGame
             ints.SetData<int>(indices);
         }
 
+        /// <summary>
+        /// Set the billboard effect paramaters
+        /// </summary>
         void setEffectParameters()
         {
             ChaseCamera camera = (ChaseCamera)((MyGame)Game).camera;
@@ -97,6 +112,10 @@ namespace MyGame
             effect.Parameters["Side"].SetValue(camera.Right);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             // Set the vertex and index buffer to the graphics card

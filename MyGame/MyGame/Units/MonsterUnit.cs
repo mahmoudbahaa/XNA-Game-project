@@ -31,6 +31,10 @@ namespace MyGame
             this.monsterConstants = monsterConstants;
         }
 
+        /// <summary>
+        /// Allows the unit to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>>
         public override void update(GameTime gameTime)
         {
             if (alive)

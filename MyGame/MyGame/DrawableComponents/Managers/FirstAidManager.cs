@@ -22,6 +22,7 @@ namespace MyGame
         private float reaminingTimeToNextSpawn = 0;
 
         private MyGame myGame;
+
         public FirstAidManager(MyGame game)
             : base(game)
         {
@@ -31,6 +32,9 @@ namespace MyGame
             rnd = new Random();
         }
 
+        /// <summary>
+        /// Add a new medkit at a random location on the terrain
+        /// </summary>
         private void addFirstAidKit()
         {
             float y = Constants.TERRAIN_HEIGHT;
@@ -48,6 +52,10 @@ namespace MyGame
             firstAidKits.Add(firstAid);
         }
 
+        /// <summary>
+        /// if the unit(player or bullet) collide with the first aid add the health
+        /// </summary>
+        /// <param name="unit">Unit to check collision with</param>
         public bool checkCollisionWithBullet(Unit unit)
         {
             // If shot is still in play, check for collisions
@@ -62,6 +70,10 @@ namespace MyGame
             return false;
         }
 
+        /// <summary>
+        /// add health specified by difficult constants to the health of the player and remove the mdekit
+        /// </summary>
+        /// <param name="j">position of the medkit in the medkits collection</param>
         private void addHealth(int j)
         {
             myGame.player.health += myGame.difficultyConstants.INCREASED_HEALTH_BY_MEDKIT;
@@ -70,6 +82,10 @@ namespace MyGame
             firstAidKits.RemoveAt(j);
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public override void Update(GameTime gameTime)
         {
             if (myGame.paused)
@@ -95,6 +111,10 @@ namespace MyGame
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (FirstAid firstAid in firstAidKits)

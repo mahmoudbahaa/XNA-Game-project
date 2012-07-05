@@ -89,10 +89,18 @@ namespace MyGame
             this.events = new List<Event>();
         }
 
+        /// <summary>
+        /// Allows the unit to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>>
         public virtual void update(GameTime gameTime) 
         {
         }
 
+        /// <summary>
+        /// Add event to the event queue
+        /// </summary>
+        /// <param name="ev">Event to be added</param>
         public void addEvent(Event ev)
         {
             events.Add(ev);

@@ -80,6 +80,10 @@ namespace MyGame
             waterEffect.Parameters["ReflectionMap"].SetValue(reflectionTarg);
         }
 
+        /// <summary>
+        /// Allows the unit to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>>
         public override void update(GameTime gameTime)
         {
             renderReflection(gameTime);

@@ -48,6 +48,10 @@ namespace MyGame
             playerRun();
         }
 
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
             if (myGame.paused)
@@ -147,6 +151,10 @@ namespace MyGame
             spriteBatch.Draw(HPBillboardSystem.getTexture(health), rect , Color.White);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();

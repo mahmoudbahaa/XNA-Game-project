@@ -9,6 +9,9 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent player model that can run differet animations so inherent from AnimatedModel
+    /// </summary>
     public class PlayerModel : AnimatedModel
     {
         readonly String[] animations = new String[] { "Idle", "Run", "Aim", "Shoot" };
@@ -43,6 +46,10 @@ namespace MyGame
             playAnimation();    
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             running = false;

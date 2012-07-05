@@ -26,6 +26,10 @@ namespace MyGame
 
         float bulletRange = 3000;
 
+        /// <summary>
+        /// Constructor that initialize the bullet manager
+        /// </summary>
+        /// <param name="game">Instance of MyGame this game component is attached to</param>
         public BulletsManager(MyGame game)
             : base(game)
         {
@@ -35,6 +39,12 @@ namespace MyGame
             game.mediator.register(this, MyEvent.C_ATTACK_BULLET_END);
         }
 
+        /// <summary>
+        /// Add a new bullet at the specified position, rotation and direction
+        /// </summary>
+        /// <param name="position">initial position of the new bullet</param>
+        /// <param name="rotation">rotation of the new bullet</param>
+        /// <param name="direction">Direction in which the bullet will move</param>
         public void AddBullet(Vector3 position,Vector3 rotation, Vector3 direction)
         {
             Bullet bullet = new Bullet(myGame, Game.Content.Load<Model>("projectile"),
@@ -43,11 +53,18 @@ namespace MyGame
 
         }
 
+        /// <summary>
+        /// Add event to the event queue
+        /// </summary>
+        /// <param name="ev">Event to be added</param>
         public void addEvent(Event ev)
         {
             events.Add(ev);
         }
 
+        /// <summary>
+        /// Fire a new bullet if the specified event(C_ATTACK_BULLET_END) was received
+        /// </summary>
         protected void FireShots()
         {
             foreach (Event ev in events)
@@ -68,6 +85,10 @@ namespace MyGame
             events.Clear();
         }
 
+        /// <summary>
+        /// update the bullet if the bulltet out of range or collide with the monster remove it
+        /// </summary>
+        /// <param name="gameTime">The game time</param>
         protected void UpdateShots(GameTime gameTime)
         {
             // Loop through shots
@@ -90,6 +111,10 @@ namespace MyGame
             }
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public override void Update(GameTime gameTime)
         {
             if (myGame.paused)
@@ -99,6 +124,10 @@ namespace MyGame
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (Bullet bullet in bullets)

@@ -37,6 +37,9 @@ namespace MyGame
             myGame.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
         public void Draw()
         {
             Draw(null);

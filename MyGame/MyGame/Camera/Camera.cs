@@ -43,32 +43,41 @@ namespace MyGame
         }
 
         public BoundingFrustum Frustum { get; private set; }
-        
+
+        /// <summary>
+        /// Constructor that initiliaze the projection matrix
+        /// </summary>
+        /// <param name="game">The instance of MyGame the game component is attached to</param>
         public Camera(MyGame game)
             : base(game)
         {
-            generatePerspectiveProjectionMatrix(MathHelper.PiOver4);
+            this.Projection = Matrix.CreatePerspectiveFieldOfView(
+                MathHelper.PiOver4, Game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
             myGame = game;
         }
 
-        private void generatePerspectiveProjectionMatrix(float FieldOfView)
-        {
-            this.Projection = Matrix.CreatePerspectiveFieldOfView(
-                FieldOfView, Game.GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
-        }
-
-
+        /// <summary>
+        /// Generate the camera frustrum from the view projection matrix
+        /// </summary>
         private void generateFrustum()
         {
             Matrix viewProjection = View * Projection;
             Frustum = new BoundingFrustum(viewProjection);
         }
 
+        /// <summary>
+        /// Checks if the bounding sphere is in the camera frustrum or not
+        /// </summary>
+        /// <param name="sphere">the Bounding sphere to check</param>
         public bool BoundingVolumeIsInView(BoundingSphere sphere)
         {
             return (Frustum.Contains(sphere) != ContainmentType.Disjoint);
         }
 
+        /// <summary>
+        /// Checks if the bounding box is in the camera frustrum or not
+        /// </summary>
+        /// <param name="box">the Bounding box to check</param>
         public bool BoundingVolumeIsInView(BoundingBox box)
         {
             return (Frustum.Contains(box) != ContainmentType.Disjoint);

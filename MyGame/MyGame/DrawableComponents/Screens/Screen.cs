@@ -11,7 +11,7 @@ using control;
 namespace MyGame
 {
     /// <summary>
-    /// This class represent Screen that draws text on Screen 
+    /// This class represent Screen that draws text on Screen having 3 different sized fonts that can be used
     /// </summary>
     public class Screen : DrawableGameComponent
     {

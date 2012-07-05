@@ -79,9 +79,9 @@ namespace control
                 // if the game is pause check every 1 sec
                 if (paused)
                 {
-                    Thread.Sleep(1000);
                     foreach (Gesture g in gestures)
                         g.active = false;
+                    Thread.Sleep(1000);
                 }
                 else // if the game is running evaluate the list of gesture almost 33 time/sec.
                 {

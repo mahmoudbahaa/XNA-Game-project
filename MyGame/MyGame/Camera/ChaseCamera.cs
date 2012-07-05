@@ -43,6 +43,14 @@ namespace MyGame
             set { springiness = MathHelper.Clamp(value, 0, 1); }
         }
 
+
+        /// <summary>
+        /// Constructor that initialize the chase camera properties and set the mouse to the middle of the screen
+        /// </summary>
+        /// <param name="game">instance of MyGame this game component is attched to</param>
+        /// <param name="PositionOffset">offset of the position from the chasee</param>
+        /// <param name="TargetOffset">offset of the target from the chasee</param>
+        /// <param name="RelativeCameraRotation">reletaive camera rotation with respect to the chasee</param>
         public ChaseCamera(MyGame game, Vector3 PositionOffset, Vector3 TargetOffset,
             Vector3 RelativeCameraRotation )
             : base(game)
@@ -57,6 +65,11 @@ namespace MyGame
             lastMouseState = Mouse.GetState();
         }
 
+        /// <summary>
+        /// Move the chase camera to follow the chased position and rotation
+        /// </summary>
+        /// <param name="NewFollowTargetPositio">the followed new target position</param>
+        /// <param name="NewFollowTargetRotation">the followed new target rotation</param>
         public void Move(Vector3 NewFollowTargetPosition,
             Vector3 NewFollowTargetRotation)
         {
@@ -64,6 +77,10 @@ namespace MyGame
             this.FollowTargetRotation = NewFollowTargetRotation;
         }
 
+        /// <summary>
+        /// Rotate the camera with the specifed rotate change vector
+        /// </summary>
+        /// <param name="RotationChange">the change in the rotation</param>
         public void Rotate(Vector3 RotationChange)
         {
             this.RelativeCameraRotation += RotationChange;
@@ -107,6 +124,10 @@ namespace MyGame
             sensitivity = 0.5f;
         }
 
+        /// <summary>
+        /// Allows the component to run logic.
+        /// </summary>
+        /// <param name="gameTime">The gametime.</param>
         public override void  Update(GameTime gameTime)
         {
             if (myGame.paused)

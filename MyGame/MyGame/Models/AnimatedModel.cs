@@ -46,6 +46,10 @@ namespace MyGame
             reinitialize2(skinnedModel);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             myGame.GraphicsDevice.BlendState = BlendState.Opaque;

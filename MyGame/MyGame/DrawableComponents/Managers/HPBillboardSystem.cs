@@ -147,6 +147,10 @@ namespace MyGame
             effect.Parameters["Side"].SetValue(Right);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public void Draw(Matrix View, Matrix Projection, Vector3 Up, Vector3 Right)
         {
             // Set the vertex and index buffer to the graphics card

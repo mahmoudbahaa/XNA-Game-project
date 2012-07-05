@@ -52,6 +52,11 @@ namespace MyGame
                 * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z)
                 * Matrix.CreateTranslation(position);
         }
+
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public virtual void Draw(GameTime game)
         {
             foreach (ModelMesh mesh in Model.Meshes)
@@ -98,6 +103,10 @@ namespace MyGame
                 effect.Parameters[paramName].SetValue((Texture2D)val);
         }
 
+        /// <summary>
+        /// Add event to the event queue
+        /// </summary>
+        /// <param name="ev">Event to be added</param>
         public void addEvent(Event ev)
         {
             events.Add(ev);

@@ -102,8 +102,9 @@ namespace MyGame
 
             RecognizerInfo ri = GetKinectRecognizer();
 
-            //if (null != ri)
-            //{
+            if (null != ri)
+                this.speechEngine = new SpeechRecognitionEngine(ri.Id);
+            else
                 this.speechEngine = new SpeechRecognitionEngine();
 
                 //// Create a grammar from grammar definition XML file.
@@ -118,7 +119,6 @@ namespace MyGame
                 speechEngine.SetInputToAudioStream(
                     sensor.AudioSource.Start(), new SpeechAudioFormatInfo(AudioFormat, AudioSamplesPerSecond, AudioBitsPerSample, AudioChannels, AudioAverageBytesPerSecond, AudioBlockAlign, null));
                 speechEngine.RecognizeAsync(RecognizeMode.Multiple);
-            //}
         }
 
         private static RecognizerInfo GetKinectRecognizer()

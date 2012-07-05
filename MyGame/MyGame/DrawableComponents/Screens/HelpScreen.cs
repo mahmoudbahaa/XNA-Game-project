@@ -37,6 +37,10 @@ namespace MyGame
         {
         }
 
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
             if (checkSilencePeriod(gameTime))
@@ -50,6 +54,10 @@ namespace MyGame
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
+        /// <param name="gameTime">The elapsed game time.</param>
         public override void Draw(GameTime gameTime)
         {
             Game.GraphicsDevice.Clear(backgroundColor);

@@ -25,6 +25,9 @@ namespace MyGame
                 ((SkyCubeModel)cModel).effect.Parameters["ClipPlane"].SetValue(Plane.Value);
         }
 
+        /// <summary>
+        /// This method renders the current state.
+        /// </summary>
         public void Draw()
         {
             Draw(null);

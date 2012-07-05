@@ -21,6 +21,10 @@ namespace MyGame
         {
         }
 
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
             unit.rotation += new Vector3(0, MathHelper.Pi / 80, 0);
