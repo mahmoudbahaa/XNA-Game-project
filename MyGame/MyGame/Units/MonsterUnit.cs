@@ -8,6 +8,11 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent monster unit that is idle unless attcked or approached by player then it moves toward the 
+    /// player attcking him whevener in the vicinity of the player and take damage on colliding with bullets & 
+    /// diing when it's hp reaches zero.
+    /// </summary>
     public class MonsterUnit:Unit
     {
         private float timeToDie = 5000;

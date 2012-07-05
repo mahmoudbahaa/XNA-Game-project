@@ -10,6 +10,10 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the bullet manager that manages creating
+    /// and calling updates on bullets, also removing bullet at collision detected.
+    /// </summary>
     public class BulletsManager : DrawableGameComponent,IEvent
     {
         protected List<Event> events;

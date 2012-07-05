@@ -9,6 +9,10 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the First aid manager that manages creating first aids and calling updates 
+    /// on them, also removing first aid and adding health to player at collision detected.
+    /// </summary>
     public class FirstAidManager : DrawableGameComponent
     {
         private List<FirstAid> firstAidKits;

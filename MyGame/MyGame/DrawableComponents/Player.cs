@@ -11,6 +11,9 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent The Player
+    /// </summary>
     public class Player : CDrawableComponent
     {
         private SpriteBatch spriteBatch;

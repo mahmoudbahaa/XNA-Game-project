@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a Tree
+    /// </summary>
     class Tree : CDrawableComponent
     {
         public Tree(MyGame game, Model model, Unit unit, Texture2D Texture)

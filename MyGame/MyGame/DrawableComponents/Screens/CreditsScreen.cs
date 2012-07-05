@@ -10,6 +10,9 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Credits Screen that hold the name of the persons who worked on that game
+    /// </summary>
     public class CreditsScreen : Screen
     {
         // Shot variables
@@ -45,7 +48,7 @@ namespace MyGame
             spriteBatch.Begin();
 
             String title = "Credits";
-            Vector2 pos = findCenteredPos2(title, bigFont);
+            Vector2 pos = findCenteredPos(title, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
             pos -= nextPosOffset;
             spriteBatch.DrawString(bigFont, title, pos, titleColor);
@@ -53,7 +56,7 @@ namespace MyGame
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title).Y);
             for (int i = 0; i < menuItems.Count(); i++)
             {
-                pos = findCenteredPos2(menuItems[i], mediumFont) - nextPosOffset;
+                pos = findCenteredPos(menuItems[i], mediumFont) - nextPosOffset;
 
                 spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
                 nextPosOffset = nextPosOffset - new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);

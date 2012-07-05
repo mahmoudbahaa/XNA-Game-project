@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent sky cube unit which updates the 
+    /// position of the cube to the position of the camera
+    /// </summary>
     class SkyCubeUnit:Unit
     {
 

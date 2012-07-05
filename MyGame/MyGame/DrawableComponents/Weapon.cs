@@ -11,6 +11,9 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the weapon attached to the player
+    /// </summary>
     public class Weapon : CDrawableComponent
     {
         Player player;

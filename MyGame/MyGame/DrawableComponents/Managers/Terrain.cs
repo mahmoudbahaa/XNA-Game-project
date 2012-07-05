@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Terrain that draw the terrain and has utility methods to deal with the terrain
+    /// </summary>
     public class Terrain : DrawableGameComponent, IRenderable
     {
         VertexPositionNormalTexture[] vertices; // Vertex array

@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a Free Camera that move and rotate freely 
+    /// </summary>
     public class FreeCamera : Camera
     {
         public float Yaw { get; set; }

@@ -10,6 +10,9 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent Screen that draws text on Screen 
+    /// </summary>
     public class Screen : DrawableGameComponent
     {
         protected SpriteBatch spriteBatch;
@@ -48,14 +51,7 @@ namespace MyGame
             silencePeriod = 500;
         }
 
-        protected Vector2 findCenteredPos1(String text, SpriteFont font)
-        {
-            Vector2 pos = findCenteredPos2(text, font);
-            pos.Y = 0;
-            return pos;
-        }
-
-        protected Vector2 findCenteredPos2(String text, SpriteFont font)
+        protected Vector2 findCenteredPos(String text, SpriteFont font)
         {
             Vector2 pos = new Vector2();
             Vector2 textMeasure = font.MeasureString(text);

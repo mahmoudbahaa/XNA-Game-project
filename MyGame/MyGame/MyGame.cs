@@ -10,6 +10,9 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Game that contains the main game loop and glues all components together
+    /// </summary>
     public class MyGame : Microsoft.Xna.Framework.Game, IEvent
     {
         List<Event> events;
@@ -102,7 +105,7 @@ namespace MyGame
         private SkyCube intitializeSky()
         {
             Model skymodel = Content.Load<Model>("skysphere_mesh");
-            SkyUnit skyCubeUnit = new SkyUnit(this,Vector3.Zero, Vector3.Zero, new Vector3(10000));
+            SkyCubeUnit skyCubeUnit = new SkyCubeUnit(this,Vector3.Zero, Vector3.Zero, new Vector3(10000));
             SkyCube sky = new SkyCube(this,skymodel,skyCubeUnit,Content.Load<TextureCube>("clouds"));
 
             //Model skyDome = Content.Load<Model>("dome");

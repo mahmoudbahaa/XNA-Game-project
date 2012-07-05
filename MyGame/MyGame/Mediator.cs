@@ -10,6 +10,10 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the mediator to which classes register events they want to listen to and 
+    /// fire events they want to fire.
+    /// </summary>
     public class Mediator 
     {
         Hashtable hash;

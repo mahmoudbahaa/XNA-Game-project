@@ -10,6 +10,9 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Help Screen that show some info on how to play the game
+    /// </summary>
     public class HelpScreen : Screen
     {
         // Shot variables
@@ -54,7 +57,7 @@ namespace MyGame
             spriteBatch.Draw(background, new Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height), Color.White);
 
 
-            Vector2 pos = findCenteredPos2(title, bigFont);
+            Vector2 pos = findCenteredPos(title, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
             pos -= nextPosOffset;
             spriteBatch.DrawString(bigFont, title, pos, titleColor);
@@ -62,10 +65,10 @@ namespace MyGame
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title).Y);
             for (int i = 0; i < menuItems.Count(); i++)
             {
-                pos = findCenteredPos2(menuItems[i], mediumFont) - nextPosOffset;
+                pos = findCenteredPos(menuItems[i], mediumFont) - nextPosOffset;
                 spriteBatch.DrawString(mediumFont, menuItems[i], pos, menuItemColor);
                 nextPosOffset = nextPosOffset - new Vector2(0, mediumFont.MeasureString(menuItems[i]).Y);
-                pos = findCenteredPos2(menuItemsDescription[i], smallFont) - nextPosOffset;
+                pos = findCenteredPos(menuItemsDescription[i], smallFont) - nextPosOffset;
                 spriteBatch.DrawString(smallFont, menuItemsDescription[i], pos, menuItemDescriptionColor);
                 nextPosOffset = nextPosOffset - new Vector2(0, smallFont.MeasureString(menuItemsDescription[i]).Y);
             }

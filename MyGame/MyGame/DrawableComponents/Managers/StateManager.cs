@@ -14,7 +14,7 @@ using Helper;
 namespace MyGame
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// This class represent the StateManager that handle the pause and game over states
     /// </summary>
     public class StateManager : DrawableGameComponent ,IEvent
     {

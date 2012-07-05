@@ -10,6 +10,9 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a bullet
+    /// </summary>
     public class Bullet : CDrawableComponent
     {
         public Bullet(MyGame game, Model model, Unit unit)

@@ -9,6 +9,9 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent custom model bases class for all our models
+    /// </summary>
     public class CModel: IEvent
     {
         public Model Model { get; set; }

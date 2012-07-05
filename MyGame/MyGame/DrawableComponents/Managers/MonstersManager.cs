@@ -9,6 +9,11 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the monster manager that manages creating and calling updates on monsters,
+    /// also handle collision detection of monsters with bullets decreasing health of monster and 
+    /// removing them if needed and also draw and update HPBillboardSystem.
+    /// </summary>
     public class MonstersManager : DrawableGameComponent, IEvent
     {
         List<Event> events = new List<Event>();

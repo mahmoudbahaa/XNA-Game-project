@@ -10,6 +10,10 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Start(pause) Screen that show on startup and on pausing the game having options
+    /// to start a new game,continue , go to help or credit screen or change the difficulty or exit
+    /// </summary>
     public class StartScreen : Screen
     {
         private int chosenMenuItem = 0;
@@ -100,13 +104,13 @@ namespace MyGame
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, new Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height), Color.White);
-            Vector2 pos = findCenteredPos2(title1, bigFont);
+            Vector2 pos = findCenteredPos(title1, bigFont);
             Vector2 nextPosOffset = new Vector2(0, Math.Min(preferredtitlePosOffset, pos.Y));
             pos -= nextPosOffset;
             spriteBatch.DrawString(bigFont, title1, pos , titleColor);
 
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title1).Y);
-            pos = findCenteredPos2(title2, bigFont) - nextPosOffset;
+            pos = findCenteredPos(title2, bigFont) - nextPosOffset;
             spriteBatch.DrawString(bigFont, title2, pos, titleColor);
 
             nextPosOffset = nextPosOffset - new Vector2(0, bigFont.MeasureString(title2).Y );
@@ -116,7 +120,7 @@ namespace MyGame
                 String text = menuItems[i];
                 if (i == 3)
                     text = text.Replace("$$", Constants.DifficultiesString[(int)Difficulty]);
-                pos =findCenteredPos2(text, mediumFont) - nextPosOffset;
+                pos =findCenteredPos(text, mediumFont) - nextPosOffset;
                 if (i == chosenMenuItem)
                 {
                     Vector2 meausre = mediumFont.MeasureString(text);

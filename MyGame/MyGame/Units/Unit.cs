@@ -8,6 +8,9 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent base unit which all units inheret from 
+    /// </summary>
     public class Unit : IEvent
     {
         public Vector3 position;

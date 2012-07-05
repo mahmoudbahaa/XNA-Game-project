@@ -10,6 +10,10 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Kinect Manager that manages the state of the kinect sensoring each on or off 
+    /// and draw its status on screen
+    /// </summary>
     public class KinectManager : Screen
     {
         // Shot variables

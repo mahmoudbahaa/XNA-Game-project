@@ -10,6 +10,10 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Level Screen that is displayed at the beginning of each level showing the level number
+    /// and waiting on input from the user to start the actual level.
+    /// </summary>
     public class LevelScreen : Screen
     {
         public LevelScreen(MyGame game)
@@ -35,8 +39,8 @@ namespace MyGame
 
             String text1 = "Level " + myGame.currentLevel;
             String text2 = "Press Enter to Continue";
-            spriteBatch.DrawString(bigFont, text1, findCenteredPos2(text1, bigFont), menuItemColor);
-            spriteBatch.DrawString(smallFont, text2, findCenteredPos2(text2, smallFont) + 
+            spriteBatch.DrawString(bigFont, text1, findCenteredPos(text1, bigFont), menuItemColor);
+            spriteBatch.DrawString(smallFont, text2, findCenteredPos(text2, smallFont) + 
                 new Vector2(0,bigFont.MeasureString(text1).Y), menuItemColor);
             //Vector2 nextPosOffset = Vector2.Zero ;
             //Vector2 pos;

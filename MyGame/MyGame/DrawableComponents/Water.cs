@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent Water componenet that reflect the sky 
+    /// </summary>
     class Water : CDrawableComponent
     {
         Effect waterEffect;

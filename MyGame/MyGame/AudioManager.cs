@@ -11,6 +11,9 @@ using control;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent Audio Manager that play different music/sound effects at certain moments
+    /// </summary>
     public class AudioManager : GameComponent,IEvent
     {
         protected List<Event> events;

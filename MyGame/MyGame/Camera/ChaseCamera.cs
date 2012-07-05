@@ -9,6 +9,9 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a Chase camera that chase a certain object around
+    /// </summary>
     public class ChaseCamera : Camera
     {
         public Vector3 FollowTargetPosition { get; private set; }

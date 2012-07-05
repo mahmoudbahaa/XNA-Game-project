@@ -9,6 +9,9 @@ using XNAnimation.Controllers;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent animated model (A model that has animation(s))
+    /// </summary>
     public class AnimatedModel : CModel
     {
         protected SkinnedModel skinnedModel;

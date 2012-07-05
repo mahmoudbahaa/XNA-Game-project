@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame
 {
-    // Make SkySphere IRenderable
+    /// <summary>
+    /// This class represent sky cube model, it implement IRenderable in order to be reflected by the water 
+    /// </summary>
     public class SkyCubeModel : CModel,IRenderable
     {
         public Effect effect;

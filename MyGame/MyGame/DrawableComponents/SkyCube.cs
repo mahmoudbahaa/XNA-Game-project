@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent Sky Cube that is used to render the sky
+    /// </summary>
     class SkyCube : CDrawableComponent, IRenderable
     {
         public SkyCube(MyGame game, Model model, Unit unit, TextureCube Texture)

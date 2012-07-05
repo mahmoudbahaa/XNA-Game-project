@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent an abstract Camera 
+    /// </summary>
     public abstract class Camera : Microsoft.Xna.Framework.GameComponent
     {
         Matrix view;

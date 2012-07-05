@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent water unit that reflect all those that implement IRenderable (like sky)
+    /// </summary>
     public interface IRenderable
     {
         void Draw();

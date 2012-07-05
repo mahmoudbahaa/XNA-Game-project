@@ -11,6 +11,9 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a first aid item that rotates with time
+    /// </summary>
     public class FirstAid : CDrawableComponent
     {
         public FirstAid(MyGame game, Model model, Unit unit)

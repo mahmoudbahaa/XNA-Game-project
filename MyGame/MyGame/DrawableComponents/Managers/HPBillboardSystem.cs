@@ -10,6 +10,10 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a special case of billboard system which is the hp billboard system in which 
+    /// all billboards dont have the same texture and texture of each billboards change with time 
+    /// </summary>
     public class HPBillboardSystem
     {
         // Vertex buffer and index buffer, particle

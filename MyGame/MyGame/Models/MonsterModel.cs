@@ -9,6 +9,9 @@ using XNAnimation;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent monster model that can run differet animations so inherent from AnimatedModel
+    /// </summary>
     public class MonsterModel : AnimatedModel
     {
         readonly string[] animations = new string[] { "Idle", "Run", "Bite", "Take Damage", "Die", };

@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a Target camera that is a basic camera
+    /// </summary>
     public class TargetCamera : Camera
     {
         public TargetCamera(MyGame game,Vector3 Position, Vector3 Target)

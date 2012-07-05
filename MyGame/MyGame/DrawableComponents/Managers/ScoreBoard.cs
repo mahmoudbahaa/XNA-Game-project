@@ -14,7 +14,7 @@ using Helper;
 namespace MyGame
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// This class represent the ScoreBoard that draws and updates the score
     /// </summary>
     public class ScoreBoard : DrawableGameComponent ,IEvent
     {

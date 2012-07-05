@@ -8,6 +8,10 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent bullet unit which represent the logic of the bullet 
+    /// that is it move with constant speed in a certain direction
+    /// </summary>
     public class BulletUnit : Unit
     {
         Vector3 Direction { get; set; }

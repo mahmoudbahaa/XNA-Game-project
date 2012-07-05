@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent the Framw rate counter that evaluates and draws the frame per sec on screen
+    /// </summary>
     public class FrameRateCounter : DrawableGameComponent
     {
         SpriteBatch spriteBatch;

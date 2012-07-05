@@ -8,6 +8,10 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent player unit which moves in a speficied direction, rotates ,
+    /// take damange and die when hp reaches zero
+    /// </summary>
     public class PlayerUnit : Unit
     {
         //here goes the player attribute like speed health etc ...

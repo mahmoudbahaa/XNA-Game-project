@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent a Billboard System a group of 
+    /// 2D textures(pictures) that are always drawn facing the camera
+    /// </summary>
     public class BillboardSystem : DrawableGameComponent
     {
         // Vertex buffer and index buffer, particle

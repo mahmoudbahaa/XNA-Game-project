@@ -12,6 +12,10 @@ using Helper;
 
 namespace MyGame
 {
+    /// <summary>
+    /// This class represent Speech recognizer that recognize voice commands and fire the specific events 
+    /// according to command recongized
+    /// </summary>
     class SpeechRecognizer : GameComponent
     {
         /// <summary>
@@ -63,7 +67,6 @@ namespace MyGame
 
         public SpeechRecognizer(MyGame game):base(game)
         {
-            Console.WriteLine("I aveo");
             myGame = game;
             // Look through all sensors and start the first connected one.
             // This requires that a Kinect is connected at the time of app startup.
