@@ -7,41 +7,28 @@ using Helper;
 
 namespace control
 {
+    /// <summary>
+    /// Abstract class that every gesture should implement to evaluate some core function
+    /// </summary>
     abstract class Gesture
     {
+        /// <summary>
+        /// Indicate either the gesture is active or not
+        /// </summary>
         public bool active { get; set; }
-        //public bool hold;
+        /// <summary>
+        /// A quick description for this gesture
+        /// </summary>
         public string description { get; protected set; }
+        /// <summary>
+        /// Abstact method that should be implemented to evaluate this specific gesture.
+        /// </summary>
         public abstract void eval();
     }
 
-
-    class handBackHead : Gesture
-    {
-
-        int hand;
-
-        public handBackHead(int hand)
-        {
-            description = "hand behind head";
-            this.hand = hand;
-        }
-        public override void eval()
-        {
-            //Console.WriteLine("----------------------------------------");
-            //Console.WriteLine("rhand.x =" + (kinect.skeleton.rHand.X - kinect.skeleton.head.X));
-            //Console.WriteLine("rhand.z =" + (kinect.skeleton.rHand.Z - kinect.skeleton.head.Z));
-            //Console.WriteLine("rhand.y =" + (kinect.skeleton.rHand.Y - kinect.skeleton.rShoulder.Y));
-            if (Kinect.skeleton.rHand.Z == 0 && Kinect.skeleton.rHand.X == 0 && Kinect.skeleton.head.X == 0)
-                active = false;
-            if(hand == Constants.RIGHT_HAND)
-                active = Math.Abs(Kinect.skeleton.rHand.X - Kinect.skeleton.head.X) < 0.25f && (Kinect.skeleton.rHand.Y - Kinect.skeleton.rShoulder.Y) < 0.25f && (Kinect.skeleton.rHand.Y - Kinect.skeleton.rShoulder.Y) > 0 && Math.Abs(Kinect.skeleton.rHand.Z - Kinect.skeleton.head.Z) < 0.25f;
-            else
-                active =  Math.Abs(Kinect.skeleton.lHand.X - Kinect.skeleton.head.X) < 0.25f && (Kinect.skeleton.lHand.Y - Kinect.skeleton.lShoulder.Y) < 0.25f && (Kinect.skeleton.lHand.Y - Kinect.skeleton.lShoulder.Y) > 0 && Math.Abs(Kinect.skeleton.lHand.Z - Kinect.skeleton.head.Z) < 0.25f;
-        }
-
-    }
-
+    /// <summary>
+    /// class to detect the lean left gesture
+    /// </summary>
     class LeanRight : Gesture
     {
         
@@ -59,6 +46,9 @@ namespace control
         
     }
 
+    /// <summary>
+    /// class to detect the lean right gesture
+    /// </summary>
     class LeanLeft : Gesture
     {
         public LeanLeft()
@@ -73,6 +63,9 @@ namespace control
         }
     }
 
+    /// <summary>
+    /// class to detect when the right leg is advanced forward.
+    /// </summary>
     class RightLegForward : Gesture
     {
         public RightLegForward()
@@ -82,11 +75,13 @@ namespace control
 
         public override void eval()
         {
-           // Console.WriteLine(kinect.skeleton.rAnkle.Z + "," + kinect.skeleton.lAnkle.Z);
             active = Kinect.skeleton.rAnkle.Z - Kinect.skeleton.lAnkle.Z < -0.3f;
         }
     }
 
+    /// <summary>
+    /// class to detect when the right leg is backward.
+    /// </summary>
     class RightLegBackward : Gesture
     {
         public RightLegBackward()
@@ -100,6 +95,9 @@ namespace control
         }
     }
 
+    /// <summary>
+    /// class to detect when a specific hand is stretched forward.
+    /// </summary>
     class HandStretchForward : Gesture
     {
         int hand;
@@ -123,6 +121,9 @@ namespace control
         }
     }
 
+    /// <summary>
+    /// class to get the z difference between the 2 shoulders.
+    /// </summary>
     class shoulderDifference : Gesture
     {
         public float diff { get; private set; }
@@ -147,6 +148,9 @@ namespace control
         }
     }
 
+    /// <summary>
+    /// class to get the angle between the kinect space z axis and a specific hand.
+    /// </summary>
     class HandPointer : Gesture
     {
         private int hand;
@@ -156,7 +160,10 @@ namespace control
         private Vector3[] currentPos;
 
         private const float HORZ_LIMIT = 60;
-
+        /// <summary>
+        /// constructor of HandPointer class
+        /// </summary>
+        /// <param name="hand">A specific hand</param>
         public HandPointer(int hand)
         {
             this.hand = hand;
@@ -180,23 +187,13 @@ namespace control
             if (float.IsNaN(currentAngle.X) || float.IsNaN(currentAngle.Y))
                 return;
 
-            //Console.WriteLine("=====(" + (tmpX) + "," + (tmpY) + ")");
-
-            //if (current.X > 45)
-            //{
-            //    tmpX = HORZ_LIMIT;
-            //}
-            //else if (current.X < -45)
-            //{
-            //    tmpX = -HORZ_LIMIT;
-            //}
-
-            // TODO: calibarate vertical angle limit
-
             theta = new Vector2(currentAngle.X, currentAngle.Y);
 
         }
 
+        /// <summary>
+        /// get the difference between shoulder and wrist of a specific arm.
+        /// </summary>
         private Vector3[] getPos()
         {
             Vector3 hand_pos = new Vector3();
@@ -215,6 +212,9 @@ namespace control
 
         }
 
+        /// <summary>
+        /// get the angle between the kinect space z axis and a specific hand.
+        /// </summary>
         private Vector2 getAngle(Vector3 v1, Vector3 v2)
         {
             Vector2 angle = new Vector2();
