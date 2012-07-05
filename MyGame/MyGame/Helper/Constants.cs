@@ -23,8 +23,8 @@ namespace Helper
         public const int NUM_OF_TYPES_OF_MONSTERS = 3;
         public const int FIELD_MAX_X_Z = 2 * (int)(125 * TERRAIN_CELL_SIZE * 510 / 512);
 
-        public static Vector3 CAMERA_POSITION_THIRD_PERSON = new Vector3/*(0, 5, 15);//*/(0, 2, 20);
-        public static Vector3 CAMERA_TARGET_THIRD_PERSON = new Vector3/*(0, 10, 0);//*/(0, 7, 0);
+        public static Vector3 CAMERA_POSITION_THIRD_PERSON = new Vector3(0, 5, 15);//(0, 2, 20);
+        public static Vector3 CAMERA_TARGET_THIRD_PERSON = new Vector3(0, 10, 0);//(0, 7, 0);
 
         public static Vector3 CAMERA_POSITION_FIRST_PERSON = new Vector3(0, 5, 2);
         public static Vector3 CAMERA_TARGET_FIRST_PERSON = new Vector3(0, 2, 0);

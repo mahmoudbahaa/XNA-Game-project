@@ -24,7 +24,7 @@ namespace MyGame
         // Shot variables
         float shotSpeed = 0.5f;
 
-        float bulletRange = 30000;
+        float bulletRange = 3000;
 
         public BulletsManager(MyGame game)
             : base(game)
@@ -82,7 +82,9 @@ namespace MyGame
                     myGame.checkCollisionWithBullet(bullets[i].unit) //||
                     /*pos.Y < myGame.GetHeightAtPosition(pos.X,pos.Z)*/ )
                 {
+                    bullets[i].Dispose();
                     bullets.RemoveAt(i);
+                    
                     --i;
                 }
             }

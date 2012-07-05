@@ -367,6 +367,7 @@ namespace MyGame
                             paused = false;
                             canPause = true;
                             currentLevel++;
+                            monsters.Dispose();
                             initializeGame2();
                         }
                         break;

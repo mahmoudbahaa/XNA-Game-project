@@ -9,13 +9,20 @@ using Microsoft.Xna.Framework;
 
 namespace control
 {
+    /// <summary>
+    /// Class that deals with the kinect device and update the skeleton that is used in the gesture classes.
+    /// </summary>
     class Kinect
     {
-        //initilize skeleton data holder
+        /// <summary>
+        /// initilize skeleton data holder.
+        /// </summary>
         public static skeleton skeleton{ get; private set;}
 
+        /// <summary>
+        /// kinect sensor.
+        /// </summary>
         private KinectSensor kinectSensor;
-        //Runtime nui;
 
         public Kinect()
         {
@@ -44,7 +51,12 @@ namespace control
             kinectSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(skeletonFrameReady); 
         }
 
-        //skeleton fram ready event handler
+        /// <summary>
+        /// skeleton frame ready event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">arg with the sekeleton frame</param>
+
         void skeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             // Have we already been "shut down" by the user of this viewer, 
@@ -140,7 +152,12 @@ namespace control
             }
         }
 
-        // copy skeletonPoint to a vector v1 
+        /// <summary>
+        /// copy skeletonPoint to a vector v1 
+        /// </summary>
+        /// <param name="v1">Vector3 that will have the same value of v2</param>
+        /// <param name="v2">A SkeletonPoint</param>
+ 
         private void copyVect(ref Vector3 v1, SkeletonPoint v2)
         {
             v1.X = v2.X;
